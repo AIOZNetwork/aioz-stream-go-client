@@ -21,6 +21,9 @@ jobs:
           echo TEST_SECRET_KEY=${{ secrets.TEST_SECRET_KEY }} >> .env
           echo TEST_ANONYMOUS_SECRET_KEY=${{ secrets.TEST_ANONYMOUS_SECRET_KEY }} >> .env
           echo TEST_ANONYMOUS_PUBLIC_KEY=${{ secrets.TEST_ANONYMOUS_PUBLIC_KEY }} >> .env
+      
+      - name: Run go mod tidy
+        run: go mod tidy
 
       - name: Test
         run: go test -v
