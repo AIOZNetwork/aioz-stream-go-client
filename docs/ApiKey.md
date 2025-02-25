@@ -1,6 +1,6 @@
 # \ApiKey
 
-All URIs are relative to https://api.w3stream.xyz/api
+All URIs are relative to https://api.aiozstream.network/api
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -32,18 +32,18 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *w3streamsdk.NewCreateApiKeyRequest() // CreateApiKeyRequest | api key's data
+    request := *aiozstreamsdk.NewCreateApiKeyRequest() // CreateApiKeyRequest | API key's data
 
     
     res, err := client.ApiKey.Create(request)
@@ -70,7 +70,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**CreateApiKeyRequest**](CreateApiKeyRequest.md) | api key&#39;s data | 
+**request** | [**CreateApiKeyRequest**](CreateApiKeyRequest.md) | API key&#39;s data | 
 
 ### Return type
 
@@ -102,19 +102,19 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | api key id
-    request := *w3streamsdk.NewRenameAPIKeyRequest() // RenameAPIKeyRequest | new api key name
+    request := *aiozstreamsdk.NewRenameAPIKeyRequest() // RenameAPIKeyRequest | new api key name
 
     
     res, err := client.ApiKey.Update(id, request)
@@ -176,16 +176,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | API key's ID
 
@@ -250,17 +250,17 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
-    req := w3streamsdk.ApiKeyApiListRequest{}
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+    req := aiozstreamsdk.ApiKeyApiListRequest{}
     
     req.Search("search_example") // string | only support search by name
     req.SortBy("sortBy_example") // string | sort by (default to "created_at")
