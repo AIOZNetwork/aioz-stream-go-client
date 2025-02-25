@@ -1,6 +1,6 @@
 # \Playlist
 
-All URIs are relative to https://api.w3stream.xyz/api
+All URIs are relative to https://api.aiozstream.network/api
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -38,19 +38,19 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
-    payload := *w3streamsdk.NewAddVideoToPlaylistRequest() // AddVideoToPlaylistRequest | Video details
+    payload := *aiozstreamsdk.NewAddVideoToPlaylistRequest() // AddVideoToPlaylistRequest | Video details
 
     
     res, err := client.Playlist.AddVideoToPlaylist(id, payload)
@@ -112,18 +112,18 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *w3streamsdk.NewCreatePlaylistRequest() // CreatePlaylistRequest | Playlist input
+    request := *aiozstreamsdk.NewCreatePlaylistRequest() // CreatePlaylistRequest | Playlist input
 
     
     res, err := client.Playlist.CreatePlaylist(request)
@@ -182,16 +182,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
 
@@ -254,16 +254,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
 
@@ -328,17 +328,17 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
-    req := w3streamsdk.PlaylistApiGetPlaylistByIdRequest{}
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+    req := aiozstreamsdk.PlaylistApiGetPlaylistByIdRequest{}
     
     req.Id("id_example") // string | Playlist ID
     req.SortBy("sortBy_example") // string | sort by (default to "created_at")
@@ -405,16 +405,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
 
@@ -477,18 +477,18 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *w3streamsdk.NewGetPlaylistListRequest() // GetPlaylistListRequest | Playlist filter
+    request := *aiozstreamsdk.NewGetPlaylistListRequest() // GetPlaylistListRequest | Playlist filter
 
     
     res, err := client.Playlist.GetPlaylists(request)
@@ -547,19 +547,19 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
-    payload := *w3streamsdk.NewMoveVideoInPlaylistRequest() // MoveVideoInPlaylistRequest | Video details
+    payload := *aiozstreamsdk.NewMoveVideoInPlaylistRequest() // MoveVideoInPlaylistRequest | Video details
 
     
     res, err := client.Playlist.MoveVideoInPlaylist(id, payload)
@@ -621,16 +621,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
     itemId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist Item ID
@@ -695,20 +695,20 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
     file := os.NewFile(1234, "some_file") // *os.File | 
-    metadata := []w3streamsdk.Metadata{*w3streamsdk.NewMetadata()} // []Metadata | 
+    metadata := []aiozstreamsdk.Metadata{*aiozstreamsdk.NewMetadata()} // []Metadata | 
     name := "name_example" // string | 
     tags := []string{"Inner_example"} // []string | 
 

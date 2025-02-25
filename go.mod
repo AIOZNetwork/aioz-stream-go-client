@@ -1,4 +1,4 @@
-module github.com/AIOZNetwork/w3stream-go-client
+module github.com/AIOZNetwork/aioz-stream-go-client
 
 go 1.13
 

@@ -1,4 +1,4 @@
-package w3streamsdk
+package aiozstreamsdk
 
 import (
 	"io"
@@ -11,9 +11,9 @@ import (
 
 var (
 	testPlaylistID       string
-	testVideoIDOne       = "98cdf5b1-991a-4b39-803f-509f580e90d5"
-	testVideoIDTwo       = "0cacff1a-df3b-4867-b4f4-c4c4b45b7c25"
-	testVideoIDThree     = "48250f3f-ba51-441b-8629-d6d3cc0ca192"
+	testVideoIDOne       = "2582cc17-ae70-428d-8937-309a380590eb"
+	testVideoIDTwo       = "f812a31b-617d-41de-95eb-ac5e173ddfb8"
+	testVideoIDThree     = "8aa2c5e3-72a2-451e-ae99-73d65a4762b7"
 	testName             = "Test Playlist"
 	testCurrentId        string
 	testNextId           string

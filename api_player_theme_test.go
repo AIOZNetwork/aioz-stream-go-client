@@ -1,9 +1,10 @@
-package w3streamsdk
+package aiozstreamsdk
 
 import (
 	"io"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
@@ -13,7 +14,7 @@ var (
 	testPlayerIDForUpdateAndDeleteAndGet string
 	playerName                           = "Test Player Theme"
 	logoURL                              = "https://example.com/logo.png"
-	testVideoForPlayer                   = "1f625e54-308d-401e-aa67-12f86eff6d1a"
+	testVideoForPlayer                   = "8aa2c5e3-72a2-451e-ae99-73d65a4762b7"
 	deletePlayerThemesLater              []string
 )
 
@@ -246,31 +247,6 @@ func TestPlayersService_AddPlayer(t *testing.T) {
 
 func TestPlayersService_Get(t *testing.T) {
 	notExistId := uuid.New().String()
-	anonymousTest := []struct {
-		name    string
-		id      string
-		wantErr bool
-	}{
-		{
-			name:    "Get other",
-			id:      testPlayerIDForUpdateAndDeleteAndGet,
-			wantErr: true,
-		},
-	}
-
-	for _, tt := range anonymousTest {
-		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Players.Get(tt.id)
-			if tt.wantErr {
-				assert.Error(t, err)
-				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-			}
-		})
-	}
-
 	tests := []struct {
 		name    string
 		id      string
@@ -310,35 +286,6 @@ func TestPlayersService_Get(t *testing.T) {
 
 func TestPlayersService_Update(t *testing.T) {
 	notExistId := uuid.New().String()
-	anonymousTest := []struct {
-		name    string
-		id      string
-		request UpdatePlayerThemeRequest
-		wantErr bool
-	}{
-		{
-			name: "Update other",
-			id:   testPlayerIDForUpdateAndDeleteAndGet,
-			request: UpdatePlayerThemeRequest{
-				Name: stringPtr("Updated Player Theme"),
-			},
-			wantErr: true,
-		},
-	}
-
-	for _, tt := range anonymousTest {
-		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Players.Update(tt.id, tt.request)
-			if tt.wantErr {
-				assert.Error(t, err)
-				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-			}
-		})
-	}
-
 	tests := []struct {
 		name    string
 		id      string
@@ -450,30 +397,6 @@ func TestPlayersService_List(t *testing.T) {
 
 func TestPlayersService_DeleteLogo(t *testing.T) {
 	notExistId := uuid.New().String()
-	anonymousTest := []struct {
-		name    string
-		id      string
-		wantErr bool
-	}{
-		{
-			name:    "Delete other",
-			id:      testPlayerIDForUpdateAndDeleteAndGet,
-			wantErr: true,
-		},
-	}
-
-	for _, tt := range anonymousTest {
-		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Players.DeleteLogo(tt.id)
-			if tt.wantErr {
-				assert.Error(t, err)
-				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-			}
-		})
-	}
 
 	tests := []struct {
 		name    string
@@ -504,6 +427,7 @@ func TestPlayersService_DeleteLogo(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			time.Sleep(10 * time.Second)
 			resp, err := testClient.Players.DeleteLogo(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)

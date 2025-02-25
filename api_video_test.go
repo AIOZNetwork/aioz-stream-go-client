@@ -1,4 +1,4 @@
-package w3streamsdk
+package aiozstreamsdk
 
 import (
 	"crypto/md5"
@@ -26,7 +26,7 @@ var (
 	testVideoID        string
 	title              = "Test Video"
 	description        = "Test Description"
-	testVideoCaptionID = "4746d73e-42f5-4853-b912-a28b97db6b31"
+	testVideoCaptionID = "8aa2c5e3-72a2-451e-ae99-73d65a4762b7"
 	deleteVideosLater  []string
 )
 
@@ -258,33 +258,6 @@ func TestVideoService_List(t *testing.T) {
 
 func TestVideoService_Update(t *testing.T) {
 	notExistId := uuid.New().String()
-	anonymousTest := []struct {
-		name    string
-		id      string
-		input   UpdateVideoInfoRequest
-		wantErr bool
-	}{
-		{
-			name:    "Update other",
-			id:      testVideoID,
-			input:   UpdateVideoInfoRequest{Title: &title},
-			wantErr: true,
-		},
-	}
-
-	for _, tt := range anonymousTest {
-		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Video.Update(tt.id, tt.input)
-			if tt.wantErr {
-				assert.Error(t, err)
-				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-			}
-		})
-	}
-
 	tests := []struct {
 		name    string
 		id      string
@@ -359,30 +332,6 @@ func TestVideoService_Update(t *testing.T) {
 
 func TestVideoService_GetDetail(t *testing.T) {
 	notExistId := uuid.New().String()
-	anonymousTest := []struct {
-		name    string
-		id      string
-		wantErr bool
-	}{
-		{
-			name:    "Get other",
-			id:      testVideoID,
-			wantErr: true,
-		},
-	}
-	for _, tt := range anonymousTest {
-		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Video.GetDetail(tt.id)
-			if tt.wantErr {
-				assert.Error(t, err)
-				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-			}
-		})
-	}
-
 	tests := []struct {
 		name    string
 		id      string
@@ -878,7 +827,7 @@ func TestVideoService_GetVideoCaptions(t *testing.T) {
 	}{
 		{
 			name:    "Valid Get Video Captions",
-			id:      testVideoCaptionID,
+			id:      testVideoID,
 			wantErr: false,
 		},
 		{

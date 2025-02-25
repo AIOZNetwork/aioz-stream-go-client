@@ -1,6 +1,6 @@
 # \Webhook
 
-All URIs are relative to https://api.w3stream.xyz/api
+All URIs are relative to https://api.aiozstream.network/api
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -34,18 +34,18 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *w3streamsdk.NewCreateWebhookRequest() // CreateWebhookRequest | Create Webhook input
+    request := *aiozstreamsdk.NewCreateWebhookRequest() // CreateWebhookRequest | Create Webhook input
 
     
     res, err := client.Webhook.Create(request)
@@ -104,16 +104,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | webhook's id
 
@@ -176,19 +176,19 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | webhook's id
-    request := *w3streamsdk.NewUpdateWebhookRequest() // UpdateWebhookRequest | Update Webhook input, events example: video.encoding.quality.completed
+    request := *aiozstreamsdk.NewUpdateWebhookRequest() // UpdateWebhookRequest | Update Webhook input, events example: video.encoding.quality.completed
 
     
     res, err := client.Webhook.Update(id, request)
@@ -250,16 +250,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Webhook ID
 
@@ -324,17 +324,17 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
-    req := w3streamsdk.WebhookApiListRequest{}
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+    req := aiozstreamsdk.WebhookApiListRequest{}
     
     req.Search("search_example") // string | only support search by name
     req.SortBy("sortBy_example") // string | sort by (default to "created_at")
@@ -409,16 +409,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | webhook's id
 
