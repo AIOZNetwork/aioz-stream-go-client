@@ -40,15 +40,15 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
  
     // Create a video object
-	title := "Sample Video Title"
-	videoData := aiozstreamsdk.CreateVideoRequest{
-		Title: &title,
-	}
-	createResult, err := client.Video.Create(videoData)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error creating video: %v\n", err)
-		return
-	}
+    title := "Sample Video Title"
+    videoData := aiozstreamsdk.CreateVideoRequest{
+        Title: &title,
+    }
+    createResult, err := client.Video.Create(videoData)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error creating video: %v\n", err)
+        return
+    }
  
     videoId := createResult.Data.Id // Get the video ID from the response
  
