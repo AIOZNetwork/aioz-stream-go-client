@@ -33,7 +33,7 @@ func main() {
     // Connect to production environment
     publicKey := "YOUR_PUBLIC_KEY" // Replace with your public key
     secretKey := "YOUR_SECRET_KEY" // Replace with your actual API secret key
-	apiCreds := aiozstreamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		PublicKey: publicKey,
 		SecretKey: secretKey,
 	}
