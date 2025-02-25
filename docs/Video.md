@@ -1,6 +1,6 @@
 # \Video
 
-All URIs are relative to https://api.w3stream.xyz/api
+All URIs are relative to https://api.aiozstream.network/api
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -42,18 +42,18 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *w3streamsdk.NewCreateVideoRequest() // CreateVideoRequest | video's info
+    request := *aiozstreamsdk.NewCreateVideoRequest() // CreateVideoRequest | video's info
 
     
     res, err := client.Video.Create(request)
@@ -110,19 +110,19 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | video's id
-    input := *w3streamsdk.NewUpdateVideoInfoRequest() // UpdateVideoInfoRequest | input
+    input := *aiozstreamsdk.NewUpdateVideoInfoRequest() // UpdateVideoInfoRequest | input
 
     
     res, err := client.Video.Update(id, input)
@@ -184,16 +184,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Video ID
 
@@ -254,16 +254,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | video's id
     file := os.NewFile(1234, "some_file") // *os.File | file video to be uploaded
@@ -332,16 +332,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Video ID
     lan := "lan_example" // string | Language
@@ -412,16 +412,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Video ID
     lan := "lan_example" // string | Language
@@ -488,17 +488,17 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
-    req := w3streamsdk.VideoApiGetCaptionsRequest{}
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+    req := aiozstreamsdk.VideoApiGetCaptionsRequest{}
     
     req.Id("id_example") // string | Video ID
     req.Offset(int32(56)) // int32 | offset, allowed values greater than or equal to 0. Default(0) (default to 0)
@@ -565,16 +565,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     qualities := "qualities_example" // string | video's qualities
     duration := float32(8.14) // float32 | video's duration
@@ -637,16 +637,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | video's id
 
@@ -709,18 +709,18 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *w3streamsdk.NewGetVideoListRequest() // GetVideoListRequest | video's info
+    request := *aiozstreamsdk.NewGetVideoListRequest() // GetVideoListRequest | video's info
 
     
     res, err := client.Video.GetVideoList(request)
@@ -781,17 +781,17 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
-    req := w3streamsdk.VideoApiGetVideoPlayerInfoRequest{}
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+    req := aiozstreamsdk.VideoApiGetVideoPlayerInfoRequest{}
     
     req.Id("id_example") // string | Video ID
     req.Token("token_example") // string | Token
@@ -856,16 +856,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Video ID
     lan := "lan_example" // string | Language
@@ -930,16 +930,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | video's id
     file := os.NewFile(1234, "some_file") // *os.File | File video to be uploaded
@@ -1014,16 +1014,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | video's id
 

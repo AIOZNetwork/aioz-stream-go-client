@@ -1,4 +1,4 @@
-package w3streamsdk
+package aiozstreamsdk
 
 import (
 	"bytes"
@@ -23,25 +23,28 @@ import (
 )
 
 type Client struct {
-	BaseURL            *url.URL
+	BaseURL    *url.URL
 	PublicKey          string
 	SecretKey          string
-	httpClient         Doer
-	chunkSize          int64
-	applicationName    string
-	applicationVersion string
-	sdkName            string
-	sdkVersion         string
+	httpClient Doer
+	chunkSize  int64
+    applicationName string
+    applicationVersion string
+	sdkName			   string
+	sdkVersion		   string
 	BearerToken        string
 
-	ApiKey       ApiKeyServiceI
-	LiveStream   LiveStreamServiceI
-	Players      PlayersServiceI
-	Playlist     PlaylistServiceI
-	Video        VideoServiceI
-	VideoChapter VideoChapterServiceI
-	Webhook      WebhookServiceI
+
+    ApiKey ApiKeyServiceI
+    LiveStream LiveStreamServiceI
+    Players PlayersServiceI
+    Playlist PlaylistServiceI
+    Video VideoServiceI
+    VideoChapter VideoChapterServiceI
+    Webhook WebhookServiceI
+
 }
+
 
 type ErrorResponse struct {
 	Response *http.Response
@@ -81,10 +84,10 @@ type AuthCredentials struct {
 }
 
 const (
-	defaultBaseURL   = "https://api.w3stream.xyz/api/"
-	defaultChunkSize = 50 * 1024 * 1024
-	minChunkSize     = 5 * 1024 * 1024
-	maxChunkSize     = 128 * 1024 * 1024
+	defaultBaseURL        = "https://api.aiozstream.network/api/"
+	defaultChunkSize      = 50 * 1024 * 1024
+	minChunkSize          = 5 * 1024 * 1024
+	maxChunkSize          = 128 * 1024 * 1024
 )
 
 type Doer interface {
@@ -97,10 +100,10 @@ type Builder struct {
 	baseURL            string
 	uploadChunkSize    int64
 	httpClient         Doer
-	applicationName    string
-	applicationVersion string
-	sdkName            string
-	sdkVersion         string
+    applicationName    string
+    applicationVersion string
+	sdkName			   string
+	sdkVersion		   string
 	bearerToken        string
 }
 
@@ -200,13 +203,14 @@ func (cb *Builder) Build() *Client {
 		BearerToken:        cb.bearerToken,
 	}
 
-	c.ApiKey = &ApiKeyService{client: c}
-	c.LiveStream = &LiveStreamService{client: c}
-	c.Players = &PlayersService{client: c}
-	c.Playlist = &PlaylistService{client: c}
-	c.Video = &VideoService{client: c}
-	c.VideoChapter = &VideoChapterService{client: c}
-	c.Webhook = &WebhookService{client: c}
+
+    c.ApiKey = &ApiKeyService{client:c}
+    c.LiveStream = &LiveStreamService{client:c}
+    c.Players = &PlayersService{client:c}
+    c.Playlist = &PlaylistService{client:c}
+    c.Video = &VideoService{client:c}
+    c.VideoChapter = &VideoChapterService{client:c}
+    c.Webhook = &WebhookService{client:c}
 
 	return c
 }
@@ -308,7 +312,7 @@ func (c *Client) prepareRequest(
 	if c.BearerToken != "" {
 		req.Header.Set("Authorization", "Bearer "+c.BearerToken)
 	} else {
-		req.SetBasicAuth(c.PublicKey, c.SecretKey)
+		req.SetBasicAuth(c.PublicKey , c.SecretKey)
 	}
 	return req, nil
 }
@@ -329,6 +333,7 @@ func getOriginHeaderValue(name string, version string) (string, error) {
 
 	return name + ":" + version, nil
 }
+
 
 func (c *Client) prepareProgressiveUploadRequest(
 	ctx context.Context,
@@ -361,7 +366,7 @@ func (c *Client) prepareProgressiveUploadRequest(
 	if err != nil {
 		return nil, err
 	}
-
+	
 	err = writer.Close()
 	if err != nil {
 		return nil, err
@@ -373,6 +378,7 @@ func (c *Client) prepareProgressiveUploadRequest(
 	}
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
+
 
 	var ranges string
 	if isLast {
@@ -541,12 +547,12 @@ func (c *Client) prepareUploadRequest(
 		return nil, err
 	}
 
-	for key, val := range formParams {
-		err = writer.WriteField(key, val)
-		if err != nil {
-			return nil, err
-		}
-	}
+    for key, val := range formParams {
+        err = writer.WriteField(key, val)
+        if err != nil {
+            return nil, err
+        }
+    }
 
 	err = writer.Close()
 	if err != nil {
@@ -564,7 +570,7 @@ func (c *Client) prepareUploadRequest(
 }
 
 func (c *Client) do(req *http.Request, v interface{}) (*http.Response, error) {
-	resp, err := c.httpClient.Do(req)
+    resp, err := c.httpClient.Do(req)
 
 	if err != nil {
 		return nil, err
@@ -604,6 +610,7 @@ func checkResponse(r *http.Response) error {
 	return errorResponse
 }
 
+
 // parameterToString convert interface{} parameters to string, using a delimiter if format is provided.
 func parameterToString(obj interface{}, collectionFormat string) string {
 	var delimiter string
@@ -627,6 +634,7 @@ func parameterToString(obj interface{}, collectionFormat string) string {
 
 	return fmt.Sprintf("%v", obj)
 }
+
 
 func addDeepQueryParams(filter interface{}, prefix string, queryParams url.Values) {
 	v := reflect.ValueOf(filter)
