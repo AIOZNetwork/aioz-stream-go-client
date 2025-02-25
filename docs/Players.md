@@ -1,6 +1,6 @@
 # \Players
 
-All URIs are relative to https://api.w3stream.xyz/api
+All URIs are relative to https://api.aiozstream.network/api
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -37,18 +37,18 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *w3streamsdk.NewCreatePlayerThemeRequest() // CreatePlayerThemeRequest | Player theme input
+    request := *aiozstreamsdk.NewCreatePlayerThemeRequest() // CreatePlayerThemeRequest | Player theme input
 
     
     res, err := client.Players.Create(request)
@@ -107,16 +107,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Player theme ID
 
@@ -179,19 +179,19 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Player theme ID
-    input := *w3streamsdk.NewUpdatePlayerThemeRequest() // UpdatePlayerThemeRequest | Player theme input
+    input := *aiozstreamsdk.NewUpdatePlayerThemeRequest() // UpdatePlayerThemeRequest | Player theme input
 
     
     res, err := client.Players.Update(id, input)
@@ -253,16 +253,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Player theme ID
 
@@ -327,17 +327,17 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
-    req := w3streamsdk.PlayersApiListRequest{}
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+    req := aiozstreamsdk.PlayersApiListRequest{}
     
     req.Search("search_example") // string | only support search by name
     req.SortBy("sortBy_example") // string | sort by (default to "created_at")
@@ -406,16 +406,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Player theme ID
     file := os.NewFile(1234, "some_file") // *os.File | The uploaded file (JPG or PNG)
@@ -486,16 +486,16 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Player theme ID
 
@@ -558,18 +558,18 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *w3streamsdk.NewAddPlayerThemesToVideoRequest() // AddPlayerThemesToVideoRequest | Add player theme to video request
+    request := *aiozstreamsdk.NewAddPlayerThemesToVideoRequest() // AddPlayerThemesToVideoRequest | Add player theme to video request
 
     
     res, err := client.Players.AddPlayer(request)
@@ -628,18 +628,18 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    w3streamsdk "github.com/AIOZNetwork/w3stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
 )
 
 func main() {
     // create a new client
-    apiCreds := w3streamsdk.AuthCredentials{
+    apiCreds := aiozstreamsdk.AuthCredentials{
 		SecretKey: "YOUR_SECRET_KEY",
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
-    client := w3streamsdk.ClientBuilder(apiCreds).Build()
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *w3streamsdk.NewRemovePlayerThemesFromVideoRequest() // RemovePlayerThemesFromVideoRequest | Remove player theme from video request
+    request := *aiozstreamsdk.NewRemovePlayerThemesFromVideoRequest() // RemovePlayerThemesFromVideoRequest | Remove player theme from video request
 
     
     res, err := client.Players.RemovePlayer(request)

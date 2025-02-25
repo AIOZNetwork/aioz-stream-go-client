@@ -4,15 +4,15 @@ info:
     email: support@swagger.io
     name: API Support
     url: http://www.swagger.io/support
-  description: VMS Service
+  description: Aioz Stream Service
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: http://swagger.io/terms/
-  title: VMS API
+  title: Aioz Stream API
   version: "1.0"
 externalDocs:
-  description: w3streamapi
+  description: aiozstream
   url: https://swagger.io/resources/open-api/
 servers:
 - url: /api/
@@ -233,7 +233,7 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/CreateApiKeyRequest'
-        description: api key's data
+        description: API key's data
         required: true
       responses:
         "201":
@@ -8876,7 +8876,7 @@ paths:
       x-optional-object: true
     post:
       description: Webhooks can push notifications to your server, rather than polling
-        w3stream for changes
+        streaming service for changes
       operationId: POST-webhooks
       requestBody:
         content:

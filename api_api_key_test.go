@@ -1,4 +1,4 @@
-package w3streamsdk
+package aiozstreamsdk
 
 import (
 	"testing"

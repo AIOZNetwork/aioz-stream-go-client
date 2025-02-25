@@ -1,4 +1,4 @@
-package w3streamsdk
+package aiozstreamsdk
 
 import (
 	"io"
@@ -11,7 +11,7 @@ import (
 
 var (
 	testLang              = "en"
-	testVideoIDForChapter = "4746d73e-42f5-4853-b912-a28b97db6b31"
+	testVideoIDForChapter = "8aa2c5e3-72a2-451e-ae99-73d65a4762b7"
 	chapterContent        = `WEBVTT
 
 00:00:00.000 --> 00:01:00.000

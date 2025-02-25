@@ -1,4 +1,4 @@
-package w3streamsdk
+package aiozstreamsdk
 
 import (
 	"bytes"
@@ -81,7 +81,7 @@ type AuthCredentials struct {
 }
 
 const (
-	defaultBaseURL   = "https://api.w3stream.xyz/api/"
+	defaultBaseURL   = "https://api.aiozstream.network/api/"
 	defaultChunkSize = 50 * 1024 * 1024
 	minChunkSize     = 5 * 1024 * 1024
 	maxChunkSize     = 128 * 1024 * 1024
