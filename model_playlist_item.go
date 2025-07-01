@@ -23,7 +23,7 @@ type PlaylistItem struct {
 	PlaylistId *string            `json:"playlist_id,omitempty"`
 	PreviousId *string            `json:"previous_id,omitempty"`
 	UpdatedAt  *string            `json:"updated_at,omitempty"`
-	Video      *PlaylistItemVideo `json:"video,omitempty"`
+	Video      *PlaylistItemMedia `json:"video,omitempty"`
 	VideoId    *string            `json:"video_id,omitempty"`
 }
 
@@ -237,9 +237,9 @@ func (o *PlaylistItem) SetUpdatedAt(v string) {
 }
 
 // GetVideo returns the Video field value if set, zero value otherwise.
-func (o *PlaylistItem) GetVideo() PlaylistItemVideo {
+func (o *PlaylistItem) GetVideo() PlaylistItemMedia {
 	if o == nil || o.Video == nil {
-		var ret PlaylistItemVideo
+		var ret PlaylistItemMedia
 		return ret
 	}
 	return *o.Video
@@ -247,7 +247,7 @@ func (o *PlaylistItem) GetVideo() PlaylistItemVideo {
 
 // GetVideoOk returns a tuple with the Video field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaylistItem) GetVideoOk() (*PlaylistItemVideo, bool) {
+func (o *PlaylistItem) GetVideoOk() (*PlaylistItemMedia, bool) {
 	if o == nil || o.Video == nil {
 		return nil, false
 	}
@@ -263,8 +263,8 @@ func (o *PlaylistItem) HasVideo() bool {
 	return false
 }
 
-// SetVideo gets a reference to the given PlaylistItemVideo and assigns it to the Video field.
-func (o *PlaylistItem) SetVideo(v PlaylistItemVideo) {
+// SetVideo gets a reference to the given PlaylistItemMedia and assigns it to the Video field.
+func (o *PlaylistItem) SetVideo(v PlaylistItemMedia) {
 	o.Video = &v
 }
 

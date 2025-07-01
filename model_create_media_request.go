@@ -15,43 +15,37 @@ import (
 //"encoding/json"
 )
 
-// CreateVideoRequest struct for CreateVideoRequest
-type CreateVideoRequest struct {
-	// Description of the video
-	Description *string `json:"description,omitempty"`
-	// // Is panoramic video IsPanoramic *bool `json:\"is_panoramic\" form:\"is_panoramic\"` Is public video
-	IsPublic *bool `json:"is_public,omitempty"`
-	// Metadata of the video (key-value pair, max: 50 items, key max length: 255, value max length: 255)
-	Metadata *[]Metadata `json:"metadata,omitempty"`
-	// Qualities of the video (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p)
-	Qualities *[]string `json:"qualities,omitempty"`
-	// Tags of the video (max: 50 items, max length: 255)
-	Tags *[]string `json:"tags,omitempty"`
-	// Title of the video
-	Title *string `json:"title,omitempty"`
-	// Video thumbnailConfig
-	Watermark *VideoWatermark `json:"watermark,omitempty"`
+// CreateMediaRequest struct for CreateMediaRequest
+type CreateMediaRequest struct {
+	Description     *string          `json:"description,omitempty"`
+	IsPublic        *bool            `json:"is_public,omitempty"`
+	Metadata        *[]Metadata      `json:"metadata,omitempty"`
+	Qualities       *[]QualityConfig `json:"qualities,omitempty"`
+	SegmentDuration *int32           `json:"segment_duration,omitempty"`
+	Tags            *[]string        `json:"tags,omitempty"`
+	Title           *string          `json:"title,omitempty"`
+	Watermark       *VideoWatermark  `json:"watermark,omitempty"`
 }
 
-// NewCreateVideoRequest instantiates a new CreateVideoRequest object
+// NewCreateMediaRequest instantiates a new CreateMediaRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateVideoRequest() *CreateVideoRequest {
-	this := CreateVideoRequest{}
+func NewCreateMediaRequest() *CreateMediaRequest {
+	this := CreateMediaRequest{}
 	return &this
 }
 
-// NewCreateVideoRequestWithDefaults instantiates a new CreateVideoRequest object
+// NewCreateMediaRequestWithDefaults instantiates a new CreateMediaRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateVideoRequestWithDefaults() *CreateVideoRequest {
-	this := CreateVideoRequest{}
+func NewCreateMediaRequestWithDefaults() *CreateMediaRequest {
+	this := CreateMediaRequest{}
 	return &this
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *CreateVideoRequest) GetDescription() string {
+func (o *CreateMediaRequest) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -61,7 +55,7 @@ func (o *CreateVideoRequest) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVideoRequest) GetDescriptionOk() (*string, bool) {
+func (o *CreateMediaRequest) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
 		return nil, false
 	}
@@ -69,7 +63,7 @@ func (o *CreateVideoRequest) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *CreateVideoRequest) HasDescription() bool {
+func (o *CreateMediaRequest) HasDescription() bool {
 	if o != nil && o.Description != nil {
 		return true
 	}
@@ -78,12 +72,12 @@ func (o *CreateVideoRequest) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *CreateVideoRequest) SetDescription(v string) {
+func (o *CreateMediaRequest) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetIsPublic returns the IsPublic field value if set, zero value otherwise.
-func (o *CreateVideoRequest) GetIsPublic() bool {
+func (o *CreateMediaRequest) GetIsPublic() bool {
 	if o == nil || o.IsPublic == nil {
 		var ret bool
 		return ret
@@ -93,7 +87,7 @@ func (o *CreateVideoRequest) GetIsPublic() bool {
 
 // GetIsPublicOk returns a tuple with the IsPublic field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVideoRequest) GetIsPublicOk() (*bool, bool) {
+func (o *CreateMediaRequest) GetIsPublicOk() (*bool, bool) {
 	if o == nil || o.IsPublic == nil {
 		return nil, false
 	}
@@ -101,7 +95,7 @@ func (o *CreateVideoRequest) GetIsPublicOk() (*bool, bool) {
 }
 
 // HasIsPublic returns a boolean if a field has been set.
-func (o *CreateVideoRequest) HasIsPublic() bool {
+func (o *CreateMediaRequest) HasIsPublic() bool {
 	if o != nil && o.IsPublic != nil {
 		return true
 	}
@@ -110,12 +104,12 @@ func (o *CreateVideoRequest) HasIsPublic() bool {
 }
 
 // SetIsPublic gets a reference to the given bool and assigns it to the IsPublic field.
-func (o *CreateVideoRequest) SetIsPublic(v bool) {
+func (o *CreateMediaRequest) SetIsPublic(v bool) {
 	o.IsPublic = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *CreateVideoRequest) GetMetadata() []Metadata {
+func (o *CreateMediaRequest) GetMetadata() []Metadata {
 	if o == nil || o.Metadata == nil {
 		var ret []Metadata
 		return ret
@@ -125,7 +119,7 @@ func (o *CreateVideoRequest) GetMetadata() []Metadata {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVideoRequest) GetMetadataOk() (*[]Metadata, bool) {
+func (o *CreateMediaRequest) GetMetadataOk() (*[]Metadata, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -133,7 +127,7 @@ func (o *CreateVideoRequest) GetMetadataOk() (*[]Metadata, bool) {
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *CreateVideoRequest) HasMetadata() bool {
+func (o *CreateMediaRequest) HasMetadata() bool {
 	if o != nil && o.Metadata != nil {
 		return true
 	}
@@ -142,14 +136,14 @@ func (o *CreateVideoRequest) HasMetadata() bool {
 }
 
 // SetMetadata gets a reference to the given []Metadata and assigns it to the Metadata field.
-func (o *CreateVideoRequest) SetMetadata(v []Metadata) {
+func (o *CreateMediaRequest) SetMetadata(v []Metadata) {
 	o.Metadata = &v
 }
 
 // GetQualities returns the Qualities field value if set, zero value otherwise.
-func (o *CreateVideoRequest) GetQualities() []string {
+func (o *CreateMediaRequest) GetQualities() []QualityConfig {
 	if o == nil || o.Qualities == nil {
-		var ret []string
+		var ret []QualityConfig
 		return ret
 	}
 	return *o.Qualities
@@ -157,7 +151,7 @@ func (o *CreateVideoRequest) GetQualities() []string {
 
 // GetQualitiesOk returns a tuple with the Qualities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVideoRequest) GetQualitiesOk() (*[]string, bool) {
+func (o *CreateMediaRequest) GetQualitiesOk() (*[]QualityConfig, bool) {
 	if o == nil || o.Qualities == nil {
 		return nil, false
 	}
@@ -165,7 +159,7 @@ func (o *CreateVideoRequest) GetQualitiesOk() (*[]string, bool) {
 }
 
 // HasQualities returns a boolean if a field has been set.
-func (o *CreateVideoRequest) HasQualities() bool {
+func (o *CreateMediaRequest) HasQualities() bool {
 	if o != nil && o.Qualities != nil {
 		return true
 	}
@@ -173,13 +167,45 @@ func (o *CreateVideoRequest) HasQualities() bool {
 	return false
 }
 
-// SetQualities gets a reference to the given []string and assigns it to the Qualities field.
-func (o *CreateVideoRequest) SetQualities(v []string) {
+// SetQualities gets a reference to the given []QualityConfig and assigns it to the Qualities field.
+func (o *CreateMediaRequest) SetQualities(v []QualityConfig) {
 	o.Qualities = &v
 }
 
+// GetSegmentDuration returns the SegmentDuration field value if set, zero value otherwise.
+func (o *CreateMediaRequest) GetSegmentDuration() int32 {
+	if o == nil || o.SegmentDuration == nil {
+		var ret int32
+		return ret
+	}
+	return *o.SegmentDuration
+}
+
+// GetSegmentDurationOk returns a tuple with the SegmentDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateMediaRequest) GetSegmentDurationOk() (*int32, bool) {
+	if o == nil || o.SegmentDuration == nil {
+		return nil, false
+	}
+	return o.SegmentDuration, true
+}
+
+// HasSegmentDuration returns a boolean if a field has been set.
+func (o *CreateMediaRequest) HasSegmentDuration() bool {
+	if o != nil && o.SegmentDuration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSegmentDuration gets a reference to the given int32 and assigns it to the SegmentDuration field.
+func (o *CreateMediaRequest) SetSegmentDuration(v int32) {
+	o.SegmentDuration = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *CreateVideoRequest) GetTags() []string {
+func (o *CreateMediaRequest) GetTags() []string {
 	if o == nil || o.Tags == nil {
 		var ret []string
 		return ret
@@ -189,7 +215,7 @@ func (o *CreateVideoRequest) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVideoRequest) GetTagsOk() (*[]string, bool) {
+func (o *CreateMediaRequest) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -197,7 +223,7 @@ func (o *CreateVideoRequest) GetTagsOk() (*[]string, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *CreateVideoRequest) HasTags() bool {
+func (o *CreateMediaRequest) HasTags() bool {
 	if o != nil && o.Tags != nil {
 		return true
 	}
@@ -206,12 +232,12 @@ func (o *CreateVideoRequest) HasTags() bool {
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *CreateVideoRequest) SetTags(v []string) {
+func (o *CreateMediaRequest) SetTags(v []string) {
 	o.Tags = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
-func (o *CreateVideoRequest) GetTitle() string {
+func (o *CreateMediaRequest) GetTitle() string {
 	if o == nil || o.Title == nil {
 		var ret string
 		return ret
@@ -221,7 +247,7 @@ func (o *CreateVideoRequest) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVideoRequest) GetTitleOk() (*string, bool) {
+func (o *CreateMediaRequest) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
 		return nil, false
 	}
@@ -229,7 +255,7 @@ func (o *CreateVideoRequest) GetTitleOk() (*string, bool) {
 }
 
 // HasTitle returns a boolean if a field has been set.
-func (o *CreateVideoRequest) HasTitle() bool {
+func (o *CreateMediaRequest) HasTitle() bool {
 	if o != nil && o.Title != nil {
 		return true
 	}
@@ -238,12 +264,12 @@ func (o *CreateVideoRequest) HasTitle() bool {
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *CreateVideoRequest) SetTitle(v string) {
+func (o *CreateMediaRequest) SetTitle(v string) {
 	o.Title = &v
 }
 
 // GetWatermark returns the Watermark field value if set, zero value otherwise.
-func (o *CreateVideoRequest) GetWatermark() VideoWatermark {
+func (o *CreateMediaRequest) GetWatermark() VideoWatermark {
 	if o == nil || o.Watermark == nil {
 		var ret VideoWatermark
 		return ret
@@ -253,7 +279,7 @@ func (o *CreateVideoRequest) GetWatermark() VideoWatermark {
 
 // GetWatermarkOk returns a tuple with the Watermark field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateVideoRequest) GetWatermarkOk() (*VideoWatermark, bool) {
+func (o *CreateMediaRequest) GetWatermarkOk() (*VideoWatermark, bool) {
 	if o == nil || o.Watermark == nil {
 		return nil, false
 	}
@@ -261,7 +287,7 @@ func (o *CreateVideoRequest) GetWatermarkOk() (*VideoWatermark, bool) {
 }
 
 // HasWatermark returns a boolean if a field has been set.
-func (o *CreateVideoRequest) HasWatermark() bool {
+func (o *CreateMediaRequest) HasWatermark() bool {
 	if o != nil && o.Watermark != nil {
 		return true
 	}
@@ -270,33 +296,33 @@ func (o *CreateVideoRequest) HasWatermark() bool {
 }
 
 // SetWatermark gets a reference to the given VideoWatermark and assigns it to the Watermark field.
-func (o *CreateVideoRequest) SetWatermark(v VideoWatermark) {
+func (o *CreateMediaRequest) SetWatermark(v VideoWatermark) {
 	o.Watermark = &v
 }
 
-type NullableCreateVideoRequest struct {
-	value *CreateVideoRequest
+type NullableCreateMediaRequest struct {
+	value *CreateMediaRequest
 	isSet bool
 }
 
-func (v NullableCreateVideoRequest) Get() *CreateVideoRequest {
+func (v NullableCreateMediaRequest) Get() *CreateMediaRequest {
 	return v.value
 }
 
-func (v *NullableCreateVideoRequest) Set(val *CreateVideoRequest) {
+func (v *NullableCreateMediaRequest) Set(val *CreateMediaRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateVideoRequest) IsSet() bool {
+func (v NullableCreateMediaRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateVideoRequest) Unset() {
+func (v *NullableCreateMediaRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateVideoRequest(val *CreateVideoRequest) *NullableCreateVideoRequest {
-	return &NullableCreateVideoRequest{value: val, isSet: true}
+func NewNullableCreateMediaRequest(val *CreateMediaRequest) *NullableCreateMediaRequest {
+	return &NullableCreateMediaRequest{value: val, isSet: true}
 }

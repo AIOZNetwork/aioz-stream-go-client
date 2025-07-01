@@ -17,7 +17,7 @@ import (
 
 // GetLiveStreamVideoPublicResponse struct for GetLiveStreamVideoPublicResponse
 type GetLiveStreamVideoPublicResponse struct {
-	Data   *LiveStreamVideoResponse `json:"data,omitempty"`
+	Data   *LiveStreamMediaResponse `json:"data,omitempty"`
 	Status *string                  `json:"status,omitempty"`
 }
 
@@ -39,9 +39,9 @@ func NewGetLiveStreamVideoPublicResponseWithDefaults() *GetLiveStreamVideoPublic
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *GetLiveStreamVideoPublicResponse) GetData() LiveStreamVideoResponse {
+func (o *GetLiveStreamVideoPublicResponse) GetData() LiveStreamMediaResponse {
 	if o == nil || o.Data == nil {
-		var ret LiveStreamVideoResponse
+		var ret LiveStreamMediaResponse
 		return ret
 	}
 	return *o.Data
@@ -49,7 +49,7 @@ func (o *GetLiveStreamVideoPublicResponse) GetData() LiveStreamVideoResponse {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideoPublicResponse) GetDataOk() (*LiveStreamVideoResponse, bool) {
+func (o *GetLiveStreamVideoPublicResponse) GetDataOk() (*LiveStreamMediaResponse, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -65,8 +65,8 @@ func (o *GetLiveStreamVideoPublicResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given LiveStreamVideoResponse and assigns it to the Data field.
-func (o *GetLiveStreamVideoPublicResponse) SetData(v LiveStreamVideoResponse) {
+// SetData gets a reference to the given LiveStreamMediaResponse and assigns it to the Data field.
+func (o *GetLiveStreamVideoPublicResponse) SetData(v LiveStreamMediaResponse) {
 	o.Data = &v
 }
 

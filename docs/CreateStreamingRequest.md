@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Qualities** | Pointer to **[]string** | Qualities of the video (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p) | [optional] 
+**Qualities** | Pointer to [**[]QualityConfig**](QualityConfig.md) | Qualities of the media (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p) | [optional] 
 **Save** | Pointer to **bool** |  | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetQualities
 
-`func (o *CreateStreamingRequest) GetQualities() []string`
+`func (o *CreateStreamingRequest) GetQualities() []QualityConfig`
 
 GetQualities returns the Qualities field if non-nil, zero value otherwise.
 
 ### GetQualitiesOk
 
-`func (o *CreateStreamingRequest) GetQualitiesOk() (*[]string, bool)`
+`func (o *CreateStreamingRequest) GetQualitiesOk() (*[]QualityConfig, bool)`
 
 GetQualitiesOk returns a tuple with the Qualities field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQualities
 
-`func (o *CreateStreamingRequest) SetQualities(v []string)`
+`func (o *CreateStreamingRequest) SetQualities(v []QualityConfig)`
 
 SetQualities sets Qualities field to given value.
 

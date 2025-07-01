@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Logo** | Pointer to **string** |  | [optional] 
 **LogoImageLink** | Pointer to **string** |  | [optional] 
 **LogoLink** | Pointer to **string** |  | [optional] 
 
@@ -26,31 +25,6 @@ will change when the set of required properties is changed
 NewAssetWithDefaults instantiates a new Asset object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetLogo
-
-`func (o *Asset) GetLogo() string`
-
-GetLogo returns the Logo field if non-nil, zero value otherwise.
-
-### GetLogoOk
-
-`func (o *Asset) GetLogoOk() (*string, bool)`
-
-GetLogoOk returns a tuple with the Logo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLogo
-
-`func (o *Asset) SetLogo(v string)`
-
-SetLogo sets Logo field to given value.
-
-### HasLogo
-
-`func (o *Asset) HasLogo() bool`
-
-HasLogo returns a boolean if a field has been set.
 
 ### GetLogoImageLink
 

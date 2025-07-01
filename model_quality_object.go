@@ -17,9 +17,13 @@ import (
 
 // QualityObject struct for QualityObject
 type QualityObject struct {
-	Name   *string `json:"name,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Type   *string `json:"type,omitempty"`
+	AudioBitrate *int32  `json:"audio_bitrate,omitempty"`
+	AudioCodec   *string `json:"audio_codec,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	Status       *string `json:"status,omitempty"`
+	Type         *string `json:"type,omitempty"`
+	VideoBitrate *int32  `json:"video_bitrate,omitempty"`
+	VideoCodec   *string `json:"video_codec,omitempty"`
 }
 
 // NewQualityObject instantiates a new QualityObject object
@@ -37,6 +41,70 @@ func NewQualityObject() *QualityObject {
 func NewQualityObjectWithDefaults() *QualityObject {
 	this := QualityObject{}
 	return &this
+}
+
+// GetAudioBitrate returns the AudioBitrate field value if set, zero value otherwise.
+func (o *QualityObject) GetAudioBitrate() int32 {
+	if o == nil || o.AudioBitrate == nil {
+		var ret int32
+		return ret
+	}
+	return *o.AudioBitrate
+}
+
+// GetAudioBitrateOk returns a tuple with the AudioBitrate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QualityObject) GetAudioBitrateOk() (*int32, bool) {
+	if o == nil || o.AudioBitrate == nil {
+		return nil, false
+	}
+	return o.AudioBitrate, true
+}
+
+// HasAudioBitrate returns a boolean if a field has been set.
+func (o *QualityObject) HasAudioBitrate() bool {
+	if o != nil && o.AudioBitrate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAudioBitrate gets a reference to the given int32 and assigns it to the AudioBitrate field.
+func (o *QualityObject) SetAudioBitrate(v int32) {
+	o.AudioBitrate = &v
+}
+
+// GetAudioCodec returns the AudioCodec field value if set, zero value otherwise.
+func (o *QualityObject) GetAudioCodec() string {
+	if o == nil || o.AudioCodec == nil {
+		var ret string
+		return ret
+	}
+	return *o.AudioCodec
+}
+
+// GetAudioCodecOk returns a tuple with the AudioCodec field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QualityObject) GetAudioCodecOk() (*string, bool) {
+	if o == nil || o.AudioCodec == nil {
+		return nil, false
+	}
+	return o.AudioCodec, true
+}
+
+// HasAudioCodec returns a boolean if a field has been set.
+func (o *QualityObject) HasAudioCodec() bool {
+	if o != nil && o.AudioCodec != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAudioCodec gets a reference to the given string and assigns it to the AudioCodec field.
+func (o *QualityObject) SetAudioCodec(v string) {
+	o.AudioCodec = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -133,6 +201,70 @@ func (o *QualityObject) HasType() bool {
 // SetType gets a reference to the given string and assigns it to the Type field.
 func (o *QualityObject) SetType(v string) {
 	o.Type = &v
+}
+
+// GetVideoBitrate returns the VideoBitrate field value if set, zero value otherwise.
+func (o *QualityObject) GetVideoBitrate() int32 {
+	if o == nil || o.VideoBitrate == nil {
+		var ret int32
+		return ret
+	}
+	return *o.VideoBitrate
+}
+
+// GetVideoBitrateOk returns a tuple with the VideoBitrate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QualityObject) GetVideoBitrateOk() (*int32, bool) {
+	if o == nil || o.VideoBitrate == nil {
+		return nil, false
+	}
+	return o.VideoBitrate, true
+}
+
+// HasVideoBitrate returns a boolean if a field has been set.
+func (o *QualityObject) HasVideoBitrate() bool {
+	if o != nil && o.VideoBitrate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVideoBitrate gets a reference to the given int32 and assigns it to the VideoBitrate field.
+func (o *QualityObject) SetVideoBitrate(v int32) {
+	o.VideoBitrate = &v
+}
+
+// GetVideoCodec returns the VideoCodec field value if set, zero value otherwise.
+func (o *QualityObject) GetVideoCodec() string {
+	if o == nil || o.VideoCodec == nil {
+		var ret string
+		return ret
+	}
+	return *o.VideoCodec
+}
+
+// GetVideoCodecOk returns a tuple with the VideoCodec field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QualityObject) GetVideoCodecOk() (*string, bool) {
+	if o == nil || o.VideoCodec == nil {
+		return nil, false
+	}
+	return o.VideoCodec, true
+}
+
+// HasVideoCodec returns a boolean if a field has been set.
+func (o *QualityObject) HasVideoCodec() bool {
+	if o != nil && o.VideoCodec != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVideoCodec gets a reference to the given string and assigns it to the VideoCodec field.
+func (o *QualityObject) SetVideoCodec(v string) {
+	o.VideoCodec = &v
 }
 
 type NullableQualityObject struct {

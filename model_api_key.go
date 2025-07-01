@@ -28,6 +28,7 @@ type ApiKey struct {
 	Ttl             *string `json:"ttl,omitempty"`
 	Type            *string `json:"type,omitempty"`
 	UpdatedAt       *string `json:"updated_at,omitempty"`
+	User            *User   `json:"user,omitempty"`
 }
 
 // NewApiKey instantiates a new ApiKey object
@@ -397,6 +398,38 @@ func (o *ApiKey) HasUpdatedAt() bool {
 // SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *ApiKey) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
+}
+
+// GetUser returns the User field value if set, zero value otherwise.
+func (o *ApiKey) GetUser() User {
+	if o == nil || o.User == nil {
+		var ret User
+		return ret
+	}
+	return *o.User
+}
+
+// GetUserOk returns a tuple with the User field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiKey) GetUserOk() (*User, bool) {
+	if o == nil || o.User == nil {
+		return nil, false
+	}
+	return o.User, true
+}
+
+// HasUser returns a boolean if a field has been set.
+func (o *ApiKey) HasUser() bool {
+	if o != nil && o.User != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUser gets a reference to the given User and assigns it to the User field.
+func (o *ApiKey) SetUser(v User) {
+	o.User = &v
 }
 
 type NullableApiKey struct {

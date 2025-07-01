@@ -9,7 +9,7 @@ import (
 
 var (
 	testWebhookForUpdateAndDelete string
-	webhookURL                    = "https://webhook.site/335e64d4-96f7-4bef-906a-b8cd3862a071"
+	webhookURL                    = "https://webhook.site/b112b207-054e-415b-9540-1eba2bef5001"
 	webhookName                   = "Test Webhook"
 	deleteWebhooksLater           []string
 )

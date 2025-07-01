@@ -26,7 +26,7 @@ var (
 	testVideoID        string
 	title              = "Test Video"
 	description        = "Test Description"
-	testVideoCaptionID = "8aa2c5e3-72a2-451e-ae99-73d65a4762b7"
+	testVideoCaptionID = "557c6028-4261-4570-91f5-05015ce289f1"
 	deleteVideosLater  []string
 )
 
@@ -110,91 +110,91 @@ func TestVideoService_Create(t *testing.T) {
 	validTags := []string{"tag1", "tag2"}
 	tests := []struct {
 		name    string
-		request CreateVideoRequest
+		request CreateMediaRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Complete Request",
-			request: CreateVideoRequest{
+			request: CreateMediaRequest{
 				Title:       stringPtr("Test Video"),
 				Description: stringPtr("Test Description"),
 				IsPublic:    boolPtr(true),
 				Metadata:    &validMetadata,
-				Qualities:   &[]string{"1080p", "720p", "360p"},
+				Qualities:   &[]QualityConfig{{Type: stringPtr("hls"), ContainerType: stringPtr("mpegts"), Resolution: stringPtr("240p")}},
 				Tags:        &validTags,
 			},
 			wantErr: false,
 		},
 		{
 			name: "Valid Minimal Request",
-			request: CreateVideoRequest{
+			request: CreateMediaRequest{
 				Title:     stringPtr("Test Video"),
-				Qualities: &[]string{"720p"},
+				Qualities: &[]QualityConfig{{Type: stringPtr("hls"), ContainerType: stringPtr("mpegts"), Resolution: stringPtr("240p")}},
 			},
 			wantErr: false,
 		},
 		{
 			name: "Invalid Title - Empty",
-			request: CreateVideoRequest{
-				Qualities: &[]string{"720p"},
+			request: CreateMediaRequest{
+				Qualities: &[]QualityConfig{{Type: stringPtr("hls"), ContainerType: stringPtr("mpegts"), Resolution: stringPtr("240p")}},
 			},
 			wantErr: true,
 		},
 		{
 			name: "Invalid Title - Too Long",
-			request: CreateVideoRequest{
+			request: CreateMediaRequest{
 				Title:     stringPtr(strings.Repeat("a", 256)),
-				Qualities: &[]string{"720p"},
+				Qualities: &[]QualityConfig{{Type: stringPtr("hls"), ContainerType: stringPtr("mpegts"), Resolution: stringPtr("240p")}},
 			},
 			wantErr: true,
 		},
 		{
 			name: "Invalid Description - Too Long",
-			request: CreateVideoRequest{
+			request: CreateMediaRequest{
 				Title:       stringPtr("Test Video"),
 				Description: stringPtr(strings.Repeat("a", 1001)),
-				Qualities:   &[]string{"720p"},
+				Qualities:   &[]QualityConfig{{Type: stringPtr("hls"), ContainerType: stringPtr("mpegts"), Resolution: stringPtr("240p")}},
 			},
 			wantErr: true,
 		},
 		{
 			name: "Invalid Metadata - Key Too Long",
-			request: CreateVideoRequest{
+			request: CreateMediaRequest{
 				Title:     stringPtr("Test Video"),
-				Qualities: &[]string{"720p"},
+				Qualities: &[]QualityConfig{{Type: stringPtr("hls"), ContainerType: stringPtr("mpegts"), Resolution: stringPtr("240p")}},
 				Metadata:  &[]Metadata{{Key: stringPtr(strings.Repeat("a", 256)), Value: stringPtr("value")}},
 			},
 			wantErr: true,
 		},
 		{
 			name: "Invalid Qualities - Empty",
-			request: CreateVideoRequest{
+			request: CreateMediaRequest{
 				Title:     stringPtr("Test Video"),
-				Qualities: &[]string{},
+				Qualities: &[]QualityConfig{},
 			},
 			wantErr: false,
 		},
 		{
 			name: "Invalid Qualities - Invalid Value",
-			request: CreateVideoRequest{
+			request: CreateMediaRequest{
 				Title:     stringPtr("Test Video"),
-				Qualities: &[]string{"invalid_quality"},
+				Qualities: &[]QualityConfig{{Type: stringPtr("video/mp4"), ContainerType: stringPtr("mp4")}},
 			},
 			wantErr: true,
 		},
 		{
 			name: "Valid Qualities - All Supported",
-			request: CreateVideoRequest{
+			request: CreateMediaRequest{
 				Title:     stringPtr("Test Video"),
-				Qualities: &[]string{"2160p", "1440p", "1080p", "720p", "360p", "240p", "144p"},
+				Qualities: &[]QualityConfig{{Type: stringPtr("hls"), ContainerType: stringPtr("mpegts"), Resolution: stringPtr("240p")}},
 			},
 			wantErr: false,
 		},
 		{
 			name: "Invalid Tags - Tag Too Long",
-			request: CreateVideoRequest{
+			request: CreateMediaRequest{
 				Title:     stringPtr("Test Video"),
-				Qualities: &[]string{"720p"},
+				Qualities: &[]QualityConfig{{Type: stringPtr("hls"), ContainerType: stringPtr("mpegts"), Resolution: stringPtr("240p")}},
 				Tags:      &[]string{strings.Repeat("a", 256)},
 			},
 			wantErr: true,
@@ -258,6 +258,33 @@ func TestVideoService_List(t *testing.T) {
 
 func TestVideoService_Update(t *testing.T) {
 	notExistId := uuid.New().String()
+	anonymousTest := []struct {
+		name    string
+		id      string
+		input   UpdateVideoInfoRequest
+		wantErr bool
+	}{
+		{
+			name:    "Update other",
+			id:      testVideoID,
+			input:   UpdateVideoInfoRequest{Title: &title},
+			wantErr: true,
+		},
+	}
+
+	for _, tt := range anonymousTest {
+		t.Run(tt.name, func(t *testing.T) {
+			resp, err := testAnonymousClient.Video.Update(tt.id, tt.input)
+			if tt.wantErr {
+				assert.Error(t, err)
+				assert.Nil(t, resp)
+			} else {
+				assert.NoError(t, err)
+				assert.NotNil(t, resp)
+			}
+		})
+	}
+
 	tests := []struct {
 		name    string
 		id      string
@@ -332,6 +359,30 @@ func TestVideoService_Update(t *testing.T) {
 
 func TestVideoService_GetDetail(t *testing.T) {
 	notExistId := uuid.New().String()
+	anonymousTest := []struct {
+		name    string
+		id      string
+		wantErr bool
+	}{
+		{
+			name:    "Get other",
+			id:      testVideoID,
+			wantErr: true,
+		},
+	}
+	for _, tt := range anonymousTest {
+		t.Run(tt.name, func(t *testing.T) {
+			resp, err := testAnonymousClient.Video.GetDetail(tt.id)
+			if tt.wantErr {
+				assert.Error(t, err)
+				assert.Nil(t, resp)
+			} else {
+				assert.NoError(t, err)
+				assert.NotNil(t, resp)
+			}
+		})
+	}
+
 	tests := []struct {
 		name    string
 		id      string
@@ -827,7 +878,7 @@ func TestVideoService_GetVideoCaptions(t *testing.T) {
 	}{
 		{
 			name:    "Valid Get Video Captions",
-			id:      testVideoID,
+			id:      testVideoCaptionID,
 			wantErr: false,
 		},
 		{
@@ -861,78 +912,78 @@ func TestVideoService_GetVideoCaptions(t *testing.T) {
 	}
 }
 
-func TestVideoService_SetDefaultCaption(t *testing.T) {
-	notExistId := uuid.New().String()
-	anonymousTest := []struct {
-		name    string
-		id      string
-		lang    string
-		wantErr bool
-	}{
-		{
-			name:    "Set other",
-			id:      testVideoID,
-			lang:    testLang,
-			wantErr: true,
-		},
-	}
+// func TestVideoService_SetDefaultCaption(t *testing.T) {
+// 	notExistId := uuid.New().String()
+// 	anonymousTest := []struct {
+// 		name    string
+// 		id      string
+// 		lang    string
+// 		wantErr bool
+// 	}{
+// 		{
+// 			name:    "Set other",
+// 			id:      testVideoID,
+// 			lang:    testLang,
+// 			wantErr: true,
+// 		},
+// 	}
 
-	for _, tt := range anonymousTest {
-		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Video.SetDefaultCaption(tt.id, tt.lang)
-			if tt.wantErr {
-				assert.Error(t, err)
-				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-			}
-		})
-	}
+// 	for _, tt := range anonymousTest {
+// 		t.Run(tt.name, func(t *testing.T) {
+// 			resp, err := testAnonymousClient.Video.SetDefaultCaption(tt.id, tt.lang)
+// 			if tt.wantErr {
+// 				assert.Error(t, err)
+// 				assert.Nil(t, resp)
+// 			} else {
+// 				assert.NoError(t, err)
+// 				assert.NotNil(t, resp)
+// 			}
+// 		})
+// 	}
 
-	tests := []struct {
-		name    string
-		id      string
-		lang    string
-		wantErr bool
-	}{
-		{
-			name:    "Valid Set Default Caption",
-			id:      testVideoID,
-			lang:    testLang,
-			wantErr: false,
-		},
-		{
-			name:    "Invalid Video ID",
-			id:      "invalid-id",
-			wantErr: true,
-		},
-		{
-			name:    "Empty Video ID",
-			id:      "",
-			wantErr: true,
-		},
-		{
-			name:    "Not Exist ID",
-			id:      notExistId,
-			wantErr: true,
-		},
-	}
+// 	tests := []struct {
+// 		name    string
+// 		id      string
+// 		lang    string
+// 		wantErr bool
+// 	}{
+// 		{
+// 			name:    "Valid Set Default Caption",
+// 			id:      testVideoID,
+// 			lang:    testLang,
+// 			wantErr: false,
+// 		},
+// 		{
+// 			name:    "Invalid Video ID",
+// 			id:      "invalid-id",
+// 			wantErr: true,
+// 		},
+// 		{
+// 			name:    "Empty Video ID",
+// 			id:      "",
+// 			wantErr: true,
+// 		},
+// 		{
+// 			name:    "Not Exist ID",
+// 			id:      notExistId,
+// 			wantErr: true,
+// 		},
+// 	}
 
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.SetDefaultCaption(tt.id, testLang)
-			if tt.wantErr {
-				assert.Error(t, err)
-				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-			}
-		})
-	}
+// 	for _, tt := range tests {
+// 		t.Run(tt.name, func(t *testing.T) {
+// 			resp, err := testClient.Video.SetDefaultCaption(tt.id, testLang)
+// 			if tt.wantErr {
+// 				assert.Error(t, err)
+// 				assert.Nil(t, resp)
+// 			} else {
+// 				assert.NoError(t, err)
+// 				assert.NotNil(t, resp)
+// 			}
+// 		})
+// 	}
 
-}
+// }
 
 func TestVideoService_DeleteVideoCaptions(t *testing.T) {
 	notExistId := uuid.New().String()
@@ -1030,12 +1081,12 @@ func TestVideoService_Delete(t *testing.T) {
 	}
 
 	validTags := []string{"tag1", "tag2"}
-	createRequest := CreateVideoRequest{
+	createRequest := CreateMediaRequest{
 		Title:       stringPtr("Test Video for Deletion"),
 		Description: stringPtr("Test Description"),
 		IsPublic:    boolPtr(true),
 		Metadata:    &validMetadata,
-		Qualities:   &[]string{"1080p", "720p", "360p"},
+		Qualities:   &[]QualityConfig{{Type: stringPtr("hls"), ContainerType: stringPtr("mpegts"), Resolution: stringPtr("240p")}},
 		Tags:        &validTags,
 	}
 

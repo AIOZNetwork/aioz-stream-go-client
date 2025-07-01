@@ -1,208 +1,234 @@
-# CreateVideoRequest
+# CreateMediaRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** | Description of the video | [optional] 
-**IsPublic** | Pointer to **bool** | // Is panoramic video IsPanoramic *bool &#x60;json:\&quot;is_panoramic\&quot; form:\&quot;is_panoramic\&quot;&#x60; Is public video | [optional] 
-**Metadata** | Pointer to [**[]Metadata**](Metadata.md) | Metadata of the video (key-value pair, max: 50 items, key max length: 255, value max length: 255) | [optional] 
-**Qualities** | Pointer to **[]string** | Qualities of the video (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p) | [optional] 
-**Tags** | Pointer to **[]string** | Tags of the video (max: 50 items, max length: 255) | [optional] 
-**Title** | Pointer to **string** | Title of the video | [optional] 
-**Watermark** | Pointer to [**VideoWatermark**](VideoWatermark.md) | Video thumbnailConfig | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**IsPublic** | Pointer to **bool** |  | [optional] 
+**Metadata** | Pointer to [**[]Metadata**](Metadata.md) |  | [optional] 
+**Qualities** | Pointer to [**[]QualityConfig**](QualityConfig.md) |  | [optional] 
+**SegmentDuration** | Pointer to **int32** |  | [optional] 
+**Tags** | Pointer to **[]string** |  | [optional] 
+**Title** | Pointer to **string** |  | [optional] 
+**Watermark** | Pointer to [**VideoWatermark**](VideoWatermark.md) |  | [optional] 
 
 ## Methods
 
-### NewCreateVideoRequest
+### NewCreateMediaRequest
 
-`func NewCreateVideoRequest() *CreateVideoRequest`
+`func NewCreateMediaRequest() *CreateMediaRequest`
 
-NewCreateVideoRequest instantiates a new CreateVideoRequest object
+NewCreateMediaRequest instantiates a new CreateMediaRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCreateVideoRequestWithDefaults
+### NewCreateMediaRequestWithDefaults
 
-`func NewCreateVideoRequestWithDefaults() *CreateVideoRequest`
+`func NewCreateMediaRequestWithDefaults() *CreateMediaRequest`
 
-NewCreateVideoRequestWithDefaults instantiates a new CreateVideoRequest object
+NewCreateMediaRequestWithDefaults instantiates a new CreateMediaRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetDescription
 
-`func (o *CreateVideoRequest) GetDescription() string`
+`func (o *CreateMediaRequest) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *CreateVideoRequest) GetDescriptionOk() (*string, bool)`
+`func (o *CreateMediaRequest) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *CreateVideoRequest) SetDescription(v string)`
+`func (o *CreateMediaRequest) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
 
 ### HasDescription
 
-`func (o *CreateVideoRequest) HasDescription() bool`
+`func (o *CreateMediaRequest) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 
 ### GetIsPublic
 
-`func (o *CreateVideoRequest) GetIsPublic() bool`
+`func (o *CreateMediaRequest) GetIsPublic() bool`
 
 GetIsPublic returns the IsPublic field if non-nil, zero value otherwise.
 
 ### GetIsPublicOk
 
-`func (o *CreateVideoRequest) GetIsPublicOk() (*bool, bool)`
+`func (o *CreateMediaRequest) GetIsPublicOk() (*bool, bool)`
 
 GetIsPublicOk returns a tuple with the IsPublic field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsPublic
 
-`func (o *CreateVideoRequest) SetIsPublic(v bool)`
+`func (o *CreateMediaRequest) SetIsPublic(v bool)`
 
 SetIsPublic sets IsPublic field to given value.
 
 ### HasIsPublic
 
-`func (o *CreateVideoRequest) HasIsPublic() bool`
+`func (o *CreateMediaRequest) HasIsPublic() bool`
 
 HasIsPublic returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *CreateVideoRequest) GetMetadata() []Metadata`
+`func (o *CreateMediaRequest) GetMetadata() []Metadata`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *CreateVideoRequest) GetMetadataOk() (*[]Metadata, bool)`
+`func (o *CreateMediaRequest) GetMetadataOk() (*[]Metadata, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *CreateVideoRequest) SetMetadata(v []Metadata)`
+`func (o *CreateMediaRequest) SetMetadata(v []Metadata)`
 
 SetMetadata sets Metadata field to given value.
 
 ### HasMetadata
 
-`func (o *CreateVideoRequest) HasMetadata() bool`
+`func (o *CreateMediaRequest) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
 
 ### GetQualities
 
-`func (o *CreateVideoRequest) GetQualities() []string`
+`func (o *CreateMediaRequest) GetQualities() []QualityConfig`
 
 GetQualities returns the Qualities field if non-nil, zero value otherwise.
 
 ### GetQualitiesOk
 
-`func (o *CreateVideoRequest) GetQualitiesOk() (*[]string, bool)`
+`func (o *CreateMediaRequest) GetQualitiesOk() (*[]QualityConfig, bool)`
 
 GetQualitiesOk returns a tuple with the Qualities field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQualities
 
-`func (o *CreateVideoRequest) SetQualities(v []string)`
+`func (o *CreateMediaRequest) SetQualities(v []QualityConfig)`
 
 SetQualities sets Qualities field to given value.
 
 ### HasQualities
 
-`func (o *CreateVideoRequest) HasQualities() bool`
+`func (o *CreateMediaRequest) HasQualities() bool`
 
 HasQualities returns a boolean if a field has been set.
 
+### GetSegmentDuration
+
+`func (o *CreateMediaRequest) GetSegmentDuration() int32`
+
+GetSegmentDuration returns the SegmentDuration field if non-nil, zero value otherwise.
+
+### GetSegmentDurationOk
+
+`func (o *CreateMediaRequest) GetSegmentDurationOk() (*int32, bool)`
+
+GetSegmentDurationOk returns a tuple with the SegmentDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSegmentDuration
+
+`func (o *CreateMediaRequest) SetSegmentDuration(v int32)`
+
+SetSegmentDuration sets SegmentDuration field to given value.
+
+### HasSegmentDuration
+
+`func (o *CreateMediaRequest) HasSegmentDuration() bool`
+
+HasSegmentDuration returns a boolean if a field has been set.
+
 ### GetTags
 
-`func (o *CreateVideoRequest) GetTags() []string`
+`func (o *CreateMediaRequest) GetTags() []string`
 
 GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *CreateVideoRequest) GetTagsOk() (*[]string, bool)`
+`func (o *CreateMediaRequest) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTags
 
-`func (o *CreateVideoRequest) SetTags(v []string)`
+`func (o *CreateMediaRequest) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
 
 ### HasTags
 
-`func (o *CreateVideoRequest) HasTags() bool`
+`func (o *CreateMediaRequest) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
 
 ### GetTitle
 
-`func (o *CreateVideoRequest) GetTitle() string`
+`func (o *CreateMediaRequest) GetTitle() string`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *CreateVideoRequest) GetTitleOk() (*string, bool)`
+`func (o *CreateMediaRequest) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *CreateVideoRequest) SetTitle(v string)`
+`func (o *CreateMediaRequest) SetTitle(v string)`
 
 SetTitle sets Title field to given value.
 
 ### HasTitle
 
-`func (o *CreateVideoRequest) HasTitle() bool`
+`func (o *CreateMediaRequest) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
 
 ### GetWatermark
 
-`func (o *CreateVideoRequest) GetWatermark() VideoWatermark`
+`func (o *CreateMediaRequest) GetWatermark() VideoWatermark`
 
 GetWatermark returns the Watermark field if non-nil, zero value otherwise.
 
 ### GetWatermarkOk
 
-`func (o *CreateVideoRequest) GetWatermarkOk() (*VideoWatermark, bool)`
+`func (o *CreateMediaRequest) GetWatermarkOk() (*VideoWatermark, bool)`
 
 GetWatermarkOk returns a tuple with the Watermark field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWatermark
 
-`func (o *CreateVideoRequest) SetWatermark(v VideoWatermark)`
+`func (o *CreateMediaRequest) SetWatermark(v VideoWatermark)`
 
 SetWatermark sets Watermark field to given value.
 
 ### HasWatermark
 
-`func (o *CreateVideoRequest) HasWatermark() bool`
+`func (o *CreateMediaRequest) HasWatermark() bool`
 
 HasWatermark returns a boolean if a field has been set.
 

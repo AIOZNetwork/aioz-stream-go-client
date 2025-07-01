@@ -18,7 +18,7 @@ import (
 // GetVideoListData struct for GetVideoListData
 type GetVideoListData struct {
 	Total  *int32   `json:"total,omitempty"`
-	Videos *[]Video `json:"videos,omitempty"`
+	Videos *[]Media `json:"videos,omitempty"`
 }
 
 // NewGetVideoListData instantiates a new GetVideoListData object
@@ -71,9 +71,9 @@ func (o *GetVideoListData) SetTotal(v int32) {
 }
 
 // GetVideos returns the Videos field value if set, zero value otherwise.
-func (o *GetVideoListData) GetVideos() []Video {
+func (o *GetVideoListData) GetVideos() []Media {
 	if o == nil || o.Videos == nil {
-		var ret []Video
+		var ret []Media
 		return ret
 	}
 	return *o.Videos
@@ -81,7 +81,7 @@ func (o *GetVideoListData) GetVideos() []Video {
 
 // GetVideosOk returns a tuple with the Videos field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVideoListData) GetVideosOk() (*[]Video, bool) {
+func (o *GetVideoListData) GetVideosOk() (*[]Media, bool) {
 	if o == nil || o.Videos == nil {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *GetVideoListData) HasVideos() bool {
 	return false
 }
 
-// SetVideos gets a reference to the given []Video and assigns it to the Videos field.
-func (o *GetVideoListData) SetVideos(v []Video) {
+// SetVideos gets a reference to the given []Media and assigns it to the Videos field.
+func (o *GetVideoListData) SetVideos(v []Media) {
 	o.Videos = &v
 }
 

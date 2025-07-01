@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** | Description of the video | [optional] 
-**IsPublic** | Pointer to **bool** | Video&#39;s publish status | [optional] 
-**Metadata** | Pointer to [**[]Metadata**](Metadata.md) | Video&#39;s metadata | [optional] 
-**PlayerId** | Pointer to **string** | Video player &#39;s id | [optional] 
-**Tags** | Pointer to **[]string** | Video&#39;s tags | [optional] 
-**Title** | Pointer to **string** | Title of the video | [optional] 
+**Description** | Pointer to **string** | Description of the media | [optional] 
+**IsPublic** | Pointer to **bool** | Media&#39;s publish status | [optional] 
+**Metadata** | Pointer to [**[]Metadata**](Metadata.md) | Media&#39;s metadata | [optional] 
+**PlayerId** | Pointer to **string** | Media player &#39;s id | [optional] 
+**Tags** | Pointer to **[]string** | Media&#39;s tags | [optional] 
+**Title** | Pointer to **string** | Title of the media | [optional] 
 
 ## Methods
 

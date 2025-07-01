@@ -15,8 +15,8 @@ import (
 //"encoding/json"
 )
 
-// PlaylistItemVideo struct for PlaylistItemVideo
-type PlaylistItemVideo struct {
+// PlaylistItemMedia struct for PlaylistItemMedia
+type PlaylistItemMedia struct {
 	Chapters     *[]VideoChapter `json:"chapters,omitempty"`
 	Duration     *float32        `json:"duration,omitempty"`
 	HlsUrl       *string         `json:"hls_url,omitempty"`
@@ -25,25 +25,25 @@ type PlaylistItemVideo struct {
 	Title        *string         `json:"title,omitempty"`
 }
 
-// NewPlaylistItemVideo instantiates a new PlaylistItemVideo object
+// NewPlaylistItemMedia instantiates a new PlaylistItemMedia object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPlaylistItemVideo() *PlaylistItemVideo {
-	this := PlaylistItemVideo{}
+func NewPlaylistItemMedia() *PlaylistItemMedia {
+	this := PlaylistItemMedia{}
 	return &this
 }
 
-// NewPlaylistItemVideoWithDefaults instantiates a new PlaylistItemVideo object
+// NewPlaylistItemMediaWithDefaults instantiates a new PlaylistItemMedia object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPlaylistItemVideoWithDefaults() *PlaylistItemVideo {
-	this := PlaylistItemVideo{}
+func NewPlaylistItemMediaWithDefaults() *PlaylistItemMedia {
+	this := PlaylistItemMedia{}
 	return &this
 }
 
 // GetChapters returns the Chapters field value if set, zero value otherwise.
-func (o *PlaylistItemVideo) GetChapters() []VideoChapter {
+func (o *PlaylistItemMedia) GetChapters() []VideoChapter {
 	if o == nil || o.Chapters == nil {
 		var ret []VideoChapter
 		return ret
@@ -53,7 +53,7 @@ func (o *PlaylistItemVideo) GetChapters() []VideoChapter {
 
 // GetChaptersOk returns a tuple with the Chapters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaylistItemVideo) GetChaptersOk() (*[]VideoChapter, bool) {
+func (o *PlaylistItemMedia) GetChaptersOk() (*[]VideoChapter, bool) {
 	if o == nil || o.Chapters == nil {
 		return nil, false
 	}
@@ -61,7 +61,7 @@ func (o *PlaylistItemVideo) GetChaptersOk() (*[]VideoChapter, bool) {
 }
 
 // HasChapters returns a boolean if a field has been set.
-func (o *PlaylistItemVideo) HasChapters() bool {
+func (o *PlaylistItemMedia) HasChapters() bool {
 	if o != nil && o.Chapters != nil {
 		return true
 	}
@@ -70,12 +70,12 @@ func (o *PlaylistItemVideo) HasChapters() bool {
 }
 
 // SetChapters gets a reference to the given []VideoChapter and assigns it to the Chapters field.
-func (o *PlaylistItemVideo) SetChapters(v []VideoChapter) {
+func (o *PlaylistItemMedia) SetChapters(v []VideoChapter) {
 	o.Chapters = &v
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
-func (o *PlaylistItemVideo) GetDuration() float32 {
+func (o *PlaylistItemMedia) GetDuration() float32 {
 	if o == nil || o.Duration == nil {
 		var ret float32
 		return ret
@@ -85,7 +85,7 @@ func (o *PlaylistItemVideo) GetDuration() float32 {
 
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaylistItemVideo) GetDurationOk() (*float32, bool) {
+func (o *PlaylistItemMedia) GetDurationOk() (*float32, bool) {
 	if o == nil || o.Duration == nil {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *PlaylistItemVideo) GetDurationOk() (*float32, bool) {
 }
 
 // HasDuration returns a boolean if a field has been set.
-func (o *PlaylistItemVideo) HasDuration() bool {
+func (o *PlaylistItemMedia) HasDuration() bool {
 	if o != nil && o.Duration != nil {
 		return true
 	}
@@ -102,12 +102,12 @@ func (o *PlaylistItemVideo) HasDuration() bool {
 }
 
 // SetDuration gets a reference to the given float32 and assigns it to the Duration field.
-func (o *PlaylistItemVideo) SetDuration(v float32) {
+func (o *PlaylistItemMedia) SetDuration(v float32) {
 	o.Duration = &v
 }
 
 // GetHlsUrl returns the HlsUrl field value if set, zero value otherwise.
-func (o *PlaylistItemVideo) GetHlsUrl() string {
+func (o *PlaylistItemMedia) GetHlsUrl() string {
 	if o == nil || o.HlsUrl == nil {
 		var ret string
 		return ret
@@ -117,7 +117,7 @@ func (o *PlaylistItemVideo) GetHlsUrl() string {
 
 // GetHlsUrlOk returns a tuple with the HlsUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaylistItemVideo) GetHlsUrlOk() (*string, bool) {
+func (o *PlaylistItemMedia) GetHlsUrlOk() (*string, bool) {
 	if o == nil || o.HlsUrl == nil {
 		return nil, false
 	}
@@ -125,7 +125,7 @@ func (o *PlaylistItemVideo) GetHlsUrlOk() (*string, bool) {
 }
 
 // HasHlsUrl returns a boolean if a field has been set.
-func (o *PlaylistItemVideo) HasHlsUrl() bool {
+func (o *PlaylistItemMedia) HasHlsUrl() bool {
 	if o != nil && o.HlsUrl != nil {
 		return true
 	}
@@ -134,12 +134,12 @@ func (o *PlaylistItemVideo) HasHlsUrl() bool {
 }
 
 // SetHlsUrl gets a reference to the given string and assigns it to the HlsUrl field.
-func (o *PlaylistItemVideo) SetHlsUrl(v string) {
+func (o *PlaylistItemMedia) SetHlsUrl(v string) {
 	o.HlsUrl = &v
 }
 
 // GetQualities returns the Qualities field value if set, zero value otherwise.
-func (o *PlaylistItemVideo) GetQualities() string {
+func (o *PlaylistItemMedia) GetQualities() string {
 	if o == nil || o.Qualities == nil {
 		var ret string
 		return ret
@@ -149,7 +149,7 @@ func (o *PlaylistItemVideo) GetQualities() string {
 
 // GetQualitiesOk returns a tuple with the Qualities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaylistItemVideo) GetQualitiesOk() (*string, bool) {
+func (o *PlaylistItemMedia) GetQualitiesOk() (*string, bool) {
 	if o == nil || o.Qualities == nil {
 		return nil, false
 	}
@@ -157,7 +157,7 @@ func (o *PlaylistItemVideo) GetQualitiesOk() (*string, bool) {
 }
 
 // HasQualities returns a boolean if a field has been set.
-func (o *PlaylistItemVideo) HasQualities() bool {
+func (o *PlaylistItemMedia) HasQualities() bool {
 	if o != nil && o.Qualities != nil {
 		return true
 	}
@@ -166,12 +166,12 @@ func (o *PlaylistItemVideo) HasQualities() bool {
 }
 
 // SetQualities gets a reference to the given string and assigns it to the Qualities field.
-func (o *PlaylistItemVideo) SetQualities(v string) {
+func (o *PlaylistItemMedia) SetQualities(v string) {
 	o.Qualities = &v
 }
 
 // GetThumbnailUrl returns the ThumbnailUrl field value if set, zero value otherwise.
-func (o *PlaylistItemVideo) GetThumbnailUrl() string {
+func (o *PlaylistItemMedia) GetThumbnailUrl() string {
 	if o == nil || o.ThumbnailUrl == nil {
 		var ret string
 		return ret
@@ -181,7 +181,7 @@ func (o *PlaylistItemVideo) GetThumbnailUrl() string {
 
 // GetThumbnailUrlOk returns a tuple with the ThumbnailUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaylistItemVideo) GetThumbnailUrlOk() (*string, bool) {
+func (o *PlaylistItemMedia) GetThumbnailUrlOk() (*string, bool) {
 	if o == nil || o.ThumbnailUrl == nil {
 		return nil, false
 	}
@@ -189,7 +189,7 @@ func (o *PlaylistItemVideo) GetThumbnailUrlOk() (*string, bool) {
 }
 
 // HasThumbnailUrl returns a boolean if a field has been set.
-func (o *PlaylistItemVideo) HasThumbnailUrl() bool {
+func (o *PlaylistItemMedia) HasThumbnailUrl() bool {
 	if o != nil && o.ThumbnailUrl != nil {
 		return true
 	}
@@ -198,12 +198,12 @@ func (o *PlaylistItemVideo) HasThumbnailUrl() bool {
 }
 
 // SetThumbnailUrl gets a reference to the given string and assigns it to the ThumbnailUrl field.
-func (o *PlaylistItemVideo) SetThumbnailUrl(v string) {
+func (o *PlaylistItemMedia) SetThumbnailUrl(v string) {
 	o.ThumbnailUrl = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
-func (o *PlaylistItemVideo) GetTitle() string {
+func (o *PlaylistItemMedia) GetTitle() string {
 	if o == nil || o.Title == nil {
 		var ret string
 		return ret
@@ -213,7 +213,7 @@ func (o *PlaylistItemVideo) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaylistItemVideo) GetTitleOk() (*string, bool) {
+func (o *PlaylistItemMedia) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
 		return nil, false
 	}
@@ -221,7 +221,7 @@ func (o *PlaylistItemVideo) GetTitleOk() (*string, bool) {
 }
 
 // HasTitle returns a boolean if a field has been set.
-func (o *PlaylistItemVideo) HasTitle() bool {
+func (o *PlaylistItemMedia) HasTitle() bool {
 	if o != nil && o.Title != nil {
 		return true
 	}
@@ -230,33 +230,33 @@ func (o *PlaylistItemVideo) HasTitle() bool {
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *PlaylistItemVideo) SetTitle(v string) {
+func (o *PlaylistItemMedia) SetTitle(v string) {
 	o.Title = &v
 }
 
-type NullablePlaylistItemVideo struct {
-	value *PlaylistItemVideo
+type NullablePlaylistItemMedia struct {
+	value *PlaylistItemMedia
 	isSet bool
 }
 
-func (v NullablePlaylistItemVideo) Get() *PlaylistItemVideo {
+func (v NullablePlaylistItemMedia) Get() *PlaylistItemMedia {
 	return v.value
 }
 
-func (v *NullablePlaylistItemVideo) Set(val *PlaylistItemVideo) {
+func (v *NullablePlaylistItemMedia) Set(val *PlaylistItemMedia) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePlaylistItemVideo) IsSet() bool {
+func (v NullablePlaylistItemMedia) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePlaylistItemVideo) Unset() {
+func (v *NullablePlaylistItemMedia) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePlaylistItemVideo(val *PlaylistItemVideo) *NullablePlaylistItemVideo {
-	return &NullablePlaylistItemVideo{value: val, isSet: true}
+func NewNullablePlaylistItemMedia(val *PlaylistItemMedia) *NullablePlaylistItemMedia {
+	return &NullablePlaylistItemMedia{value: val, isSet: true}
 }

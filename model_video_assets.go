@@ -17,12 +17,15 @@ import (
 
 // VideoAssets struct for VideoAssets
 type VideoAssets struct {
-	HlsUrl       *string `json:"hls_url,omitempty"`
-	Iframe       *string `json:"iframe,omitempty"`
-	Mp4Url       *string `json:"mp4_url,omitempty"`
-	PlayerUrl    *string `json:"player_url,omitempty"`
-	SourceUrl    *string `json:"source_url,omitempty"`
-	ThumbnailUrl *string `json:"thumbnail_url,omitempty"`
+	DashIframe    *string `json:"dash_iframe,omitempty"`
+	DashPlayerUrl *string `json:"dash_player_url,omitempty"`
+	DashUrl       *string `json:"dash_url,omitempty"`
+	HlsIframe     *string `json:"hls_iframe,omitempty"`
+	HlsPlayerUrl  *string `json:"hls_player_url,omitempty"`
+	HlsUrl        *string `json:"hls_url,omitempty"`
+	Mp4Url        *string `json:"mp4_url,omitempty"`
+	SourceUrl     *string `json:"source_url,omitempty"`
+	ThumbnailUrl  *string `json:"thumbnail_url,omitempty"`
 }
 
 // NewVideoAssets instantiates a new VideoAssets object
@@ -40,6 +43,166 @@ func NewVideoAssets() *VideoAssets {
 func NewVideoAssetsWithDefaults() *VideoAssets {
 	this := VideoAssets{}
 	return &this
+}
+
+// GetDashIframe returns the DashIframe field value if set, zero value otherwise.
+func (o *VideoAssets) GetDashIframe() string {
+	if o == nil || o.DashIframe == nil {
+		var ret string
+		return ret
+	}
+	return *o.DashIframe
+}
+
+// GetDashIframeOk returns a tuple with the DashIframe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VideoAssets) GetDashIframeOk() (*string, bool) {
+	if o == nil || o.DashIframe == nil {
+		return nil, false
+	}
+	return o.DashIframe, true
+}
+
+// HasDashIframe returns a boolean if a field has been set.
+func (o *VideoAssets) HasDashIframe() bool {
+	if o != nil && o.DashIframe != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDashIframe gets a reference to the given string and assigns it to the DashIframe field.
+func (o *VideoAssets) SetDashIframe(v string) {
+	o.DashIframe = &v
+}
+
+// GetDashPlayerUrl returns the DashPlayerUrl field value if set, zero value otherwise.
+func (o *VideoAssets) GetDashPlayerUrl() string {
+	if o == nil || o.DashPlayerUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.DashPlayerUrl
+}
+
+// GetDashPlayerUrlOk returns a tuple with the DashPlayerUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VideoAssets) GetDashPlayerUrlOk() (*string, bool) {
+	if o == nil || o.DashPlayerUrl == nil {
+		return nil, false
+	}
+	return o.DashPlayerUrl, true
+}
+
+// HasDashPlayerUrl returns a boolean if a field has been set.
+func (o *VideoAssets) HasDashPlayerUrl() bool {
+	if o != nil && o.DashPlayerUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDashPlayerUrl gets a reference to the given string and assigns it to the DashPlayerUrl field.
+func (o *VideoAssets) SetDashPlayerUrl(v string) {
+	o.DashPlayerUrl = &v
+}
+
+// GetDashUrl returns the DashUrl field value if set, zero value otherwise.
+func (o *VideoAssets) GetDashUrl() string {
+	if o == nil || o.DashUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.DashUrl
+}
+
+// GetDashUrlOk returns a tuple with the DashUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VideoAssets) GetDashUrlOk() (*string, bool) {
+	if o == nil || o.DashUrl == nil {
+		return nil, false
+	}
+	return o.DashUrl, true
+}
+
+// HasDashUrl returns a boolean if a field has been set.
+func (o *VideoAssets) HasDashUrl() bool {
+	if o != nil && o.DashUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDashUrl gets a reference to the given string and assigns it to the DashUrl field.
+func (o *VideoAssets) SetDashUrl(v string) {
+	o.DashUrl = &v
+}
+
+// GetHlsIframe returns the HlsIframe field value if set, zero value otherwise.
+func (o *VideoAssets) GetHlsIframe() string {
+	if o == nil || o.HlsIframe == nil {
+		var ret string
+		return ret
+	}
+	return *o.HlsIframe
+}
+
+// GetHlsIframeOk returns a tuple with the HlsIframe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VideoAssets) GetHlsIframeOk() (*string, bool) {
+	if o == nil || o.HlsIframe == nil {
+		return nil, false
+	}
+	return o.HlsIframe, true
+}
+
+// HasHlsIframe returns a boolean if a field has been set.
+func (o *VideoAssets) HasHlsIframe() bool {
+	if o != nil && o.HlsIframe != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHlsIframe gets a reference to the given string and assigns it to the HlsIframe field.
+func (o *VideoAssets) SetHlsIframe(v string) {
+	o.HlsIframe = &v
+}
+
+// GetHlsPlayerUrl returns the HlsPlayerUrl field value if set, zero value otherwise.
+func (o *VideoAssets) GetHlsPlayerUrl() string {
+	if o == nil || o.HlsPlayerUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.HlsPlayerUrl
+}
+
+// GetHlsPlayerUrlOk returns a tuple with the HlsPlayerUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VideoAssets) GetHlsPlayerUrlOk() (*string, bool) {
+	if o == nil || o.HlsPlayerUrl == nil {
+		return nil, false
+	}
+	return o.HlsPlayerUrl, true
+}
+
+// HasHlsPlayerUrl returns a boolean if a field has been set.
+func (o *VideoAssets) HasHlsPlayerUrl() bool {
+	if o != nil && o.HlsPlayerUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHlsPlayerUrl gets a reference to the given string and assigns it to the HlsPlayerUrl field.
+func (o *VideoAssets) SetHlsPlayerUrl(v string) {
+	o.HlsPlayerUrl = &v
 }
 
 // GetHlsUrl returns the HlsUrl field value if set, zero value otherwise.
@@ -74,38 +237,6 @@ func (o *VideoAssets) SetHlsUrl(v string) {
 	o.HlsUrl = &v
 }
 
-// GetIframe returns the Iframe field value if set, zero value otherwise.
-func (o *VideoAssets) GetIframe() string {
-	if o == nil || o.Iframe == nil {
-		var ret string
-		return ret
-	}
-	return *o.Iframe
-}
-
-// GetIframeOk returns a tuple with the Iframe field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VideoAssets) GetIframeOk() (*string, bool) {
-	if o == nil || o.Iframe == nil {
-		return nil, false
-	}
-	return o.Iframe, true
-}
-
-// HasIframe returns a boolean if a field has been set.
-func (o *VideoAssets) HasIframe() bool {
-	if o != nil && o.Iframe != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIframe gets a reference to the given string and assigns it to the Iframe field.
-func (o *VideoAssets) SetIframe(v string) {
-	o.Iframe = &v
-}
-
 // GetMp4Url returns the Mp4Url field value if set, zero value otherwise.
 func (o *VideoAssets) GetMp4Url() string {
 	if o == nil || o.Mp4Url == nil {
@@ -136,38 +267,6 @@ func (o *VideoAssets) HasMp4Url() bool {
 // SetMp4Url gets a reference to the given string and assigns it to the Mp4Url field.
 func (o *VideoAssets) SetMp4Url(v string) {
 	o.Mp4Url = &v
-}
-
-// GetPlayerUrl returns the PlayerUrl field value if set, zero value otherwise.
-func (o *VideoAssets) GetPlayerUrl() string {
-	if o == nil || o.PlayerUrl == nil {
-		var ret string
-		return ret
-	}
-	return *o.PlayerUrl
-}
-
-// GetPlayerUrlOk returns a tuple with the PlayerUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VideoAssets) GetPlayerUrlOk() (*string, bool) {
-	if o == nil || o.PlayerUrl == nil {
-		return nil, false
-	}
-	return o.PlayerUrl, true
-}
-
-// HasPlayerUrl returns a boolean if a field has been set.
-func (o *VideoAssets) HasPlayerUrl() bool {
-	if o != nil && o.PlayerUrl != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPlayerUrl gets a reference to the given string and assigns it to the PlayerUrl field.
-func (o *VideoAssets) SetPlayerUrl(v string) {
-	o.PlayerUrl = &v
 }
 
 // GetSourceUrl returns the SourceUrl field value if set, zero value otherwise.

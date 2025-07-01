@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**LiveStreamVideoData**](LiveStreamVideoData.md) |  | [optional] 
+**Data** | Pointer to [**LiveStreamMediaData**](LiveStreamMediaData.md) |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *CreateStreamingResponse) GetData() LiveStreamVideoData`
+`func (o *CreateStreamingResponse) GetData() LiveStreamMediaData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *CreateStreamingResponse) GetDataOk() (*LiveStreamVideoData, bool)`
+`func (o *CreateStreamingResponse) GetDataOk() (*LiveStreamMediaData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *CreateStreamingResponse) SetData(v LiveStreamVideoData)`
+`func (o *CreateStreamingResponse) SetData(v LiveStreamMediaData)`
 
 SetData sets Data field to given value.
 

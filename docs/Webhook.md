@@ -188,7 +188,7 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | webhook's id
-    request := *aiozstreamsdk.NewUpdateWebhookRequest() // UpdateWebhookRequest | Update Webhook input, events example: video.encoding.quality.completed
+    request := *aiozstreamsdk.NewUpdateWebhookRequest() // UpdateWebhookRequest | Update Webhook input, events example: media.encoding.quality.completed
 
     
     res, err := client.Webhook.Update(id, request)
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**UpdateWebhookRequest**](UpdateWebhookRequest.md) | Update Webhook input, events example: video.encoding.quality.completed | 
+**request** | [**UpdateWebhookRequest**](UpdateWebhookRequest.md) | Update Webhook input, events example: media.encoding.quality.completed | 
 
 ### Return type
 

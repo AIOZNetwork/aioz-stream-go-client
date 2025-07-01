@@ -15,37 +15,37 @@ import (
 //"encoding/json"
 )
 
-// GetLiveStreamVideosRequest struct for GetLiveStreamVideosRequest
-type GetLiveStreamVideosRequest struct {
+// GetLiveStreamMediasRequest struct for GetLiveStreamMediasRequest
+type GetLiveStreamMediasRequest struct {
 	Limit           *int32  `json:"limit,omitempty"`
 	LiveStreamKeyId *string `json:"live_stream_key_id,omitempty"`
+	MediaStatus     *string `json:"media_status,omitempty"`
 	Offset          *int32  `json:"offset,omitempty"`
 	OrderBy         *string `json:"order_by,omitempty"`
 	Search          *string `json:"search,omitempty"`
 	SortBy          *string `json:"sort_by,omitempty"`
 	Status          *string `json:"status,omitempty"`
-	VideoStatus     *string `json:"video_status,omitempty"`
 }
 
-// NewGetLiveStreamVideosRequest instantiates a new GetLiveStreamVideosRequest object
+// NewGetLiveStreamMediasRequest instantiates a new GetLiveStreamMediasRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetLiveStreamVideosRequest() *GetLiveStreamVideosRequest {
-	this := GetLiveStreamVideosRequest{}
+func NewGetLiveStreamMediasRequest() *GetLiveStreamMediasRequest {
+	this := GetLiveStreamMediasRequest{}
 	return &this
 }
 
-// NewGetLiveStreamVideosRequestWithDefaults instantiates a new GetLiveStreamVideosRequest object
+// NewGetLiveStreamMediasRequestWithDefaults instantiates a new GetLiveStreamMediasRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetLiveStreamVideosRequestWithDefaults() *GetLiveStreamVideosRequest {
-	this := GetLiveStreamVideosRequest{}
+func NewGetLiveStreamMediasRequestWithDefaults() *GetLiveStreamMediasRequest {
+	this := GetLiveStreamMediasRequest{}
 	return &this
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
-func (o *GetLiveStreamVideosRequest) GetLimit() int32 {
+func (o *GetLiveStreamMediasRequest) GetLimit() int32 {
 	if o == nil || o.Limit == nil {
 		var ret int32
 		return ret
@@ -55,7 +55,7 @@ func (o *GetLiveStreamVideosRequest) GetLimit() int32 {
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideosRequest) GetLimitOk() (*int32, bool) {
+func (o *GetLiveStreamMediasRequest) GetLimitOk() (*int32, bool) {
 	if o == nil || o.Limit == nil {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *GetLiveStreamVideosRequest) GetLimitOk() (*int32, bool) {
 }
 
 // HasLimit returns a boolean if a field has been set.
-func (o *GetLiveStreamVideosRequest) HasLimit() bool {
+func (o *GetLiveStreamMediasRequest) HasLimit() bool {
 	if o != nil && o.Limit != nil {
 		return true
 	}
@@ -72,12 +72,12 @@ func (o *GetLiveStreamVideosRequest) HasLimit() bool {
 }
 
 // SetLimit gets a reference to the given int32 and assigns it to the Limit field.
-func (o *GetLiveStreamVideosRequest) SetLimit(v int32) {
+func (o *GetLiveStreamMediasRequest) SetLimit(v int32) {
 	o.Limit = &v
 }
 
 // GetLiveStreamKeyId returns the LiveStreamKeyId field value if set, zero value otherwise.
-func (o *GetLiveStreamVideosRequest) GetLiveStreamKeyId() string {
+func (o *GetLiveStreamMediasRequest) GetLiveStreamKeyId() string {
 	if o == nil || o.LiveStreamKeyId == nil {
 		var ret string
 		return ret
@@ -87,7 +87,7 @@ func (o *GetLiveStreamVideosRequest) GetLiveStreamKeyId() string {
 
 // GetLiveStreamKeyIdOk returns a tuple with the LiveStreamKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideosRequest) GetLiveStreamKeyIdOk() (*string, bool) {
+func (o *GetLiveStreamMediasRequest) GetLiveStreamKeyIdOk() (*string, bool) {
 	if o == nil || o.LiveStreamKeyId == nil {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *GetLiveStreamVideosRequest) GetLiveStreamKeyIdOk() (*string, bool) {
 }
 
 // HasLiveStreamKeyId returns a boolean if a field has been set.
-func (o *GetLiveStreamVideosRequest) HasLiveStreamKeyId() bool {
+func (o *GetLiveStreamMediasRequest) HasLiveStreamKeyId() bool {
 	if o != nil && o.LiveStreamKeyId != nil {
 		return true
 	}
@@ -104,12 +104,44 @@ func (o *GetLiveStreamVideosRequest) HasLiveStreamKeyId() bool {
 }
 
 // SetLiveStreamKeyId gets a reference to the given string and assigns it to the LiveStreamKeyId field.
-func (o *GetLiveStreamVideosRequest) SetLiveStreamKeyId(v string) {
+func (o *GetLiveStreamMediasRequest) SetLiveStreamKeyId(v string) {
 	o.LiveStreamKeyId = &v
 }
 
+// GetMediaStatus returns the MediaStatus field value if set, zero value otherwise.
+func (o *GetLiveStreamMediasRequest) GetMediaStatus() string {
+	if o == nil || o.MediaStatus == nil {
+		var ret string
+		return ret
+	}
+	return *o.MediaStatus
+}
+
+// GetMediaStatusOk returns a tuple with the MediaStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetLiveStreamMediasRequest) GetMediaStatusOk() (*string, bool) {
+	if o == nil || o.MediaStatus == nil {
+		return nil, false
+	}
+	return o.MediaStatus, true
+}
+
+// HasMediaStatus returns a boolean if a field has been set.
+func (o *GetLiveStreamMediasRequest) HasMediaStatus() bool {
+	if o != nil && o.MediaStatus != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMediaStatus gets a reference to the given string and assigns it to the MediaStatus field.
+func (o *GetLiveStreamMediasRequest) SetMediaStatus(v string) {
+	o.MediaStatus = &v
+}
+
 // GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *GetLiveStreamVideosRequest) GetOffset() int32 {
+func (o *GetLiveStreamMediasRequest) GetOffset() int32 {
 	if o == nil || o.Offset == nil {
 		var ret int32
 		return ret
@@ -119,7 +151,7 @@ func (o *GetLiveStreamVideosRequest) GetOffset() int32 {
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideosRequest) GetOffsetOk() (*int32, bool) {
+func (o *GetLiveStreamMediasRequest) GetOffsetOk() (*int32, bool) {
 	if o == nil || o.Offset == nil {
 		return nil, false
 	}
@@ -127,7 +159,7 @@ func (o *GetLiveStreamVideosRequest) GetOffsetOk() (*int32, bool) {
 }
 
 // HasOffset returns a boolean if a field has been set.
-func (o *GetLiveStreamVideosRequest) HasOffset() bool {
+func (o *GetLiveStreamMediasRequest) HasOffset() bool {
 	if o != nil && o.Offset != nil {
 		return true
 	}
@@ -136,12 +168,12 @@ func (o *GetLiveStreamVideosRequest) HasOffset() bool {
 }
 
 // SetOffset gets a reference to the given int32 and assigns it to the Offset field.
-func (o *GetLiveStreamVideosRequest) SetOffset(v int32) {
+func (o *GetLiveStreamMediasRequest) SetOffset(v int32) {
 	o.Offset = &v
 }
 
 // GetOrderBy returns the OrderBy field value if set, zero value otherwise.
-func (o *GetLiveStreamVideosRequest) GetOrderBy() string {
+func (o *GetLiveStreamMediasRequest) GetOrderBy() string {
 	if o == nil || o.OrderBy == nil {
 		var ret string
 		return ret
@@ -151,7 +183,7 @@ func (o *GetLiveStreamVideosRequest) GetOrderBy() string {
 
 // GetOrderByOk returns a tuple with the OrderBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideosRequest) GetOrderByOk() (*string, bool) {
+func (o *GetLiveStreamMediasRequest) GetOrderByOk() (*string, bool) {
 	if o == nil || o.OrderBy == nil {
 		return nil, false
 	}
@@ -159,7 +191,7 @@ func (o *GetLiveStreamVideosRequest) GetOrderByOk() (*string, bool) {
 }
 
 // HasOrderBy returns a boolean if a field has been set.
-func (o *GetLiveStreamVideosRequest) HasOrderBy() bool {
+func (o *GetLiveStreamMediasRequest) HasOrderBy() bool {
 	if o != nil && o.OrderBy != nil {
 		return true
 	}
@@ -168,12 +200,12 @@ func (o *GetLiveStreamVideosRequest) HasOrderBy() bool {
 }
 
 // SetOrderBy gets a reference to the given string and assigns it to the OrderBy field.
-func (o *GetLiveStreamVideosRequest) SetOrderBy(v string) {
+func (o *GetLiveStreamMediasRequest) SetOrderBy(v string) {
 	o.OrderBy = &v
 }
 
 // GetSearch returns the Search field value if set, zero value otherwise.
-func (o *GetLiveStreamVideosRequest) GetSearch() string {
+func (o *GetLiveStreamMediasRequest) GetSearch() string {
 	if o == nil || o.Search == nil {
 		var ret string
 		return ret
@@ -183,7 +215,7 @@ func (o *GetLiveStreamVideosRequest) GetSearch() string {
 
 // GetSearchOk returns a tuple with the Search field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideosRequest) GetSearchOk() (*string, bool) {
+func (o *GetLiveStreamMediasRequest) GetSearchOk() (*string, bool) {
 	if o == nil || o.Search == nil {
 		return nil, false
 	}
@@ -191,7 +223,7 @@ func (o *GetLiveStreamVideosRequest) GetSearchOk() (*string, bool) {
 }
 
 // HasSearch returns a boolean if a field has been set.
-func (o *GetLiveStreamVideosRequest) HasSearch() bool {
+func (o *GetLiveStreamMediasRequest) HasSearch() bool {
 	if o != nil && o.Search != nil {
 		return true
 	}
@@ -200,12 +232,12 @@ func (o *GetLiveStreamVideosRequest) HasSearch() bool {
 }
 
 // SetSearch gets a reference to the given string and assigns it to the Search field.
-func (o *GetLiveStreamVideosRequest) SetSearch(v string) {
+func (o *GetLiveStreamMediasRequest) SetSearch(v string) {
 	o.Search = &v
 }
 
 // GetSortBy returns the SortBy field value if set, zero value otherwise.
-func (o *GetLiveStreamVideosRequest) GetSortBy() string {
+func (o *GetLiveStreamMediasRequest) GetSortBy() string {
 	if o == nil || o.SortBy == nil {
 		var ret string
 		return ret
@@ -215,7 +247,7 @@ func (o *GetLiveStreamVideosRequest) GetSortBy() string {
 
 // GetSortByOk returns a tuple with the SortBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideosRequest) GetSortByOk() (*string, bool) {
+func (o *GetLiveStreamMediasRequest) GetSortByOk() (*string, bool) {
 	if o == nil || o.SortBy == nil {
 		return nil, false
 	}
@@ -223,7 +255,7 @@ func (o *GetLiveStreamVideosRequest) GetSortByOk() (*string, bool) {
 }
 
 // HasSortBy returns a boolean if a field has been set.
-func (o *GetLiveStreamVideosRequest) HasSortBy() bool {
+func (o *GetLiveStreamMediasRequest) HasSortBy() bool {
 	if o != nil && o.SortBy != nil {
 		return true
 	}
@@ -232,12 +264,12 @@ func (o *GetLiveStreamVideosRequest) HasSortBy() bool {
 }
 
 // SetSortBy gets a reference to the given string and assigns it to the SortBy field.
-func (o *GetLiveStreamVideosRequest) SetSortBy(v string) {
+func (o *GetLiveStreamMediasRequest) SetSortBy(v string) {
 	o.SortBy = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *GetLiveStreamVideosRequest) GetStatus() string {
+func (o *GetLiveStreamMediasRequest) GetStatus() string {
 	if o == nil || o.Status == nil {
 		var ret string
 		return ret
@@ -247,7 +279,7 @@ func (o *GetLiveStreamVideosRequest) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideosRequest) GetStatusOk() (*string, bool) {
+func (o *GetLiveStreamMediasRequest) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -255,7 +287,7 @@ func (o *GetLiveStreamVideosRequest) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *GetLiveStreamVideosRequest) HasStatus() bool {
+func (o *GetLiveStreamMediasRequest) HasStatus() bool {
 	if o != nil && o.Status != nil {
 		return true
 	}
@@ -264,65 +296,33 @@ func (o *GetLiveStreamVideosRequest) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *GetLiveStreamVideosRequest) SetStatus(v string) {
+func (o *GetLiveStreamMediasRequest) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetVideoStatus returns the VideoStatus field value if set, zero value otherwise.
-func (o *GetLiveStreamVideosRequest) GetVideoStatus() string {
-	if o == nil || o.VideoStatus == nil {
-		var ret string
-		return ret
-	}
-	return *o.VideoStatus
-}
-
-// GetVideoStatusOk returns a tuple with the VideoStatus field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideosRequest) GetVideoStatusOk() (*string, bool) {
-	if o == nil || o.VideoStatus == nil {
-		return nil, false
-	}
-	return o.VideoStatus, true
-}
-
-// HasVideoStatus returns a boolean if a field has been set.
-func (o *GetLiveStreamVideosRequest) HasVideoStatus() bool {
-	if o != nil && o.VideoStatus != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVideoStatus gets a reference to the given string and assigns it to the VideoStatus field.
-func (o *GetLiveStreamVideosRequest) SetVideoStatus(v string) {
-	o.VideoStatus = &v
-}
-
-type NullableGetLiveStreamVideosRequest struct {
-	value *GetLiveStreamVideosRequest
+type NullableGetLiveStreamMediasRequest struct {
+	value *GetLiveStreamMediasRequest
 	isSet bool
 }
 
-func (v NullableGetLiveStreamVideosRequest) Get() *GetLiveStreamVideosRequest {
+func (v NullableGetLiveStreamMediasRequest) Get() *GetLiveStreamMediasRequest {
 	return v.value
 }
 
-func (v *NullableGetLiveStreamVideosRequest) Set(val *GetLiveStreamVideosRequest) {
+func (v *NullableGetLiveStreamMediasRequest) Set(val *GetLiveStreamMediasRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetLiveStreamVideosRequest) IsSet() bool {
+func (v NullableGetLiveStreamMediasRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetLiveStreamVideosRequest) Unset() {
+func (v *NullableGetLiveStreamMediasRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetLiveStreamVideosRequest(val *GetLiveStreamVideosRequest) *NullableGetLiveStreamVideosRequest {
-	return &NullableGetLiveStreamVideosRequest{value: val, isSet: true}
+func NewNullableGetLiveStreamMediasRequest(val *GetLiveStreamMediasRequest) *NullableGetLiveStreamMediasRequest {
+	return &NullableGetLiveStreamMediasRequest{value: val, isSet: true}
 }

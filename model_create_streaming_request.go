@@ -17,10 +17,10 @@ import (
 
 // CreateStreamingRequest struct for CreateStreamingRequest
 type CreateStreamingRequest struct {
-	// Qualities of the video (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p)
-	Qualities *[]string `json:"qualities,omitempty"`
-	Save      *bool     `json:"save,omitempty"`
-	Title     *string   `json:"title,omitempty"`
+	// Qualities of the media (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p)
+	Qualities *[]QualityConfig `json:"qualities,omitempty"`
+	Save      *bool            `json:"save,omitempty"`
+	Title     *string          `json:"title,omitempty"`
 }
 
 // NewCreateStreamingRequest instantiates a new CreateStreamingRequest object
@@ -41,9 +41,9 @@ func NewCreateStreamingRequestWithDefaults() *CreateStreamingRequest {
 }
 
 // GetQualities returns the Qualities field value if set, zero value otherwise.
-func (o *CreateStreamingRequest) GetQualities() []string {
+func (o *CreateStreamingRequest) GetQualities() []QualityConfig {
 	if o == nil || o.Qualities == nil {
-		var ret []string
+		var ret []QualityConfig
 		return ret
 	}
 	return *o.Qualities
@@ -51,7 +51,7 @@ func (o *CreateStreamingRequest) GetQualities() []string {
 
 // GetQualitiesOk returns a tuple with the Qualities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateStreamingRequest) GetQualitiesOk() (*[]string, bool) {
+func (o *CreateStreamingRequest) GetQualitiesOk() (*[]QualityConfig, bool) {
 	if o == nil || o.Qualities == nil {
 		return nil, false
 	}
@@ -67,8 +67,8 @@ func (o *CreateStreamingRequest) HasQualities() bool {
 	return false
 }
 
-// SetQualities gets a reference to the given []string and assigns it to the Qualities field.
-func (o *CreateStreamingRequest) SetQualities(v []string) {
+// SetQualities gets a reference to the given []QualityConfig and assigns it to the Qualities field.
+func (o *CreateStreamingRequest) SetQualities(v []QualityConfig) {
 	o.Qualities = &v
 }
 
