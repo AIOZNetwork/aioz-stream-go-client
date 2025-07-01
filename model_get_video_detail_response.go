@@ -17,7 +17,7 @@ import (
 
 // GetVideoDetailResponse struct for GetVideoDetailResponse
 type GetVideoDetailResponse struct {
-	Data   *Video  `json:"data,omitempty"`
+	Data   *Media  `json:"data,omitempty"`
 	Status *string `json:"status,omitempty"`
 }
 
@@ -39,9 +39,9 @@ func NewGetVideoDetailResponseWithDefaults() *GetVideoDetailResponse {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *GetVideoDetailResponse) GetData() Video {
+func (o *GetVideoDetailResponse) GetData() Media {
 	if o == nil || o.Data == nil {
-		var ret Video
+		var ret Media
 		return ret
 	}
 	return *o.Data
@@ -49,7 +49,7 @@ func (o *GetVideoDetailResponse) GetData() Video {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetVideoDetailResponse) GetDataOk() (*Video, bool) {
+func (o *GetVideoDetailResponse) GetDataOk() (*Media, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -65,8 +65,8 @@ func (o *GetVideoDetailResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given Video and assigns it to the Data field.
-func (o *GetVideoDetailResponse) SetData(v Video) {
+// SetData gets a reference to the given Media and assigns it to the Data field.
+func (o *GetVideoDetailResponse) SetData(v Media) {
 	o.Data = &v
 }
 

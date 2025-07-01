@@ -17,9 +17,11 @@ import (
 
 // VideoCaption struct for VideoCaption
 type VideoCaption struct {
-	IsDefault *bool   `json:"is_default,omitempty"`
-	Language  *string `json:"language,omitempty"`
-	Url       *string `json:"url,omitempty"`
+	Description *string `json:"description,omitempty"`
+	IsDefault   *bool   `json:"is_default,omitempty"`
+	Language    *string `json:"language,omitempty"`
+	Status      *string `json:"status,omitempty"`
+	Url         *string `json:"url,omitempty"`
 }
 
 // NewVideoCaption instantiates a new VideoCaption object
@@ -37,6 +39,38 @@ func NewVideoCaption() *VideoCaption {
 func NewVideoCaptionWithDefaults() *VideoCaption {
 	this := VideoCaption{}
 	return &this
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *VideoCaption) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VideoCaption) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *VideoCaption) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *VideoCaption) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetIsDefault returns the IsDefault field value if set, zero value otherwise.
@@ -101,6 +135,38 @@ func (o *VideoCaption) HasLanguage() bool {
 // SetLanguage gets a reference to the given string and assigns it to the Language field.
 func (o *VideoCaption) SetLanguage(v string) {
 	o.Language = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *VideoCaption) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VideoCaption) GetStatusOk() (*string, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *VideoCaption) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *VideoCaption) SetStatus(v string) {
+	o.Status = &v
 }
 
 // GetUrl returns the Url field value if set, zero value otherwise.

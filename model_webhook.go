@@ -18,12 +18,14 @@ import (
 // Webhook struct for Webhook
 type Webhook struct {
 	CreatedAt        *string `json:"created_at,omitempty"`
+	EncodingFailed   *bool   `json:"encoding_failed,omitempty"`
 	EncodingFinished *bool   `json:"encoding_finished,omitempty"`
 	EncodingStarted  *bool   `json:"encoding_started,omitempty"`
 	FileReceived     *bool   `json:"file_received,omitempty"`
 	Id               *string `json:"id,omitempty"`
 	LastTriggeredAt  *string `json:"last_triggered_at,omitempty"`
 	Name             *string `json:"name,omitempty"`
+	PartialFinished  *bool   `json:"partial_finished,omitempty"`
 	UpdatedAt        *string `json:"updated_at,omitempty"`
 	Url              *string `json:"url,omitempty"`
 	UserId           *string `json:"user_id,omitempty"`
@@ -76,6 +78,38 @@ func (o *Webhook) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *Webhook) SetCreatedAt(v string) {
 	o.CreatedAt = &v
+}
+
+// GetEncodingFailed returns the EncodingFailed field value if set, zero value otherwise.
+func (o *Webhook) GetEncodingFailed() bool {
+	if o == nil || o.EncodingFailed == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EncodingFailed
+}
+
+// GetEncodingFailedOk returns a tuple with the EncodingFailed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Webhook) GetEncodingFailedOk() (*bool, bool) {
+	if o == nil || o.EncodingFailed == nil {
+		return nil, false
+	}
+	return o.EncodingFailed, true
+}
+
+// HasEncodingFailed returns a boolean if a field has been set.
+func (o *Webhook) HasEncodingFailed() bool {
+	if o != nil && o.EncodingFailed != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEncodingFailed gets a reference to the given bool and assigns it to the EncodingFailed field.
+func (o *Webhook) SetEncodingFailed(v bool) {
+	o.EncodingFailed = &v
 }
 
 // GetEncodingFinished returns the EncodingFinished field value if set, zero value otherwise.
@@ -268,6 +302,38 @@ func (o *Webhook) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *Webhook) SetName(v string) {
 	o.Name = &v
+}
+
+// GetPartialFinished returns the PartialFinished field value if set, zero value otherwise.
+func (o *Webhook) GetPartialFinished() bool {
+	if o == nil || o.PartialFinished == nil {
+		var ret bool
+		return ret
+	}
+	return *o.PartialFinished
+}
+
+// GetPartialFinishedOk returns a tuple with the PartialFinished field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Webhook) GetPartialFinishedOk() (*bool, bool) {
+	if o == nil || o.PartialFinished == nil {
+		return nil, false
+	}
+	return o.PartialFinished, true
+}
+
+// HasPartialFinished returns a boolean if a field has been set.
+func (o *Webhook) HasPartialFinished() bool {
+	if o != nil && o.PartialFinished != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPartialFinished gets a reference to the given bool and assigns it to the PartialFinished field.
+func (o *Webhook) SetPartialFinished(v bool) {
+	o.PartialFinished = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.

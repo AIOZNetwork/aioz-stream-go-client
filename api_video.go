@@ -28,8 +28,8 @@ var (
 // VideosService communicating with the Videos
 // endpoints of the Aioz Stream API
 type IUploadStream interface {
-	UploadPart(fileName string, fileReader io.Reader, fileSize int64) (*Video, error)
-	UploadPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*Video, error)
+	UploadPart(fileName string, fileReader io.Reader, fileSize int64) (*Media, error)
+	UploadPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*Media, error)
 }
 
 type VideoApiGetCaptionsRequest struct {
@@ -61,7 +61,7 @@ type VideoServiceI interface {
 	 * @return VideoApiCreateRequest
 	 */
 
-	Create(request CreateVideoRequest) (*CreateVideoResponse, error)
+	Create(request CreateMediaRequest) (*CreateMediaResponse, error)
 
 	/*
 	 * Create Create video object
@@ -69,7 +69,7 @@ type VideoServiceI interface {
 	 * @return VideoApiCreateRequest
 	 */
 
-	CreateWithContext(ctx context.Context, request CreateVideoRequest) (*CreateVideoResponse, error)
+	CreateWithContext(ctx context.Context, request CreateMediaRequest) (*CreateMediaResponse, error)
 
 	/*
 	 * Update update video info
@@ -118,6 +118,23 @@ type VideoServiceI interface {
 	 * @return VideoApiUploadThumbnailRequest
 	 */
 	UploadThumbnailWithContext(ctx context.Context, id string, fileName string, fileReader io.Reader) (*ResponseSuccess, error)
+
+	/*
+	 * DeleteThumbnail Delete video thumbnail
+	 * @param id video's id
+	 * @return VideoApiDeleteThumbnailRequest
+	 */
+
+	DeleteThumbnail(id string) (*ResponseSuccess, error)
+
+	/*
+	 * DeleteThumbnail Delete video thumbnail
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id video's id
+	 * @return VideoApiDeleteThumbnailRequest
+	 */
+
+	DeleteThumbnailWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 	/*
 	 * CreateCaption Create a new video caption
@@ -219,7 +236,7 @@ type VideoServiceI interface {
 	GetVideoListWithContext(ctx context.Context, request GetVideoListRequest) (*GetVideoListResponse, error)
 
 	/*
-	 * GetVideoPlayerInfo Get video player info
+	 * GetVideoPlayerInfo Get video object
 	 * @param id Video ID
 	 * @return VideoApiGetVideoPlayerInfoRequest
 	 */
@@ -227,7 +244,7 @@ type VideoServiceI interface {
 	GetVideoPlayerInfo(id string, r VideoApiGetVideoPlayerInfoRequest) (*GetVideoPlayerInfoResponse, error)
 
 	/*
-	 * GetVideoPlayerInfo Get video player info
+	 * GetVideoPlayerInfo Get video object
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Video ID
 	 * @return VideoApiGetVideoPlayerInfoRequest
@@ -299,7 +316,7 @@ type VideoService struct {
  * @return VideoApiCreateRequest
  */
 
-func (s *VideoService) Create(request CreateVideoRequest) (*CreateVideoResponse, error) {
+func (s *VideoService) Create(request CreateMediaRequest) (*CreateMediaResponse, error) {
 
 	return s.CreateWithContext(context.Background(), request)
 
@@ -312,7 +329,7 @@ func (s *VideoService) Create(request CreateVideoRequest) (*CreateVideoResponse,
  * @return VideoApiCreateRequest
  */
 
-func (s *VideoService) CreateWithContext(ctx context.Context, request CreateVideoRequest) (*CreateVideoResponse, error) {
+func (s *VideoService) CreateWithContext(ctx context.Context, request CreateMediaRequest) (*CreateMediaResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/videos/create"
@@ -328,7 +345,7 @@ func (s *VideoService) CreateWithContext(ctx context.Context, request CreateVide
 		return nil, err
 	}
 
-	res := new(CreateVideoResponse)
+	res := new(CreateMediaResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -482,6 +499,51 @@ func (s *VideoService) UploadThumbnailWithContext(ctx context.Context, id string
 
 	req, err := s.client.prepareUploadRequest(ctx, http.MethodPost, localVarPath, fileName, fileReader, localVarHeaderParams, localVarQueryParams, localVarFormParams)
 
+	if err != nil {
+		return nil, err
+	}
+
+	res := new(ResponseSuccess)
+	_, err = s.client.do(req, res)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+/*
+ * DeleteThumbnail Delete video thumbnail
+
+ * @param id video's id
+ * @return VideoApiDeleteThumbnailRequest
+ */
+
+func (s *VideoService) DeleteThumbnail(id string) (*ResponseSuccess, error) {
+
+	return s.DeleteThumbnailWithContext(context.Background(), id)
+
+}
+
+/*
+ * DeleteThumbnail Delete video thumbnail
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id video's id
+ * @return VideoApiDeleteThumbnailRequest
+ */
+
+func (s *VideoService) DeleteThumbnailWithContext(ctx context.Context, id string) (*ResponseSuccess, error) {
+	var localVarPostBody interface{}
+
+	localVarPath := "/videos/{id}/thumbnail"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+
+	req, err := s.client.prepareRequest(ctx, http.MethodDelete, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
 		return nil, err
 	}
@@ -815,8 +877,8 @@ func (s *VideoService) GetVideoListWithContext(ctx context.Context, request GetV
 }
 
 /*
- * GetVideoPlayerInfo Get video player info
- * Get video player info
+ * GetVideoPlayerInfo Get video object
+ * Get video object
 
  * @param id Video ID
  * @return VideoApiGetVideoPlayerInfoRequest
@@ -829,8 +891,8 @@ func (s *VideoService) GetVideoPlayerInfo(id string, r VideoApiGetVideoPlayerInf
 }
 
 /*
- * GetVideoPlayerInfo Get video player info
- * Get video player info
+ * GetVideoPlayerInfo Get video object
+ * Get video object
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Video ID
  * @return VideoApiGetVideoPlayerInfoRequest
@@ -956,7 +1018,7 @@ func (s *VideoService) CreateUploadPartStream(id string, hash *string, index *st
 	return &UploadPartStream{client: s.client, id: id, hash: hash, index: index, part: 1}, nil
 }
 
-func (s *UploadPartStream) UploadAPart(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64, isLast bool) (*Video, error) {
+func (s *UploadPartStream) UploadAPart(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64, isLast bool) (*Media, error) {
 	localVarPath := "/videos/{id}/part"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(s.id, "")), -1)
 
@@ -972,7 +1034,7 @@ func (s *UploadPartStream) UploadAPart(ctx context.Context, fileName string, fil
 
 	s.part = s.part + 1
 
-	res := new(Video)
+	res := new(Media)
 
 	_, err = s.client.do(request, res)
 	if err != nil {
@@ -981,31 +1043,31 @@ func (s *UploadPartStream) UploadAPart(ctx context.Context, fileName string, fil
 
 	return res, nil
 }
-func (s *UploadPartStream) UploadPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*Video, error) {
+func (s *UploadPartStream) UploadPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*Media, error) {
 	return s.UploadAPart(ctx, fileName, fileReader, fileSize, false)
 }
-func (s *UploadPartStream) UploadLastPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*Video, error) {
+func (s *UploadPartStream) UploadLastPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*Media, error) {
 	return s.UploadAPart(ctx, fileName, fileReader, fileSize, true)
 }
-func (s *UploadPartStream) UploadPart(fileName string, fileReader io.Reader, fileSize int64) (*Video, error) {
+func (s *UploadPartStream) UploadPart(fileName string, fileReader io.Reader, fileSize int64) (*Media, error) {
 	return s.UploadPartWithContext(context.Background(), fileName, fileReader, fileSize)
 }
-func (s *UploadPartStream) UploadPartFile(file *os.File) (*Video, error) {
+func (s *UploadPartStream) UploadPartFile(file *os.File) (*Media, error) {
 	return s.UploadPartWithContextFile(context.Background(), file)
 }
-func (s *UploadPartStream) UploadPartWithContextFile(ctx context.Context, file *os.File) (*Video, error) {
+func (s *UploadPartStream) UploadPartWithContextFile(ctx context.Context, file *os.File) (*Media, error) {
 	fileInfo, _ := file.Stat()
 	fileSize := fileInfo.Size()
 
 	return s.UploadPartWithContext(ctx, file.Name(), io.Reader(file), fileSize)
 }
-func (s *UploadPartStream) UploadLastPart(fileName string, fileReader io.Reader, fileSize int64) (*Video, error) {
+func (s *UploadPartStream) UploadLastPart(fileName string, fileReader io.Reader, fileSize int64) (*Media, error) {
 	return s.UploadLastPartWithContext(context.Background(), fileName, fileReader, fileSize)
 }
-func (s *UploadPartStream) UploadLastPartFile(file *os.File) (*Video, error) {
+func (s *UploadPartStream) UploadLastPartFile(file *os.File) (*Media, error) {
 	return s.UploadLastPartWithContextFile(context.Background(), file)
 }
-func (s *UploadPartStream) UploadLastPartWithContextFile(ctx context.Context, file *os.File) (*Video, error) {
+func (s *UploadPartStream) UploadLastPartWithContextFile(ctx context.Context, file *os.File) (*Media, error) {
 	fileInfo, _ := file.Stat()
 	fileSize := fileInfo.Size()
 

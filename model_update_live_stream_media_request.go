@@ -15,31 +15,31 @@ import (
 //"encoding/json"
 )
 
-// UpdateLiveStreamVideoRequest struct for UpdateLiveStreamVideoRequest
-type UpdateLiveStreamVideoRequest struct {
+// UpdateLiveStreamMediaRequest struct for UpdateLiveStreamMediaRequest
+type UpdateLiveStreamMediaRequest struct {
 	Save  *bool   `json:"save,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
-// NewUpdateLiveStreamVideoRequest instantiates a new UpdateLiveStreamVideoRequest object
+// NewUpdateLiveStreamMediaRequest instantiates a new UpdateLiveStreamMediaRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateLiveStreamVideoRequest() *UpdateLiveStreamVideoRequest {
-	this := UpdateLiveStreamVideoRequest{}
+func NewUpdateLiveStreamMediaRequest() *UpdateLiveStreamMediaRequest {
+	this := UpdateLiveStreamMediaRequest{}
 	return &this
 }
 
-// NewUpdateLiveStreamVideoRequestWithDefaults instantiates a new UpdateLiveStreamVideoRequest object
+// NewUpdateLiveStreamMediaRequestWithDefaults instantiates a new UpdateLiveStreamMediaRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateLiveStreamVideoRequestWithDefaults() *UpdateLiveStreamVideoRequest {
-	this := UpdateLiveStreamVideoRequest{}
+func NewUpdateLiveStreamMediaRequestWithDefaults() *UpdateLiveStreamMediaRequest {
+	this := UpdateLiveStreamMediaRequest{}
 	return &this
 }
 
 // GetSave returns the Save field value if set, zero value otherwise.
-func (o *UpdateLiveStreamVideoRequest) GetSave() bool {
+func (o *UpdateLiveStreamMediaRequest) GetSave() bool {
 	if o == nil || o.Save == nil {
 		var ret bool
 		return ret
@@ -49,7 +49,7 @@ func (o *UpdateLiveStreamVideoRequest) GetSave() bool {
 
 // GetSaveOk returns a tuple with the Save field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLiveStreamVideoRequest) GetSaveOk() (*bool, bool) {
+func (o *UpdateLiveStreamMediaRequest) GetSaveOk() (*bool, bool) {
 	if o == nil || o.Save == nil {
 		return nil, false
 	}
@@ -57,7 +57,7 @@ func (o *UpdateLiveStreamVideoRequest) GetSaveOk() (*bool, bool) {
 }
 
 // HasSave returns a boolean if a field has been set.
-func (o *UpdateLiveStreamVideoRequest) HasSave() bool {
+func (o *UpdateLiveStreamMediaRequest) HasSave() bool {
 	if o != nil && o.Save != nil {
 		return true
 	}
@@ -66,12 +66,12 @@ func (o *UpdateLiveStreamVideoRequest) HasSave() bool {
 }
 
 // SetSave gets a reference to the given bool and assigns it to the Save field.
-func (o *UpdateLiveStreamVideoRequest) SetSave(v bool) {
+func (o *UpdateLiveStreamMediaRequest) SetSave(v bool) {
 	o.Save = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
-func (o *UpdateLiveStreamVideoRequest) GetTitle() string {
+func (o *UpdateLiveStreamMediaRequest) GetTitle() string {
 	if o == nil || o.Title == nil {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *UpdateLiveStreamVideoRequest) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLiveStreamVideoRequest) GetTitleOk() (*string, bool) {
+func (o *UpdateLiveStreamMediaRequest) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *UpdateLiveStreamVideoRequest) GetTitleOk() (*string, bool) {
 }
 
 // HasTitle returns a boolean if a field has been set.
-func (o *UpdateLiveStreamVideoRequest) HasTitle() bool {
+func (o *UpdateLiveStreamMediaRequest) HasTitle() bool {
 	if o != nil && o.Title != nil {
 		return true
 	}
@@ -98,33 +98,33 @@ func (o *UpdateLiveStreamVideoRequest) HasTitle() bool {
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *UpdateLiveStreamVideoRequest) SetTitle(v string) {
+func (o *UpdateLiveStreamMediaRequest) SetTitle(v string) {
 	o.Title = &v
 }
 
-type NullableUpdateLiveStreamVideoRequest struct {
-	value *UpdateLiveStreamVideoRequest
+type NullableUpdateLiveStreamMediaRequest struct {
+	value *UpdateLiveStreamMediaRequest
 	isSet bool
 }
 
-func (v NullableUpdateLiveStreamVideoRequest) Get() *UpdateLiveStreamVideoRequest {
+func (v NullableUpdateLiveStreamMediaRequest) Get() *UpdateLiveStreamMediaRequest {
 	return v.value
 }
 
-func (v *NullableUpdateLiveStreamVideoRequest) Set(val *UpdateLiveStreamVideoRequest) {
+func (v *NullableUpdateLiveStreamMediaRequest) Set(val *UpdateLiveStreamMediaRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateLiveStreamVideoRequest) IsSet() bool {
+func (v NullableUpdateLiveStreamMediaRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateLiveStreamVideoRequest) Unset() {
+func (v *NullableUpdateLiveStreamMediaRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateLiveStreamVideoRequest(val *UpdateLiveStreamVideoRequest) *NullableUpdateLiveStreamVideoRequest {
-	return &NullableUpdateLiveStreamVideoRequest{value: val, isSet: true}
+func NewNullableUpdateLiveStreamMediaRequest(val *UpdateLiveStreamMediaRequest) *NullableUpdateLiveStreamMediaRequest {
+	return &NullableUpdateLiveStreamMediaRequest{value: val, isSet: true}
 }

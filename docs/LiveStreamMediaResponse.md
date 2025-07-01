@@ -1,4 +1,4 @@
-# LiveStreamVideoResponse
+# LiveStreamMediaResponse
 
 ## Properties
 
@@ -19,424 +19,424 @@ Name | Type | Description | Notes
 **TotalView** | Pointer to **int32** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** |  | [optional] 
-**Video** | Pointer to [**Video**](Video.md) |  | [optional] 
+**Video** | Pointer to [**Media**](Media.md) |  | [optional] 
 
 ## Methods
 
-### NewLiveStreamVideoResponse
+### NewLiveStreamMediaResponse
 
-`func NewLiveStreamVideoResponse() *LiveStreamVideoResponse`
+`func NewLiveStreamMediaResponse() *LiveStreamMediaResponse`
 
-NewLiveStreamVideoResponse instantiates a new LiveStreamVideoResponse object
+NewLiveStreamMediaResponse instantiates a new LiveStreamMediaResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewLiveStreamVideoResponseWithDefaults
+### NewLiveStreamMediaResponseWithDefaults
 
-`func NewLiveStreamVideoResponseWithDefaults() *LiveStreamVideoResponse`
+`func NewLiveStreamMediaResponseWithDefaults() *LiveStreamMediaResponse`
 
-NewLiveStreamVideoResponseWithDefaults instantiates a new LiveStreamVideoResponse object
+NewLiveStreamMediaResponseWithDefaults instantiates a new LiveStreamMediaResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAssets
 
-`func (o *LiveStreamVideoResponse) GetAssets() LiveStreamAssets`
+`func (o *LiveStreamMediaResponse) GetAssets() LiveStreamAssets`
 
 GetAssets returns the Assets field if non-nil, zero value otherwise.
 
 ### GetAssetsOk
 
-`func (o *LiveStreamVideoResponse) GetAssetsOk() (*LiveStreamAssets, bool)`
+`func (o *LiveStreamMediaResponse) GetAssetsOk() (*LiveStreamAssets, bool)`
 
 GetAssetsOk returns a tuple with the Assets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssets
 
-`func (o *LiveStreamVideoResponse) SetAssets(v LiveStreamAssets)`
+`func (o *LiveStreamMediaResponse) SetAssets(v LiveStreamAssets)`
 
 SetAssets sets Assets field to given value.
 
 ### HasAssets
 
-`func (o *LiveStreamVideoResponse) HasAssets() bool`
+`func (o *LiveStreamMediaResponse) HasAssets() bool`
 
 HasAssets returns a boolean if a field has been set.
 
 ### GetAudioBitrate
 
-`func (o *LiveStreamVideoResponse) GetAudioBitrate() int32`
+`func (o *LiveStreamMediaResponse) GetAudioBitrate() int32`
 
 GetAudioBitrate returns the AudioBitrate field if non-nil, zero value otherwise.
 
 ### GetAudioBitrateOk
 
-`func (o *LiveStreamVideoResponse) GetAudioBitrateOk() (*int32, bool)`
+`func (o *LiveStreamMediaResponse) GetAudioBitrateOk() (*int32, bool)`
 
 GetAudioBitrateOk returns a tuple with the AudioBitrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAudioBitrate
 
-`func (o *LiveStreamVideoResponse) SetAudioBitrate(v int32)`
+`func (o *LiveStreamMediaResponse) SetAudioBitrate(v int32)`
 
 SetAudioBitrate sets AudioBitrate field to given value.
 
 ### HasAudioBitrate
 
-`func (o *LiveStreamVideoResponse) HasAudioBitrate() bool`
+`func (o *LiveStreamMediaResponse) HasAudioBitrate() bool`
 
 HasAudioBitrate returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
-`func (o *LiveStreamVideoResponse) GetCreatedAt() string`
+`func (o *LiveStreamMediaResponse) GetCreatedAt() string`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *LiveStreamVideoResponse) GetCreatedAtOk() (*string, bool)`
+`func (o *LiveStreamMediaResponse) GetCreatedAtOk() (*string, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *LiveStreamVideoResponse) SetCreatedAt(v string)`
+`func (o *LiveStreamMediaResponse) SetCreatedAt(v string)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
 ### HasCreatedAt
 
-`func (o *LiveStreamVideoResponse) HasCreatedAt() bool`
+`func (o *LiveStreamMediaResponse) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
 
 ### GetCurrentView
 
-`func (o *LiveStreamVideoResponse) GetCurrentView() int32`
+`func (o *LiveStreamMediaResponse) GetCurrentView() int32`
 
 GetCurrentView returns the CurrentView field if non-nil, zero value otherwise.
 
 ### GetCurrentViewOk
 
-`func (o *LiveStreamVideoResponse) GetCurrentViewOk() (*int32, bool)`
+`func (o *LiveStreamMediaResponse) GetCurrentViewOk() (*int32, bool)`
 
 GetCurrentViewOk returns a tuple with the CurrentView field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrentView
 
-`func (o *LiveStreamVideoResponse) SetCurrentView(v int32)`
+`func (o *LiveStreamMediaResponse) SetCurrentView(v int32)`
 
 SetCurrentView sets CurrentView field to given value.
 
 ### HasCurrentView
 
-`func (o *LiveStreamVideoResponse) HasCurrentView() bool`
+`func (o *LiveStreamMediaResponse) HasCurrentView() bool`
 
 HasCurrentView returns a boolean if a field has been set.
 
 ### GetDuration
 
-`func (o *LiveStreamVideoResponse) GetDuration() int32`
+`func (o *LiveStreamMediaResponse) GetDuration() int32`
 
 GetDuration returns the Duration field if non-nil, zero value otherwise.
 
 ### GetDurationOk
 
-`func (o *LiveStreamVideoResponse) GetDurationOk() (*int32, bool)`
+`func (o *LiveStreamMediaResponse) GetDurationOk() (*int32, bool)`
 
 GetDurationOk returns a tuple with the Duration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDuration
 
-`func (o *LiveStreamVideoResponse) SetDuration(v int32)`
+`func (o *LiveStreamMediaResponse) SetDuration(v int32)`
 
 SetDuration sets Duration field to given value.
 
 ### HasDuration
 
-`func (o *LiveStreamVideoResponse) HasDuration() bool`
+`func (o *LiveStreamMediaResponse) HasDuration() bool`
 
 HasDuration returns a boolean if a field has been set.
 
 ### GetFrameRate
 
-`func (o *LiveStreamVideoResponse) GetFrameRate() int32`
+`func (o *LiveStreamMediaResponse) GetFrameRate() int32`
 
 GetFrameRate returns the FrameRate field if non-nil, zero value otherwise.
 
 ### GetFrameRateOk
 
-`func (o *LiveStreamVideoResponse) GetFrameRateOk() (*int32, bool)`
+`func (o *LiveStreamMediaResponse) GetFrameRateOk() (*int32, bool)`
 
 GetFrameRateOk returns a tuple with the FrameRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrameRate
 
-`func (o *LiveStreamVideoResponse) SetFrameRate(v int32)`
+`func (o *LiveStreamMediaResponse) SetFrameRate(v int32)`
 
 SetFrameRate sets FrameRate field to given value.
 
 ### HasFrameRate
 
-`func (o *LiveStreamVideoResponse) HasFrameRate() bool`
+`func (o *LiveStreamMediaResponse) HasFrameRate() bool`
 
 HasFrameRate returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *LiveStreamVideoResponse) GetId() string`
+`func (o *LiveStreamMediaResponse) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *LiveStreamVideoResponse) GetIdOk() (*string, bool)`
+`func (o *LiveStreamMediaResponse) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *LiveStreamVideoResponse) SetId(v string)`
+`func (o *LiveStreamMediaResponse) SetId(v string)`
 
 SetId sets Id field to given value.
 
 ### HasId
 
-`func (o *LiveStreamVideoResponse) HasId() bool`
+`func (o *LiveStreamMediaResponse) HasId() bool`
 
 HasId returns a boolean if a field has been set.
 
 ### GetLiveStreamKeyId
 
-`func (o *LiveStreamVideoResponse) GetLiveStreamKeyId() string`
+`func (o *LiveStreamMediaResponse) GetLiveStreamKeyId() string`
 
 GetLiveStreamKeyId returns the LiveStreamKeyId field if non-nil, zero value otherwise.
 
 ### GetLiveStreamKeyIdOk
 
-`func (o *LiveStreamVideoResponse) GetLiveStreamKeyIdOk() (*string, bool)`
+`func (o *LiveStreamMediaResponse) GetLiveStreamKeyIdOk() (*string, bool)`
 
 GetLiveStreamKeyIdOk returns a tuple with the LiveStreamKeyId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLiveStreamKeyId
 
-`func (o *LiveStreamVideoResponse) SetLiveStreamKeyId(v string)`
+`func (o *LiveStreamMediaResponse) SetLiveStreamKeyId(v string)`
 
 SetLiveStreamKeyId sets LiveStreamKeyId field to given value.
 
 ### HasLiveStreamKeyId
 
-`func (o *LiveStreamVideoResponse) HasLiveStreamKeyId() bool`
+`func (o *LiveStreamMediaResponse) HasLiveStreamKeyId() bool`
 
 HasLiveStreamKeyId returns a boolean if a field has been set.
 
 ### GetQualities
 
-`func (o *LiveStreamVideoResponse) GetQualities() []string`
+`func (o *LiveStreamMediaResponse) GetQualities() []string`
 
 GetQualities returns the Qualities field if non-nil, zero value otherwise.
 
 ### GetQualitiesOk
 
-`func (o *LiveStreamVideoResponse) GetQualitiesOk() (*[]string, bool)`
+`func (o *LiveStreamMediaResponse) GetQualitiesOk() (*[]string, bool)`
 
 GetQualitiesOk returns a tuple with the Qualities field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQualities
 
-`func (o *LiveStreamVideoResponse) SetQualities(v []string)`
+`func (o *LiveStreamMediaResponse) SetQualities(v []string)`
 
 SetQualities sets Qualities field to given value.
 
 ### HasQualities
 
-`func (o *LiveStreamVideoResponse) HasQualities() bool`
+`func (o *LiveStreamMediaResponse) HasQualities() bool`
 
 HasQualities returns a boolean if a field has been set.
 
 ### GetSave
 
-`func (o *LiveStreamVideoResponse) GetSave() bool`
+`func (o *LiveStreamMediaResponse) GetSave() bool`
 
 GetSave returns the Save field if non-nil, zero value otherwise.
 
 ### GetSaveOk
 
-`func (o *LiveStreamVideoResponse) GetSaveOk() (*bool, bool)`
+`func (o *LiveStreamMediaResponse) GetSaveOk() (*bool, bool)`
 
 GetSaveOk returns a tuple with the Save field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSave
 
-`func (o *LiveStreamVideoResponse) SetSave(v bool)`
+`func (o *LiveStreamMediaResponse) SetSave(v bool)`
 
 SetSave sets Save field to given value.
 
 ### HasSave
 
-`func (o *LiveStreamVideoResponse) HasSave() bool`
+`func (o *LiveStreamMediaResponse) HasSave() bool`
 
 HasSave returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *LiveStreamVideoResponse) GetStatus() string`
+`func (o *LiveStreamMediaResponse) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *LiveStreamVideoResponse) GetStatusOk() (*string, bool)`
+`func (o *LiveStreamMediaResponse) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *LiveStreamVideoResponse) SetStatus(v string)`
+`func (o *LiveStreamMediaResponse) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
 
 ### HasStatus
 
-`func (o *LiveStreamVideoResponse) HasStatus() bool`
+`func (o *LiveStreamMediaResponse) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
 
 ### GetTitle
 
-`func (o *LiveStreamVideoResponse) GetTitle() string`
+`func (o *LiveStreamMediaResponse) GetTitle() string`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *LiveStreamVideoResponse) GetTitleOk() (*string, bool)`
+`func (o *LiveStreamMediaResponse) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *LiveStreamVideoResponse) SetTitle(v string)`
+`func (o *LiveStreamMediaResponse) SetTitle(v string)`
 
 SetTitle sets Title field to given value.
 
 ### HasTitle
 
-`func (o *LiveStreamVideoResponse) HasTitle() bool`
+`func (o *LiveStreamMediaResponse) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
 
 ### GetTotalView
 
-`func (o *LiveStreamVideoResponse) GetTotalView() int32`
+`func (o *LiveStreamMediaResponse) GetTotalView() int32`
 
 GetTotalView returns the TotalView field if non-nil, zero value otherwise.
 
 ### GetTotalViewOk
 
-`func (o *LiveStreamVideoResponse) GetTotalViewOk() (*int32, bool)`
+`func (o *LiveStreamMediaResponse) GetTotalViewOk() (*int32, bool)`
 
 GetTotalViewOk returns a tuple with the TotalView field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalView
 
-`func (o *LiveStreamVideoResponse) SetTotalView(v int32)`
+`func (o *LiveStreamMediaResponse) SetTotalView(v int32)`
 
 SetTotalView sets TotalView field to given value.
 
 ### HasTotalView
 
-`func (o *LiveStreamVideoResponse) HasTotalView() bool`
+`func (o *LiveStreamMediaResponse) HasTotalView() bool`
 
 HasTotalView returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 
-`func (o *LiveStreamVideoResponse) GetUpdatedAt() string`
+`func (o *LiveStreamMediaResponse) GetUpdatedAt() string`
 
 GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
 ### GetUpdatedAtOk
 
-`func (o *LiveStreamVideoResponse) GetUpdatedAtOk() (*string, bool)`
+`func (o *LiveStreamMediaResponse) GetUpdatedAtOk() (*string, bool)`
 
 GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedAt
 
-`func (o *LiveStreamVideoResponse) SetUpdatedAt(v string)`
+`func (o *LiveStreamMediaResponse) SetUpdatedAt(v string)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
 
 ### HasUpdatedAt
 
-`func (o *LiveStreamVideoResponse) HasUpdatedAt() bool`
+`func (o *LiveStreamMediaResponse) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetUserId
 
-`func (o *LiveStreamVideoResponse) GetUserId() string`
+`func (o *LiveStreamMediaResponse) GetUserId() string`
 
 GetUserId returns the UserId field if non-nil, zero value otherwise.
 
 ### GetUserIdOk
 
-`func (o *LiveStreamVideoResponse) GetUserIdOk() (*string, bool)`
+`func (o *LiveStreamMediaResponse) GetUserIdOk() (*string, bool)`
 
 GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserId
 
-`func (o *LiveStreamVideoResponse) SetUserId(v string)`
+`func (o *LiveStreamMediaResponse) SetUserId(v string)`
 
 SetUserId sets UserId field to given value.
 
 ### HasUserId
 
-`func (o *LiveStreamVideoResponse) HasUserId() bool`
+`func (o *LiveStreamMediaResponse) HasUserId() bool`
 
 HasUserId returns a boolean if a field has been set.
 
 ### GetVideo
 
-`func (o *LiveStreamVideoResponse) GetVideo() Video`
+`func (o *LiveStreamMediaResponse) GetVideo() Media`
 
 GetVideo returns the Video field if non-nil, zero value otherwise.
 
 ### GetVideoOk
 
-`func (o *LiveStreamVideoResponse) GetVideoOk() (*Video, bool)`
+`func (o *LiveStreamMediaResponse) GetVideoOk() (*Media, bool)`
 
 GetVideoOk returns a tuple with the Video field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVideo
 
-`func (o *LiveStreamVideoResponse) SetVideo(v Video)`
+`func (o *LiveStreamMediaResponse) SetVideo(v Media)`
 
 SetVideo sets Video field to given value.
 
 ### HasVideo
 
-`func (o *LiveStreamVideoResponse) HasVideo() bool`
+`func (o *LiveStreamMediaResponse) HasVideo() bool`
 
 HasVideo returns a boolean if a field has been set.
 

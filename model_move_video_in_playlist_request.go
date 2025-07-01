@@ -17,8 +17,11 @@ import (
 
 // MoveVideoInPlaylistRequest struct for MoveVideoInPlaylistRequest
 type MoveVideoInPlaylistRequest struct {
-	CurrentId  *string `json:"current_id,omitempty"`
-	NextId     *string `json:"next_id,omitempty"`
+	// CurrentId is the UUID of the playlist item (media) to be moved
+	CurrentId *string `json:"current_id,omitempty"`
+	// NextId is the UUID of the playlist item that should come after the moved item
+	NextId *string `json:"next_id,omitempty"`
+	// PreviousId is the UUID of the playlist item that should come before the moved item
 	PreviousId *string `json:"previous_id,omitempty"`
 }
 

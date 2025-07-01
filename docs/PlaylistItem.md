@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **PlaylistId** | Pointer to **string** |  | [optional] 
 **PreviousId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
-**Video** | Pointer to [**PlaylistItemVideo**](PlaylistItemVideo.md) |  | [optional] 
+**Video** | Pointer to [**PlaylistItemMedia**](PlaylistItemMedia.md) |  | [optional] 
 **VideoId** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -184,20 +184,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetVideo
 
-`func (o *PlaylistItem) GetVideo() PlaylistItemVideo`
+`func (o *PlaylistItem) GetVideo() PlaylistItemMedia`
 
 GetVideo returns the Video field if non-nil, zero value otherwise.
 
 ### GetVideoOk
 
-`func (o *PlaylistItem) GetVideoOk() (*PlaylistItemVideo, bool)`
+`func (o *PlaylistItem) GetVideoOk() (*PlaylistItemMedia, bool)`
 
 GetVideoOk returns a tuple with the Video field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVideo
 
-`func (o *PlaylistItem) SetVideo(v PlaylistItemVideo)`
+`func (o *PlaylistItem) SetVideo(v PlaylistItemMedia)`
 
 SetVideo sets Video field to given value.
 

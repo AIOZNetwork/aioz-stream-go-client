@@ -15,33 +15,33 @@ import (
 //"encoding/json"
 )
 
-// GetLiveStreamVideosResponse struct for GetLiveStreamVideosResponse
-type GetLiveStreamVideosResponse struct {
-	Data   *LiveStreamVideosResponse `json:"data,omitempty"`
+// GetLiveStreamMediasResponse struct for GetLiveStreamMediasResponse
+type GetLiveStreamMediasResponse struct {
+	Data   *LiveStreamMediasResponse `json:"data,omitempty"`
 	Status *string                   `json:"status,omitempty"`
 }
 
-// NewGetLiveStreamVideosResponse instantiates a new GetLiveStreamVideosResponse object
+// NewGetLiveStreamMediasResponse instantiates a new GetLiveStreamMediasResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetLiveStreamVideosResponse() *GetLiveStreamVideosResponse {
-	this := GetLiveStreamVideosResponse{}
+func NewGetLiveStreamMediasResponse() *GetLiveStreamMediasResponse {
+	this := GetLiveStreamMediasResponse{}
 	return &this
 }
 
-// NewGetLiveStreamVideosResponseWithDefaults instantiates a new GetLiveStreamVideosResponse object
+// NewGetLiveStreamMediasResponseWithDefaults instantiates a new GetLiveStreamMediasResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetLiveStreamVideosResponseWithDefaults() *GetLiveStreamVideosResponse {
-	this := GetLiveStreamVideosResponse{}
+func NewGetLiveStreamMediasResponseWithDefaults() *GetLiveStreamMediasResponse {
+	this := GetLiveStreamMediasResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *GetLiveStreamVideosResponse) GetData() LiveStreamVideosResponse {
+func (o *GetLiveStreamMediasResponse) GetData() LiveStreamMediasResponse {
 	if o == nil || o.Data == nil {
-		var ret LiveStreamVideosResponse
+		var ret LiveStreamMediasResponse
 		return ret
 	}
 	return *o.Data
@@ -49,7 +49,7 @@ func (o *GetLiveStreamVideosResponse) GetData() LiveStreamVideosResponse {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideosResponse) GetDataOk() (*LiveStreamVideosResponse, bool) {
+func (o *GetLiveStreamMediasResponse) GetDataOk() (*LiveStreamMediasResponse, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -57,7 +57,7 @@ func (o *GetLiveStreamVideosResponse) GetDataOk() (*LiveStreamVideosResponse, bo
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *GetLiveStreamVideosResponse) HasData() bool {
+func (o *GetLiveStreamMediasResponse) HasData() bool {
 	if o != nil && o.Data != nil {
 		return true
 	}
@@ -65,13 +65,13 @@ func (o *GetLiveStreamVideosResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given LiveStreamVideosResponse and assigns it to the Data field.
-func (o *GetLiveStreamVideosResponse) SetData(v LiveStreamVideosResponse) {
+// SetData gets a reference to the given LiveStreamMediasResponse and assigns it to the Data field.
+func (o *GetLiveStreamMediasResponse) SetData(v LiveStreamMediasResponse) {
 	o.Data = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *GetLiveStreamVideosResponse) GetStatus() string {
+func (o *GetLiveStreamMediasResponse) GetStatus() string {
 	if o == nil || o.Status == nil {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *GetLiveStreamVideosResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetLiveStreamVideosResponse) GetStatusOk() (*string, bool) {
+func (o *GetLiveStreamMediasResponse) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *GetLiveStreamVideosResponse) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *GetLiveStreamVideosResponse) HasStatus() bool {
+func (o *GetLiveStreamMediasResponse) HasStatus() bool {
 	if o != nil && o.Status != nil {
 		return true
 	}
@@ -98,33 +98,33 @@ func (o *GetLiveStreamVideosResponse) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *GetLiveStreamVideosResponse) SetStatus(v string) {
+func (o *GetLiveStreamMediasResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
-type NullableGetLiveStreamVideosResponse struct {
-	value *GetLiveStreamVideosResponse
+type NullableGetLiveStreamMediasResponse struct {
+	value *GetLiveStreamMediasResponse
 	isSet bool
 }
 
-func (v NullableGetLiveStreamVideosResponse) Get() *GetLiveStreamVideosResponse {
+func (v NullableGetLiveStreamMediasResponse) Get() *GetLiveStreamMediasResponse {
 	return v.value
 }
 
-func (v *NullableGetLiveStreamVideosResponse) Set(val *GetLiveStreamVideosResponse) {
+func (v *NullableGetLiveStreamMediasResponse) Set(val *GetLiveStreamMediasResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetLiveStreamVideosResponse) IsSet() bool {
+func (v NullableGetLiveStreamMediasResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetLiveStreamVideosResponse) Unset() {
+func (v *NullableGetLiveStreamMediasResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetLiveStreamVideosResponse(val *GetLiveStreamVideosResponse) *NullableGetLiveStreamVideosResponse {
-	return &NullableGetLiveStreamVideosResponse{value: val, isSet: true}
+func NewNullableGetLiveStreamMediasResponse(val *GetLiveStreamMediasResponse) *NullableGetLiveStreamMediasResponse {
+	return &NullableGetLiveStreamMediasResponse{value: val, isSet: true}
 }

@@ -4,10 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DashIframe** | Pointer to **string** |  | [optional] 
+**DashPlayerUrl** | Pointer to **string** |  | [optional] 
+**DashUrl** | Pointer to **string** |  | [optional] 
+**HlsIframe** | Pointer to **string** |  | [optional] 
+**HlsPlayerUrl** | Pointer to **string** |  | [optional] 
 **HlsUrl** | Pointer to **string** |  | [optional] 
-**Iframe** | Pointer to **string** |  | [optional] 
 **Mp4Url** | Pointer to **string** |  | [optional] 
-**PlayerUrl** | Pointer to **string** |  | [optional] 
 **SourceUrl** | Pointer to **string** |  | [optional] 
 **ThumbnailUrl** | Pointer to **string** |  | [optional] 
 
@@ -29,6 +32,131 @@ will change when the set of required properties is changed
 NewVideoAssetsWithDefaults instantiates a new VideoAssets object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDashIframe
+
+`func (o *VideoAssets) GetDashIframe() string`
+
+GetDashIframe returns the DashIframe field if non-nil, zero value otherwise.
+
+### GetDashIframeOk
+
+`func (o *VideoAssets) GetDashIframeOk() (*string, bool)`
+
+GetDashIframeOk returns a tuple with the DashIframe field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDashIframe
+
+`func (o *VideoAssets) SetDashIframe(v string)`
+
+SetDashIframe sets DashIframe field to given value.
+
+### HasDashIframe
+
+`func (o *VideoAssets) HasDashIframe() bool`
+
+HasDashIframe returns a boolean if a field has been set.
+
+### GetDashPlayerUrl
+
+`func (o *VideoAssets) GetDashPlayerUrl() string`
+
+GetDashPlayerUrl returns the DashPlayerUrl field if non-nil, zero value otherwise.
+
+### GetDashPlayerUrlOk
+
+`func (o *VideoAssets) GetDashPlayerUrlOk() (*string, bool)`
+
+GetDashPlayerUrlOk returns a tuple with the DashPlayerUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDashPlayerUrl
+
+`func (o *VideoAssets) SetDashPlayerUrl(v string)`
+
+SetDashPlayerUrl sets DashPlayerUrl field to given value.
+
+### HasDashPlayerUrl
+
+`func (o *VideoAssets) HasDashPlayerUrl() bool`
+
+HasDashPlayerUrl returns a boolean if a field has been set.
+
+### GetDashUrl
+
+`func (o *VideoAssets) GetDashUrl() string`
+
+GetDashUrl returns the DashUrl field if non-nil, zero value otherwise.
+
+### GetDashUrlOk
+
+`func (o *VideoAssets) GetDashUrlOk() (*string, bool)`
+
+GetDashUrlOk returns a tuple with the DashUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDashUrl
+
+`func (o *VideoAssets) SetDashUrl(v string)`
+
+SetDashUrl sets DashUrl field to given value.
+
+### HasDashUrl
+
+`func (o *VideoAssets) HasDashUrl() bool`
+
+HasDashUrl returns a boolean if a field has been set.
+
+### GetHlsIframe
+
+`func (o *VideoAssets) GetHlsIframe() string`
+
+GetHlsIframe returns the HlsIframe field if non-nil, zero value otherwise.
+
+### GetHlsIframeOk
+
+`func (o *VideoAssets) GetHlsIframeOk() (*string, bool)`
+
+GetHlsIframeOk returns a tuple with the HlsIframe field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHlsIframe
+
+`func (o *VideoAssets) SetHlsIframe(v string)`
+
+SetHlsIframe sets HlsIframe field to given value.
+
+### HasHlsIframe
+
+`func (o *VideoAssets) HasHlsIframe() bool`
+
+HasHlsIframe returns a boolean if a field has been set.
+
+### GetHlsPlayerUrl
+
+`func (o *VideoAssets) GetHlsPlayerUrl() string`
+
+GetHlsPlayerUrl returns the HlsPlayerUrl field if non-nil, zero value otherwise.
+
+### GetHlsPlayerUrlOk
+
+`func (o *VideoAssets) GetHlsPlayerUrlOk() (*string, bool)`
+
+GetHlsPlayerUrlOk returns a tuple with the HlsPlayerUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHlsPlayerUrl
+
+`func (o *VideoAssets) SetHlsPlayerUrl(v string)`
+
+SetHlsPlayerUrl sets HlsPlayerUrl field to given value.
+
+### HasHlsPlayerUrl
+
+`func (o *VideoAssets) HasHlsPlayerUrl() bool`
+
+HasHlsPlayerUrl returns a boolean if a field has been set.
 
 ### GetHlsUrl
 
@@ -55,31 +183,6 @@ SetHlsUrl sets HlsUrl field to given value.
 
 HasHlsUrl returns a boolean if a field has been set.
 
-### GetIframe
-
-`func (o *VideoAssets) GetIframe() string`
-
-GetIframe returns the Iframe field if non-nil, zero value otherwise.
-
-### GetIframeOk
-
-`func (o *VideoAssets) GetIframeOk() (*string, bool)`
-
-GetIframeOk returns a tuple with the Iframe field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIframe
-
-`func (o *VideoAssets) SetIframe(v string)`
-
-SetIframe sets Iframe field to given value.
-
-### HasIframe
-
-`func (o *VideoAssets) HasIframe() bool`
-
-HasIframe returns a boolean if a field has been set.
-
 ### GetMp4Url
 
 `func (o *VideoAssets) GetMp4Url() string`
@@ -104,31 +207,6 @@ SetMp4Url sets Mp4Url field to given value.
 `func (o *VideoAssets) HasMp4Url() bool`
 
 HasMp4Url returns a boolean if a field has been set.
-
-### GetPlayerUrl
-
-`func (o *VideoAssets) GetPlayerUrl() string`
-
-GetPlayerUrl returns the PlayerUrl field if non-nil, zero value otherwise.
-
-### GetPlayerUrlOk
-
-`func (o *VideoAssets) GetPlayerUrlOk() (*string, bool)`
-
-GetPlayerUrlOk returns a tuple with the PlayerUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPlayerUrl
-
-`func (o *VideoAssets) SetPlayerUrl(v string)`
-
-SetPlayerUrl sets PlayerUrl field to given value.
-
-### HasPlayerUrl
-
-`func (o *VideoAssets) HasPlayerUrl() bool`
-
-HasPlayerUrl returns a boolean if a field has been set.
 
 ### GetSourceUrl
 

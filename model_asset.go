@@ -17,7 +17,6 @@ import (
 
 // Asset struct for Asset
 type Asset struct {
-	Logo          *string `json:"logo,omitempty"`
 	LogoImageLink *string `json:"logo_image_link,omitempty"`
 	LogoLink      *string `json:"logo_link,omitempty"`
 }
@@ -37,38 +36,6 @@ func NewAsset() *Asset {
 func NewAssetWithDefaults() *Asset {
 	this := Asset{}
 	return &this
-}
-
-// GetLogo returns the Logo field value if set, zero value otherwise.
-func (o *Asset) GetLogo() string {
-	if o == nil || o.Logo == nil {
-		var ret string
-		return ret
-	}
-	return *o.Logo
-}
-
-// GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Asset) GetLogoOk() (*string, bool) {
-	if o == nil || o.Logo == nil {
-		return nil, false
-	}
-	return o.Logo, true
-}
-
-// HasLogo returns a boolean if a field has been set.
-func (o *Asset) HasLogo() bool {
-	if o != nil && o.Logo != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLogo gets a reference to the given string and assigns it to the Logo field.
-func (o *Asset) SetLogo(v string) {
-	o.Logo = &v
 }
 
 // GetLogoImageLink returns the LogoImageLink field value if set, zero value otherwise.

@@ -8,13 +8,14 @@ Method | HTTP request | Description
 [**Update**](Video.md#Update) | **Patch** /videos/{id} | update video info
 [**Delete**](Video.md#Delete) | **Delete** /videos/{id} | Delete video
 [**UploadThumbnail**](Video.md#UploadThumbnail) | **Post** /videos/{id}/thumbnail | Upload video thumbnail
+[**DeleteThumbnail**](Video.md#DeleteThumbnail) | **Delete** /videos/{id}/thumbnail | Delete video thumbnail
 [**CreateCaption**](Video.md#CreateCaption) | **Post** /videos/{id}/captions/{lan} | Create a new video caption
 [**DeleteCaption**](Video.md#DeleteCaption) | **Delete** /videos/{id}/captions/{lan} | Delete a video caption
 [**GetCaptions**](Video.md#GetCaptions) | **Get** /videos/{id}/captions | Get video captions
 [**GetCost**](Video.md#GetCost) | **Get** /videos/cost | get video transcoding cost
 [**GetDetail**](Video.md#GetDetail) | **Get** /videos/{id} | get video detail
 [**GetVideoList**](Video.md#GetVideoList) | **Post** /videos | Get user videos list
-[**GetVideoPlayerInfo**](Video.md#GetVideoPlayerInfo) | **Get** /videos/{id}/player.json | Get video player info
+[**GetVideoPlayerInfo**](Video.md#GetVideoPlayerInfo) | **Get** /videos/{id}/player.json | Get video object
 [**SetDefaultCaption**](Video.md#SetDefaultCaption) | **Patch** /videos/{id}/captions/{lan} | Set default caption
 [**UploadPart**](Video.md#UploadPart) | **Post** /videos/{id}/part | Upload part of video
 [**UploadVideoComplete**](Video.md#UploadVideoComplete) | **Get** /videos/{id}/complete | Get upload video when complete
@@ -23,9 +24,9 @@ Method | HTTP request | Description
 
 ## Create
 
-> Create(request CreateVideoRequest) (*CreateVideoResponse, error)
+> Create(request CreateMediaRequest) (*CreateMediaResponse, error)
 
-> CreateWithContext(ctx context.Context, request CreateVideoRequest) (*CreateVideoResponse, error)
+> CreateWithContext(ctx context.Context, request CreateMediaRequest) (*CreateMediaResponse, error)
 
 
 Create video object
@@ -53,7 +54,7 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewCreateVideoRequest() // CreateVideoRequest | video's info
+    request := *aiozstreamsdk.NewCreateMediaRequest() // CreateMediaRequest | video's info
 
     
     res, err := client.Video.Create(request)
@@ -61,7 +62,7 @@ func main() {
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Video.Create``: %v\n", err)
     }
-    // response from `Create`: CreateVideoResponse
+    // response from `Create`: CreateMediaResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
@@ -80,11 +81,11 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**CreateVideoRequest**](CreateVideoRequest.md) | video&#39;s info | 
+**request** | [**CreateMediaRequest**](CreateMediaRequest.md) | video&#39;s info | 
 
 ### Return type
 
-[**CreateVideoResponse**](CreateVideoResponse.md)
+[**CreateMediaResponse**](CreateMediaResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -301,6 +302,76 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **file** | ***os.File** | file video to be uploaded | 
+
+### Return type
+
+[**ResponseSuccess**](ResponseSuccess.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteThumbnail
+
+> DeleteThumbnail(id string) (*ResponseSuccess, error)
+
+> DeleteThumbnailWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
+
+
+Delete video thumbnail
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | video's id
+
+    
+    res, err := client.Video.DeleteThumbnail(id)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Video.DeleteThumbnail``: %v\n", err)
+    }
+    // response from `DeleteThumbnail`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Video.DeleteThumbnail`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | video&#39;s id | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 ### Return type
 
@@ -767,7 +838,7 @@ Name | Type | Description  | Notes
 
 
 
-Get video player info
+Get video object
 
 
 
@@ -942,7 +1013,7 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | video's id
-    file := os.NewFile(1234, "some_file") // *os.File | File video to be uploaded
+    file := os.NewFile(1234, "some_file") // *os.File | File media to be uploaded
     hash := "hash_example" // string | Md5 hash of part
     index := "index_example" // string | Index of the part
 
@@ -980,7 +1051,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**file** | ***os.File** | File video to be uploaded | 
+**file** | ***os.File** | File media to be uploaded | 
 **hash** | **string** | Md5 hash of part | 
 **index** | **string** | Index of the part | 
 

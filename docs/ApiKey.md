@@ -43,7 +43,7 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewCreateApiKeyRequest() // CreateApiKeyRequest | API key's data
+    request := *aiozstreamsdk.NewCreateApiKeyRequest() // CreateApiKeyRequest | api key's data
 
     
     res, err := client.ApiKey.Create(request)
@@ -70,7 +70,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**CreateApiKeyRequest**](CreateApiKeyRequest.md) | API key&#39;s data | 
+**request** | [**CreateApiKeyRequest**](CreateApiKeyRequest.md) | api key&#39;s data | 
 
 ### Return type
 

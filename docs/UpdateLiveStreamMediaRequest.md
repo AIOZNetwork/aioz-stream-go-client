@@ -1,4 +1,4 @@
-# UpdateLiveStreamVideoRequest
+# UpdateLiveStreamMediaRequest
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewUpdateLiveStreamVideoRequest
+### NewUpdateLiveStreamMediaRequest
 
-`func NewUpdateLiveStreamVideoRequest() *UpdateLiveStreamVideoRequest`
+`func NewUpdateLiveStreamMediaRequest() *UpdateLiveStreamMediaRequest`
 
-NewUpdateLiveStreamVideoRequest instantiates a new UpdateLiveStreamVideoRequest object
+NewUpdateLiveStreamMediaRequest instantiates a new UpdateLiveStreamMediaRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewUpdateLiveStreamVideoRequestWithDefaults
+### NewUpdateLiveStreamMediaRequestWithDefaults
 
-`func NewUpdateLiveStreamVideoRequestWithDefaults() *UpdateLiveStreamVideoRequest`
+`func NewUpdateLiveStreamMediaRequestWithDefaults() *UpdateLiveStreamMediaRequest`
 
-NewUpdateLiveStreamVideoRequestWithDefaults instantiates a new UpdateLiveStreamVideoRequest object
+NewUpdateLiveStreamMediaRequestWithDefaults instantiates a new UpdateLiveStreamMediaRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetSave
 
-`func (o *UpdateLiveStreamVideoRequest) GetSave() bool`
+`func (o *UpdateLiveStreamMediaRequest) GetSave() bool`
 
 GetSave returns the Save field if non-nil, zero value otherwise.
 
 ### GetSaveOk
 
-`func (o *UpdateLiveStreamVideoRequest) GetSaveOk() (*bool, bool)`
+`func (o *UpdateLiveStreamMediaRequest) GetSaveOk() (*bool, bool)`
 
 GetSaveOk returns a tuple with the Save field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSave
 
-`func (o *UpdateLiveStreamVideoRequest) SetSave(v bool)`
+`func (o *UpdateLiveStreamMediaRequest) SetSave(v bool)`
 
 SetSave sets Save field to given value.
 
 ### HasSave
 
-`func (o *UpdateLiveStreamVideoRequest) HasSave() bool`
+`func (o *UpdateLiveStreamMediaRequest) HasSave() bool`
 
 HasSave returns a boolean if a field has been set.
 
 ### GetTitle
 
-`func (o *UpdateLiveStreamVideoRequest) GetTitle() string`
+`func (o *UpdateLiveStreamMediaRequest) GetTitle() string`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *UpdateLiveStreamVideoRequest) GetTitleOk() (*string, bool)`
+`func (o *UpdateLiveStreamMediaRequest) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *UpdateLiveStreamVideoRequest) SetTitle(v string)`
+`func (o *UpdateLiveStreamMediaRequest) SetTitle(v string)`
 
 SetTitle sets Title field to given value.
 
 ### HasTitle
 
-`func (o *UpdateLiveStreamVideoRequest) HasTitle() bool`
+`func (o *UpdateLiveStreamMediaRequest) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
 

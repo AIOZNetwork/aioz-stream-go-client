@@ -4,20 +4,98 @@ All URIs are relative to https://api.aiozstream.network/api
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AddMulticast**](LiveStream.md#AddMulticast) | **Post** /live_streams/multicast/{stream_key} | Add live stream multicast
 [**CreateLiveStreamKey**](LiveStream.md#CreateLiveStreamKey) | **Post** /live_streams | Create live stream key
-[**CreateStreaming**](LiveStream.md#CreateStreaming) | **Post** /live_streams/{id}/streamings | Create a new live stream video
+[**CreateStreaming**](LiveStream.md#CreateStreaming) | **Post** /live_streams/{id}/streamings | Create a new live stream media
 [**DeleteLiveStreamKey**](LiveStream.md#DeleteLiveStreamKey) | **Delete** /live_streams/{id} | Delete live stream key
+[**DeleteMulticast**](LiveStream.md#DeleteMulticast) | **Delete** /live_streams/multicast/{stream_key} | Delete live stream multicast
 [**DeleteStreaming**](LiveStream.md#DeleteStreaming) | **Delete** /live_streams/{id}/streamings/{stream_id} | Delete live stream video
 [**GetLiveStreamKey**](LiveStream.md#GetLiveStreamKey) | **Get** /live_streams/{id} | Get live stream key
 [**GetLiveStreamKeys**](LiveStream.md#GetLiveStreamKeys) | **Get** /live_streams | Get live stream key list
 [**GetLiveStreamPlayerInfo**](LiveStream.md#GetLiveStreamPlayerInfo) | **Get** /live_streams/player/{id}/videos | Get live stream video public
-[**GetLiveStreamVideo**](LiveStream.md#GetLiveStreamVideo) | **Get** /live_streams/{id}/videos | Get live stream video
-[**GetLiveStreamVideos**](LiveStream.md#GetLiveStreamVideos) | **Post** /live_streams/{id}/videos | Get live stream videos
-[**GetStreaming**](LiveStream.md#GetStreaming) | **Get** /live_streams/{id}/streamings/{stream_id} | Get live stream video streaming
-[**GetStreamings**](LiveStream.md#GetStreamings) | **Get** /live_streams/{id}/streamings | Get live stream video streamings
+[**GetLiveStreamVideo**](LiveStream.md#GetLiveStreamVideo) | **Get** /live_streams/{id}/video | Get live stream video
+[**GetMedias**](LiveStream.md#GetMedias) | **Post** /live_streams/{id}/videos | Get live stream media
+[**GetMulticastByStreamKey**](LiveStream.md#GetMulticastByStreamKey) | **Get** /live_streams/multicast/{stream_key} | Get live stream multicast by stream key
+[**GetStatisticByStreamMediaId**](LiveStream.md#GetStatisticByStreamMediaId) | **Get** /live_streams/statistic/{stream_media_id} | Get live stream statistic by stream media id
+[**GetStreaming**](LiveStream.md#GetStreaming) | **Get** /live_streams/{id}/streamings/{stream_id} | Get live stream media streaming
+[**GetStreamings**](LiveStream.md#GetStreamings) | **Get** /live_streams/{id}/streamings | Get live stream media streamings
 [**UpdateLiveStreamKey**](LiveStream.md#UpdateLiveStreamKey) | **Put** /live_streams/{id} | Update live stream key
-[**UpdateLiveStreamVideo**](LiveStream.md#UpdateLiveStreamVideo) | **Put** /live_streams/{id}/streamings | Update live stream video
+[**UpdateMedia**](LiveStream.md#UpdateMedia) | **Put** /live_streams/{id}/streamings | Update live stream media
 
+
+
+## AddMulticast
+
+> AddMulticast(streamKey string, data UpsertLiveStreamMulticastInput) (*GetLiveStreamMulticastResponse, error)
+
+> AddMulticastWithContext(ctx context.Context, streamKey string, data UpsertLiveStreamMulticastInput) (*GetLiveStreamMulticastResponse, error)
+
+
+Add live stream multicast
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    streamKey := "streamKey_example" // string | Live stream key. Use uuid
+    data := *aiozstreamsdk.NewUpsertLiveStreamMulticastInput() // UpsertLiveStreamMulticastInput | data
+
+    
+    res, err := client.LiveStream.AddMulticast(streamKey, data)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LiveStream.AddMulticast``: %v\n", err)
+    }
+    // response from `AddMulticast`: GetLiveStreamMulticastResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `LiveStream.AddMulticast`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**streamKey** | **string** | Live stream key. Use uuid | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**data** | [**UpsertLiveStreamMulticastInput**](UpsertLiveStreamMulticastInput.md) | data | 
+
+### Return type
+
+[**GetLiveStreamMulticastResponse**](GetLiveStreamMulticastResponse.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateLiveStreamKey
@@ -97,7 +175,7 @@ Name | Type | Description  | Notes
 > CreateStreamingWithContext(ctx context.Context, id string, input CreateStreamingRequest) (*CreateStreamingResponse, error)
 
 
-Create a new live stream video
+Create a new live stream media
 
 
 
@@ -219,6 +297,78 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **id** | **string** | Live stream key ID | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+### Return type
+
+[**ResponseSuccess**](ResponseSuccess.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteMulticast
+
+> DeleteMulticast(streamKey string) (*ResponseSuccess, error)
+
+> DeleteMulticastWithContext(ctx context.Context, streamKey string) (*ResponseSuccess, error)
+
+
+Delete live stream multicast
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    streamKey := "streamKey_example" // string | Live stream key. UUID string format
+
+    
+    res, err := client.LiveStream.DeleteMulticast(streamKey)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LiveStream.DeleteMulticast``: %v\n", err)
+    }
+    // response from `DeleteMulticast`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `LiveStream.DeleteMulticast`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**streamKey** | **string** | Live stream key. UUID string format | 
 
 ### Other Parameters
 
@@ -607,14 +757,14 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetLiveStreamVideos
+## GetMedias
 
-> GetLiveStreamVideos(id string, data GetLiveStreamVideosRequest) (*GetLiveStreamVideosResponse, error)
+> GetMedias(id string, data GetLiveStreamMediasRequest) (*GetLiveStreamMediasResponse, error)
 
-> GetLiveStreamVideosWithContext(ctx context.Context, id string, data GetLiveStreamVideosRequest) (*GetLiveStreamVideosResponse, error)
+> GetMediasWithContext(ctx context.Context, id string, data GetLiveStreamMediasRequest) (*GetLiveStreamMediasResponse, error)
 
 
-Get live stream videos
+Get live stream media
 
 
 
@@ -640,20 +790,20 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Live stream key ID
-    data := *aiozstreamsdk.NewGetLiveStreamVideosRequest() // GetLiveStreamVideosRequest | data
+    data := *aiozstreamsdk.NewGetLiveStreamMediasRequest() // GetLiveStreamMediasRequest | data
 
     
-    res, err := client.LiveStream.GetLiveStreamVideos(id, data)
+    res, err := client.LiveStream.GetMedias(id, data)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LiveStream.GetLiveStreamVideos``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LiveStream.GetMedias``: %v\n", err)
     }
-    // response from `GetLiveStreamVideos`: GetLiveStreamVideosResponse
+    // response from `GetMedias`: GetLiveStreamMediasResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `LiveStream.GetLiveStreamVideos`")
+    fmt.Println("Response from `LiveStream.GetMedias`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -670,11 +820,155 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**data** | [**GetLiveStreamVideosRequest**](GetLiveStreamVideosRequest.md) | data | 
+**data** | [**GetLiveStreamMediasRequest**](GetLiveStreamMediasRequest.md) | data | 
 
 ### Return type
 
-[**GetLiveStreamVideosResponse**](GetLiveStreamVideosResponse.md)
+[**GetLiveStreamMediasResponse**](GetLiveStreamMediasResponse.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetMulticastByStreamKey
+
+> GetMulticastByStreamKey(streamKey string) (*GetLiveStreamMulticastResponse, error)
+
+> GetMulticastByStreamKeyWithContext(ctx context.Context, streamKey string) (*GetLiveStreamMulticastResponse, error)
+
+
+Get live stream multicast by stream key
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    streamKey := "streamKey_example" // string | Live stream key. UUID string format
+
+    
+    res, err := client.LiveStream.GetMulticastByStreamKey(streamKey)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LiveStream.GetMulticastByStreamKey``: %v\n", err)
+    }
+    // response from `GetMulticastByStreamKey`: GetLiveStreamMulticastResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `LiveStream.GetMulticastByStreamKey`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**streamKey** | **string** | Live stream key. UUID string format | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+### Return type
+
+[**GetLiveStreamMulticastResponse**](GetLiveStreamMulticastResponse.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetStatisticByStreamMediaId
+
+> GetStatisticByStreamMediaId(streamMediaId string) (*GetLiveStreamStatisticResponse, error)
+
+> GetStatisticByStreamMediaIdWithContext(ctx context.Context, streamMediaId string) (*GetLiveStreamStatisticResponse, error)
+
+
+Get live stream statistic by stream media id
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    streamMediaId := "streamMediaId_example" // string | Live stream media ID
+
+    
+    res, err := client.LiveStream.GetStatisticByStreamMediaId(streamMediaId)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LiveStream.GetStatisticByStreamMediaId``: %v\n", err)
+    }
+    // response from `GetStatisticByStreamMediaId`: GetLiveStreamStatisticResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `LiveStream.GetStatisticByStreamMediaId`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**streamMediaId** | **string** | Live stream media ID | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+### Return type
+
+[**GetLiveStreamStatisticResponse**](GetLiveStreamStatisticResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -688,7 +982,7 @@ Name | Type | Description  | Notes
 > GetStreamingWithContext(ctx context.Context, id string, streamId string) (*GetStreamingResponse, error)
 
 
-Get live stream video streaming
+Get live stream media streaming
 
 
 
@@ -762,7 +1056,7 @@ Name | Type | Description  | Notes
 > GetStreamingsWithContext(ctx context.Context, id string) (*GetStreamingsResponse, error)
 
 
-Get live stream video streamings
+Get live stream media streamings
 
 
 
@@ -901,14 +1195,14 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateLiveStreamVideo
+## UpdateMedia
 
-> UpdateLiveStreamVideo(id string, data UpdateLiveStreamVideoRequest) (*ResponseSuccess, error)
+> UpdateMedia(id string, data UpdateLiveStreamMediaRequest) (*ResponseSuccess, error)
 
-> UpdateLiveStreamVideoWithContext(ctx context.Context, id string, data UpdateLiveStreamVideoRequest) (*ResponseSuccess, error)
+> UpdateMediaWithContext(ctx context.Context, id string, data UpdateLiveStreamMediaRequest) (*ResponseSuccess, error)
 
 
-Update live stream video
+Update live stream media
 
 
 
@@ -934,20 +1228,20 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Live stream key ID
-    data := *aiozstreamsdk.NewUpdateLiveStreamVideoRequest() // UpdateLiveStreamVideoRequest | data
+    data := *aiozstreamsdk.NewUpdateLiveStreamMediaRequest() // UpdateLiveStreamMediaRequest | data
 
     
-    res, err := client.LiveStream.UpdateLiveStreamVideo(id, data)
+    res, err := client.LiveStream.UpdateMedia(id, data)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LiveStream.UpdateLiveStreamVideo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `LiveStream.UpdateMedia``: %v\n", err)
     }
-    // response from `UpdateLiveStreamVideo`: ResponseSuccess
+    // response from `UpdateMedia`: ResponseSuccess
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `LiveStream.UpdateLiveStreamVideo`")
+    fmt.Println("Response from `LiveStream.UpdateMedia`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -964,7 +1258,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**data** | [**UpdateLiveStreamVideoRequest**](UpdateLiveStreamVideoRequest.md) | data | 
+**data** | [**UpdateLiveStreamMediaRequest**](UpdateLiveStreamMediaRequest.md) | data | 
 
 ### Return type
 

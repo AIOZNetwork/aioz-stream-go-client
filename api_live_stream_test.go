@@ -12,11 +12,27 @@ var (
 	liveStreamKeyID   string
 	streamId          string
 	streamingTitle    = "title"
-	invalidQuality    = []string{"123213213902132p"}
-	qualities         = []string{
-		"1080p",
-		"720p",
-		"360p",
+	qualities         = []QualityConfig{
+		{
+			Type:          stringPtr("hls"),
+			ContainerType: stringPtr("mpegts"),
+			Resolution:    stringPtr("360p"),
+		},
+		{
+			Type:          stringPtr("hls"),
+			ContainerType: stringPtr("mpegts"),
+			Resolution:    stringPtr("480p"),
+		},
+		{
+			Type:          stringPtr("hls"),
+			ContainerType: stringPtr("mpegts"),
+			Resolution:    stringPtr("720p"),
+		},
+		{
+			Type:          stringPtr("hls"),
+			ContainerType: stringPtr("mpegts"),
+			Resolution:    stringPtr("1080p"),
+		},
 	}
 	deleteLiveStreamKeysLater []string
 )
@@ -273,13 +289,13 @@ func TestLiveStreamService_GetLiveStreamVideo(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		request GetLiveStreamVideosRequest
+		request GetLiveStreamMediasRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Get Live Stream Videos",
 			id:   liveStreamKeyID,
-			request: GetLiveStreamVideosRequest{
+			request: GetLiveStreamMediasRequest{
 				Limit:   int32Ptr(10),
 				Offset:  int32Ptr(0),
 				SortBy:  stringPtr("created_at"),
@@ -290,13 +306,13 @@ func TestLiveStreamService_GetLiveStreamVideo(t *testing.T) {
 		{
 			name:    "Invalid Get Live Stream Videos",
 			id:      "invalid-id",
-			request: GetLiveStreamVideosRequest{},
+			request: GetLiveStreamMediasRequest{},
 			wantErr: true,
 		},
 		{
 			name: "Invalid Get Live Stream Videos with Limit is -1",
 			id:   liveStreamKeyID,
-			request: GetLiveStreamVideosRequest{
+			request: GetLiveStreamMediasRequest{
 				Limit: int32Ptr(-1),
 			},
 			wantErr: true,
@@ -304,7 +320,7 @@ func TestLiveStreamService_GetLiveStreamVideo(t *testing.T) {
 		{
 			name: "Invalid Get Live Stream Videos with Offset is -1",
 			id:   liveStreamKeyID,
-			request: GetLiveStreamVideosRequest{
+			request: GetLiveStreamMediasRequest{
 				Offset: int32Ptr(-1),
 			},
 			wantErr: true,
@@ -312,7 +328,7 @@ func TestLiveStreamService_GetLiveStreamVideo(t *testing.T) {
 		{
 			name: "Invalid Get Live Stream Videos with SortBy is empty",
 			id:   liveStreamKeyID,
-			request: GetLiveStreamVideosRequest{
+			request: GetLiveStreamMediasRequest{
 				SortBy: stringPtr(""),
 			},
 			wantErr: true,
@@ -320,7 +336,7 @@ func TestLiveStreamService_GetLiveStreamVideo(t *testing.T) {
 		{
 			name: "Invalid Get Live Stream Videos with OrderBy is empty",
 			id:   liveStreamKeyID,
-			request: GetLiveStreamVideosRequest{
+			request: GetLiveStreamMediasRequest{
 				OrderBy: stringPtr(""),
 			},
 			wantErr: true,
@@ -328,7 +344,7 @@ func TestLiveStreamService_GetLiveStreamVideo(t *testing.T) {
 		{
 			name: "Invalid Get Live Stream Videos with Search is empty",
 			id:   liveStreamKeyID,
-			request: GetLiveStreamVideosRequest{
+			request: GetLiveStreamMediasRequest{
 				Search: stringPtr(""),
 			},
 			wantErr: true,
@@ -336,7 +352,7 @@ func TestLiveStreamService_GetLiveStreamVideo(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		resp, err := testClient.LiveStream.GetLiveStreamVideos(tt.id, tt.request)
+		resp, err := testClient.LiveStream.GetMedias(tt.id, tt.request)
 		t.Run(tt.name, func(t *testing.T) {
 			if tt.wantErr {
 				assert.Error(t, err)
@@ -386,7 +402,7 @@ func TestLiveStreamService_CreateStreaming(t *testing.T) {
 			id:   liveStreamKeyID,
 			input: CreateStreamingRequest{
 				Title:     &streamingTitle,
-				Qualities: &invalidQuality,
+				Qualities: &qualities,
 				Save:      boolPtr(true),
 			},
 			wantErr: true,
@@ -535,7 +551,7 @@ func TestLiveStreamService_DeleteLiveStreamVideo(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.LiveStream.DeleteStreaming(liveStreamKeyID, tt.id)
+			resp, err := testClient.LiveStream.DeleteStreaming(tt.id, liveStreamKeyID)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)

@@ -4,10 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**EncodingFailed** | Pointer to **bool** |  | [optional] 
 **EncodingFinished** | Pointer to **bool** |  | [optional] 
 **EncodingStarted** | Pointer to **bool** |  | [optional] 
 **FileReceived** | Pointer to **bool** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
+**PartialFinished** | Pointer to **bool** |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -28,6 +30,31 @@ will change when the set of required properties is changed
 NewUpdateWebhookRequestWithDefaults instantiates a new UpdateWebhookRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetEncodingFailed
+
+`func (o *UpdateWebhookRequest) GetEncodingFailed() bool`
+
+GetEncodingFailed returns the EncodingFailed field if non-nil, zero value otherwise.
+
+### GetEncodingFailedOk
+
+`func (o *UpdateWebhookRequest) GetEncodingFailedOk() (*bool, bool)`
+
+GetEncodingFailedOk returns a tuple with the EncodingFailed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEncodingFailed
+
+`func (o *UpdateWebhookRequest) SetEncodingFailed(v bool)`
+
+SetEncodingFailed sets EncodingFailed field to given value.
+
+### HasEncodingFailed
+
+`func (o *UpdateWebhookRequest) HasEncodingFailed() bool`
+
+HasEncodingFailed returns a boolean if a field has been set.
 
 ### GetEncodingFinished
 
@@ -128,6 +155,31 @@ SetName sets Name field to given value.
 `func (o *UpdateWebhookRequest) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetPartialFinished
+
+`func (o *UpdateWebhookRequest) GetPartialFinished() bool`
+
+GetPartialFinished returns the PartialFinished field if non-nil, zero value otherwise.
+
+### GetPartialFinishedOk
+
+`func (o *UpdateWebhookRequest) GetPartialFinishedOk() (*bool, bool)`
+
+GetPartialFinishedOk returns a tuple with the PartialFinished field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPartialFinished
+
+`func (o *UpdateWebhookRequest) SetPartialFinished(v bool)`
+
+SetPartialFinished sets PartialFinished field to given value.
+
+### HasPartialFinished
+
+`func (o *UpdateWebhookRequest) HasPartialFinished() bool`
+
+HasPartialFinished returns a boolean if a field has been set.
 
 ### GetUrl
 

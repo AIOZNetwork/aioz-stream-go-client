@@ -17,17 +17,17 @@ import (
 
 // UpdateVideoInfoRequest struct for UpdateVideoInfoRequest
 type UpdateVideoInfoRequest struct {
-	// Description of the video
+	// Description of the media
 	Description *string `json:"description,omitempty"`
-	// Video's publish status
+	// Media's publish status
 	IsPublic *bool `json:"is_public,omitempty"`
-	// Video's metadata
+	// Media's metadata
 	Metadata *[]Metadata `json:"metadata,omitempty"`
-	// Video player 's id
+	// Media player 's id
 	PlayerId *string `json:"player_id,omitempty"`
-	// Video's tags
+	// Media's tags
 	Tags *[]string `json:"tags,omitempty"`
-	// Title of the video
+	// Title of the media
 	Title *string `json:"title,omitempty"`
 }
 

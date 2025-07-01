@@ -54,6 +54,23 @@ func (r LiveStreamApiGetLiveStreamKeysRequest) Limit(limit int32) LiveStreamApiG
 
 type LiveStreamServiceI interface {
 	/*
+	 * AddMulticast Add live stream multicast
+	 * @param streamKey Live stream key. Use uuid
+	 * @return LiveStreamApiAddMulticastRequest
+	 */
+
+	AddMulticast(streamKey string, data UpsertLiveStreamMulticastInput) (*GetLiveStreamMulticastResponse, error)
+
+	/*
+	 * AddMulticast Add live stream multicast
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param streamKey Live stream key. Use uuid
+	 * @return LiveStreamApiAddMulticastRequest
+	 */
+
+	AddMulticastWithContext(ctx context.Context, streamKey string, data UpsertLiveStreamMulticastInput) (*GetLiveStreamMulticastResponse, error)
+
+	/*
 	 * CreateLiveStreamKey Create live stream key
 	 * @return LiveStreamApiCreateLiveStreamKeyRequest
 	 */
@@ -69,7 +86,7 @@ type LiveStreamServiceI interface {
 	CreateLiveStreamKeyWithContext(ctx context.Context, input CreateLiveStreamKeyRequest) (*CreateLiveStreamKeyResponse, error)
 
 	/*
-	 * CreateStreaming Create a new live stream video
+	 * CreateStreaming Create a new live stream media
 	 * @param id Live stream key ID
 	 * @return LiveStreamApiCreateStreamingRequest
 	 */
@@ -77,7 +94,7 @@ type LiveStreamServiceI interface {
 	CreateStreaming(id string, input CreateStreamingRequest) (*CreateStreamingResponse, error)
 
 	/*
-	 * CreateStreaming Create a new live stream video
+	 * CreateStreaming Create a new live stream media
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Live stream key ID
 	 * @return LiveStreamApiCreateStreamingRequest
@@ -101,6 +118,23 @@ type LiveStreamServiceI interface {
 	 */
 
 	DeleteLiveStreamKeyWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
+
+	/*
+	 * DeleteMulticast Delete live stream multicast
+	 * @param streamKey Live stream key. UUID string format
+	 * @return LiveStreamApiDeleteMulticastRequest
+	 */
+
+	DeleteMulticast(streamKey string) (*ResponseSuccess, error)
+
+	/*
+	 * DeleteMulticast Delete live stream multicast
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param streamKey Live stream key. UUID string format
+	 * @return LiveStreamApiDeleteMulticastRequest
+	 */
+
+	DeleteMulticastWithContext(ctx context.Context, streamKey string) (*ResponseSuccess, error)
 
 	/*
 	 * DeleteStreaming Delete live stream video
@@ -188,24 +222,58 @@ type LiveStreamServiceI interface {
 	GetLiveStreamVideoWithContext(ctx context.Context, id string) (*GetLiveStreamVideoResponse, error)
 
 	/*
-	 * GetLiveStreamVideos Get live stream videos
+	 * GetMedias Get live stream media
 	 * @param id Live stream key ID
-	 * @return LiveStreamApiGetLiveStreamVideosRequest
+	 * @return LiveStreamApiGetMediasRequest
 	 */
 
-	GetLiveStreamVideos(id string, data GetLiveStreamVideosRequest) (*GetLiveStreamVideosResponse, error)
+	GetMedias(id string, data GetLiveStreamMediasRequest) (*GetLiveStreamMediasResponse, error)
 
 	/*
-	 * GetLiveStreamVideos Get live stream videos
+	 * GetMedias Get live stream media
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Live stream key ID
-	 * @return LiveStreamApiGetLiveStreamVideosRequest
+	 * @return LiveStreamApiGetMediasRequest
 	 */
 
-	GetLiveStreamVideosWithContext(ctx context.Context, id string, data GetLiveStreamVideosRequest) (*GetLiveStreamVideosResponse, error)
+	GetMediasWithContext(ctx context.Context, id string, data GetLiveStreamMediasRequest) (*GetLiveStreamMediasResponse, error)
 
 	/*
-	 * GetStreaming Get live stream video streaming
+	 * GetMulticastByStreamKey Get live stream multicast by stream key
+	 * @param streamKey Live stream key. UUID string format
+	 * @return LiveStreamApiGetMulticastByStreamKeyRequest
+	 */
+
+	GetMulticastByStreamKey(streamKey string) (*GetLiveStreamMulticastResponse, error)
+
+	/*
+	 * GetMulticastByStreamKey Get live stream multicast by stream key
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param streamKey Live stream key. UUID string format
+	 * @return LiveStreamApiGetMulticastByStreamKeyRequest
+	 */
+
+	GetMulticastByStreamKeyWithContext(ctx context.Context, streamKey string) (*GetLiveStreamMulticastResponse, error)
+
+	/*
+	 * GetStatisticByStreamMediaId Get live stream statistic by stream media id
+	 * @param streamMediaId Live stream media ID
+	 * @return LiveStreamApiGetStatisticByStreamMediaIdRequest
+	 */
+
+	GetStatisticByStreamMediaId(streamMediaId string) (*GetLiveStreamStatisticResponse, error)
+
+	/*
+	 * GetStatisticByStreamMediaId Get live stream statistic by stream media id
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param streamMediaId Live stream media ID
+	 * @return LiveStreamApiGetStatisticByStreamMediaIdRequest
+	 */
+
+	GetStatisticByStreamMediaIdWithContext(ctx context.Context, streamMediaId string) (*GetLiveStreamStatisticResponse, error)
+
+	/*
+	 * GetStreaming Get live stream media streaming
 	 * @param id Live stream key ID
 	 * @param streamId Stream ID
 	 * @return LiveStreamApiGetStreamingRequest
@@ -214,7 +282,7 @@ type LiveStreamServiceI interface {
 	GetStreaming(id string, streamId string) (*GetStreamingResponse, error)
 
 	/*
-	 * GetStreaming Get live stream video streaming
+	 * GetStreaming Get live stream media streaming
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Live stream key ID
 	 * @param streamId Stream ID
@@ -224,7 +292,7 @@ type LiveStreamServiceI interface {
 	GetStreamingWithContext(ctx context.Context, id string, streamId string) (*GetStreamingResponse, error)
 
 	/*
-	 * GetStreamings Get live stream video streamings
+	 * GetStreamings Get live stream media streamings
 	 * @param id Live stream key ID
 	 * @return LiveStreamApiGetStreamingsRequest
 	 */
@@ -232,7 +300,7 @@ type LiveStreamServiceI interface {
 	GetStreamings(id string) (*GetStreamingsResponse, error)
 
 	/*
-	 * GetStreamings Get live stream video streamings
+	 * GetStreamings Get live stream media streamings
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Live stream key ID
 	 * @return LiveStreamApiGetStreamingsRequest
@@ -258,27 +326,77 @@ type LiveStreamServiceI interface {
 	UpdateLiveStreamKeyWithContext(ctx context.Context, id string, input UpdateLiveStreamKeyRequest) (*UpdateLiveStreamKeyResponse, error)
 
 	/*
-	 * UpdateLiveStreamVideo Update live stream video
+	 * UpdateMedia Update live stream media
 	 * @param id Live stream key ID
-	 * @return LiveStreamApiUpdateLiveStreamVideoRequest
+	 * @return LiveStreamApiUpdateMediaRequest
 	 */
 
-	UpdateLiveStreamVideo(id string, data UpdateLiveStreamVideoRequest) (*ResponseSuccess, error)
+	UpdateMedia(id string, data UpdateLiveStreamMediaRequest) (*ResponseSuccess, error)
 
 	/*
-	 * UpdateLiveStreamVideo Update live stream video
+	 * UpdateMedia Update live stream media
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Live stream key ID
-	 * @return LiveStreamApiUpdateLiveStreamVideoRequest
+	 * @return LiveStreamApiUpdateMediaRequest
 	 */
 
-	UpdateLiveStreamVideoWithContext(ctx context.Context, id string, data UpdateLiveStreamVideoRequest) (*ResponseSuccess, error)
+	UpdateMediaWithContext(ctx context.Context, id string, data UpdateLiveStreamMediaRequest) (*ResponseSuccess, error)
 }
 
 // LiveStreamService communicating with the LiveStream
 // endpoints of the AIOZ Stream API
 type LiveStreamService struct {
 	client *Client
+}
+
+/*
+ * AddMulticast Add live stream multicast
+ * Add live stream multicast
+
+ * @param streamKey Live stream key. Use uuid
+ * @return LiveStreamApiAddMulticastRequest
+ */
+
+func (s *LiveStreamService) AddMulticast(streamKey string, data UpsertLiveStreamMulticastInput) (*GetLiveStreamMulticastResponse, error) {
+
+	return s.AddMulticastWithContext(context.Background(), streamKey, data)
+
+}
+
+/*
+ * AddMulticast Add live stream multicast
+ * Add live stream multicast
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param streamKey Live stream key. Use uuid
+ * @return LiveStreamApiAddMulticastRequest
+ */
+
+func (s *LiveStreamService) AddMulticastWithContext(ctx context.Context, streamKey string, data UpsertLiveStreamMulticastInput) (*GetLiveStreamMulticastResponse, error) {
+	var localVarPostBody interface{}
+
+	localVarPath := "/live_streams/multicast/{stream_key}"
+	localVarPath = strings.Replace(localVarPath, "{"+"stream_key"+"}", url.PathEscape(parameterToString(streamKey, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+
+	// body params
+	localVarPostBody = data
+
+	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
+	if err != nil {
+		return nil, err
+	}
+
+	res := new(GetLiveStreamMulticastResponse)
+	_, err = s.client.do(req, res)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
 }
 
 /*
@@ -329,8 +447,8 @@ func (s *LiveStreamService) CreateLiveStreamKeyWithContext(ctx context.Context, 
 }
 
 /*
- * CreateStreaming Create a new live stream video
- * Creates a new live stream video with the provided details
+ * CreateStreaming Create a new live stream media
+ * Creates a new live stream media with the provided details
 
  * @param id Live stream key ID
  * @return LiveStreamApiCreateStreamingRequest
@@ -343,8 +461,8 @@ func (s *LiveStreamService) CreateStreaming(id string, input CreateStreamingRequ
 }
 
 /*
- * CreateStreaming Create a new live stream video
- * Creates a new live stream video with the provided details
+ * CreateStreaming Create a new live stream media
+ * Creates a new live stream media with the provided details
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Live stream key ID
  * @return LiveStreamApiCreateStreamingRequest
@@ -405,6 +523,53 @@ func (s *LiveStreamService) DeleteLiveStreamKeyWithContext(ctx context.Context, 
 
 	localVarPath := "/live_streams/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+
+	req, err := s.client.prepareRequest(ctx, http.MethodDelete, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
+	if err != nil {
+		return nil, err
+	}
+
+	res := new(ResponseSuccess)
+	_, err = s.client.do(req, res)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+/*
+ * DeleteMulticast Delete live stream multicast
+ * Delete live stream multicast
+
+ * @param streamKey Live stream key. UUID string format
+ * @return LiveStreamApiDeleteMulticastRequest
+ */
+
+func (s *LiveStreamService) DeleteMulticast(streamKey string) (*ResponseSuccess, error) {
+
+	return s.DeleteMulticastWithContext(context.Background(), streamKey)
+
+}
+
+/*
+ * DeleteMulticast Delete live stream multicast
+ * Delete live stream multicast
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param streamKey Live stream key. UUID string format
+ * @return LiveStreamApiDeleteMulticastRequest
+ */
+
+func (s *LiveStreamService) DeleteMulticastWithContext(ctx context.Context, streamKey string) (*ResponseSuccess, error) {
+	var localVarPostBody interface{}
+
+	localVarPath := "/live_streams/multicast/{stream_key}"
+	localVarPath = strings.Replace(localVarPath, "{"+"stream_key"+"}", url.PathEscape(parameterToString(streamKey, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -654,7 +819,7 @@ func (s *LiveStreamService) GetLiveStreamVideo(id string) (*GetLiveStreamVideoRe
 func (s *LiveStreamService) GetLiveStreamVideoWithContext(ctx context.Context, id string) (*GetLiveStreamVideoResponse, error) {
 	var localVarPostBody interface{}
 
-	localVarPath := "/live_streams/{id}/videos"
+	localVarPath := "/live_streams/{id}/video"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -677,28 +842,28 @@ func (s *LiveStreamService) GetLiveStreamVideoWithContext(ctx context.Context, i
 }
 
 /*
- * GetLiveStreamVideos Get live stream videos
- * Get live stream videos for a specific live stream key
+ * GetMedias Get live stream media
+ * Get live stream media for a specific live stream key
 
  * @param id Live stream key ID
- * @return LiveStreamApiGetLiveStreamVideosRequest
+ * @return LiveStreamApiGetMediasRequest
  */
 
-func (s *LiveStreamService) GetLiveStreamVideos(id string, data GetLiveStreamVideosRequest) (*GetLiveStreamVideosResponse, error) {
+func (s *LiveStreamService) GetMedias(id string, data GetLiveStreamMediasRequest) (*GetLiveStreamMediasResponse, error) {
 
-	return s.GetLiveStreamVideosWithContext(context.Background(), id, data)
+	return s.GetMediasWithContext(context.Background(), id, data)
 
 }
 
 /*
- * GetLiveStreamVideos Get live stream videos
- * Get live stream videos for a specific live stream key
+ * GetMedias Get live stream media
+ * Get live stream media for a specific live stream key
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Live stream key ID
- * @return LiveStreamApiGetLiveStreamVideosRequest
+ * @return LiveStreamApiGetMediasRequest
  */
 
-func (s *LiveStreamService) GetLiveStreamVideosWithContext(ctx context.Context, id string, data GetLiveStreamVideosRequest) (*GetLiveStreamVideosResponse, error) {
+func (s *LiveStreamService) GetMediasWithContext(ctx context.Context, id string, data GetLiveStreamMediasRequest) (*GetLiveStreamMediasResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/live_streams/{id}/videos"
@@ -715,7 +880,7 @@ func (s *LiveStreamService) GetLiveStreamVideosWithContext(ctx context.Context, 
 		return nil, err
 	}
 
-	res := new(GetLiveStreamVideosResponse)
+	res := new(GetLiveStreamMediasResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -727,8 +892,102 @@ func (s *LiveStreamService) GetLiveStreamVideosWithContext(ctx context.Context, 
 }
 
 /*
- * GetStreaming Get live stream video streaming
- * Get live stream video streaming for a specific live stream key
+ * GetMulticastByStreamKey Get live stream multicast by stream key
+ * Get live stream multicast by stream key
+
+ * @param streamKey Live stream key. UUID string format
+ * @return LiveStreamApiGetMulticastByStreamKeyRequest
+ */
+
+func (s *LiveStreamService) GetMulticastByStreamKey(streamKey string) (*GetLiveStreamMulticastResponse, error) {
+
+	return s.GetMulticastByStreamKeyWithContext(context.Background(), streamKey)
+
+}
+
+/*
+ * GetMulticastByStreamKey Get live stream multicast by stream key
+ * Get live stream multicast by stream key
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param streamKey Live stream key. UUID string format
+ * @return LiveStreamApiGetMulticastByStreamKeyRequest
+ */
+
+func (s *LiveStreamService) GetMulticastByStreamKeyWithContext(ctx context.Context, streamKey string) (*GetLiveStreamMulticastResponse, error) {
+	var localVarPostBody interface{}
+
+	localVarPath := "/live_streams/multicast/{stream_key}"
+	localVarPath = strings.Replace(localVarPath, "{"+"stream_key"+"}", url.PathEscape(parameterToString(streamKey, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+
+	req, err := s.client.prepareRequest(ctx, http.MethodGet, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
+	if err != nil {
+		return nil, err
+	}
+
+	res := new(GetLiveStreamMulticastResponse)
+	_, err = s.client.do(req, res)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+/*
+ * GetStatisticByStreamMediaId Get live stream statistic by stream media id
+ * Get live stream statistic by stream media id
+
+ * @param streamMediaId Live stream media ID
+ * @return LiveStreamApiGetStatisticByStreamMediaIdRequest
+ */
+
+func (s *LiveStreamService) GetStatisticByStreamMediaId(streamMediaId string) (*GetLiveStreamStatisticResponse, error) {
+
+	return s.GetStatisticByStreamMediaIdWithContext(context.Background(), streamMediaId)
+
+}
+
+/*
+ * GetStatisticByStreamMediaId Get live stream statistic by stream media id
+ * Get live stream statistic by stream media id
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param streamMediaId Live stream media ID
+ * @return LiveStreamApiGetStatisticByStreamMediaIdRequest
+ */
+
+func (s *LiveStreamService) GetStatisticByStreamMediaIdWithContext(ctx context.Context, streamMediaId string) (*GetLiveStreamStatisticResponse, error) {
+	var localVarPostBody interface{}
+
+	localVarPath := "/live_streams/statistic/{stream_media_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"stream_media_id"+"}", url.PathEscape(parameterToString(streamMediaId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+
+	req, err := s.client.prepareRequest(ctx, http.MethodGet, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
+	if err != nil {
+		return nil, err
+	}
+
+	res := new(GetLiveStreamStatisticResponse)
+	_, err = s.client.do(req, res)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+/*
+ * GetStreaming Get live stream media streaming
+ * Get live stream media streaming for a specific live stream key
 
  * @param id Live stream key ID
  * @param streamId Stream ID
@@ -742,8 +1001,8 @@ func (s *LiveStreamService) GetStreaming(id string, streamId string) (*GetStream
 }
 
 /*
- * GetStreaming Get live stream video streaming
- * Get live stream video streaming for a specific live stream key
+ * GetStreaming Get live stream media streaming
+ * Get live stream media streaming for a specific live stream key
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Live stream key ID
  * @param streamId Stream ID
@@ -777,8 +1036,8 @@ func (s *LiveStreamService) GetStreamingWithContext(ctx context.Context, id stri
 }
 
 /*
- * GetStreamings Get live stream video streamings
- * Get live stream video streamings for a specific live stream key
+ * GetStreamings Get live stream media streamings
+ * Get live stream media streamings for a specific live stream key
 
  * @param id Live stream key ID
  * @return LiveStreamApiGetStreamingsRequest
@@ -791,8 +1050,8 @@ func (s *LiveStreamService) GetStreamings(id string) (*GetStreamingsResponse, er
 }
 
 /*
- * GetStreamings Get live stream video streamings
- * Get live stream video streamings for a specific live stream key
+ * GetStreamings Get live stream media streamings
+ * Get live stream media streamings for a specific live stream key
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Live stream key ID
  * @return LiveStreamApiGetStreamingsRequest
@@ -874,28 +1133,28 @@ func (s *LiveStreamService) UpdateLiveStreamKeyWithContext(ctx context.Context, 
 }
 
 /*
- * UpdateLiveStreamVideo Update live stream video
- * Update live stream video for a specific live stream key
+ * UpdateMedia Update live stream media
+ * Update live stream media. You can only update while live streaming.
 
  * @param id Live stream key ID
- * @return LiveStreamApiUpdateLiveStreamVideoRequest
+ * @return LiveStreamApiUpdateMediaRequest
  */
 
-func (s *LiveStreamService) UpdateLiveStreamVideo(id string, data UpdateLiveStreamVideoRequest) (*ResponseSuccess, error) {
+func (s *LiveStreamService) UpdateMedia(id string, data UpdateLiveStreamMediaRequest) (*ResponseSuccess, error) {
 
-	return s.UpdateLiveStreamVideoWithContext(context.Background(), id, data)
+	return s.UpdateMediaWithContext(context.Background(), id, data)
 
 }
 
 /*
- * UpdateLiveStreamVideo Update live stream video
- * Update live stream video for a specific live stream key
+ * UpdateMedia Update live stream media
+ * Update live stream media. You can only update while live streaming.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Live stream key ID
- * @return LiveStreamApiUpdateLiveStreamVideoRequest
+ * @return LiveStreamApiUpdateMediaRequest
  */
 
-func (s *LiveStreamService) UpdateLiveStreamVideoWithContext(ctx context.Context, id string, data UpdateLiveStreamVideoRequest) (*ResponseSuccess, error) {
+func (s *LiveStreamService) UpdateMediaWithContext(ctx context.Context, id string, data UpdateLiveStreamMediaRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/live_streams/{id}/streamings"

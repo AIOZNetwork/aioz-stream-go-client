@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Description** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 **Language** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -26,6 +28,31 @@ will change when the set of required properties is changed
 NewVideoCaptionWithDefaults instantiates a new VideoCaption object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDescription
+
+`func (o *VideoCaption) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *VideoCaption) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *VideoCaption) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *VideoCaption) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetIsDefault
 
@@ -76,6 +103,31 @@ SetLanguage sets Language field to given value.
 `func (o *VideoCaption) HasLanguage() bool`
 
 HasLanguage returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *VideoCaption) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *VideoCaption) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *VideoCaption) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *VideoCaption) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetUrl
 

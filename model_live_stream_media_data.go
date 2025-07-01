@@ -15,41 +15,41 @@ import (
 //"encoding/json"
 )
 
-// LiveStreamVideoData struct for LiveStreamVideoData
-type LiveStreamVideoData struct {
+// LiveStreamMediaData struct for LiveStreamMediaData
+type LiveStreamMediaData struct {
 	Assets          *LiveStreamAssets `json:"assets,omitempty"`
 	CreatedAt       *string           `json:"created_at,omitempty"`
 	Duration        *int32            `json:"duration,omitempty"`
 	Id              *string           `json:"id,omitempty"`
 	LiveStreamKeyId *string           `json:"live_stream_key_id,omitempty"`
+	Media           *Media            `json:"media,omitempty"`
 	Qualities       *[]string         `json:"qualities,omitempty"`
 	Save            *bool             `json:"save,omitempty"`
 	Status          *string           `json:"status,omitempty"`
 	Title           *string           `json:"title,omitempty"`
 	UpdatedAt       *string           `json:"updated_at,omitempty"`
 	UserId          *string           `json:"user_id,omitempty"`
-	Video           *Video            `json:"video,omitempty"`
 }
 
-// NewLiveStreamVideoData instantiates a new LiveStreamVideoData object
+// NewLiveStreamMediaData instantiates a new LiveStreamMediaData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLiveStreamVideoData() *LiveStreamVideoData {
-	this := LiveStreamVideoData{}
+func NewLiveStreamMediaData() *LiveStreamMediaData {
+	this := LiveStreamMediaData{}
 	return &this
 }
 
-// NewLiveStreamVideoDataWithDefaults instantiates a new LiveStreamVideoData object
+// NewLiveStreamMediaDataWithDefaults instantiates a new LiveStreamMediaData object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewLiveStreamVideoDataWithDefaults() *LiveStreamVideoData {
-	this := LiveStreamVideoData{}
+func NewLiveStreamMediaDataWithDefaults() *LiveStreamMediaData {
+	this := LiveStreamMediaData{}
 	return &this
 }
 
 // GetAssets returns the Assets field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetAssets() LiveStreamAssets {
+func (o *LiveStreamMediaData) GetAssets() LiveStreamAssets {
 	if o == nil || o.Assets == nil {
 		var ret LiveStreamAssets
 		return ret
@@ -59,7 +59,7 @@ func (o *LiveStreamVideoData) GetAssets() LiveStreamAssets {
 
 // GetAssetsOk returns a tuple with the Assets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetAssetsOk() (*LiveStreamAssets, bool) {
+func (o *LiveStreamMediaData) GetAssetsOk() (*LiveStreamAssets, bool) {
 	if o == nil || o.Assets == nil {
 		return nil, false
 	}
@@ -67,7 +67,7 @@ func (o *LiveStreamVideoData) GetAssetsOk() (*LiveStreamAssets, bool) {
 }
 
 // HasAssets returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasAssets() bool {
+func (o *LiveStreamMediaData) HasAssets() bool {
 	if o != nil && o.Assets != nil {
 		return true
 	}
@@ -76,12 +76,12 @@ func (o *LiveStreamVideoData) HasAssets() bool {
 }
 
 // SetAssets gets a reference to the given LiveStreamAssets and assigns it to the Assets field.
-func (o *LiveStreamVideoData) SetAssets(v LiveStreamAssets) {
+func (o *LiveStreamMediaData) SetAssets(v LiveStreamAssets) {
 	o.Assets = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetCreatedAt() string {
+func (o *LiveStreamMediaData) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
 		var ret string
 		return ret
@@ -91,7 +91,7 @@ func (o *LiveStreamVideoData) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetCreatedAtOk() (*string, bool) {
+func (o *LiveStreamMediaData) GetCreatedAtOk() (*string, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -99,7 +99,7 @@ func (o *LiveStreamVideoData) GetCreatedAtOk() (*string, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasCreatedAt() bool {
+func (o *LiveStreamMediaData) HasCreatedAt() bool {
 	if o != nil && o.CreatedAt != nil {
 		return true
 	}
@@ -108,12 +108,12 @@ func (o *LiveStreamVideoData) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
-func (o *LiveStreamVideoData) SetCreatedAt(v string) {
+func (o *LiveStreamMediaData) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetDuration() int32 {
+func (o *LiveStreamMediaData) GetDuration() int32 {
 	if o == nil || o.Duration == nil {
 		var ret int32
 		return ret
@@ -123,7 +123,7 @@ func (o *LiveStreamVideoData) GetDuration() int32 {
 
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetDurationOk() (*int32, bool) {
+func (o *LiveStreamMediaData) GetDurationOk() (*int32, bool) {
 	if o == nil || o.Duration == nil {
 		return nil, false
 	}
@@ -131,7 +131,7 @@ func (o *LiveStreamVideoData) GetDurationOk() (*int32, bool) {
 }
 
 // HasDuration returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasDuration() bool {
+func (o *LiveStreamMediaData) HasDuration() bool {
 	if o != nil && o.Duration != nil {
 		return true
 	}
@@ -140,12 +140,12 @@ func (o *LiveStreamVideoData) HasDuration() bool {
 }
 
 // SetDuration gets a reference to the given int32 and assigns it to the Duration field.
-func (o *LiveStreamVideoData) SetDuration(v int32) {
+func (o *LiveStreamMediaData) SetDuration(v int32) {
 	o.Duration = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetId() string {
+func (o *LiveStreamMediaData) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -155,7 +155,7 @@ func (o *LiveStreamVideoData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetIdOk() (*string, bool) {
+func (o *LiveStreamMediaData) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -163,7 +163,7 @@ func (o *LiveStreamVideoData) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasId() bool {
+func (o *LiveStreamMediaData) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -172,12 +172,12 @@ func (o *LiveStreamVideoData) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *LiveStreamVideoData) SetId(v string) {
+func (o *LiveStreamMediaData) SetId(v string) {
 	o.Id = &v
 }
 
 // GetLiveStreamKeyId returns the LiveStreamKeyId field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetLiveStreamKeyId() string {
+func (o *LiveStreamMediaData) GetLiveStreamKeyId() string {
 	if o == nil || o.LiveStreamKeyId == nil {
 		var ret string
 		return ret
@@ -187,7 +187,7 @@ func (o *LiveStreamVideoData) GetLiveStreamKeyId() string {
 
 // GetLiveStreamKeyIdOk returns a tuple with the LiveStreamKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetLiveStreamKeyIdOk() (*string, bool) {
+func (o *LiveStreamMediaData) GetLiveStreamKeyIdOk() (*string, bool) {
 	if o == nil || o.LiveStreamKeyId == nil {
 		return nil, false
 	}
@@ -195,7 +195,7 @@ func (o *LiveStreamVideoData) GetLiveStreamKeyIdOk() (*string, bool) {
 }
 
 // HasLiveStreamKeyId returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasLiveStreamKeyId() bool {
+func (o *LiveStreamMediaData) HasLiveStreamKeyId() bool {
 	if o != nil && o.LiveStreamKeyId != nil {
 		return true
 	}
@@ -204,12 +204,44 @@ func (o *LiveStreamVideoData) HasLiveStreamKeyId() bool {
 }
 
 // SetLiveStreamKeyId gets a reference to the given string and assigns it to the LiveStreamKeyId field.
-func (o *LiveStreamVideoData) SetLiveStreamKeyId(v string) {
+func (o *LiveStreamMediaData) SetLiveStreamKeyId(v string) {
 	o.LiveStreamKeyId = &v
 }
 
+// GetMedia returns the Media field value if set, zero value otherwise.
+func (o *LiveStreamMediaData) GetMedia() Media {
+	if o == nil || o.Media == nil {
+		var ret Media
+		return ret
+	}
+	return *o.Media
+}
+
+// GetMediaOk returns a tuple with the Media field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LiveStreamMediaData) GetMediaOk() (*Media, bool) {
+	if o == nil || o.Media == nil {
+		return nil, false
+	}
+	return o.Media, true
+}
+
+// HasMedia returns a boolean if a field has been set.
+func (o *LiveStreamMediaData) HasMedia() bool {
+	if o != nil && o.Media != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMedia gets a reference to the given Media and assigns it to the Media field.
+func (o *LiveStreamMediaData) SetMedia(v Media) {
+	o.Media = &v
+}
+
 // GetQualities returns the Qualities field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetQualities() []string {
+func (o *LiveStreamMediaData) GetQualities() []string {
 	if o == nil || o.Qualities == nil {
 		var ret []string
 		return ret
@@ -219,7 +251,7 @@ func (o *LiveStreamVideoData) GetQualities() []string {
 
 // GetQualitiesOk returns a tuple with the Qualities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetQualitiesOk() (*[]string, bool) {
+func (o *LiveStreamMediaData) GetQualitiesOk() (*[]string, bool) {
 	if o == nil || o.Qualities == nil {
 		return nil, false
 	}
@@ -227,7 +259,7 @@ func (o *LiveStreamVideoData) GetQualitiesOk() (*[]string, bool) {
 }
 
 // HasQualities returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasQualities() bool {
+func (o *LiveStreamMediaData) HasQualities() bool {
 	if o != nil && o.Qualities != nil {
 		return true
 	}
@@ -236,12 +268,12 @@ func (o *LiveStreamVideoData) HasQualities() bool {
 }
 
 // SetQualities gets a reference to the given []string and assigns it to the Qualities field.
-func (o *LiveStreamVideoData) SetQualities(v []string) {
+func (o *LiveStreamMediaData) SetQualities(v []string) {
 	o.Qualities = &v
 }
 
 // GetSave returns the Save field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetSave() bool {
+func (o *LiveStreamMediaData) GetSave() bool {
 	if o == nil || o.Save == nil {
 		var ret bool
 		return ret
@@ -251,7 +283,7 @@ func (o *LiveStreamVideoData) GetSave() bool {
 
 // GetSaveOk returns a tuple with the Save field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetSaveOk() (*bool, bool) {
+func (o *LiveStreamMediaData) GetSaveOk() (*bool, bool) {
 	if o == nil || o.Save == nil {
 		return nil, false
 	}
@@ -259,7 +291,7 @@ func (o *LiveStreamVideoData) GetSaveOk() (*bool, bool) {
 }
 
 // HasSave returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasSave() bool {
+func (o *LiveStreamMediaData) HasSave() bool {
 	if o != nil && o.Save != nil {
 		return true
 	}
@@ -268,12 +300,12 @@ func (o *LiveStreamVideoData) HasSave() bool {
 }
 
 // SetSave gets a reference to the given bool and assigns it to the Save field.
-func (o *LiveStreamVideoData) SetSave(v bool) {
+func (o *LiveStreamMediaData) SetSave(v bool) {
 	o.Save = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetStatus() string {
+func (o *LiveStreamMediaData) GetStatus() string {
 	if o == nil || o.Status == nil {
 		var ret string
 		return ret
@@ -283,7 +315,7 @@ func (o *LiveStreamVideoData) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetStatusOk() (*string, bool) {
+func (o *LiveStreamMediaData) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -291,7 +323,7 @@ func (o *LiveStreamVideoData) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasStatus() bool {
+func (o *LiveStreamMediaData) HasStatus() bool {
 	if o != nil && o.Status != nil {
 		return true
 	}
@@ -300,12 +332,12 @@ func (o *LiveStreamVideoData) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *LiveStreamVideoData) SetStatus(v string) {
+func (o *LiveStreamMediaData) SetStatus(v string) {
 	o.Status = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetTitle() string {
+func (o *LiveStreamMediaData) GetTitle() string {
 	if o == nil || o.Title == nil {
 		var ret string
 		return ret
@@ -315,7 +347,7 @@ func (o *LiveStreamVideoData) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetTitleOk() (*string, bool) {
+func (o *LiveStreamMediaData) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
 		return nil, false
 	}
@@ -323,7 +355,7 @@ func (o *LiveStreamVideoData) GetTitleOk() (*string, bool) {
 }
 
 // HasTitle returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasTitle() bool {
+func (o *LiveStreamMediaData) HasTitle() bool {
 	if o != nil && o.Title != nil {
 		return true
 	}
@@ -332,12 +364,12 @@ func (o *LiveStreamVideoData) HasTitle() bool {
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *LiveStreamVideoData) SetTitle(v string) {
+func (o *LiveStreamMediaData) SetTitle(v string) {
 	o.Title = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetUpdatedAt() string {
+func (o *LiveStreamMediaData) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
 		var ret string
 		return ret
@@ -347,7 +379,7 @@ func (o *LiveStreamVideoData) GetUpdatedAt() string {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetUpdatedAtOk() (*string, bool) {
+func (o *LiveStreamMediaData) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -355,7 +387,7 @@ func (o *LiveStreamVideoData) GetUpdatedAtOk() (*string, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasUpdatedAt() bool {
+func (o *LiveStreamMediaData) HasUpdatedAt() bool {
 	if o != nil && o.UpdatedAt != nil {
 		return true
 	}
@@ -364,12 +396,12 @@ func (o *LiveStreamVideoData) HasUpdatedAt() bool {
 }
 
 // SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
-func (o *LiveStreamVideoData) SetUpdatedAt(v string) {
+func (o *LiveStreamMediaData) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetUserId() string {
+func (o *LiveStreamMediaData) GetUserId() string {
 	if o == nil || o.UserId == nil {
 		var ret string
 		return ret
@@ -379,7 +411,7 @@ func (o *LiveStreamVideoData) GetUserId() string {
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetUserIdOk() (*string, bool) {
+func (o *LiveStreamMediaData) GetUserIdOk() (*string, bool) {
 	if o == nil || o.UserId == nil {
 		return nil, false
 	}
@@ -387,7 +419,7 @@ func (o *LiveStreamVideoData) GetUserIdOk() (*string, bool) {
 }
 
 // HasUserId returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasUserId() bool {
+func (o *LiveStreamMediaData) HasUserId() bool {
 	if o != nil && o.UserId != nil {
 		return true
 	}
@@ -396,65 +428,33 @@ func (o *LiveStreamVideoData) HasUserId() bool {
 }
 
 // SetUserId gets a reference to the given string and assigns it to the UserId field.
-func (o *LiveStreamVideoData) SetUserId(v string) {
+func (o *LiveStreamMediaData) SetUserId(v string) {
 	o.UserId = &v
 }
 
-// GetVideo returns the Video field value if set, zero value otherwise.
-func (o *LiveStreamVideoData) GetVideo() Video {
-	if o == nil || o.Video == nil {
-		var ret Video
-		return ret
-	}
-	return *o.Video
-}
-
-// GetVideoOk returns a tuple with the Video field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LiveStreamVideoData) GetVideoOk() (*Video, bool) {
-	if o == nil || o.Video == nil {
-		return nil, false
-	}
-	return o.Video, true
-}
-
-// HasVideo returns a boolean if a field has been set.
-func (o *LiveStreamVideoData) HasVideo() bool {
-	if o != nil && o.Video != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVideo gets a reference to the given Video and assigns it to the Video field.
-func (o *LiveStreamVideoData) SetVideo(v Video) {
-	o.Video = &v
-}
-
-type NullableLiveStreamVideoData struct {
-	value *LiveStreamVideoData
+type NullableLiveStreamMediaData struct {
+	value *LiveStreamMediaData
 	isSet bool
 }
 
-func (v NullableLiveStreamVideoData) Get() *LiveStreamVideoData {
+func (v NullableLiveStreamMediaData) Get() *LiveStreamMediaData {
 	return v.value
 }
 
-func (v *NullableLiveStreamVideoData) Set(val *LiveStreamVideoData) {
+func (v *NullableLiveStreamMediaData) Set(val *LiveStreamMediaData) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableLiveStreamVideoData) IsSet() bool {
+func (v NullableLiveStreamMediaData) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableLiveStreamVideoData) Unset() {
+func (v *NullableLiveStreamMediaData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableLiveStreamVideoData(val *LiveStreamVideoData) *NullableLiveStreamVideoData {
-	return &NullableLiveStreamVideoData{value: val, isSet: true}
+func NewNullableLiveStreamMediaData(val *LiveStreamMediaData) *NullableLiveStreamMediaData {
+	return &NullableLiveStreamMediaData{value: val, isSet: true}
 }

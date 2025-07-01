@@ -1,4 +1,4 @@
-# PlaylistItemVideo
+# PlaylistItemMedia
 
 ## Properties
 
@@ -13,170 +13,170 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewPlaylistItemVideo
+### NewPlaylistItemMedia
 
-`func NewPlaylistItemVideo() *PlaylistItemVideo`
+`func NewPlaylistItemMedia() *PlaylistItemMedia`
 
-NewPlaylistItemVideo instantiates a new PlaylistItemVideo object
+NewPlaylistItemMedia instantiates a new PlaylistItemMedia object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewPlaylistItemVideoWithDefaults
+### NewPlaylistItemMediaWithDefaults
 
-`func NewPlaylistItemVideoWithDefaults() *PlaylistItemVideo`
+`func NewPlaylistItemMediaWithDefaults() *PlaylistItemMedia`
 
-NewPlaylistItemVideoWithDefaults instantiates a new PlaylistItemVideo object
+NewPlaylistItemMediaWithDefaults instantiates a new PlaylistItemMedia object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetChapters
 
-`func (o *PlaylistItemVideo) GetChapters() []VideoChapter`
+`func (o *PlaylistItemMedia) GetChapters() []VideoChapter`
 
 GetChapters returns the Chapters field if non-nil, zero value otherwise.
 
 ### GetChaptersOk
 
-`func (o *PlaylistItemVideo) GetChaptersOk() (*[]VideoChapter, bool)`
+`func (o *PlaylistItemMedia) GetChaptersOk() (*[]VideoChapter, bool)`
 
 GetChaptersOk returns a tuple with the Chapters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChapters
 
-`func (o *PlaylistItemVideo) SetChapters(v []VideoChapter)`
+`func (o *PlaylistItemMedia) SetChapters(v []VideoChapter)`
 
 SetChapters sets Chapters field to given value.
 
 ### HasChapters
 
-`func (o *PlaylistItemVideo) HasChapters() bool`
+`func (o *PlaylistItemMedia) HasChapters() bool`
 
 HasChapters returns a boolean if a field has been set.
 
 ### GetDuration
 
-`func (o *PlaylistItemVideo) GetDuration() float32`
+`func (o *PlaylistItemMedia) GetDuration() float32`
 
 GetDuration returns the Duration field if non-nil, zero value otherwise.
 
 ### GetDurationOk
 
-`func (o *PlaylistItemVideo) GetDurationOk() (*float32, bool)`
+`func (o *PlaylistItemMedia) GetDurationOk() (*float32, bool)`
 
 GetDurationOk returns a tuple with the Duration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDuration
 
-`func (o *PlaylistItemVideo) SetDuration(v float32)`
+`func (o *PlaylistItemMedia) SetDuration(v float32)`
 
 SetDuration sets Duration field to given value.
 
 ### HasDuration
 
-`func (o *PlaylistItemVideo) HasDuration() bool`
+`func (o *PlaylistItemMedia) HasDuration() bool`
 
 HasDuration returns a boolean if a field has been set.
 
 ### GetHlsUrl
 
-`func (o *PlaylistItemVideo) GetHlsUrl() string`
+`func (o *PlaylistItemMedia) GetHlsUrl() string`
 
 GetHlsUrl returns the HlsUrl field if non-nil, zero value otherwise.
 
 ### GetHlsUrlOk
 
-`func (o *PlaylistItemVideo) GetHlsUrlOk() (*string, bool)`
+`func (o *PlaylistItemMedia) GetHlsUrlOk() (*string, bool)`
 
 GetHlsUrlOk returns a tuple with the HlsUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHlsUrl
 
-`func (o *PlaylistItemVideo) SetHlsUrl(v string)`
+`func (o *PlaylistItemMedia) SetHlsUrl(v string)`
 
 SetHlsUrl sets HlsUrl field to given value.
 
 ### HasHlsUrl
 
-`func (o *PlaylistItemVideo) HasHlsUrl() bool`
+`func (o *PlaylistItemMedia) HasHlsUrl() bool`
 
 HasHlsUrl returns a boolean if a field has been set.
 
 ### GetQualities
 
-`func (o *PlaylistItemVideo) GetQualities() string`
+`func (o *PlaylistItemMedia) GetQualities() string`
 
 GetQualities returns the Qualities field if non-nil, zero value otherwise.
 
 ### GetQualitiesOk
 
-`func (o *PlaylistItemVideo) GetQualitiesOk() (*string, bool)`
+`func (o *PlaylistItemMedia) GetQualitiesOk() (*string, bool)`
 
 GetQualitiesOk returns a tuple with the Qualities field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQualities
 
-`func (o *PlaylistItemVideo) SetQualities(v string)`
+`func (o *PlaylistItemMedia) SetQualities(v string)`
 
 SetQualities sets Qualities field to given value.
 
 ### HasQualities
 
-`func (o *PlaylistItemVideo) HasQualities() bool`
+`func (o *PlaylistItemMedia) HasQualities() bool`
 
 HasQualities returns a boolean if a field has been set.
 
 ### GetThumbnailUrl
 
-`func (o *PlaylistItemVideo) GetThumbnailUrl() string`
+`func (o *PlaylistItemMedia) GetThumbnailUrl() string`
 
 GetThumbnailUrl returns the ThumbnailUrl field if non-nil, zero value otherwise.
 
 ### GetThumbnailUrlOk
 
-`func (o *PlaylistItemVideo) GetThumbnailUrlOk() (*string, bool)`
+`func (o *PlaylistItemMedia) GetThumbnailUrlOk() (*string, bool)`
 
 GetThumbnailUrlOk returns a tuple with the ThumbnailUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetThumbnailUrl
 
-`func (o *PlaylistItemVideo) SetThumbnailUrl(v string)`
+`func (o *PlaylistItemMedia) SetThumbnailUrl(v string)`
 
 SetThumbnailUrl sets ThumbnailUrl field to given value.
 
 ### HasThumbnailUrl
 
-`func (o *PlaylistItemVideo) HasThumbnailUrl() bool`
+`func (o *PlaylistItemMedia) HasThumbnailUrl() bool`
 
 HasThumbnailUrl returns a boolean if a field has been set.
 
 ### GetTitle
 
-`func (o *PlaylistItemVideo) GetTitle() string`
+`func (o *PlaylistItemMedia) GetTitle() string`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *PlaylistItemVideo) GetTitleOk() (*string, bool)`
+`func (o *PlaylistItemMedia) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTitle
 
-`func (o *PlaylistItemVideo) SetTitle(v string)`
+`func (o *PlaylistItemMedia) SetTitle(v string)`
 
 SetTitle sets Title field to given value.
 
 ### HasTitle
 
-`func (o *PlaylistItemVideo) HasTitle() bool`
+`func (o *PlaylistItemMedia) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
 

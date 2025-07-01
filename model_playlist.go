@@ -27,7 +27,6 @@ type Playlist struct {
 	PlaylistUrl  *string            `json:"playlist_url,omitempty"`
 	Size         *int32             `json:"size,omitempty"`
 	Tags         *string            `json:"tags,omitempty"`
-	ThumbnailId  *string            `json:"thumbnail_id,omitempty"`
 	ThumbnailUrl *string            `json:"thumbnail_url,omitempty"`
 	UpdatedAt    *string            `json:"updated_at,omitempty"`
 	UserId       *string            `json:"user_id,omitempty"`
@@ -369,38 +368,6 @@ func (o *Playlist) HasTags() bool {
 // SetTags gets a reference to the given string and assigns it to the Tags field.
 func (o *Playlist) SetTags(v string) {
 	o.Tags = &v
-}
-
-// GetThumbnailId returns the ThumbnailId field value if set, zero value otherwise.
-func (o *Playlist) GetThumbnailId() string {
-	if o == nil || o.ThumbnailId == nil {
-		var ret string
-		return ret
-	}
-	return *o.ThumbnailId
-}
-
-// GetThumbnailIdOk returns a tuple with the ThumbnailId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Playlist) GetThumbnailIdOk() (*string, bool) {
-	if o == nil || o.ThumbnailId == nil {
-		return nil, false
-	}
-	return o.ThumbnailId, true
-}
-
-// HasThumbnailId returns a boolean if a field has been set.
-func (o *Playlist) HasThumbnailId() bool {
-	if o != nil && o.ThumbnailId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetThumbnailId gets a reference to the given string and assigns it to the ThumbnailId field.
-func (o *Playlist) SetThumbnailId(v string) {
-	o.ThumbnailId = &v
 }
 
 // GetThumbnailUrl returns the ThumbnailUrl field value if set, zero value otherwise.
