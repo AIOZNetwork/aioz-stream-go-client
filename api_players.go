@@ -187,7 +187,7 @@ type PlayersServiceI interface {
 	 * @return PlayersApiRemovePlayerRequest
 	 */
 
-	RemovePlayer(request RemovePlayerThemesFromVideoRequest) (*ResponseSuccess, error)
+	RemovePlayer(request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error)
 
 	/*
 	 * RemovePlayer Remove a player theme from a video
@@ -195,7 +195,7 @@ type PlayersServiceI interface {
 	 * @return PlayersApiRemovePlayerRequest
 	 */
 
-	RemovePlayerWithContext(ctx context.Context, request RemovePlayerThemesFromVideoRequest) (*ResponseSuccess, error)
+	RemovePlayerWithContext(ctx context.Context, request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error)
 }
 
 // PlayersService communicating with the Players
@@ -625,7 +625,7 @@ func (s *PlayersService) AddPlayerWithContext(ctx context.Context, request AddPl
  * @return PlayersApiRemovePlayerRequest
  */
 
-func (s *PlayersService) RemovePlayer(request RemovePlayerThemesFromVideoRequest) (*ResponseSuccess, error) {
+func (s *PlayersService) RemovePlayer(request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error) {
 
 	return s.RemovePlayerWithContext(context.Background(), request)
 
@@ -638,7 +638,7 @@ func (s *PlayersService) RemovePlayer(request RemovePlayerThemesFromVideoRequest
  * @return PlayersApiRemovePlayerRequest
  */
 
-func (s *PlayersService) RemovePlayerWithContext(ctx context.Context, request RemovePlayerThemesFromVideoRequest) (*ResponseSuccess, error) {
+func (s *PlayersService) RemovePlayerWithContext(ctx context.Context, request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/players/remove-player"

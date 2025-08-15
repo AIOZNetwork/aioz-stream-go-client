@@ -20,7 +20,7 @@ type ApiKey struct {
 	CreatedAt       *string `json:"created_at,omitempty"`
 	ExpiredAt       *string `json:"expired_at,omitempty"`
 	Id              *string `json:"id,omitempty"`
-	LastUsedAt      *string `json:"last_used_at,omitempty"`
+	LastRequestedAt *string `json:"last_requested_at,omitempty"`
 	Name            *string `json:"name,omitempty"`
 	PublicKey       *string `json:"public_key,omitempty"`
 	Secret          *string `json:"secret,omitempty"`
@@ -144,36 +144,36 @@ func (o *ApiKey) SetId(v string) {
 	o.Id = &v
 }
 
-// GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise.
-func (o *ApiKey) GetLastUsedAt() string {
-	if o == nil || o.LastUsedAt == nil {
+// GetLastRequestedAt returns the LastRequestedAt field value if set, zero value otherwise.
+func (o *ApiKey) GetLastRequestedAt() string {
+	if o == nil || o.LastRequestedAt == nil {
 		var ret string
 		return ret
 	}
-	return *o.LastUsedAt
+	return *o.LastRequestedAt
 }
 
-// GetLastUsedAtOk returns a tuple with the LastUsedAt field value if set, nil otherwise
+// GetLastRequestedAtOk returns a tuple with the LastRequestedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiKey) GetLastUsedAtOk() (*string, bool) {
-	if o == nil || o.LastUsedAt == nil {
+func (o *ApiKey) GetLastRequestedAtOk() (*string, bool) {
+	if o == nil || o.LastRequestedAt == nil {
 		return nil, false
 	}
-	return o.LastUsedAt, true
+	return o.LastRequestedAt, true
 }
 
-// HasLastUsedAt returns a boolean if a field has been set.
-func (o *ApiKey) HasLastUsedAt() bool {
-	if o != nil && o.LastUsedAt != nil {
+// HasLastRequestedAt returns a boolean if a field has been set.
+func (o *ApiKey) HasLastRequestedAt() bool {
+	if o != nil && o.LastRequestedAt != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetLastUsedAt gets a reference to the given string and assigns it to the LastUsedAt field.
-func (o *ApiKey) SetLastUsedAt(v string) {
-	o.LastUsedAt = &v
+// SetLastRequestedAt gets a reference to the given string and assigns it to the LastRequestedAt field.
+func (o *ApiKey) SetLastRequestedAt(v string) {
+	o.LastRequestedAt = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
