@@ -8,9 +8,11 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **Debt** | Pointer to **float32** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
+**ExclusiveCode** | Pointer to **string** |  | [optional] 
 **FirstName** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **LastName** | Pointer to **string** |  | [optional] 
+**LastRequestedAt** | Pointer to **string** |  | [optional] 
 **MediaQualitiesConfig** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **WalletAddress** | Pointer to **string** |  | [optional] 
@@ -135,6 +137,31 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
+### GetExclusiveCode
+
+`func (o *User) GetExclusiveCode() string`
+
+GetExclusiveCode returns the ExclusiveCode field if non-nil, zero value otherwise.
+
+### GetExclusiveCodeOk
+
+`func (o *User) GetExclusiveCodeOk() (*string, bool)`
+
+GetExclusiveCodeOk returns a tuple with the ExclusiveCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExclusiveCode
+
+`func (o *User) SetExclusiveCode(v string)`
+
+SetExclusiveCode sets ExclusiveCode field to given value.
+
+### HasExclusiveCode
+
+`func (o *User) HasExclusiveCode() bool`
+
+HasExclusiveCode returns a boolean if a field has been set.
+
 ### GetFirstName
 
 `func (o *User) GetFirstName() string`
@@ -209,6 +236,31 @@ SetLastName sets LastName field to given value.
 `func (o *User) HasLastName() bool`
 
 HasLastName returns a boolean if a field has been set.
+
+### GetLastRequestedAt
+
+`func (o *User) GetLastRequestedAt() string`
+
+GetLastRequestedAt returns the LastRequestedAt field if non-nil, zero value otherwise.
+
+### GetLastRequestedAtOk
+
+`func (o *User) GetLastRequestedAtOk() (*string, bool)`
+
+GetLastRequestedAtOk returns a tuple with the LastRequestedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastRequestedAt
+
+`func (o *User) SetLastRequestedAt(v string)`
+
+SetLastRequestedAt sets LastRequestedAt field to given value.
+
+### HasLastRequestedAt
+
+`func (o *User) HasLastRequestedAt() bool`
+
+HasLastRequestedAt returns a boolean if a field has been set.
 
 ### GetMediaQualitiesConfig
 

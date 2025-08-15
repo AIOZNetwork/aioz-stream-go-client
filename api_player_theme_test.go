@@ -1,6 +1,7 @@
 package aiozstreamsdk
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"testing"
@@ -230,6 +231,7 @@ func TestPlayersService_AddPlayer(t *testing.T) {
 		},
 	}
 
+	fmt.Println("testPlayerIDForUpdateAndDeleteAndGet:", testPlayerIDForUpdateAndDeleteAndGet)
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			resp, err := testClient.Players.AddPlayer(tt.request)
@@ -520,12 +522,12 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
-		request RemovePlayerThemesFromVideoRequest
+		request RemovePlayerThemesFromMediaRequest
 		wantErr bool
 	}{
 		{
 			name: "Remove other",
-			request: RemovePlayerThemesFromVideoRequest{
+			request: RemovePlayerThemesFromMediaRequest{
 				PlayerThemeId: stringPtr(testPlayerIDForUpdateAndDeleteAndGet),
 				VideoId:       stringPtr(testVideoForPlayer),
 			},
@@ -548,12 +550,12 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 
 	tests := []struct {
 		name    string
-		request RemovePlayerThemesFromVideoRequest
+		request RemovePlayerThemesFromMediaRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Remove",
-			request: RemovePlayerThemesFromVideoRequest{
+			request: RemovePlayerThemesFromMediaRequest{
 				PlayerThemeId: stringPtr(testPlayerIDForUpdateAndDeleteAndGet),
 				VideoId:       stringPtr(testVideoForPlayer),
 			},
@@ -561,7 +563,7 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 		},
 		{
 			name: "Invalid Player ID",
-			request: RemovePlayerThemesFromVideoRequest{
+			request: RemovePlayerThemesFromMediaRequest{
 				PlayerThemeId: stringPtr("invalid-id"),
 				VideoId:       stringPtr(testVideoForPlayer),
 			},
@@ -569,14 +571,14 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 		},
 		{
 			name: "Empty Video ID",
-			request: RemovePlayerThemesFromVideoRequest{
+			request: RemovePlayerThemesFromMediaRequest{
 				PlayerThemeId: stringPtr(testPlayerIDForUpdateAndDeleteAndGet),
 			},
 			wantErr: true,
 		},
 		{
 			name: "Not Exist ID",
-			request: RemovePlayerThemesFromVideoRequest{
+			request: RemovePlayerThemesFromMediaRequest{
 				PlayerThemeId: stringPtr(notExistId),
 				VideoId:       stringPtr(testVideoForPlayer),
 			},

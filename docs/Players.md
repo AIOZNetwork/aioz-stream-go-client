@@ -609,9 +609,9 @@ Name | Type | Description  | Notes
 
 ## RemovePlayer
 
-> RemovePlayer(request RemovePlayerThemesFromVideoRequest) (*ResponseSuccess, error)
+> RemovePlayer(request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error)
 
-> RemovePlayerWithContext(ctx context.Context, request RemovePlayerThemesFromVideoRequest) (*ResponseSuccess, error)
+> RemovePlayerWithContext(ctx context.Context, request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error)
 
 
 Remove a player theme from a video
@@ -639,7 +639,7 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewRemovePlayerThemesFromVideoRequest() // RemovePlayerThemesFromVideoRequest | Remove player theme from video request
+    request := *aiozstreamsdk.NewRemovePlayerThemesFromMediaRequest() // RemovePlayerThemesFromMediaRequest | Remove player theme from video request
 
     
     res, err := client.Players.RemovePlayer(request)
@@ -666,7 +666,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**RemovePlayerThemesFromVideoRequest**](RemovePlayerThemesFromVideoRequest.md) | Remove player theme from video request | 
+**request** | [**RemovePlayerThemesFromMediaRequest**](RemovePlayerThemesFromMediaRequest.md) | Remove player theme from video request | 
 
 ### Return type
 

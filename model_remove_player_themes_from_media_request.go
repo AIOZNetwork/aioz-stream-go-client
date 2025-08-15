@@ -15,31 +15,31 @@ import (
 //"encoding/json"
 )
 
-// RemovePlayerThemesFromVideoRequest struct for RemovePlayerThemesFromVideoRequest
-type RemovePlayerThemesFromVideoRequest struct {
+// RemovePlayerThemesFromMediaRequest struct for RemovePlayerThemesFromMediaRequest
+type RemovePlayerThemesFromMediaRequest struct {
 	PlayerThemeId *string `json:"player_theme_id,omitempty"`
 	VideoId       *string `json:"video_id,omitempty"`
 }
 
-// NewRemovePlayerThemesFromVideoRequest instantiates a new RemovePlayerThemesFromVideoRequest object
+// NewRemovePlayerThemesFromMediaRequest instantiates a new RemovePlayerThemesFromMediaRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRemovePlayerThemesFromVideoRequest() *RemovePlayerThemesFromVideoRequest {
-	this := RemovePlayerThemesFromVideoRequest{}
+func NewRemovePlayerThemesFromMediaRequest() *RemovePlayerThemesFromMediaRequest {
+	this := RemovePlayerThemesFromMediaRequest{}
 	return &this
 }
 
-// NewRemovePlayerThemesFromVideoRequestWithDefaults instantiates a new RemovePlayerThemesFromVideoRequest object
+// NewRemovePlayerThemesFromMediaRequestWithDefaults instantiates a new RemovePlayerThemesFromMediaRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewRemovePlayerThemesFromVideoRequestWithDefaults() *RemovePlayerThemesFromVideoRequest {
-	this := RemovePlayerThemesFromVideoRequest{}
+func NewRemovePlayerThemesFromMediaRequestWithDefaults() *RemovePlayerThemesFromMediaRequest {
+	this := RemovePlayerThemesFromMediaRequest{}
 	return &this
 }
 
 // GetPlayerThemeId returns the PlayerThemeId field value if set, zero value otherwise.
-func (o *RemovePlayerThemesFromVideoRequest) GetPlayerThemeId() string {
+func (o *RemovePlayerThemesFromMediaRequest) GetPlayerThemeId() string {
 	if o == nil || o.PlayerThemeId == nil {
 		var ret string
 		return ret
@@ -49,7 +49,7 @@ func (o *RemovePlayerThemesFromVideoRequest) GetPlayerThemeId() string {
 
 // GetPlayerThemeIdOk returns a tuple with the PlayerThemeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RemovePlayerThemesFromVideoRequest) GetPlayerThemeIdOk() (*string, bool) {
+func (o *RemovePlayerThemesFromMediaRequest) GetPlayerThemeIdOk() (*string, bool) {
 	if o == nil || o.PlayerThemeId == nil {
 		return nil, false
 	}
@@ -57,7 +57,7 @@ func (o *RemovePlayerThemesFromVideoRequest) GetPlayerThemeIdOk() (*string, bool
 }
 
 // HasPlayerThemeId returns a boolean if a field has been set.
-func (o *RemovePlayerThemesFromVideoRequest) HasPlayerThemeId() bool {
+func (o *RemovePlayerThemesFromMediaRequest) HasPlayerThemeId() bool {
 	if o != nil && o.PlayerThemeId != nil {
 		return true
 	}
@@ -66,12 +66,12 @@ func (o *RemovePlayerThemesFromVideoRequest) HasPlayerThemeId() bool {
 }
 
 // SetPlayerThemeId gets a reference to the given string and assigns it to the PlayerThemeId field.
-func (o *RemovePlayerThemesFromVideoRequest) SetPlayerThemeId(v string) {
+func (o *RemovePlayerThemesFromMediaRequest) SetPlayerThemeId(v string) {
 	o.PlayerThemeId = &v
 }
 
 // GetVideoId returns the VideoId field value if set, zero value otherwise.
-func (o *RemovePlayerThemesFromVideoRequest) GetVideoId() string {
+func (o *RemovePlayerThemesFromMediaRequest) GetVideoId() string {
 	if o == nil || o.VideoId == nil {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *RemovePlayerThemesFromVideoRequest) GetVideoId() string {
 
 // GetVideoIdOk returns a tuple with the VideoId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RemovePlayerThemesFromVideoRequest) GetVideoIdOk() (*string, bool) {
+func (o *RemovePlayerThemesFromMediaRequest) GetVideoIdOk() (*string, bool) {
 	if o == nil || o.VideoId == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *RemovePlayerThemesFromVideoRequest) GetVideoIdOk() (*string, bool) {
 }
 
 // HasVideoId returns a boolean if a field has been set.
-func (o *RemovePlayerThemesFromVideoRequest) HasVideoId() bool {
+func (o *RemovePlayerThemesFromMediaRequest) HasVideoId() bool {
 	if o != nil && o.VideoId != nil {
 		return true
 	}
@@ -98,33 +98,33 @@ func (o *RemovePlayerThemesFromVideoRequest) HasVideoId() bool {
 }
 
 // SetVideoId gets a reference to the given string and assigns it to the VideoId field.
-func (o *RemovePlayerThemesFromVideoRequest) SetVideoId(v string) {
+func (o *RemovePlayerThemesFromMediaRequest) SetVideoId(v string) {
 	o.VideoId = &v
 }
 
-type NullableRemovePlayerThemesFromVideoRequest struct {
-	value *RemovePlayerThemesFromVideoRequest
+type NullableRemovePlayerThemesFromMediaRequest struct {
+	value *RemovePlayerThemesFromMediaRequest
 	isSet bool
 }
 
-func (v NullableRemovePlayerThemesFromVideoRequest) Get() *RemovePlayerThemesFromVideoRequest {
+func (v NullableRemovePlayerThemesFromMediaRequest) Get() *RemovePlayerThemesFromMediaRequest {
 	return v.value
 }
 
-func (v *NullableRemovePlayerThemesFromVideoRequest) Set(val *RemovePlayerThemesFromVideoRequest) {
+func (v *NullableRemovePlayerThemesFromMediaRequest) Set(val *RemovePlayerThemesFromMediaRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableRemovePlayerThemesFromVideoRequest) IsSet() bool {
+func (v NullableRemovePlayerThemesFromMediaRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableRemovePlayerThemesFromVideoRequest) Unset() {
+func (v *NullableRemovePlayerThemesFromMediaRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableRemovePlayerThemesFromVideoRequest(val *RemovePlayerThemesFromVideoRequest) *NullableRemovePlayerThemesFromVideoRequest {
-	return &NullableRemovePlayerThemesFromVideoRequest{value: val, isSet: true}
+func NewNullableRemovePlayerThemesFromMediaRequest(val *RemovePlayerThemesFromMediaRequest) *NullableRemovePlayerThemesFromMediaRequest {
+	return &NullableRemovePlayerThemesFromMediaRequest{value: val, isSet: true}
 }

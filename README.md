@@ -132,44 +132,6 @@ Method | HTTP request | Description
 [**List**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/ApiKey.md#List) | **Get** `/api_keys` | Get list API keys
 
 
-#### LiveStream
-
-
-##### Retrieve an instance of the LiveStream API:
-```go
-secretKey := "YOUR_SECRET_KEY" // Replace with your actual secret key
-publicKey := "YOUR_PUBLIC_KEY" // Replace with your public key
-apiCreds := aiozstreamsdk.AuthCredentials{
-	PublicKey: publicKey,
-	SecretKey: secretKey,
-}
-client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
-liveStreamApi := client.LiveStream
-```
-
-##### Endpoints
-
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**AddMulticast**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#AddMulticast) | **Post** `/live_streams/multicast/{stream_key}` | Add live stream multicast
-[**CreateLiveStreamKey**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#CreateLiveStreamKey) | **Post** `/live_streams` | Create live stream key
-[**CreateStreaming**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#CreateStreaming) | **Post** `/live_streams/{id}/streamings` | Create a new live stream media
-[**DeleteLiveStreamKey**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#DeleteLiveStreamKey) | **Delete** `/live_streams/{id}` | Delete live stream key
-[**DeleteMulticast**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#DeleteMulticast) | **Delete** `/live_streams/multicast/{stream_key}` | Delete live stream multicast
-[**DeleteStreaming**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#DeleteStreaming) | **Delete** `/live_streams/{id}/streamings/{stream_id}` | Delete live stream video
-[**GetLiveStreamKey**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#GetLiveStreamKey) | **Get** `/live_streams/{id}` | Get live stream key
-[**GetLiveStreamKeys**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#GetLiveStreamKeys) | **Get** `/live_streams` | Get live stream key list
-[**GetLiveStreamPlayerInfo**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#GetLiveStreamPlayerInfo) | **Get** `/live_streams/player/{id}/videos` | Get live stream video public
-[**GetLiveStreamVideo**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#GetLiveStreamVideo) | **Get** `/live_streams/{id}/video` | Get live stream video
-[**GetMedias**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#GetMedias) | **Post** `/live_streams/{id}/videos` | Get live stream media
-[**GetMulticastByStreamKey**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#GetMulticastByStreamKey) | **Get** `/live_streams/multicast/{stream_key}` | Get live stream multicast by stream key
-[**GetStatisticByStreamMediaId**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#GetStatisticByStreamMediaId) | **Get** `/live_streams/statistic/{stream_media_id}` | Get live stream statistic by stream media id
-[**GetStreaming**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#GetStreaming) | **Get** `/live_streams/{id}/streamings/{stream_id}` | Get live stream media streaming
-[**GetStreamings**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#GetStreamings) | **Get** `/live_streams/{id}/streamings` | Get live stream media streamings
-[**UpdateLiveStreamKey**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#UpdateLiveStreamKey) | **Put** `/live_streams/{id}` | Update live stream key
-[**UpdateMedia**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStream.md#UpdateMedia) | **Put** `/live_streams/{id}/streamings` | Update live stream media
-
-
 #### Players
 
 
@@ -331,8 +293,6 @@ Method | HTTP request | Description
  - [CreateApiKeyData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateApiKeyData.md)
  - [CreateApiKeyRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateApiKeyRequest.md)
  - [CreateApiKeyResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateApiKeyResponse.md)
- - [CreateLiveStreamKeyRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateLiveStreamKeyRequest.md)
- - [CreateLiveStreamKeyResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateLiveStreamKeyResponse.md)
  - [CreateMediaRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateMediaRequest.md)
  - [CreateMediaResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateMediaResponse.md)
  - [CreatePlayerThemeRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreatePlayerThemeRequest.md)
@@ -341,8 +301,6 @@ Method | HTTP request | Description
  - [CreatePlaylistData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreatePlaylistData.md)
  - [CreatePlaylistRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreatePlaylistRequest.md)
  - [CreatePlaylistResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreatePlaylistResponse.md)
- - [CreateStreamingRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateStreamingRequest.md)
- - [CreateStreamingResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateStreamingResponse.md)
  - [CreateVideoCaptionData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateVideoCaptionData.md)
  - [CreateVideoCaptionResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateVideoCaptionResponse.md)
  - [CreateVideoChapterData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateVideoChapterData.md)
@@ -352,16 +310,6 @@ Method | HTTP request | Description
  - [CreateWebhookResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateWebhookResponse.md)
  - [GetApiKeysData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetApiKeysData.md)
  - [GetApiKeysResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetApiKeysResponse.md)
- - [GetLiveStreamKeyData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamKeyData.md)
- - [GetLiveStreamKeyResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamKeyResponse.md)
- - [GetLiveStreamKeysListData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamKeysListData.md)
- - [GetLiveStreamKeysListResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamKeysListResponse.md)
- - [GetLiveStreamMediasRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamMediasRequest.md)
- - [GetLiveStreamMediasResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamMediasResponse.md)
- - [GetLiveStreamMulticastResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamMulticastResponse.md)
- - [GetLiveStreamStatisticResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamStatisticResponse.md)
- - [GetLiveStreamVideoPublicResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamVideoPublicResponse.md)
- - [GetLiveStreamVideoResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamVideoResponse.md)
  - [GetPlayerThemeByIdData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlayerThemeByIdData.md)
  - [GetPlayerThemeByIdResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlayerThemeByIdResponse.md)
  - [GetPlayerThemeData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlayerThemeData.md)
@@ -371,8 +319,6 @@ Method | HTTP request | Description
  - [GetPlaylistListData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlaylistListData.md)
  - [GetPlaylistListRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlaylistListRequest.md)
  - [GetPlaylistListResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlaylistListResponse.md)
- - [GetStreamingResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetStreamingResponse.md)
- - [GetStreamingsResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetStreamingsResponse.md)
  - [GetTranscodeCostData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetTranscodeCostData.md)
  - [GetTranscodeCostResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetTranscodeCostResponse.md)
  - [GetUserWebhookData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetUserWebhookData.md)
@@ -388,13 +334,6 @@ Method | HTTP request | Description
  - [GetVideoPlayerInfoResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetVideoPlayerInfoResponse.md)
  - [GetWebhooksListData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetWebhooksListData.md)
  - [GetWebhooksListResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetWebhooksListResponse.md)
- - [LiveStreamAssets](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStreamAssets.md)
- - [LiveStreamKeyData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStreamKeyData.md)
- - [LiveStreamMediaData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStreamMediaData.md)
- - [LiveStreamMediaResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStreamMediaResponse.md)
- - [LiveStreamMediasResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStreamMediasResponse.md)
- - [LiveStreamMulticast](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStreamMulticast.md)
- - [LiveStreamStatisticResp](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStreamStatisticResp.md)
  - [Media](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md)
  - [Metadata](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Metadata.md)
  - [MoveVideoInPlaylistRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MoveVideoInPlaylistRequest.md)
@@ -405,22 +344,17 @@ Method | HTTP request | Description
  - [PublicPlaylistObject](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/PublicPlaylistObject.md)
  - [QualityConfig](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/QualityConfig.md)
  - [QualityObject](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/QualityObject.md)
- - [RemovePlayerThemesFromVideoRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/RemovePlayerThemesFromVideoRequest.md)
+ - [RemovePlayerThemesFromMediaRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/RemovePlayerThemesFromMediaRequest.md)
  - [RenameAPIKeyRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/RenameAPIKeyRequest.md)
  - [RequestCreateCaption](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/RequestCreateCaption.md)
  - [ResponseError](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/ResponseError.md)
  - [ResponseSuccess](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/ResponseSuccess.md)
  - [Theme](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Theme.md)
- - [UpdateLiveStreamKeyData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateLiveStreamKeyData.md)
- - [UpdateLiveStreamKeyRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateLiveStreamKeyRequest.md)
- - [UpdateLiveStreamKeyResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateLiveStreamKeyResponse.md)
- - [UpdateLiveStreamMediaRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateLiveStreamMediaRequest.md)
  - [UpdatePlayerThemeRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdatePlayerThemeRequest.md)
  - [UpdatePlayerThemeResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdatePlayerThemeResponse.md)
  - [UpdateVideoInfoRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateVideoInfoRequest.md)
  - [UpdateWebhookRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateWebhookRequest.md)
  - [UploadLogoByIdResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UploadLogoByIdResponse.md)
- - [UpsertLiveStreamMulticastInput](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpsertLiveStreamMulticastInput.md)
  - [User](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/User.md)
  - [VideoAssets](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/VideoAssets.md)
  - [VideoCaption](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/VideoCaption.md)

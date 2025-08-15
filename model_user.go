@@ -21,9 +21,11 @@ type User struct {
 	CreatedAt            *string  `json:"created_at,omitempty"`
 	Debt                 *float32 `json:"debt,omitempty"`
 	Email                *string  `json:"email,omitempty"`
+	ExclusiveCode        *string  `json:"exclusive_code,omitempty"`
 	FirstName            *string  `json:"first_name,omitempty"`
 	Id                   *string  `json:"id,omitempty"`
 	LastName             *string  `json:"last_name,omitempty"`
+	LastRequestedAt      *string  `json:"last_requested_at,omitempty"`
 	MediaQualitiesConfig *string  `json:"media_qualities_config,omitempty"`
 	UpdatedAt            *string  `json:"updated_at,omitempty"`
 	WalletAddress        *string  `json:"wallet_address,omitempty"`
@@ -175,6 +177,38 @@ func (o *User) SetEmail(v string) {
 	o.Email = &v
 }
 
+// GetExclusiveCode returns the ExclusiveCode field value if set, zero value otherwise.
+func (o *User) GetExclusiveCode() string {
+	if o == nil || o.ExclusiveCode == nil {
+		var ret string
+		return ret
+	}
+	return *o.ExclusiveCode
+}
+
+// GetExclusiveCodeOk returns a tuple with the ExclusiveCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetExclusiveCodeOk() (*string, bool) {
+	if o == nil || o.ExclusiveCode == nil {
+		return nil, false
+	}
+	return o.ExclusiveCode, true
+}
+
+// HasExclusiveCode returns a boolean if a field has been set.
+func (o *User) HasExclusiveCode() bool {
+	if o != nil && o.ExclusiveCode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExclusiveCode gets a reference to the given string and assigns it to the ExclusiveCode field.
+func (o *User) SetExclusiveCode(v string) {
+	o.ExclusiveCode = &v
+}
+
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *User) GetFirstName() string {
 	if o == nil || o.FirstName == nil {
@@ -269,6 +303,38 @@ func (o *User) HasLastName() bool {
 // SetLastName gets a reference to the given string and assigns it to the LastName field.
 func (o *User) SetLastName(v string) {
 	o.LastName = &v
+}
+
+// GetLastRequestedAt returns the LastRequestedAt field value if set, zero value otherwise.
+func (o *User) GetLastRequestedAt() string {
+	if o == nil || o.LastRequestedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.LastRequestedAt
+}
+
+// GetLastRequestedAtOk returns a tuple with the LastRequestedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetLastRequestedAtOk() (*string, bool) {
+	if o == nil || o.LastRequestedAt == nil {
+		return nil, false
+	}
+	return o.LastRequestedAt, true
+}
+
+// HasLastRequestedAt returns a boolean if a field has been set.
+func (o *User) HasLastRequestedAt() bool {
+	if o != nil && o.LastRequestedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastRequestedAt gets a reference to the given string and assigns it to the LastRequestedAt field.
+func (o *User) SetLastRequestedAt(v string) {
+	o.LastRequestedAt = &v
 }
 
 // GetMediaQualitiesConfig returns the MediaQualitiesConfig field value if set, zero value otherwise.
