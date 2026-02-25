@@ -529,7 +529,7 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 			name: "Remove other",
 			request: RemovePlayerThemesFromMediaRequest{
 				PlayerThemeId: stringPtr(testPlayerIDForUpdateAndDeleteAndGet),
-				VideoId:       stringPtr(testVideoForPlayer),
+				MediaId:       stringPtr(testVideoForPlayer),
 			},
 			wantErr: true,
 		},
@@ -557,7 +557,7 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 			name: "Valid Remove",
 			request: RemovePlayerThemesFromMediaRequest{
 				PlayerThemeId: stringPtr(testPlayerIDForUpdateAndDeleteAndGet),
-				VideoId:       stringPtr(testVideoForPlayer),
+				MediaId:       stringPtr(testVideoForPlayer),
 			},
 			wantErr: false,
 		},
@@ -565,7 +565,7 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 			name: "Invalid Player ID",
 			request: RemovePlayerThemesFromMediaRequest{
 				PlayerThemeId: stringPtr("invalid-id"),
-				VideoId:       stringPtr(testVideoForPlayer),
+				MediaId:       stringPtr(testVideoForPlayer),
 			},
 			wantErr: true,
 		},
@@ -580,7 +580,7 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 			name: "Not Exist ID",
 			request: RemovePlayerThemesFromMediaRequest{
 				PlayerThemeId: stringPtr(notExistId),
-				VideoId:       stringPtr(testVideoForPlayer),
+				MediaId:       stringPtr(testVideoForPlayer),
 			},
 			wantErr: true,
 		},

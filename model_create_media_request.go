@@ -17,14 +17,24 @@ import (
 
 // CreateMediaRequest struct for CreateMediaRequest
 type CreateMediaRequest struct {
-	Description     *string          `json:"description,omitempty"`
-	IsPublic        *bool            `json:"is_public,omitempty"`
-	Metadata        *[]Metadata      `json:"metadata,omitempty"`
-	Qualities       *[]QualityConfig `json:"qualities,omitempty"`
-	SegmentDuration *int32           `json:"segment_duration,omitempty"`
-	Tags            *[]string        `json:"tags,omitempty"`
-	Title           *string          `json:"title,omitempty"`
-	Watermark       *VideoWatermark  `json:"watermark,omitempty"`
+	// Description of the media
+	Description *string `json:"description,omitempty"`
+	// // Is panoramic media IsPanoramic *bool `json:\"is_panoramic\" form:\"is_panoramic\"` Is public media
+	IsPublic *bool `json:"is_public,omitempty"`
+	// Metadata of the media (key-value pair, max: 50 items, key max length: 255, value max length: 255)
+	Metadata *[]Metadata `json:"metadata,omitempty"`
+	// Qualities of the media (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p)
+	Qualities *[]QualityConfig `json:"qualities,omitempty"`
+	// SegmentConfig
+	SegmentDuration *int32 `json:"segment_duration,omitempty"`
+	// Tags of the media (max: 50 items, max length: 255)
+	Tags *[]string `json:"tags,omitempty"`
+	// Title of the media
+	Title *string `json:"title,omitempty"`
+	// Type of the media (default: video, allowed: video, audio)
+	Type *string `json:"type,omitempty"`
+	// Media thumbnailConfig
+	Watermark *VideoWatermark `json:"watermark,omitempty"`
 }
 
 // NewCreateMediaRequest instantiates a new CreateMediaRequest object
@@ -266,6 +276,38 @@ func (o *CreateMediaRequest) HasTitle() bool {
 // SetTitle gets a reference to the given string and assigns it to the Title field.
 func (o *CreateMediaRequest) SetTitle(v string) {
 	o.Title = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *CreateMediaRequest) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateMediaRequest) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *CreateMediaRequest) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *CreateMediaRequest) SetType(v string) {
+	o.Type = &v
 }
 
 // GetWatermark returns the Watermark field value if set, zero value otherwise.

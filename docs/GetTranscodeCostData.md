@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IsEnough** | Pointer to **bool** |  | [optional] 
-**Price** | Pointer to **string** |  | [optional] 
+**Price** | Pointer to **float32** |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasIsEnough returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *GetTranscodeCostData) GetPrice() string`
+`func (o *GetTranscodeCostData) GetPrice() float32`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *GetTranscodeCostData) GetPriceOk() (*string, bool)`
+`func (o *GetTranscodeCostData) GetPriceOk() (*float32, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *GetTranscodeCostData) SetPrice(v string)`
+`func (o *GetTranscodeCostData) SetPrice(v float32)`
 
 SetPrice sets Price field to given value.
 
