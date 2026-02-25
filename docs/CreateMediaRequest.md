@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** |  | [optional] 
-**IsPublic** | Pointer to **bool** |  | [optional] 
-**Metadata** | Pointer to [**[]Metadata**](Metadata.md) |  | [optional] 
-**Qualities** | Pointer to [**[]QualityConfig**](QualityConfig.md) |  | [optional] 
-**SegmentDuration** | Pointer to **int32** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Title** | Pointer to **string** |  | [optional] 
-**Watermark** | Pointer to [**VideoWatermark**](VideoWatermark.md) |  | [optional] 
+**Description** | Pointer to **string** | Description of the media | [optional] 
+**IsPublic** | Pointer to **bool** | // Is panoramic media IsPanoramic *bool &#x60;json:\&quot;is_panoramic\&quot; form:\&quot;is_panoramic\&quot;&#x60; Is public media | [optional] 
+**Metadata** | Pointer to [**[]Metadata**](Metadata.md) | Metadata of the media (key-value pair, max: 50 items, key max length: 255, value max length: 255) | [optional] 
+**Qualities** | Pointer to [**[]QualityConfig**](QualityConfig.md) | Qualities of the media (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p) | [optional] 
+**SegmentDuration** | Pointer to **int32** | SegmentConfig | [optional] 
+**Tags** | Pointer to **[]string** | Tags of the media (max: 50 items, max length: 255) | [optional] 
+**Title** | Pointer to **string** | Title of the media | [optional] 
+**Type** | Pointer to **string** | Type of the media (default: video, allowed: video, audio) | [optional] 
+**Watermark** | Pointer to [**VideoWatermark**](VideoWatermark.md) | Media thumbnailConfig | [optional] 
 
 ## Methods
 
@@ -206,6 +207,31 @@ SetTitle sets Title field to given value.
 `func (o *CreateMediaRequest) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *CreateMediaRequest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *CreateMediaRequest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *CreateMediaRequest) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *CreateMediaRequest) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetWatermark
 

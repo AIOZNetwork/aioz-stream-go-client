@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Status** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** |  | [optional] 
 **View** | Pointer to **int32** |  | [optional] 
@@ -468,6 +469,31 @@ SetTitle sets Title field to given value.
 `func (o *Media) HasTitle() bool`
 
 HasTitle returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *Media) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Media) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Media) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *Media) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

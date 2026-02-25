@@ -17,13 +17,14 @@ import (
 
 // GetPlaylistListRequest struct for GetPlaylistListRequest
 type GetPlaylistListRequest struct {
-	Limit    *int32      `json:"limit,omitempty"`
-	Metadata *[]Metadata `json:"metadata,omitempty"`
-	Offset   *int32      `json:"offset,omitempty"`
-	OrderBy  *string     `json:"order_by,omitempty"`
-	Search   *string     `json:"search,omitempty"`
-	SortBy   *string     `json:"sort_by,omitempty"`
-	Tags     *[]string   `json:"tags,omitempty"`
+	Limit        *int32      `json:"limit,omitempty"`
+	Metadata     *[]Metadata `json:"metadata,omitempty"`
+	Offset       *int32      `json:"offset,omitempty"`
+	OrderBy      *string     `json:"order_by,omitempty"`
+	PlaylistType *string     `json:"playlist_type,omitempty"`
+	Search       *string     `json:"search,omitempty"`
+	SortBy       *string     `json:"sort_by,omitempty"`
+	Tags         *[]string   `json:"tags,omitempty"`
 }
 
 // NewGetPlaylistListRequest instantiates a new GetPlaylistListRequest object
@@ -169,6 +170,38 @@ func (o *GetPlaylistListRequest) HasOrderBy() bool {
 // SetOrderBy gets a reference to the given string and assigns it to the OrderBy field.
 func (o *GetPlaylistListRequest) SetOrderBy(v string) {
 	o.OrderBy = &v
+}
+
+// GetPlaylistType returns the PlaylistType field value if set, zero value otherwise.
+func (o *GetPlaylistListRequest) GetPlaylistType() string {
+	if o == nil || o.PlaylistType == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlaylistType
+}
+
+// GetPlaylistTypeOk returns a tuple with the PlaylistType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPlaylistListRequest) GetPlaylistTypeOk() (*string, bool) {
+	if o == nil || o.PlaylistType == nil {
+		return nil, false
+	}
+	return o.PlaylistType, true
+}
+
+// HasPlaylistType returns a boolean if a field has been set.
+func (o *GetPlaylistListRequest) HasPlaylistType() bool {
+	if o != nil && o.PlaylistType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaylistType gets a reference to the given string and assigns it to the PlaylistType field.
+func (o *GetPlaylistListRequest) SetPlaylistType(v string) {
+	o.PlaylistType = &v
 }
 
 // GetSearch returns the Search field value if set, zero value otherwise.

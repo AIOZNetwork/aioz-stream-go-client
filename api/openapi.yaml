@@ -2487,29 +2487,28 @@ paths:
         schema:
           type: string
         style: simple
-      - description: sort by
+      - description: Sort by field (created_at, title, duration)
         explode: true
         in: query
         name: sort_by
         required: false
         schema:
-          default: created_at
-          enum:
-          - created_at
-          - title
-          - duration
           type: string
         style: form
-      - description: 'allowed: asc, desc. Default: asc'
+      - description: Order by (asc, desc)
         explode: true
         in: query
         name: order_by
         required: false
         schema:
-          default: asc
-          enum:
-          - asc
-          - desc
+          type: string
+        style: form
+      - description: Search term
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
           type: string
         style: form
       responses:
@@ -2519,135 +2518,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetPlaylistByIdResponse'
           description: OK
-          headers:
-            X-RateLimit-Remaining:
-              description: The number of available requests left for the current time
-                window
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Retry-After:
-              description: The number of seconds left until the current rate limit
-                window resets
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Limit:
-              description: The request limit per minute
-              explode: false
-              schema:
-                type: integer
-              style: simple
         "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
           description: Bad Request
-          headers:
-            X-RateLimit-Remaining:
-              description: The number of available requests left for the current time
-                window
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Retry-After:
-              description: The number of seconds left until the current rate limit
-                window resets
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Limit:
-              description: The request limit per minute
-              explode: false
-              schema:
-                type: integer
-              style: simple
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
           description: Forbidden
-          headers:
-            X-RateLimit-Remaining:
-              description: The number of available requests left for the current time
-                window
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Retry-After:
-              description: The number of seconds left until the current rate limit
-                window resets
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Limit:
-              description: The request limit per minute
-              explode: false
-              schema:
-                type: integer
-              style: simple
         "404":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
           description: Not Found
-          headers:
-            X-RateLimit-Remaining:
-              description: The number of available requests left for the current time
-                window
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Retry-After:
-              description: The number of seconds left until the current rate limit
-                window resets
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Limit:
-              description: The request limit per minute
-              explode: false
-              schema:
-                type: integer
-              style: simple
         "500":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
           description: Internal Server Error
-          headers:
-            X-RateLimit-Remaining:
-              description: The number of available requests left for the current time
-                window
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Retry-After:
-              description: The number of seconds left until the current rate limit
-                window resets
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Limit:
-              description: The request limit per minute
-              explode: false
-              schema:
-                type: integer
-              style: simple
       security:
       - BasicAuth: []
       - Bearer: []
@@ -2836,7 +2730,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddVideoToPlaylistRequest'
+              $ref: '#/components/schemas/AddMediaToPlaylistRequest'
         description: Video details
         required: true
       responses:
@@ -3148,7 +3042,8 @@ paths:
       x-codegen-request-body-name: payload
   /playlists/{id}/items/{item_id}:
     delete:
-      description: Remove a specific video from a playlist for the authenticated user
+      description: Remove a specific media from a playlist for the authenticated user
+      operationId: DELETE_playlists-id-items-itemId
       parameters:
       - description: Playlist ID
         explode: false
@@ -3168,6 +3063,13 @@ paths:
           format: uuid
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveMediasFromPlaylistRequest'
+        description: Optional payload
+        required: true
       responses:
         "200":
           content:
@@ -3175,142 +3077,44 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResponseSuccess'
           description: OK
-          headers:
-            X-RateLimit-Remaining:
-              description: The number of available requests left for the current time
-                window
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Retry-After:
-              description: The number of seconds left until the current rate limit
-                window resets
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Limit:
-              description: The request limit per minute
-              explode: false
-              schema:
-                type: integer
-              style: simple
         "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
           description: Bad Request
-          headers:
-            X-RateLimit-Remaining:
-              description: The number of available requests left for the current time
-                window
-              explode: false
+        "401":
+          content:
+            application/json:
               schema:
-                type: integer
-              style: simple
-            X-RateLimit-Retry-After:
-              description: The number of seconds left until the current rate limit
-                window resets
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Limit:
-              description: The request limit per minute
-              explode: false
-              schema:
-                type: integer
-              style: simple
+                $ref: '#/components/schemas/ResponseError'
+          description: Unauthorized
         "403":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
           description: Forbidden
-          headers:
-            X-RateLimit-Remaining:
-              description: The number of available requests left for the current time
-                window
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Retry-After:
-              description: The number of seconds left until the current rate limit
-                window resets
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Limit:
-              description: The request limit per minute
-              explode: false
-              schema:
-                type: integer
-              style: simple
         "404":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
           description: Not Found
-          headers:
-            X-RateLimit-Remaining:
-              description: The number of available requests left for the current time
-                window
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Retry-After:
-              description: The number of seconds left until the current rate limit
-                window resets
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Limit:
-              description: The request limit per minute
-              explode: false
-              schema:
-                type: integer
-              style: simple
         "500":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResponseError'
           description: Internal Server Error
-          headers:
-            X-RateLimit-Remaining:
-              description: The number of available requests left for the current time
-                window
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Retry-After:
-              description: The number of seconds left until the current rate limit
-                window resets
-              explode: false
-              schema:
-                type: integer
-              style: simple
-            X-RateLimit-Limit:
-              description: The request limit per minute
-              explode: false
-              schema:
-                type: integer
-              style: simple
       security:
       - BasicAuth: []
       - Bearer: []
-      summary: Remove a video from a playlist
+      summary: Remove a media from a playlist
       tags:
       - playlist
-      x-client-action: removeVideoFromPlaylist
+      x-client-action: removeMediaFromPlaylist
+      x-codegen-request-body-name: payload
   /playlists/{id}/player.json:
     get:
       description: Get a specific playlist public by its ID
@@ -6385,7 +6189,7 @@ paths:
       description: get video transcoding cost
       operationId: GET-transcode-cost
       parameters:
-      - description: video's qualities
+      - description: media's qualities
         explode: true
         in: query
         name: qualities
@@ -6393,7 +6197,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: video's duration
+      - description: media's type
+        explode: true
+        in: query
+        name: type
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: media's duration
         explode: true
         in: query
         name: duration
@@ -7736,6 +7548,27 @@ components:
             $ref: '#/components/schemas/inline_object_2'
       required: true
   schemas:
+    AddMediaToPlaylistRequest:
+      example:
+        option_media_ids:
+        - option_media_ids
+        - option_media_ids
+        option_playlists:
+        - option_playlists
+        - option_playlists
+        media_id: media_id
+      properties:
+        media_id:
+          type: string
+        option_media_ids:
+          items:
+            type: string
+          type: array
+        option_playlists:
+          items:
+            type: string
+          type: array
+      type: object
     AddPlayerThemesToVideoRequest:
       example:
         player_theme_id: player_theme_id
@@ -7743,13 +7576,6 @@ components:
       properties:
         player_theme_id:
           type: string
-        video_id:
-          type: string
-      type: object
-    AddVideoToPlaylistRequest:
-      example:
-        video_id: video_id
-      properties:
         video_id:
           type: string
       type: object
@@ -7945,15 +7771,7 @@ components:
           key: key
         - value: value
           key: key
-        watermark:
-          top: top
-          left: left
-          bottom: bottom
-          width: width
-          id: id
-          right: right
-          opacity: opacity
-          height: height
+        watermark: '{}'
         is_public: true
         description: description
         qualities:
@@ -7987,32 +7805,51 @@ components:
           resolution: resolution
         segment_duration: 2
         title: title
+        type: type
         tags:
         - tags
         - tags
       properties:
         description:
+          description: Description of the media
           type: string
         is_public:
+          description: |-
+            // Is panoramic media
+            IsPanoramic *bool `json:"is_panoramic" form:"is_panoramic"`
+            Is public media
           type: boolean
         metadata:
+          description: 'Metadata of the media (key-value pair, max: 50 items, key
+            max length: 255, value max length: 255)'
           items:
             $ref: '#/components/schemas/Metadata'
           type: array
         qualities:
+          description: 'Qualities of the media (default: 1080p, 720p,  360p, allow:2160p,
+            1440p, 1080p, 720p,  360p, 240p, 144p)'
           items:
             $ref: '#/components/schemas/QualityConfig'
           type: array
         segment_duration:
+          description: SegmentConfig
           type: integer
         tags:
+          description: 'Tags of the media (max: 50 items, max length: 255)'
           items:
             type: string
           type: array
         title:
+          description: Title of the media
+          type: string
+        type:
+          description: 'Type of the media (default: video, allowed: video, audio)'
           type: string
         watermark:
-          $ref: '#/components/schemas/VideoWatermark'
+          allOf:
+          - $ref: '#/components/schemas/VideoWatermark'
+          description: Media thumbnailConfig
+          type: object
       type: object
     CreateMediaResponse:
       example:
@@ -8056,6 +7893,7 @@ components:
           created_at: created_at
           description: description
           title: title
+          type: type
           captions:
           - description: description
             language: language
@@ -8218,6 +8056,7 @@ components:
           metadata:
             key: metadata
           created_at: created_at
+          playlist_type: playlist_type
           thumbnail_url: thumbnail_url
           tags: tags
           duration: 0.8008281904610115
@@ -8232,15 +8071,28 @@ components:
             id: id
             video:
               duration: 5.962133916683182
+              size: 5
               chapters:
               - language: language
                 url: url
               - language: language
                 url: url
+              description: description
               qualities: qualities
               hls_url: hls_url
               thumbnail_url: thumbnail_url
               title: title
+              captions:
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
             next_id: next_id
             video_id: video_id
           - updated_at: updated_at
@@ -8250,15 +8102,28 @@ components:
             id: id
             video:
               duration: 5.962133916683182
+              size: 5
               chapters:
               - language: language
                 url: url
               - language: language
                 url: url
+              description: description
               qualities: qualities
               hls_url: hls_url
               thumbnail_url: thumbnail_url
               title: title
+              captions:
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
             next_id: next_id
             video_id: video_id
           name: name
@@ -8277,6 +8142,7 @@ components:
         - value: value
           key: key
         name: name
+        playlist_type: playlist_type
         tags:
         - tags
         - tags
@@ -8286,6 +8152,8 @@ components:
             $ref: '#/components/schemas/Metadata'
           type: array
         name:
+          type: string
+        playlist_type:
           type: string
         tags:
           items:
@@ -8300,6 +8168,7 @@ components:
             metadata:
               key: metadata
             created_at: created_at
+            playlist_type: playlist_type
             thumbnail_url: thumbnail_url
             tags: tags
             duration: 0.8008281904610115
@@ -8314,15 +8183,28 @@ components:
               id: id
               video:
                 duration: 5.962133916683182
+                size: 5
                 chapters:
                 - language: language
                   url: url
                 - language: language
                   url: url
+                description: description
                 qualities: qualities
                 hls_url: hls_url
                 thumbnail_url: thumbnail_url
                 title: title
+                captions:
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
               next_id: next_id
               video_id: video_id
             - updated_at: updated_at
@@ -8332,15 +8214,28 @@ components:
               id: id
               video:
                 duration: 5.962133916683182
+                size: 5
                 chapters:
                 - language: language
                   url: url
                 - language: language
                   url: url
+                description: description
                 qualities: qualities
                 hls_url: hls_url
                 thumbnail_url: thumbnail_url
                 title: title
+                captions:
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
               next_id: next_id
               video_id: video_id
             name: name
@@ -8794,6 +8689,7 @@ components:
           metadata:
             key: metadata
           created_at: created_at
+          playlist_type: playlist_type
           thumbnail_url: thumbnail_url
           tags: tags
           duration: 0.8008281904610115
@@ -8808,15 +8704,28 @@ components:
             id: id
             video:
               duration: 5.962133916683182
+              size: 5
               chapters:
               - language: language
                 url: url
               - language: language
                 url: url
+              description: description
               qualities: qualities
               hls_url: hls_url
               thumbnail_url: thumbnail_url
               title: title
+              captions:
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
             next_id: next_id
             video_id: video_id
           - updated_at: updated_at
@@ -8826,15 +8735,28 @@ components:
             id: id
             video:
               duration: 5.962133916683182
+              size: 5
               chapters:
               - language: language
                 url: url
               - language: language
                 url: url
+              description: description
               qualities: qualities
               hls_url: hls_url
               thumbnail_url: thumbnail_url
               title: title
+              captions:
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
             next_id: next_id
             video_id: video_id
           name: name
@@ -8853,6 +8775,7 @@ components:
             metadata:
               key: metadata
             created_at: created_at
+            playlist_type: playlist_type
             thumbnail_url: thumbnail_url
             tags: tags
             duration: 0.8008281904610115
@@ -8867,15 +8790,28 @@ components:
               id: id
               video:
                 duration: 5.962133916683182
+                size: 5
                 chapters:
                 - language: language
                   url: url
                 - language: language
                   url: url
+                description: description
                 qualities: qualities
                 hls_url: hls_url
                 thumbnail_url: thumbnail_url
                 title: title
+                captions:
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
               next_id: next_id
               video_id: video_id
             - updated_at: updated_at
@@ -8885,15 +8821,28 @@ components:
               id: id
               video:
                 duration: 5.962133916683182
+                size: 5
                 chapters:
                 - language: language
                   url: url
                 - language: language
                   url: url
+                description: description
                 qualities: qualities
                 hls_url: hls_url
                 thumbnail_url: thumbnail_url
                 title: title
+                captions:
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
               next_id: next_id
               video_id: video_id
             name: name
@@ -8909,12 +8858,13 @@ components:
       type: object
     GetPlaylistListData:
       example:
-        total: 5
+        total: 2
         playlists:
         - item_count: 6
           metadata:
             key: metadata
           created_at: created_at
+          playlist_type: playlist_type
           thumbnail_url: thumbnail_url
           tags: tags
           duration: 0.8008281904610115
@@ -8929,15 +8879,28 @@ components:
             id: id
             video:
               duration: 5.962133916683182
+              size: 5
               chapters:
               - language: language
                 url: url
               - language: language
                 url: url
+              description: description
               qualities: qualities
               hls_url: hls_url
               thumbnail_url: thumbnail_url
               title: title
+              captions:
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
             next_id: next_id
             video_id: video_id
           - updated_at: updated_at
@@ -8947,15 +8910,28 @@ components:
             id: id
             video:
               duration: 5.962133916683182
+              size: 5
               chapters:
               - language: language
                 url: url
               - language: language
                 url: url
+              description: description
               qualities: qualities
               hls_url: hls_url
               thumbnail_url: thumbnail_url
               title: title
+              captions:
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
             next_id: next_id
             video_id: video_id
           name: name
@@ -8966,6 +8942,7 @@ components:
           metadata:
             key: metadata
           created_at: created_at
+          playlist_type: playlist_type
           thumbnail_url: thumbnail_url
           tags: tags
           duration: 0.8008281904610115
@@ -8980,15 +8957,28 @@ components:
             id: id
             video:
               duration: 5.962133916683182
+              size: 5
               chapters:
               - language: language
                 url: url
               - language: language
                 url: url
+              description: description
               qualities: qualities
               hls_url: hls_url
               thumbnail_url: thumbnail_url
               title: title
+              captions:
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
             next_id: next_id
             video_id: video_id
           - updated_at: updated_at
@@ -8998,15 +8988,28 @@ components:
             id: id
             video:
               duration: 5.962133916683182
+              size: 5
               chapters:
               - language: language
                 url: url
               - language: language
                 url: url
+              description: description
               qualities: qualities
               hls_url: hls_url
               thumbnail_url: thumbnail_url
               title: title
+              captions:
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
             next_id: next_id
             video_id: video_id
           name: name
@@ -9032,6 +9035,7 @@ components:
         offset: 6
         limit: 0
         order_by: order_by
+        playlist_type: playlist_type
         sort_by: sort_by
         tags:
         - tags
@@ -9047,6 +9051,8 @@ components:
           type: integer
         order_by:
           type: string
+        playlist_type:
+          type: string
         search:
           type: string
         sort_by:
@@ -9059,12 +9065,13 @@ components:
     GetPlaylistListResponse:
       example:
         data:
-          total: 5
+          total: 2
           playlists:
           - item_count: 6
             metadata:
               key: metadata
             created_at: created_at
+            playlist_type: playlist_type
             thumbnail_url: thumbnail_url
             tags: tags
             duration: 0.8008281904610115
@@ -9079,15 +9086,28 @@ components:
               id: id
               video:
                 duration: 5.962133916683182
+                size: 5
                 chapters:
                 - language: language
                   url: url
                 - language: language
                   url: url
+                description: description
                 qualities: qualities
                 hls_url: hls_url
                 thumbnail_url: thumbnail_url
                 title: title
+                captions:
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
               next_id: next_id
               video_id: video_id
             - updated_at: updated_at
@@ -9097,15 +9117,28 @@ components:
               id: id
               video:
                 duration: 5.962133916683182
+                size: 5
                 chapters:
                 - language: language
                   url: url
                 - language: language
                   url: url
+                description: description
                 qualities: qualities
                 hls_url: hls_url
                 thumbnail_url: thumbnail_url
                 title: title
+                captions:
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
               next_id: next_id
               video_id: video_id
             name: name
@@ -9116,6 +9149,7 @@ components:
             metadata:
               key: metadata
             created_at: created_at
+            playlist_type: playlist_type
             thumbnail_url: thumbnail_url
             tags: tags
             duration: 0.8008281904610115
@@ -9130,15 +9164,28 @@ components:
               id: id
               video:
                 duration: 5.962133916683182
+                size: 5
                 chapters:
                 - language: language
                   url: url
                 - language: language
                   url: url
+                description: description
                 qualities: qualities
                 hls_url: hls_url
                 thumbnail_url: thumbnail_url
                 title: title
+                captions:
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
               next_id: next_id
               video_id: video_id
             - updated_at: updated_at
@@ -9148,15 +9195,28 @@ components:
               id: id
               video:
                 duration: 5.962133916683182
+                size: 5
                 chapters:
                 - language: language
                   url: url
                 - language: language
                   url: url
+                description: description
                 qualities: qualities
                 hls_url: hls_url
                 thumbnail_url: thumbnail_url
                 title: title
+                captions:
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
+                - description: description
+                  language: language
+                  is_default: true
+                  url: url
+                  status: status
               next_id: next_id
               video_id: video_id
             name: name
@@ -9173,18 +9233,18 @@ components:
     GetTranscodeCostData:
       example:
         is_enough: true
-        price: price
+        price: 0.8008281904610115
       properties:
         is_enough:
           type: boolean
         price:
-          type: string
+          type: number
       type: object
     GetTranscodeCostResponse:
       example:
         data:
           is_enough: true
-          price: price
+          price: 0.8008281904610115
         status: status
       properties:
         data:
@@ -9352,6 +9412,7 @@ components:
           created_at: created_at
           description: description
           title: title
+          type: type
           captions:
           - description: description
             language: language
@@ -9451,6 +9512,7 @@ components:
           created_at: created_at
           description: description
           title: title
+          type: type
           captions:
           - description: description
             language: language
@@ -9539,6 +9601,7 @@ components:
           created_at: created_at
           description: description
           title: title
+          type: type
           captions:
           - description: description
             language: language
@@ -9608,6 +9671,7 @@ components:
         limit: 0
         order_by: order_by
         sort_by: sort_by
+        type: type
         status: status
         tags:
         - tags
@@ -9633,6 +9697,8 @@ components:
           items:
             type: string
           type: array
+        type:
+          type: string
       type: object
     GetVideoListResponse:
       example:
@@ -9678,6 +9744,7 @@ components:
             created_at: created_at
             description: description
             title: title
+            type: type
             captions:
             - description: description
               language: language
@@ -9766,6 +9833,7 @@ components:
             created_at: created_at
             description: description
             title: title
+            type: type
             captions:
             - description: description
               language: language
@@ -10074,6 +10142,7 @@ components:
         created_at: created_at
         description: description
         title: title
+        type: type
         captions:
         - description: description
           language: language
@@ -10168,6 +10237,8 @@ components:
           type: array
         title:
           type: string
+        type:
+          type: string
         updated_at:
           type: string
         user_id:
@@ -10257,6 +10328,7 @@ components:
         metadata:
           key: metadata
         created_at: created_at
+        playlist_type: playlist_type
         thumbnail_url: thumbnail_url
         tags: tags
         duration: 0.8008281904610115
@@ -10271,15 +10343,28 @@ components:
           id: id
           video:
             duration: 5.962133916683182
+            size: 5
             chapters:
             - language: language
               url: url
             - language: language
               url: url
+            description: description
             qualities: qualities
             hls_url: hls_url
             thumbnail_url: thumbnail_url
             title: title
+            captions:
+            - description: description
+              language: language
+              is_default: true
+              url: url
+              status: status
+            - description: description
+              language: language
+              is_default: true
+              url: url
+              status: status
           next_id: next_id
           video_id: video_id
         - updated_at: updated_at
@@ -10289,15 +10374,28 @@ components:
           id: id
           video:
             duration: 5.962133916683182
+            size: 5
             chapters:
             - language: language
               url: url
             - language: language
               url: url
+            description: description
             qualities: qualities
             hls_url: hls_url
             thumbnail_url: thumbnail_url
             title: title
+            captions:
+            - description: description
+              language: language
+              is_default: true
+              url: url
+              status: status
+            - description: description
+              language: language
+              is_default: true
+              url: url
+              status: status
           next_id: next_id
           video_id: video_id
         name: name
@@ -10320,6 +10418,8 @@ components:
             type: string
           type: object
         name:
+          type: string
+        playlist_type:
           type: string
         playlist_url:
           type: string
@@ -10347,15 +10447,28 @@ components:
         id: id
         video:
           duration: 5.962133916683182
+          size: 5
           chapters:
           - language: language
             url: url
           - language: language
             url: url
+          description: description
           qualities: qualities
           hls_url: hls_url
           thumbnail_url: thumbnail_url
           title: title
+          captions:
+          - description: description
+            language: language
+            is_default: true
+            url: url
+            status: status
+          - description: description
+            language: language
+            is_default: true
+            url: url
+            status: status
         next_id: next_id
         video_id: video_id
       properties:
@@ -10379,26 +10492,47 @@ components:
     PlaylistItemMedia:
       example:
         duration: 5.962133916683182
+        size: 5
         chapters:
         - language: language
           url: url
         - language: language
           url: url
+        description: description
         qualities: qualities
         hls_url: hls_url
         thumbnail_url: thumbnail_url
         title: title
+        captions:
+        - description: description
+          language: language
+          is_default: true
+          url: url
+          status: status
+        - description: description
+          language: language
+          is_default: true
+          url: url
+          status: status
       properties:
+        captions:
+          items:
+            $ref: '#/components/schemas/VideoCaption'
+          type: array
         chapters:
           items:
             $ref: '#/components/schemas/VideoChapter'
           type: array
+        description:
+          type: string
         duration:
           type: number
         hls_url:
           type: string
         qualities:
           type: string
+        size:
+          type: integer
         thumbnail_url:
           type: string
         title:
@@ -10411,6 +10545,7 @@ components:
           metadata:
             key: metadata
           created_at: created_at
+          playlist_type: playlist_type
           thumbnail_url: thumbnail_url
           tags: tags
           duration: 0.8008281904610115
@@ -10425,15 +10560,28 @@ components:
             id: id
             video:
               duration: 5.962133916683182
+              size: 5
               chapters:
               - language: language
                 url: url
               - language: language
                 url: url
+              description: description
               qualities: qualities
               hls_url: hls_url
               thumbnail_url: thumbnail_url
               title: title
+              captions:
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
             next_id: next_id
             video_id: video_id
           - updated_at: updated_at
@@ -10443,15 +10591,28 @@ components:
             id: id
             video:
               duration: 5.962133916683182
+              size: 5
               chapters:
               - language: language
                 url: url
               - language: language
                 url: url
+              description: description
               qualities: qualities
               hls_url: hls_url
               thumbnail_url: thumbnail_url
               title: title
+              captions:
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
+              - description: description
+                language: language
+                is_default: true
+                url: url
+                status: status
             next_id: next_id
             video_id: video_id
           name: name
@@ -10542,6 +10703,17 @@ components:
           type: integer
         video_codec:
           type: string
+      type: object
+    RemoveMediasFromPlaylistRequest:
+      example:
+        option_playlists:
+        - option_playlists
+        - option_playlists
+      properties:
+        option_playlists:
+          items:
+            type: string
+          type: array
       type: object
     RemovePlayerThemesFromMediaRequest:
       example:
@@ -10938,15 +11110,6 @@ components:
           type: integer
       type: object
     VideoWatermark:
-      example:
-        top: top
-        left: left
-        bottom: bottom
-        width: width
-        id: id
-        right: right
-        opacity: opacity
-        height: height
       properties:
         bottom:
           type: string

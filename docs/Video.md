@@ -617,9 +617,9 @@ Name | Type | Description  | Notes
 
 ## GetCost
 
-> GetCost(qualities string, duration float32) (*GetTranscodeCostResponse, error)
+> GetCost(qualities string, type_ string, duration float32) (*GetTranscodeCostResponse, error)
 
-> GetCostWithContext(ctx context.Context, qualities string, duration float32) (*GetTranscodeCostResponse, error)
+> GetCostWithContext(ctx context.Context, qualities string, type_ string, duration float32) (*GetTranscodeCostResponse, error)
 
 
 get video transcoding cost
@@ -647,11 +647,12 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    qualities := "qualities_example" // string | video's qualities
-    duration := float32(8.14) // float32 | video's duration
+    qualities := "qualities_example" // string | media's qualities
+    type_ := "type__example" // string | media's type
+    duration := float32(8.14) // float32 | media's duration
 
     
-    res, err := client.Video.GetCost(qualities, duration)
+    res, err := client.Video.GetCost(qualities, type_, duration)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Video.GetCost``: %v\n", err)
@@ -675,8 +676,9 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**qualities** | **string** | video&#39;s qualities | 
-**duration** | **float32** | video&#39;s duration | 
+**qualities** | **string** | media&#39;s qualities | 
+**type_** | **string** | media&#39;s type | 
+**duration** | **float32** | media&#39;s duration | 
 
 ### Return type
 

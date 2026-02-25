@@ -4,10 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Captions** | Pointer to [**[]VideoCaption**](VideoCaption.md) |  | [optional] 
 **Chapters** | Pointer to [**[]VideoChapter**](VideoChapter.md) |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
 **Duration** | Pointer to **float32** |  | [optional] 
 **HlsUrl** | Pointer to **string** |  | [optional] 
 **Qualities** | Pointer to **string** |  | [optional] 
+**Size** | Pointer to **int32** |  | [optional] 
 **ThumbnailUrl** | Pointer to **string** |  | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
 
@@ -29,6 +32,31 @@ will change when the set of required properties is changed
 NewPlaylistItemMediaWithDefaults instantiates a new PlaylistItemMedia object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCaptions
+
+`func (o *PlaylistItemMedia) GetCaptions() []VideoCaption`
+
+GetCaptions returns the Captions field if non-nil, zero value otherwise.
+
+### GetCaptionsOk
+
+`func (o *PlaylistItemMedia) GetCaptionsOk() (*[]VideoCaption, bool)`
+
+GetCaptionsOk returns a tuple with the Captions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCaptions
+
+`func (o *PlaylistItemMedia) SetCaptions(v []VideoCaption)`
+
+SetCaptions sets Captions field to given value.
+
+### HasCaptions
+
+`func (o *PlaylistItemMedia) HasCaptions() bool`
+
+HasCaptions returns a boolean if a field has been set.
 
 ### GetChapters
 
@@ -54,6 +82,31 @@ SetChapters sets Chapters field to given value.
 `func (o *PlaylistItemMedia) HasChapters() bool`
 
 HasChapters returns a boolean if a field has been set.
+
+### GetDescription
+
+`func (o *PlaylistItemMedia) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *PlaylistItemMedia) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *PlaylistItemMedia) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *PlaylistItemMedia) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetDuration
 
@@ -129,6 +182,31 @@ SetQualities sets Qualities field to given value.
 `func (o *PlaylistItemMedia) HasQualities() bool`
 
 HasQualities returns a boolean if a field has been set.
+
+### GetSize
+
+`func (o *PlaylistItemMedia) GetSize() int32`
+
+GetSize returns the Size field if non-nil, zero value otherwise.
+
+### GetSizeOk
+
+`func (o *PlaylistItemMedia) GetSizeOk() (*int32, bool)`
+
+GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSize
+
+`func (o *PlaylistItemMedia) SetSize(v int32)`
+
+SetSize sets Size field to given value.
+
+### HasSize
+
+`func (o *PlaylistItemMedia) HasSize() bool`
+
+HasSize returns a boolean if a field has been set.
 
 ### GetThumbnailUrl
 

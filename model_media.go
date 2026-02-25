@@ -34,6 +34,7 @@ type Media struct {
 	Status        *string          `json:"status,omitempty"`
 	Tags          *[]string        `json:"tags,omitempty"`
 	Title         *string          `json:"title,omitempty"`
+	Type          *string          `json:"type,omitempty"`
 	UpdatedAt     *string          `json:"updated_at,omitempty"`
 	UserId        *string          `json:"user_id,omitempty"`
 	View          *int32           `json:"view,omitempty"`
@@ -598,6 +599,38 @@ func (o *Media) HasTitle() bool {
 // SetTitle gets a reference to the given string and assigns it to the Title field.
 func (o *Media) SetTitle(v string) {
 	o.Title = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Media) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Media) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Media) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *Media) SetType(v string) {
+	o.Type = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
