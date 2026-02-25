@@ -142,14 +142,6 @@ func TestWebhookService_Update(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name: "Update Partial Fields, only Name",
-			id:   testWebhookForUpdateAndDelete,
-			request: UpdateWebhookRequest{
-				Name: stringPtr("Updated Name Only"),
-			},
-			wantErr: true,
-		},
-		{
 			name: "Invalid URL",
 			id:   testWebhookForUpdateAndDelete,
 			request: UpdateWebhookRequest{

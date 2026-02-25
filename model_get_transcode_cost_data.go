@@ -17,8 +17,8 @@ import (
 
 // GetTranscodeCostData struct for GetTranscodeCostData
 type GetTranscodeCostData struct {
-	IsEnough *bool   `json:"is_enough,omitempty"`
-	Price    *string `json:"price,omitempty"`
+	IsEnough *bool    `json:"is_enough,omitempty"`
+	Price    *float32 `json:"price,omitempty"`
 }
 
 // NewGetTranscodeCostData instantiates a new GetTranscodeCostData object
@@ -71,9 +71,9 @@ func (o *GetTranscodeCostData) SetIsEnough(v bool) {
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *GetTranscodeCostData) GetPrice() string {
+func (o *GetTranscodeCostData) GetPrice() float32 {
 	if o == nil || o.Price == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.Price
@@ -81,7 +81,7 @@ func (o *GetTranscodeCostData) GetPrice() string {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetTranscodeCostData) GetPriceOk() (*string, bool) {
+func (o *GetTranscodeCostData) GetPriceOk() (*float32, bool) {
 	if o == nil || o.Price == nil {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *GetTranscodeCostData) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given string and assigns it to the Price field.
-func (o *GetTranscodeCostData) SetPrice(v string) {
+// SetPrice gets a reference to the given float32 and assigns it to the Price field.
+func (o *GetTranscodeCostData) SetPrice(v float32) {
 	o.Price = &v
 }
 

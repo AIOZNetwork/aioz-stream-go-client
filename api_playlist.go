@@ -28,6 +28,7 @@ var (
 type PlaylistApiGetPlaylistByIdRequest struct {
 	sortBy  *string
 	orderBy *string
+	search  *string
 }
 
 func (r PlaylistApiGetPlaylistByIdRequest) SortBy(sortBy string) PlaylistApiGetPlaylistByIdRequest {
@@ -38,6 +39,10 @@ func (r PlaylistApiGetPlaylistByIdRequest) OrderBy(orderBy string) PlaylistApiGe
 	r.orderBy = &orderBy
 	return r
 }
+func (r PlaylistApiGetPlaylistByIdRequest) Search(search string) PlaylistApiGetPlaylistByIdRequest {
+	r.search = &search
+	return r
+}
 
 type PlaylistServiceI interface {
 	/*
@@ -46,7 +51,7 @@ type PlaylistServiceI interface {
 	 * @return PlaylistApiAddVideoToPlaylistRequest
 	 */
 
-	AddVideoToPlaylist(id string, payload AddVideoToPlaylistRequest) (*ResponseSuccess, error)
+	AddVideoToPlaylist(id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error)
 
 	/*
 	 * AddVideoToPlaylist Add a video to a playlist
@@ -55,7 +60,7 @@ type PlaylistServiceI interface {
 	 * @return PlaylistApiAddVideoToPlaylistRequest
 	 */
 
-	AddVideoToPlaylistWithContext(ctx context.Context, id string, payload AddVideoToPlaylistRequest) (*ResponseSuccess, error)
+	AddVideoToPlaylistWithContext(ctx context.Context, id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error)
 
 	/*
 	 * CreatePlaylist Create a playlist
@@ -173,23 +178,23 @@ type PlaylistServiceI interface {
 	MoveVideoInPlaylistWithContext(ctx context.Context, id string, payload MoveVideoInPlaylistRequest) (*ResponseSuccess, error)
 
 	/*
-	 * RemoveVideoFromPlaylist Remove a video from a playlist
+	 * RemoveMediaFromPlaylist Remove a media from a playlist
 	 * @param id Playlist ID
 	 * @param itemId Playlist Item ID
-	 * @return PlaylistApiRemoveVideoFromPlaylistRequest
+	 * @return PlaylistApiRemoveMediaFromPlaylistRequest
 	 */
 
-	RemoveVideoFromPlaylist(id string, itemId string) (*ResponseSuccess, error)
+	RemoveMediaFromPlaylist(id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error)
 
 	/*
-	 * RemoveVideoFromPlaylist Remove a video from a playlist
+	 * RemoveMediaFromPlaylist Remove a media from a playlist
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Playlist ID
 	 * @param itemId Playlist Item ID
-	 * @return PlaylistApiRemoveVideoFromPlaylistRequest
+	 * @return PlaylistApiRemoveMediaFromPlaylistRequest
 	 */
 
-	RemoveVideoFromPlaylistWithContext(ctx context.Context, id string, itemId string) (*ResponseSuccess, error)
+	RemoveMediaFromPlaylistWithContext(ctx context.Context, id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error)
 
 	/*
 	 * UpdatePlaylist Update a playlist
@@ -220,7 +225,7 @@ type PlaylistService struct {
  * @return PlaylistApiAddVideoToPlaylistRequest
  */
 
-func (s *PlaylistService) AddVideoToPlaylist(id string, payload AddVideoToPlaylistRequest) (*ResponseSuccess, error) {
+func (s *PlaylistService) AddVideoToPlaylist(id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error) {
 
 	return s.AddVideoToPlaylistWithContext(context.Background(), id, payload)
 
@@ -234,7 +239,7 @@ func (s *PlaylistService) AddVideoToPlaylist(id string, payload AddVideoToPlayli
  * @return PlaylistApiAddVideoToPlaylistRequest
  */
 
-func (s *PlaylistService) AddVideoToPlaylistWithContext(ctx context.Context, id string, payload AddVideoToPlaylistRequest) (*ResponseSuccess, error) {
+func (s *PlaylistService) AddVideoToPlaylistWithContext(ctx context.Context, id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/playlists/{id}/items"
@@ -440,6 +445,9 @@ func (s *PlaylistService) GetPlaylistByIdWithContext(ctx context.Context, id str
 	if r.orderBy != nil {
 		localVarQueryParams.Add("order_by", parameterToString(*r.orderBy, ""))
 	}
+	if r.search != nil {
+		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
+	}
 
 	req, err := s.client.prepareRequest(ctx, http.MethodGet, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
@@ -602,30 +610,30 @@ func (s *PlaylistService) MoveVideoInPlaylistWithContext(ctx context.Context, id
 }
 
 /*
- * RemoveVideoFromPlaylist Remove a video from a playlist
- * Remove a specific video from a playlist for the authenticated user
+ * RemoveMediaFromPlaylist Remove a media from a playlist
+ * Remove a specific media from a playlist for the authenticated user
 
  * @param id Playlist ID
  * @param itemId Playlist Item ID
- * @return PlaylistApiRemoveVideoFromPlaylistRequest
+ * @return PlaylistApiRemoveMediaFromPlaylistRequest
  */
 
-func (s *PlaylistService) RemoveVideoFromPlaylist(id string, itemId string) (*ResponseSuccess, error) {
+func (s *PlaylistService) RemoveMediaFromPlaylist(id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error) {
 
-	return s.RemoveVideoFromPlaylistWithContext(context.Background(), id, itemId)
+	return s.RemoveMediaFromPlaylistWithContext(context.Background(), id, itemId, payload)
 
 }
 
 /*
- * RemoveVideoFromPlaylist Remove a video from a playlist
- * Remove a specific video from a playlist for the authenticated user
+ * RemoveMediaFromPlaylist Remove a media from a playlist
+ * Remove a specific media from a playlist for the authenticated user
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Playlist ID
  * @param itemId Playlist Item ID
- * @return PlaylistApiRemoveVideoFromPlaylistRequest
+ * @return PlaylistApiRemoveMediaFromPlaylistRequest
  */
 
-func (s *PlaylistService) RemoveVideoFromPlaylistWithContext(ctx context.Context, id string, itemId string) (*ResponseSuccess, error) {
+func (s *PlaylistService) RemoveMediaFromPlaylistWithContext(ctx context.Context, id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/playlists/{id}/items/{item_id}"
@@ -634,6 +642,9 @@ func (s *PlaylistService) RemoveVideoFromPlaylistWithContext(ctx context.Context
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
+
+	// body params
+	localVarPostBody = payload
 
 	req, err := s.client.prepareRequest(ctx, http.MethodDelete, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {

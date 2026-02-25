@@ -189,7 +189,7 @@ Method | HTTP request | Description
 [**GetPlaylistPublicInfo**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Playlist.md#GetPlaylistPublicInfo) | **Get** `/playlists/{id}/player.json` | Get a playlist public
 [**GetPlaylists**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Playlist.md#GetPlaylists) | **Post** `/playlists` | Get user&#39;s playlists
 [**MoveVideoInPlaylist**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Playlist.md#MoveVideoInPlaylist) | **Put** `/playlists/{id}/items` | Move a video in a playlist
-[**RemoveVideoFromPlaylist**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Playlist.md#RemoveVideoFromPlaylist) | **Delete** `/playlists/{id}/items/{item_id}` | Remove a video from a playlist
+[**RemoveMediaFromPlaylist**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Playlist.md#RemoveMediaFromPlaylist) | **Delete** `/playlists/{id}/items/{item_id}` | Remove a media from a playlist
 [**UpdatePlaylist**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Playlist.md#UpdatePlaylist) | **Patch** `/playlists/{id}` | Update a playlist
 
 
@@ -284,8 +284,8 @@ Method | HTTP request | Description
 
 ### Models
 
+ - [AddMediaToPlaylistRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/AddMediaToPlaylistRequest.md)
  - [AddPlayerThemesToVideoRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/AddPlayerThemesToVideoRequest.md)
- - [AddVideoToPlaylistRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/AddVideoToPlaylistRequest.md)
  - [ApiKey](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/ApiKey.md)
  - [Asset](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Asset.md)
  - [AudioConfig](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/AudioConfig.md)
@@ -344,6 +344,7 @@ Method | HTTP request | Description
  - [PublicPlaylistObject](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/PublicPlaylistObject.md)
  - [QualityConfig](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/QualityConfig.md)
  - [QualityObject](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/QualityObject.md)
+ - [RemoveMediasFromPlaylistRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/RemoveMediasFromPlaylistRequest.md)
  - [RemovePlayerThemesFromMediaRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/RemovePlayerThemesFromMediaRequest.md)
  - [RenameAPIKeyRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/RenameAPIKeyRequest.md)
  - [RequestCreateCaption](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/RequestCreateCaption.md)

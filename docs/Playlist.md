@@ -12,16 +12,16 @@ Method | HTTP request | Description
 [**GetPlaylistPublicInfo**](Playlist.md#GetPlaylistPublicInfo) | **Get** /playlists/{id}/player.json | Get a playlist public
 [**GetPlaylists**](Playlist.md#GetPlaylists) | **Post** /playlists | Get user&#39;s playlists
 [**MoveVideoInPlaylist**](Playlist.md#MoveVideoInPlaylist) | **Put** /playlists/{id}/items | Move a video in a playlist
-[**RemoveVideoFromPlaylist**](Playlist.md#RemoveVideoFromPlaylist) | **Delete** /playlists/{id}/items/{item_id} | Remove a video from a playlist
+[**RemoveMediaFromPlaylist**](Playlist.md#RemoveMediaFromPlaylist) | **Delete** /playlists/{id}/items/{item_id} | Remove a media from a playlist
 [**UpdatePlaylist**](Playlist.md#UpdatePlaylist) | **Patch** /playlists/{id} | Update a playlist
 
 
 
 ## AddVideoToPlaylist
 
-> AddVideoToPlaylist(id string, payload AddVideoToPlaylistRequest) (*ResponseSuccess, error)
+> AddVideoToPlaylist(id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error)
 
-> AddVideoToPlaylistWithContext(ctx context.Context, id string, payload AddVideoToPlaylistRequest) (*ResponseSuccess, error)
+> AddVideoToPlaylistWithContext(ctx context.Context, id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error)
 
 
 Add a video to a playlist
@@ -50,7 +50,7 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
-    payload := *aiozstreamsdk.NewAddVideoToPlaylistRequest() // AddVideoToPlaylistRequest | Video details
+    payload := *aiozstreamsdk.NewAddMediaToPlaylistRequest() // AddMediaToPlaylistRequest | Video details
 
     
     res, err := client.Playlist.AddVideoToPlaylist(id, payload)
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**payload** | [**AddVideoToPlaylistRequest**](AddVideoToPlaylistRequest.md) | Video details | 
+**payload** | [**AddMediaToPlaylistRequest**](AddMediaToPlaylistRequest.md) | Video details | 
 
 ### Return type
 
@@ -341,8 +341,9 @@ func main() {
     req := aiozstreamsdk.PlaylistApiGetPlaylistByIdRequest{}
     
     req.Id("id_example") // string | Playlist ID
-    req.SortBy("sortBy_example") // string | sort by (default to "created_at")
-    req.OrderBy("orderBy_example") // string | allowed: asc, desc. Default: asc (default to "asc")
+    req.SortBy("sortBy_example") // string | Sort by field (created_at, title, duration)
+    req.OrderBy("orderBy_example") // string | Order by (asc, desc)
+    req.Search("search_example") // string | Search term
 
     res, err := client.Playlist.GetPlaylistById(id string, req)
     
@@ -372,8 +373,9 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**sortBy** | **string** | sort by | [default to &quot;created_at&quot;]
-**orderBy** | **string** | allowed: asc, desc. Default: asc | [default to &quot;asc&quot;]
+**sortBy** | **string** | Sort by field (created_at, title, duration) | 
+**orderBy** | **string** | Order by (asc, desc) | 
+**search** | **string** | Search term | 
 
 ### Return type
 
@@ -600,14 +602,14 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RemoveVideoFromPlaylist
+## RemoveMediaFromPlaylist
 
-> RemoveVideoFromPlaylist(id string, itemId string) (*ResponseSuccess, error)
+> RemoveMediaFromPlaylist(id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error)
 
-> RemoveVideoFromPlaylistWithContext(ctx context.Context, id string, itemId string) (*ResponseSuccess, error)
+> RemoveMediaFromPlaylistWithContext(ctx context.Context, id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error)
 
 
-Remove a video from a playlist
+Remove a media from a playlist
 
 
 
@@ -634,19 +636,20 @@ func main() {
         
     id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
     itemId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist Item ID
+    payload := *aiozstreamsdk.NewRemoveMediasFromPlaylistRequest() // RemoveMediasFromPlaylistRequest | Optional payload
 
     
-    res, err := client.Playlist.RemoveVideoFromPlaylist(id, itemId)
+    res, err := client.Playlist.RemoveMediaFromPlaylist(id, itemId, payload)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.RemoveVideoFromPlaylist``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.RemoveMediaFromPlaylist``: %v\n", err)
     }
-    // response from `RemoveVideoFromPlaylist`: ResponseSuccess
+    // response from `RemoveMediaFromPlaylist`: ResponseSuccess
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `Playlist.RemoveVideoFromPlaylist`")
+    fmt.Println("Response from `Playlist.RemoveMediaFromPlaylist`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -664,6 +667,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+**payload** | [**RemoveMediasFromPlaylistRequest**](RemoveMediasFromPlaylistRequest.md) | Optional payload | 
 
 ### Return type
 
