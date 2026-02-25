@@ -25,6 +25,7 @@ type GetVideoListRequest struct {
 	SortBy   *string     `json:"sort_by,omitempty"`
 	Status   *string     `json:"status,omitempty"`
 	Tags     *[]string   `json:"tags,omitempty"`
+	Type     *string     `json:"type,omitempty"`
 }
 
 // NewGetVideoListRequest instantiates a new GetVideoListRequest object
@@ -298,6 +299,38 @@ func (o *GetVideoListRequest) HasTags() bool {
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *GetVideoListRequest) SetTags(v []string) {
 	o.Tags = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *GetVideoListRequest) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetVideoListRequest) GetTypeOk() (*string, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *GetVideoListRequest) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *GetVideoListRequest) SetType(v string) {
+	o.Type = &v
 }
 
 type NullableGetVideoListRequest struct {

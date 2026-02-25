@@ -17,10 +17,13 @@ import (
 
 // PlaylistItemMedia struct for PlaylistItemMedia
 type PlaylistItemMedia struct {
+	Captions     *[]VideoCaption `json:"captions,omitempty"`
 	Chapters     *[]VideoChapter `json:"chapters,omitempty"`
+	Description  *string         `json:"description,omitempty"`
 	Duration     *float32        `json:"duration,omitempty"`
 	HlsUrl       *string         `json:"hls_url,omitempty"`
 	Qualities    *string         `json:"qualities,omitempty"`
+	Size         *int32          `json:"size,omitempty"`
 	ThumbnailUrl *string         `json:"thumbnail_url,omitempty"`
 	Title        *string         `json:"title,omitempty"`
 }
@@ -40,6 +43,38 @@ func NewPlaylistItemMedia() *PlaylistItemMedia {
 func NewPlaylistItemMediaWithDefaults() *PlaylistItemMedia {
 	this := PlaylistItemMedia{}
 	return &this
+}
+
+// GetCaptions returns the Captions field value if set, zero value otherwise.
+func (o *PlaylistItemMedia) GetCaptions() []VideoCaption {
+	if o == nil || o.Captions == nil {
+		var ret []VideoCaption
+		return ret
+	}
+	return *o.Captions
+}
+
+// GetCaptionsOk returns a tuple with the Captions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaylistItemMedia) GetCaptionsOk() (*[]VideoCaption, bool) {
+	if o == nil || o.Captions == nil {
+		return nil, false
+	}
+	return o.Captions, true
+}
+
+// HasCaptions returns a boolean if a field has been set.
+func (o *PlaylistItemMedia) HasCaptions() bool {
+	if o != nil && o.Captions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCaptions gets a reference to the given []VideoCaption and assigns it to the Captions field.
+func (o *PlaylistItemMedia) SetCaptions(v []VideoCaption) {
+	o.Captions = &v
 }
 
 // GetChapters returns the Chapters field value if set, zero value otherwise.
@@ -72,6 +107,38 @@ func (o *PlaylistItemMedia) HasChapters() bool {
 // SetChapters gets a reference to the given []VideoChapter and assigns it to the Chapters field.
 func (o *PlaylistItemMedia) SetChapters(v []VideoChapter) {
 	o.Chapters = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *PlaylistItemMedia) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaylistItemMedia) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *PlaylistItemMedia) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *PlaylistItemMedia) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
@@ -168,6 +235,38 @@ func (o *PlaylistItemMedia) HasQualities() bool {
 // SetQualities gets a reference to the given string and assigns it to the Qualities field.
 func (o *PlaylistItemMedia) SetQualities(v string) {
 	o.Qualities = &v
+}
+
+// GetSize returns the Size field value if set, zero value otherwise.
+func (o *PlaylistItemMedia) GetSize() int32 {
+	if o == nil || o.Size == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaylistItemMedia) GetSizeOk() (*int32, bool) {
+	if o == nil || o.Size == nil {
+		return nil, false
+	}
+	return o.Size, true
+}
+
+// HasSize returns a boolean if a field has been set.
+func (o *PlaylistItemMedia) HasSize() bool {
+	if o != nil && o.Size != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSize gets a reference to the given int32 and assigns it to the Size field.
+func (o *PlaylistItemMedia) SetSize(v int32) {
+	o.Size = &v
 }
 
 // GetThumbnailUrl returns the ThumbnailUrl field value if set, zero value otherwise.

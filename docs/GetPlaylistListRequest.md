@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Metadata** | Pointer to [**[]Metadata**](Metadata.md) |  | [optional] 
 **Offset** | Pointer to **int32** |  | [optional] 
 **OrderBy** | Pointer to **string** |  | [optional] 
+**PlaylistType** | Pointer to **string** |  | [optional] 
 **Search** | Pointer to **string** |  | [optional] 
 **SortBy** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
@@ -130,6 +131,31 @@ SetOrderBy sets OrderBy field to given value.
 `func (o *GetPlaylistListRequest) HasOrderBy() bool`
 
 HasOrderBy returns a boolean if a field has been set.
+
+### GetPlaylistType
+
+`func (o *GetPlaylistListRequest) GetPlaylistType() string`
+
+GetPlaylistType returns the PlaylistType field if non-nil, zero value otherwise.
+
+### GetPlaylistTypeOk
+
+`func (o *GetPlaylistListRequest) GetPlaylistTypeOk() (*string, bool)`
+
+GetPlaylistTypeOk returns a tuple with the PlaylistType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlaylistType
+
+`func (o *GetPlaylistListRequest) SetPlaylistType(v string)`
+
+SetPlaylistType sets PlaylistType field to given value.
+
+### HasPlaylistType
+
+`func (o *GetPlaylistListRequest) HasPlaylistType() bool`
+
+HasPlaylistType returns a boolean if a field has been set.
 
 ### GetSearch
 

@@ -261,14 +261,14 @@ func TestPlaylistService_AddVideoToPlaylist(t *testing.T) {
 	anonymousTest := []struct {
 		name    string
 		id      string
-		request AddVideoToPlaylistRequest
+		request AddMediaToPlaylistRequest
 		wantErr bool
 	}{
 		{
 			name: "Add other",
 			id:   testPlaylistID,
-			request: AddVideoToPlaylistRequest{
-				VideoId: stringPtr(testVideoIDOne),
+			request: AddMediaToPlaylistRequest{
+				MediaId: stringPtr(testVideoIDOne),
 			},
 			wantErr: true,
 		},
@@ -290,52 +290,52 @@ func TestPlaylistService_AddVideoToPlaylist(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		payload AddVideoToPlaylistRequest
+		payload AddMediaToPlaylistRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Add First Video Request",
 			id:   testPlaylistID,
-			payload: AddVideoToPlaylistRequest{
-				VideoId: stringPtr(testVideoIDOne),
+			payload: AddMediaToPlaylistRequest{
+				MediaId: stringPtr(testVideoIDOne),
 			},
 			wantErr: false,
 		},
 		{
 			name: "Valid Add Second Video Request",
 			id:   testPlaylistID,
-			payload: AddVideoToPlaylistRequest{
-				VideoId: stringPtr(testVideoIDTwo),
+			payload: AddMediaToPlaylistRequest{
+				MediaId: stringPtr(testVideoIDTwo),
 			},
 			wantErr: false,
 		},
 		{
 			name: "Valid Add Third Video Request",
 			id:   testPlaylistID,
-			payload: AddVideoToPlaylistRequest{
-				VideoId: stringPtr(testVideoIDThree),
+			payload: AddMediaToPlaylistRequest{
+				MediaId: stringPtr(testVideoIDThree),
 			},
 			wantErr: false,
 		},
 		{
 			name: "Missing Video ID",
 			id:   testPlaylistID,
-			payload: AddVideoToPlaylistRequest{
-				VideoId: stringPtr(""),
+			payload: AddMediaToPlaylistRequest{
+				MediaId: stringPtr(""),
 			},
 			wantErr: true,
 		},
 		{
 			name:    "Empty Request",
 			id:      testPlaylistID,
-			payload: AddVideoToPlaylistRequest{},
+			payload: AddMediaToPlaylistRequest{},
 			wantErr: true,
 		},
 		{
 			name: "Not Exist ID",
 			id:   notExistId,
-			payload: AddVideoToPlaylistRequest{
-				VideoId: stringPtr(testVideoIDOne),
+			payload: AddMediaToPlaylistRequest{
+				MediaId: stringPtr(testVideoIDOne),
 			},
 			wantErr: true,
 		},
@@ -566,7 +566,7 @@ func TestPlaylistService_RemoveVideoFromPlaylist(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Playlist.RemoveVideoFromPlaylist(tt.id, tt.itemId)
+			resp, err := testAnonymousClient.Playlist.RemoveMediaFromPlaylist(tt.id, tt.itemId, RemoveMediasFromPlaylistRequest{})
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -620,7 +620,7 @@ func TestPlaylistService_RemoveVideoFromPlaylist(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Playlist.RemoveVideoFromPlaylist(tt.id, tt.itemId)
+			resp, err := testClient.Playlist.RemoveMediaFromPlaylist(tt.id, tt.itemId, RemoveMediasFromPlaylistRequest{})
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)

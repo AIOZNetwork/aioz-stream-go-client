@@ -17,9 +17,10 @@ import (
 
 // CreatePlaylistRequest struct for CreatePlaylistRequest
 type CreatePlaylistRequest struct {
-	Metadata *[]Metadata `json:"metadata,omitempty"`
-	Name     *string     `json:"name,omitempty"`
-	Tags     *[]string   `json:"tags,omitempty"`
+	Metadata     *[]Metadata `json:"metadata,omitempty"`
+	Name         *string     `json:"name,omitempty"`
+	PlaylistType *string     `json:"playlist_type,omitempty"`
+	Tags         *[]string   `json:"tags,omitempty"`
 }
 
 // NewCreatePlaylistRequest instantiates a new CreatePlaylistRequest object
@@ -101,6 +102,38 @@ func (o *CreatePlaylistRequest) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *CreatePlaylistRequest) SetName(v string) {
 	o.Name = &v
+}
+
+// GetPlaylistType returns the PlaylistType field value if set, zero value otherwise.
+func (o *CreatePlaylistRequest) GetPlaylistType() string {
+	if o == nil || o.PlaylistType == nil {
+		var ret string
+		return ret
+	}
+	return *o.PlaylistType
+}
+
+// GetPlaylistTypeOk returns a tuple with the PlaylistType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreatePlaylistRequest) GetPlaylistTypeOk() (*string, bool) {
+	if o == nil || o.PlaylistType == nil {
+		return nil, false
+	}
+	return o.PlaylistType, true
+}
+
+// HasPlaylistType returns a boolean if a field has been set.
+func (o *CreatePlaylistRequest) HasPlaylistType() bool {
+	if o != nil && o.PlaylistType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaylistType gets a reference to the given string and assigns it to the PlaylistType field.
+func (o *CreatePlaylistRequest) SetPlaylistType(v string) {
+	o.PlaylistType = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.

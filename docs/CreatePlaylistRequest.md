@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Metadata** | Pointer to [**[]Metadata**](Metadata.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
+**PlaylistType** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -76,6 +77,31 @@ SetName sets Name field to given value.
 `func (o *CreatePlaylistRequest) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetPlaylistType
+
+`func (o *CreatePlaylistRequest) GetPlaylistType() string`
+
+GetPlaylistType returns the PlaylistType field if non-nil, zero value otherwise.
+
+### GetPlaylistTypeOk
+
+`func (o *CreatePlaylistRequest) GetPlaylistTypeOk() (*string, bool)`
+
+GetPlaylistTypeOk returns a tuple with the PlaylistType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlaylistType
+
+`func (o *CreatePlaylistRequest) SetPlaylistType(v string)`
+
+SetPlaylistType sets PlaylistType field to given value.
+
+### HasPlaylistType
+
+`func (o *CreatePlaylistRequest) HasPlaylistType() bool`
+
+HasPlaylistType returns a boolean if a field has been set.
 
 ### GetTags
 

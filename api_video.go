@@ -193,7 +193,7 @@ type VideoServiceI interface {
 	 * @return VideoApiGetCostRequest
 	 */
 
-	GetCost(qualities string, duration float32) (*GetTranscodeCostResponse, error)
+	GetCost(qualities string, type_ string, duration float32) (*GetTranscodeCostResponse, error)
 
 	/*
 	 * GetCost get video transcoding cost
@@ -201,7 +201,7 @@ type VideoServiceI interface {
 	 * @return VideoApiGetCostRequest
 	 */
 
-	GetCostWithContext(ctx context.Context, qualities string, duration float32) (*GetTranscodeCostResponse, error)
+	GetCostWithContext(ctx context.Context, qualities string, type_ string, duration float32) (*GetTranscodeCostResponse, error)
 
 	/*
 	 * GetDetail get video detail
@@ -742,9 +742,9 @@ func (s *VideoService) GetCaptionsWithContext(ctx context.Context, id string, r 
  * @return VideoApiGetCostRequest
  */
 
-func (s *VideoService) GetCost(qualities string, duration float32) (*GetTranscodeCostResponse, error) {
+func (s *VideoService) GetCost(qualities string, type_ string, duration float32) (*GetTranscodeCostResponse, error) {
 
-	return s.GetCostWithContext(context.Background(), qualities, duration)
+	return s.GetCostWithContext(context.Background(), qualities, type_, duration)
 
 }
 
@@ -755,7 +755,7 @@ func (s *VideoService) GetCost(qualities string, duration float32) (*GetTranscod
  * @return VideoApiGetCostRequest
  */
 
-func (s *VideoService) GetCostWithContext(ctx context.Context, qualities string, duration float32) (*GetTranscodeCostResponse, error) {
+func (s *VideoService) GetCostWithContext(ctx context.Context, qualities string, type_ string, duration float32) (*GetTranscodeCostResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/videos/cost"
@@ -764,6 +764,7 @@ func (s *VideoService) GetCostWithContext(ctx context.Context, qualities string,
 	localVarQueryParams := url.Values{}
 
 	localVarQueryParams.Add("qualities", parameterToString(qualities, ""))
+	localVarQueryParams.Add("type", parameterToString(type_, ""))
 	localVarQueryParams.Add("duration", parameterToString(duration, ""))
 
 	req, err := s.client.prepareRequest(ctx, http.MethodGet, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)

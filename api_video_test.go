@@ -565,43 +565,49 @@ func TestVideoService_GetCost(t *testing.T) {
 	tests := []struct {
 		name      string
 		qualities string
+		type_     string
 		duration  float32
 		wantErr   bool
 	}{
 		{
 			name:      "Valid Single Quality",
 			qualities: "720p",
+			type_:     "video",
 			duration:  120.5,
 			wantErr:   false,
 		},
 		{
 			name:      "Valid Multiple Qualities",
 			qualities: "720p,1080p",
+			type_:     "video",
 			duration:  120.5,
 			wantErr:   false,
 		},
 		{
 			name:      "Invalid Quality",
 			qualities: "invalid",
+			type_:     "video",
 			duration:  120.5,
 			wantErr:   true,
 		},
 		{
 			name:      "Empty Quality",
 			qualities: "",
+			type_:     "video",
 			duration:  120.5,
 			wantErr:   true,
 		},
 		{
 			name:      "Negative Duration",
 			qualities: "720p",
+			type_:     "video",
 			duration:  -1,
 			wantErr:   true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.GetCost(tt.qualities, tt.duration)
+			resp, err := testClient.Video.GetCost(tt.qualities, tt.type_, tt.duration)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
