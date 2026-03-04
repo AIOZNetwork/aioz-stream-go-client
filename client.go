@@ -215,7 +215,7 @@ func (c *Client) ChunkSize(size int64) {
 }
 
 func (c *Client) UploadVideo(ctx context.Context, id string, fileName string, fileReader io.Reader, fileSize int64) error {
-	localVarPath := "/videos/{id}/part"
+	localVarPath := "/media/{id}/part"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -235,7 +235,7 @@ func (c *Client) UploadVideo(ctx context.Context, id string, fileName string, fi
 		}
 	}
 
-	localVarPath = "/videos/{id}/complete"
+	localVarPath = "/media/{id}/complete"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams = make(map[string]string)
