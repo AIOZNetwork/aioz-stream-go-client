@@ -132,6 +132,66 @@ Method | HTTP request | Description
 [**List**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/ApiKey.md#List) | **Get** `/api_keys` | Get list API keys
 
 
+#### Media
+
+
+##### Retrieve an instance of the Media API:
+```go
+secretKey := "YOUR_SECRET_KEY" // Replace with your actual secret key
+publicKey := "YOUR_PUBLIC_KEY" // Replace with your public key
+apiCreds := aiozstreamsdk.AuthCredentials{
+	PublicKey: publicKey,
+	SecretKey: secretKey,
+}
+client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+mediaApi := client.Media
+```
+
+##### Endpoints
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**Create**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#Create) | **Post** `/media/create` | Create media object
+[**Update**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#Update) | **Patch** `/media/{id}` | update media info
+[**Delete**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#Delete) | **Delete** `/media/{id}` | Delete media
+[**UploadThumbnail**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#UploadThumbnail) | **Post** `/media/{id}/thumbnail` | Upload media thumbnail
+[**DeleteThumbnail**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#DeleteThumbnail) | **Delete** `/media/{id}/thumbnail` | Delete media thumbnail
+[**CreateCaption**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#CreateCaption) | **Post** `/media/{id}/captions/{lan}` | Create a new media caption
+[**DeleteCaption**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#DeleteCaption) | **Delete** `/media/{id}/captions/{lan}` | Delete a media caption
+[**GetCaptions**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#GetCaptions) | **Get** `/media/{id}/captions` | Get media captions
+[**GetCost**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#GetCost) | **Get** `/media/cost` | get media transcoding cost
+[**GetDetail**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#GetDetail) | **Get** `/media/{id}` | get media detail
+[**GetMediaList**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#GetMediaList) | **Post** `/media` | Get user videos list
+[**GetMediaPlayerInfo**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#GetMediaPlayerInfo) | **Get** `/media/{id}/player.json` | Get media object
+[**SetDefaultCaption**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#SetDefaultCaption) | **Patch** `/media/{id}/captions/{lan}` | Set default caption
+[**UploadMediaComplete**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#UploadMediaComplete) | **Get** `/media/{id}/complete` | Get upload media when complete
+[**UploadPart**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md#UploadPart) | **Post** `/media/{id}/part` | Upload part of media
+
+
+#### MediaChapter
+
+
+##### Retrieve an instance of the MediaChapter API:
+```go
+secretKey := "YOUR_SECRET_KEY" // Replace with your actual secret key
+publicKey := "YOUR_PUBLIC_KEY" // Replace with your public key
+apiCreds := aiozstreamsdk.AuthCredentials{
+	PublicKey: publicKey,
+	SecretKey: secretKey,
+}
+client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+mediaChapterApi := client.MediaChapter
+```
+
+##### Endpoints
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**Create**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MediaChapter.md#Create) | **Post** `/media/{id}/chapters/{lan}` | Create a media chapter
+[**Get**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MediaChapter.md#Get) | **Get** `/media/{id}/chapters` | Get media chapters
+[**Delete**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MediaChapter.md#Delete) | **Delete** `/media/{id}/chapters/{lan}` | Delete a video chapter
+
+
 #### Players
 
 
@@ -193,66 +253,6 @@ Method | HTTP request | Description
 [**UpdatePlaylist**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Playlist.md#UpdatePlaylist) | **Patch** `/playlists/{id}` | Update a playlist
 
 
-#### Video
-
-
-##### Retrieve an instance of the Video API:
-```go
-secretKey := "YOUR_SECRET_KEY" // Replace with your actual secret key
-publicKey := "YOUR_PUBLIC_KEY" // Replace with your public key
-apiCreds := aiozstreamsdk.AuthCredentials{
-	PublicKey: publicKey,
-	SecretKey: secretKey,
-}
-client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
-videoApi := client.Video
-```
-
-##### Endpoints
-
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**Create**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#Create) | **Post** `/videos/create` | Create video object
-[**Update**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#Update) | **Patch** `/videos/{id}` | update video info
-[**Delete**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#Delete) | **Delete** `/videos/{id}` | Delete video
-[**UploadThumbnail**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#UploadThumbnail) | **Post** `/videos/{id}/thumbnail` | Upload video thumbnail
-[**DeleteThumbnail**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#DeleteThumbnail) | **Delete** `/videos/{id}/thumbnail` | Delete video thumbnail
-[**CreateCaption**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#CreateCaption) | **Post** `/videos/{id}/captions/{lan}` | Create a new video caption
-[**DeleteCaption**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#DeleteCaption) | **Delete** `/videos/{id}/captions/{lan}` | Delete a video caption
-[**GetCaptions**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#GetCaptions) | **Get** `/videos/{id}/captions` | Get video captions
-[**GetCost**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#GetCost) | **Get** `/videos/cost` | get video transcoding cost
-[**GetDetail**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#GetDetail) | **Get** `/videos/{id}` | get video detail
-[**GetVideoList**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#GetVideoList) | **Post** `/videos` | Get user videos list
-[**GetVideoPlayerInfo**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#GetVideoPlayerInfo) | **Get** `/videos/{id}/player.json` | Get video object
-[**SetDefaultCaption**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#SetDefaultCaption) | **Patch** `/videos/{id}/captions/{lan}` | Set default caption
-[**UploadPart**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#UploadPart) | **Post** `/videos/{id}/part` | Upload part of video
-[**UploadVideoComplete**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Video.md#UploadVideoComplete) | **Get** `/videos/{id}/complete` | Get upload video when complete
-
-
-#### VideoChapter
-
-
-##### Retrieve an instance of the VideoChapter API:
-```go
-secretKey := "YOUR_SECRET_KEY" // Replace with your actual secret key
-publicKey := "YOUR_PUBLIC_KEY" // Replace with your public key
-apiCreds := aiozstreamsdk.AuthCredentials{
-	PublicKey: publicKey,
-	SecretKey: secretKey,
-}
-client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
-videoChapterApi := client.VideoChapter
-```
-
-##### Endpoints
-
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**Create**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/VideoChapter.md#Create) | **Post** `/videos/{id}/chapters/{lan}` | Create a video chapter
-[**Get**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/VideoChapter.md#Get) | **Get** `/videos/{id}/chapters` | Get video chapters
-[**Delete**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/VideoChapter.md#Delete) | **Delete** `/videos/{id}/chapters/{lan}` | Delete a video chapter
-
-
 #### Webhook
 
 
@@ -293,6 +293,10 @@ Method | HTTP request | Description
  - [CreateApiKeyData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateApiKeyData.md)
  - [CreateApiKeyRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateApiKeyRequest.md)
  - [CreateApiKeyResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateApiKeyResponse.md)
+ - [CreateMediaCaptionData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateMediaCaptionData.md)
+ - [CreateMediaCaptionResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateMediaCaptionResponse.md)
+ - [CreateMediaChapterData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateMediaChapterData.md)
+ - [CreateMediaChapterResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateMediaChapterResponse.md)
  - [CreateMediaRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateMediaRequest.md)
  - [CreateMediaResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateMediaResponse.md)
  - [CreatePlayerThemeRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreatePlayerThemeRequest.md)
@@ -301,15 +305,20 @@ Method | HTTP request | Description
  - [CreatePlaylistData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreatePlaylistData.md)
  - [CreatePlaylistRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreatePlaylistRequest.md)
  - [CreatePlaylistResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreatePlaylistResponse.md)
- - [CreateVideoCaptionData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateVideoCaptionData.md)
- - [CreateVideoCaptionResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateVideoCaptionResponse.md)
- - [CreateVideoChapterData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateVideoChapterData.md)
- - [CreateVideoChapterResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateVideoChapterResponse.md)
  - [CreateWebhookData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateWebhookData.md)
  - [CreateWebhookRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateWebhookRequest.md)
  - [CreateWebhookResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateWebhookResponse.md)
  - [GetApiKeysData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetApiKeysData.md)
  - [GetApiKeysResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetApiKeysResponse.md)
+ - [GetMediaCaptionsData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaCaptionsData.md)
+ - [GetMediaCaptionsResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaCaptionsResponse.md)
+ - [GetMediaChaptersData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaChaptersData.md)
+ - [GetMediaChaptersResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaChaptersResponse.md)
+ - [GetMediaDetailResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaDetailResponse.md)
+ - [GetMediaListData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaListData.md)
+ - [GetMediaListRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaListRequest.md)
+ - [GetMediaListResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaListResponse.md)
+ - [GetMediaPlayerInfoResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaPlayerInfoResponse.md)
  - [GetPlayerThemeByIdData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlayerThemeByIdData.md)
  - [GetPlayerThemeByIdResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlayerThemeByIdResponse.md)
  - [GetPlayerThemeData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlayerThemeData.md)
@@ -323,18 +332,12 @@ Method | HTTP request | Description
  - [GetTranscodeCostResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetTranscodeCostResponse.md)
  - [GetUserWebhookData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetUserWebhookData.md)
  - [GetUserWebhookResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetUserWebhookResponse.md)
- - [GetVideoCaptionsData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetVideoCaptionsData.md)
- - [GetVideoCaptionsResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetVideoCaptionsResponse.md)
- - [GetVideoChaptersData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetVideoChaptersData.md)
- - [GetVideoChaptersResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetVideoChaptersResponse.md)
- - [GetVideoDetailResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetVideoDetailResponse.md)
- - [GetVideoListData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetVideoListData.md)
- - [GetVideoListRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetVideoListRequest.md)
- - [GetVideoListResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetVideoListResponse.md)
- - [GetVideoPlayerInfoResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetVideoPlayerInfoResponse.md)
  - [GetWebhooksListData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetWebhooksListData.md)
  - [GetWebhooksListResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetWebhooksListResponse.md)
  - [Media](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Media.md)
+ - [MediaAssets](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MediaAssets.md)
+ - [MediaCaption](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MediaCaption.md)
+ - [MediaChapter](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MediaChapter.md)
  - [Metadata](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Metadata.md)
  - [MoveVideoInPlaylistRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MoveVideoInPlaylistRequest.md)
  - [PlayerTheme](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/PlayerTheme.md)
@@ -351,15 +354,12 @@ Method | HTTP request | Description
  - [ResponseError](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/ResponseError.md)
  - [ResponseSuccess](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/ResponseSuccess.md)
  - [Theme](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Theme.md)
+ - [UpdateMediaInfoRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateMediaInfoRequest.md)
  - [UpdatePlayerThemeRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdatePlayerThemeRequest.md)
  - [UpdatePlayerThemeResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdatePlayerThemeResponse.md)
- - [UpdateVideoInfoRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateVideoInfoRequest.md)
  - [UpdateWebhookRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateWebhookRequest.md)
  - [UploadLogoByIdResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UploadLogoByIdResponse.md)
  - [User](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/User.md)
- - [VideoAssets](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/VideoAssets.md)
- - [VideoCaption](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/VideoCaption.md)
- - [VideoChapter](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/VideoChapter.md)
  - [VideoConfig](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/VideoConfig.md)
  - [VideoWatermark](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/VideoWatermark.md)
  - [Webhook](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Webhook.md)

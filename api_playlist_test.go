@@ -449,7 +449,7 @@ func TestPlaylistService_GetPlaylistByID(t *testing.T) {
 				assert.NotNil(t, resp.Data)
 				assert.NotNil(t, resp.Data.Playlist)
 
-				videoItems := *resp.Data.Playlist.VideoItems
+				videoItems := *resp.Data.Playlist.Items
 				assert.NotNil(t, videoItems)
 
 				if len(videoItems) > 0 {

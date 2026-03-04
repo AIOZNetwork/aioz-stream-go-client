@@ -17,8 +17,8 @@ import (
 
 // PlaylistItemMedia struct for PlaylistItemMedia
 type PlaylistItemMedia struct {
-	Captions     *[]VideoCaption `json:"captions,omitempty"`
-	Chapters     *[]VideoChapter `json:"chapters,omitempty"`
+	Captions     *[]MediaCaption `json:"captions,omitempty"`
+	Chapters     *[]MediaChapter `json:"chapters,omitempty"`
 	Description  *string         `json:"description,omitempty"`
 	Duration     *float32        `json:"duration,omitempty"`
 	HlsUrl       *string         `json:"hls_url,omitempty"`
@@ -46,9 +46,9 @@ func NewPlaylistItemMediaWithDefaults() *PlaylistItemMedia {
 }
 
 // GetCaptions returns the Captions field value if set, zero value otherwise.
-func (o *PlaylistItemMedia) GetCaptions() []VideoCaption {
+func (o *PlaylistItemMedia) GetCaptions() []MediaCaption {
 	if o == nil || o.Captions == nil {
-		var ret []VideoCaption
+		var ret []MediaCaption
 		return ret
 	}
 	return *o.Captions
@@ -56,7 +56,7 @@ func (o *PlaylistItemMedia) GetCaptions() []VideoCaption {
 
 // GetCaptionsOk returns a tuple with the Captions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaylistItemMedia) GetCaptionsOk() (*[]VideoCaption, bool) {
+func (o *PlaylistItemMedia) GetCaptionsOk() (*[]MediaCaption, bool) {
 	if o == nil || o.Captions == nil {
 		return nil, false
 	}
@@ -72,15 +72,15 @@ func (o *PlaylistItemMedia) HasCaptions() bool {
 	return false
 }
 
-// SetCaptions gets a reference to the given []VideoCaption and assigns it to the Captions field.
-func (o *PlaylistItemMedia) SetCaptions(v []VideoCaption) {
+// SetCaptions gets a reference to the given []MediaCaption and assigns it to the Captions field.
+func (o *PlaylistItemMedia) SetCaptions(v []MediaCaption) {
 	o.Captions = &v
 }
 
 // GetChapters returns the Chapters field value if set, zero value otherwise.
-func (o *PlaylistItemMedia) GetChapters() []VideoChapter {
+func (o *PlaylistItemMedia) GetChapters() []MediaChapter {
 	if o == nil || o.Chapters == nil {
-		var ret []VideoChapter
+		var ret []MediaChapter
 		return ret
 	}
 	return *o.Chapters
@@ -88,7 +88,7 @@ func (o *PlaylistItemMedia) GetChapters() []VideoChapter {
 
 // GetChaptersOk returns a tuple with the Chapters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlaylistItemMedia) GetChaptersOk() (*[]VideoChapter, bool) {
+func (o *PlaylistItemMedia) GetChaptersOk() (*[]MediaChapter, bool) {
 	if o == nil || o.Chapters == nil {
 		return nil, false
 	}
@@ -104,8 +104,8 @@ func (o *PlaylistItemMedia) HasChapters() bool {
 	return false
 }
 
-// SetChapters gets a reference to the given []VideoChapter and assigns it to the Chapters field.
-func (o *PlaylistItemMedia) SetChapters(v []VideoChapter) {
+// SetChapters gets a reference to the given []MediaChapter and assigns it to the Chapters field.
+func (o *PlaylistItemMedia) SetChapters(v []MediaChapter) {
 	o.Chapters = &v
 }
 

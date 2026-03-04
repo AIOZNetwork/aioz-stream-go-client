@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
+**Media** | Pointer to [**PlaylistItemMedia**](PlaylistItemMedia.md) |  | [optional] 
 **NextId** | Pointer to **string** |  | [optional] 
 **PlaylistId** | Pointer to **string** |  | [optional] 
 **PreviousId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
-**Video** | Pointer to [**PlaylistItemMedia**](PlaylistItemMedia.md) |  | [optional] 
 **VideoId** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -81,6 +81,31 @@ SetId sets Id field to given value.
 `func (o *PlaylistItem) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetMedia
+
+`func (o *PlaylistItem) GetMedia() PlaylistItemMedia`
+
+GetMedia returns the Media field if non-nil, zero value otherwise.
+
+### GetMediaOk
+
+`func (o *PlaylistItem) GetMediaOk() (*PlaylistItemMedia, bool)`
+
+GetMediaOk returns a tuple with the Media field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMedia
+
+`func (o *PlaylistItem) SetMedia(v PlaylistItemMedia)`
+
+SetMedia sets Media field to given value.
+
+### HasMedia
+
+`func (o *PlaylistItem) HasMedia() bool`
+
+HasMedia returns a boolean if a field has been set.
 
 ### GetNextId
 
@@ -181,31 +206,6 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *PlaylistItem) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
-
-### GetVideo
-
-`func (o *PlaylistItem) GetVideo() PlaylistItemMedia`
-
-GetVideo returns the Video field if non-nil, zero value otherwise.
-
-### GetVideoOk
-
-`func (o *PlaylistItem) GetVideoOk() (*PlaylistItemMedia, bool)`
-
-GetVideoOk returns a tuple with the Video field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVideo
-
-`func (o *PlaylistItem) SetVideo(v PlaylistItemMedia)`
-
-SetVideo sets Video field to given value.
-
-### HasVideo
-
-`func (o *PlaylistItem) HasVideo() bool`
-
-HasVideo returns a boolean if a field has been set.
 
 ### GetVideoId
 

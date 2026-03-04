@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Captions** | Pointer to [**[]VideoCaption**](VideoCaption.md) |  | [optional] 
-**Chapters** | Pointer to [**[]VideoChapter**](VideoChapter.md) |  | [optional] 
+**Captions** | Pointer to [**[]MediaCaption**](MediaCaption.md) |  | [optional] 
+**Chapters** | Pointer to [**[]MediaChapter**](MediaChapter.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Duration** | Pointer to **float32** |  | [optional] 
 **HlsUrl** | Pointer to **string** |  | [optional] 
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCaptions
 
-`func (o *PlaylistItemMedia) GetCaptions() []VideoCaption`
+`func (o *PlaylistItemMedia) GetCaptions() []MediaCaption`
 
 GetCaptions returns the Captions field if non-nil, zero value otherwise.
 
 ### GetCaptionsOk
 
-`func (o *PlaylistItemMedia) GetCaptionsOk() (*[]VideoCaption, bool)`
+`func (o *PlaylistItemMedia) GetCaptionsOk() (*[]MediaCaption, bool)`
 
 GetCaptionsOk returns a tuple with the Captions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCaptions
 
-`func (o *PlaylistItemMedia) SetCaptions(v []VideoCaption)`
+`func (o *PlaylistItemMedia) SetCaptions(v []MediaCaption)`
 
 SetCaptions sets Captions field to given value.
 
@@ -60,20 +60,20 @@ HasCaptions returns a boolean if a field has been set.
 
 ### GetChapters
 
-`func (o *PlaylistItemMedia) GetChapters() []VideoChapter`
+`func (o *PlaylistItemMedia) GetChapters() []MediaChapter`
 
 GetChapters returns the Chapters field if non-nil, zero value otherwise.
 
 ### GetChaptersOk
 
-`func (o *PlaylistItemMedia) GetChaptersOk() (*[]VideoChapter, bool)`
+`func (o *PlaylistItemMedia) GetChaptersOk() (*[]MediaChapter, bool)`
 
 GetChaptersOk returns a tuple with the Chapters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChapters
 
-`func (o *PlaylistItemMedia) SetChapters(v []VideoChapter)`
+`func (o *PlaylistItemMedia) SetChapters(v []MediaChapter)`
 
 SetChapters sets Chapters field to given value.
 

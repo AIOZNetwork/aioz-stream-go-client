@@ -203,7 +203,7 @@ func TestVideoService_Create(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.Create(tt.request)
+			resp, err := testClient.Media.Create(tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -222,17 +222,17 @@ func TestVideoService_Create(t *testing.T) {
 func TestVideoService_List(t *testing.T) {
 	tests := []struct {
 		name    string
-		request GetVideoListRequest
+		request GetMediaListRequest
 		wantErr bool
 	}{
 		{
 			name:    "Valid Get Video List With No Filter",
-			request: GetVideoListRequest{},
+			request: GetMediaListRequest{},
 			wantErr: false,
 		},
 		{
 			name: "Valid Get Video List With Filter",
-			request: GetVideoListRequest{
+			request: GetMediaListRequest{
 				Limit:   int32Ptr(10),
 				Offset:  int32Ptr(0),
 				OrderBy: stringPtr("created_at"),
@@ -244,7 +244,7 @@ func TestVideoService_List(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.GetVideoList(tt.request)
+			resp, err := testClient.Media.GetMediaList(tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -261,20 +261,20 @@ func TestVideoService_Update(t *testing.T) {
 	anonymousTest := []struct {
 		name    string
 		id      string
-		input   UpdateVideoInfoRequest
+		input   UpdateMediaInfoRequest
 		wantErr bool
 	}{
 		{
 			name:    "Update other",
 			id:      testVideoID,
-			input:   UpdateVideoInfoRequest{Title: &title},
+			input:   UpdateMediaInfoRequest{Title: &title},
 			wantErr: true,
 		},
 	}
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Video.Update(tt.id, tt.input)
+			resp, err := testAnonymousClient.Media.Update(tt.id, tt.input)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -288,13 +288,13 @@ func TestVideoService_Update(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		input   UpdateVideoInfoRequest
+		input   UpdateMediaInfoRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Update All Fields",
 			id:   testVideoID,
-			input: UpdateVideoInfoRequest{
+			input: UpdateMediaInfoRequest{
 				Title:       &title,
 				Description: &description,
 			},
@@ -303,7 +303,7 @@ func TestVideoService_Update(t *testing.T) {
 		{
 			name: "Valid Update Title Only",
 			id:   testVideoID,
-			input: UpdateVideoInfoRequest{
+			input: UpdateMediaInfoRequest{
 				Title: &title,
 			},
 			wantErr: false,
@@ -311,7 +311,7 @@ func TestVideoService_Update(t *testing.T) {
 		{
 			name: "Valid Update Description Only",
 			id:   testVideoID,
-			input: UpdateVideoInfoRequest{
+			input: UpdateMediaInfoRequest{
 				Description: &description,
 			},
 			wantErr: false,
@@ -319,7 +319,7 @@ func TestVideoService_Update(t *testing.T) {
 		{
 			name: "Invalid Title Length",
 			id:   testVideoID,
-			input: UpdateVideoInfoRequest{
+			input: UpdateMediaInfoRequest{
 				Title: stringPtr(strings.Repeat("a", 256)),
 			},
 			wantErr: true,
@@ -327,26 +327,26 @@ func TestVideoService_Update(t *testing.T) {
 		{
 			name:    "Invalid Video ID",
 			id:      "invalid-uuid",
-			input:   UpdateVideoInfoRequest{Title: &title},
+			input:   UpdateMediaInfoRequest{Title: &title},
 			wantErr: true,
 		},
 		{
 			name:    "Non-existent Video ID",
 			id:      "12345678-1234-1234-1234-123456789012",
-			input:   UpdateVideoInfoRequest{Title: &title},
+			input:   UpdateMediaInfoRequest{Title: &title},
 			wantErr: true,
 		},
 		{
 			name:    "Not Exist ID",
 			id:      notExistId,
-			input:   UpdateVideoInfoRequest{Title: &title},
+			input:   UpdateMediaInfoRequest{Title: &title},
 			wantErr: true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.Update(tt.id, tt.input)
+			resp, err := testClient.Media.Update(tt.id, tt.input)
 			if tt.wantErr {
 				assert.Error(t, err)
 			} else {
@@ -372,7 +372,7 @@ func TestVideoService_GetDetail(t *testing.T) {
 	}
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Video.GetDetail(tt.id)
+			resp, err := testAnonymousClient.Media.GetDetail(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -387,13 +387,13 @@ func TestVideoService_GetDetail(t *testing.T) {
 		name    string
 		id      string
 		wantErr bool
-		checkFn func(*testing.T, *GetVideoDetailResponse)
+		checkFn func(*testing.T, *GetMediaDetailResponse)
 	}{
 		{
 			name:    "Valid Get Detail",
 			id:      testVideoID,
 			wantErr: false,
-			checkFn: func(t *testing.T, resp *GetVideoDetailResponse) {
+			checkFn: func(t *testing.T, resp *GetMediaDetailResponse) {
 				assert.NotEmpty(t, resp.Data.Id)
 				assert.NotEmpty(t, resp.Data.Title)
 				assert.NotEmpty(t, resp.Status)
@@ -427,7 +427,7 @@ func TestVideoService_GetDetail(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.GetDetail(tt.id)
+			resp, err := testClient.Media.GetDetail(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -488,7 +488,7 @@ func TestVideoService_UploadThumbnail(t *testing.T) {
 
 		for _, tt := range tests {
 			t.Run(tt.name, func(t *testing.T) {
-				resp, err := testAnonymousClient.Video.UploadThumbnail(tt.id, tt.fileName, tt.file)
+				resp, err := testAnonymousClient.Media.UploadThumbnail(tt.id, tt.fileName, tt.file)
 				assert.Equal(t, tt.wantErr, err != nil)
 				if tt.wantErr {
 					assert.Nil(t, resp)
@@ -550,7 +550,7 @@ func TestVideoService_UploadThumbnail(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.UploadThumbnail(tt.id, tt.fileName, tt.file)
+			resp, err := testClient.Media.UploadThumbnail(tt.id, tt.fileName, tt.file)
 			if tt.wantErr {
 				assert.Error(t, err)
 			} else {
@@ -607,7 +607,7 @@ func TestVideoService_GetCost(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.GetCost(tt.qualities, tt.type_, tt.duration)
+			resp, err := testClient.Media.GetCost(tt.qualities, tt.type_, tt.duration)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -665,7 +665,7 @@ func TestVideoService_UploadPart(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			fileInfo, _ := tt.file.Stat()
-			resp, err := testClient.Video.UploadPart(tt.id, tt.hash, tt.index, tt.file.Name(), tt.file, fileInfo.Size())
+			resp, err := testClient.Media.UploadPart(tt.id, tt.hash, tt.index, tt.file.Name(), tt.file, fileInfo.Size())
 			if tt.wantErr {
 				assert.Error(t, err)
 			} else {
@@ -707,7 +707,7 @@ func TestVideoService_UploadWhenVideoComplete(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.UploadVideoComplete(tt.id)
+			resp, err := testClient.Media.UploadMediaComplete(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -731,7 +731,7 @@ func TestVideoService_UploadWhenVideoComplete(t *testing.T) {
 	}
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Video.UploadVideoComplete(tt.id)
+			resp, err := testAnonymousClient.Media.UploadMediaComplete(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -749,38 +749,38 @@ func TestVideoService_GetVideoPlayerInfo(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		request VideoApiGetVideoPlayerInfoRequest
+		request MediaApiGetMediaPlayerInfoRequest
 		wantErr bool
 	}{
 		{
 			name:    "Valid Get Video Player Info",
 			id:      testVideoID,
-			request: VideoApiGetVideoPlayerInfoRequest{},
+			request: MediaApiGetMediaPlayerInfoRequest{},
 			wantErr: false,
 		},
 		{
 			name:    "Invalid Video ID",
 			id:      "invalid-id",
-			request: VideoApiGetVideoPlayerInfoRequest{},
+			request: MediaApiGetMediaPlayerInfoRequest{},
 			wantErr: true,
 		},
 		{
 			name:    "Empty Video ID",
 			id:      "",
-			request: VideoApiGetVideoPlayerInfoRequest{},
+			request: MediaApiGetMediaPlayerInfoRequest{},
 			wantErr: true,
 		},
 		{
 			name:    "Not Exist ID",
 			id:      notExistId,
-			request: VideoApiGetVideoPlayerInfoRequest{},
+			request: MediaApiGetMediaPlayerInfoRequest{},
 			wantErr: true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.GetVideoPlayerInfo(tt.id, tt.request)
+			resp, err := testClient.Media.GetMediaPlayerInfo(tt.id, tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -837,7 +837,7 @@ func TestVideoService_CreateVideoCaptions(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.CreateCaption(tt.id, tt.lang, tt.file.Name(), tt.file)
+			resp, err := testClient.Media.CreateCaption(tt.id, tt.lang, tt.file.Name(), tt.file)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -865,7 +865,7 @@ func TestVideoService_GetVideoCaptions(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Video.GetCaptions(tt.id, VideoApiGetCaptionsRequest{})
+			resp, err := testAnonymousClient.Media.GetCaptions(tt.id, MediaApiGetCaptionsRequest{})
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -879,7 +879,7 @@ func TestVideoService_GetVideoCaptions(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		request VideoApiGetCaptionsRequest
+		request MediaApiGetCaptionsRequest
 		wantErr bool
 	}{
 		{
@@ -906,7 +906,7 @@ func TestVideoService_GetVideoCaptions(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.GetCaptions(tt.id, tt.request)
+			resp, err := testClient.Media.GetCaptions(tt.id, tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -1009,7 +1009,7 @@ func TestVideoService_DeleteVideoCaptions(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Video.DeleteCaption(tt.id, tt.lang)
+			resp, err := testAnonymousClient.Media.DeleteCaption(tt.id, tt.lang)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -1066,7 +1066,7 @@ func TestVideoService_DeleteVideoCaptions(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.DeleteCaption(tt.id, tt.lang)
+			resp, err := testClient.Media.DeleteCaption(tt.id, tt.lang)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -1096,7 +1096,7 @@ func TestVideoService_Delete(t *testing.T) {
 		Tags:        &validTags,
 	}
 
-	resp, err := testClient.Video.Create(createRequest)
+	resp, err := testClient.Media.Create(createRequest)
 	if err != nil {
 		t.Fatalf("Failed to create video: %v", err)
 	}
@@ -1116,7 +1116,7 @@ func TestVideoService_Delete(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Video.Delete(tt.id)
+			resp, err := testAnonymousClient.Media.Delete(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -1156,7 +1156,7 @@ func TestVideoService_Delete(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Video.Delete(tt.id)
+			resp, err := testClient.Media.Delete(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -1167,7 +1167,7 @@ func TestVideoService_Delete(t *testing.T) {
 		})
 	}
 	for _, id := range deleteVideosLater {
-		testClient.Video.Delete(id)
+		testClient.Media.Delete(id)
 	}
 }
 
