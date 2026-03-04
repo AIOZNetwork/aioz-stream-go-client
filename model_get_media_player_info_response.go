@@ -15,8 +15,8 @@ import (
 //"encoding/json"
 )
 
-// Media struct for Media
-type Media struct {
+// GetMediaPlayerInfoResponse struct for GetMediaPlayerInfoResponse
+type GetMediaPlayerInfoResponse struct {
 	Assets        *MediaAssets     `json:"assets,omitempty"`
 	Captions      *[]MediaCaption  `json:"captions,omitempty"`
 	Chapters      *[]MediaChapter  `json:"chapters,omitempty"`
@@ -34,31 +34,29 @@ type Media struct {
 	Status        *string          `json:"status,omitempty"`
 	Tags          *[]string        `json:"tags,omitempty"`
 	Title         *string          `json:"title,omitempty"`
-	Type          *string          `json:"type,omitempty"`
 	UpdatedAt     *string          `json:"updated_at,omitempty"`
 	UserId        *string          `json:"user_id,omitempty"`
-	View          *int32           `json:"view,omitempty"`
 }
 
-// NewMedia instantiates a new Media object
+// NewGetMediaPlayerInfoResponse instantiates a new GetMediaPlayerInfoResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMedia() *Media {
-	this := Media{}
+func NewGetMediaPlayerInfoResponse() *GetMediaPlayerInfoResponse {
+	this := GetMediaPlayerInfoResponse{}
 	return &this
 }
 
-// NewMediaWithDefaults instantiates a new Media object
+// NewGetMediaPlayerInfoResponseWithDefaults instantiates a new GetMediaPlayerInfoResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMediaWithDefaults() *Media {
-	this := Media{}
+func NewGetMediaPlayerInfoResponseWithDefaults() *GetMediaPlayerInfoResponse {
+	this := GetMediaPlayerInfoResponse{}
 	return &this
 }
 
 // GetAssets returns the Assets field value if set, zero value otherwise.
-func (o *Media) GetAssets() MediaAssets {
+func (o *GetMediaPlayerInfoResponse) GetAssets() MediaAssets {
 	if o == nil || o.Assets == nil {
 		var ret MediaAssets
 		return ret
@@ -68,7 +66,7 @@ func (o *Media) GetAssets() MediaAssets {
 
 // GetAssetsOk returns a tuple with the Assets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetAssetsOk() (*MediaAssets, bool) {
+func (o *GetMediaPlayerInfoResponse) GetAssetsOk() (*MediaAssets, bool) {
 	if o == nil || o.Assets == nil {
 		return nil, false
 	}
@@ -76,7 +74,7 @@ func (o *Media) GetAssetsOk() (*MediaAssets, bool) {
 }
 
 // HasAssets returns a boolean if a field has been set.
-func (o *Media) HasAssets() bool {
+func (o *GetMediaPlayerInfoResponse) HasAssets() bool {
 	if o != nil && o.Assets != nil {
 		return true
 	}
@@ -85,12 +83,12 @@ func (o *Media) HasAssets() bool {
 }
 
 // SetAssets gets a reference to the given MediaAssets and assigns it to the Assets field.
-func (o *Media) SetAssets(v MediaAssets) {
+func (o *GetMediaPlayerInfoResponse) SetAssets(v MediaAssets) {
 	o.Assets = &v
 }
 
 // GetCaptions returns the Captions field value if set, zero value otherwise.
-func (o *Media) GetCaptions() []MediaCaption {
+func (o *GetMediaPlayerInfoResponse) GetCaptions() []MediaCaption {
 	if o == nil || o.Captions == nil {
 		var ret []MediaCaption
 		return ret
@@ -100,7 +98,7 @@ func (o *Media) GetCaptions() []MediaCaption {
 
 // GetCaptionsOk returns a tuple with the Captions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetCaptionsOk() (*[]MediaCaption, bool) {
+func (o *GetMediaPlayerInfoResponse) GetCaptionsOk() (*[]MediaCaption, bool) {
 	if o == nil || o.Captions == nil {
 		return nil, false
 	}
@@ -108,7 +106,7 @@ func (o *Media) GetCaptionsOk() (*[]MediaCaption, bool) {
 }
 
 // HasCaptions returns a boolean if a field has been set.
-func (o *Media) HasCaptions() bool {
+func (o *GetMediaPlayerInfoResponse) HasCaptions() bool {
 	if o != nil && o.Captions != nil {
 		return true
 	}
@@ -117,12 +115,12 @@ func (o *Media) HasCaptions() bool {
 }
 
 // SetCaptions gets a reference to the given []MediaCaption and assigns it to the Captions field.
-func (o *Media) SetCaptions(v []MediaCaption) {
+func (o *GetMediaPlayerInfoResponse) SetCaptions(v []MediaCaption) {
 	o.Captions = &v
 }
 
 // GetChapters returns the Chapters field value if set, zero value otherwise.
-func (o *Media) GetChapters() []MediaChapter {
+func (o *GetMediaPlayerInfoResponse) GetChapters() []MediaChapter {
 	if o == nil || o.Chapters == nil {
 		var ret []MediaChapter
 		return ret
@@ -132,7 +130,7 @@ func (o *Media) GetChapters() []MediaChapter {
 
 // GetChaptersOk returns a tuple with the Chapters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetChaptersOk() (*[]MediaChapter, bool) {
+func (o *GetMediaPlayerInfoResponse) GetChaptersOk() (*[]MediaChapter, bool) {
 	if o == nil || o.Chapters == nil {
 		return nil, false
 	}
@@ -140,7 +138,7 @@ func (o *Media) GetChaptersOk() (*[]MediaChapter, bool) {
 }
 
 // HasChapters returns a boolean if a field has been set.
-func (o *Media) HasChapters() bool {
+func (o *GetMediaPlayerInfoResponse) HasChapters() bool {
 	if o != nil && o.Chapters != nil {
 		return true
 	}
@@ -149,12 +147,12 @@ func (o *Media) HasChapters() bool {
 }
 
 // SetChapters gets a reference to the given []MediaChapter and assigns it to the Chapters field.
-func (o *Media) SetChapters(v []MediaChapter) {
+func (o *GetMediaPlayerInfoResponse) SetChapters(v []MediaChapter) {
 	o.Chapters = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Media) GetCreatedAt() string {
+func (o *GetMediaPlayerInfoResponse) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
 		var ret string
 		return ret
@@ -164,7 +162,7 @@ func (o *Media) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetCreatedAtOk() (*string, bool) {
+func (o *GetMediaPlayerInfoResponse) GetCreatedAtOk() (*string, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -172,7 +170,7 @@ func (o *Media) GetCreatedAtOk() (*string, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *Media) HasCreatedAt() bool {
+func (o *GetMediaPlayerInfoResponse) HasCreatedAt() bool {
 	if o != nil && o.CreatedAt != nil {
 		return true
 	}
@@ -181,12 +179,12 @@ func (o *Media) HasCreatedAt() bool {
 }
 
 // SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
-func (o *Media) SetCreatedAt(v string) {
+func (o *GetMediaPlayerInfoResponse) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Media) GetDescription() string {
+func (o *GetMediaPlayerInfoResponse) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -196,7 +194,7 @@ func (o *Media) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetDescriptionOk() (*string, bool) {
+func (o *GetMediaPlayerInfoResponse) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
 		return nil, false
 	}
@@ -204,7 +202,7 @@ func (o *Media) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *Media) HasDescription() bool {
+func (o *GetMediaPlayerInfoResponse) HasDescription() bool {
 	if o != nil && o.Description != nil {
 		return true
 	}
@@ -213,12 +211,12 @@ func (o *Media) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Media) SetDescription(v string) {
+func (o *GetMediaPlayerInfoResponse) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
-func (o *Media) GetDuration() float32 {
+func (o *GetMediaPlayerInfoResponse) GetDuration() float32 {
 	if o == nil || o.Duration == nil {
 		var ret float32
 		return ret
@@ -228,7 +226,7 @@ func (o *Media) GetDuration() float32 {
 
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetDurationOk() (*float32, bool) {
+func (o *GetMediaPlayerInfoResponse) GetDurationOk() (*float32, bool) {
 	if o == nil || o.Duration == nil {
 		return nil, false
 	}
@@ -236,7 +234,7 @@ func (o *Media) GetDurationOk() (*float32, bool) {
 }
 
 // HasDuration returns a boolean if a field has been set.
-func (o *Media) HasDuration() bool {
+func (o *GetMediaPlayerInfoResponse) HasDuration() bool {
 	if o != nil && o.Duration != nil {
 		return true
 	}
@@ -245,12 +243,12 @@ func (o *Media) HasDuration() bool {
 }
 
 // SetDuration gets a reference to the given float32 and assigns it to the Duration field.
-func (o *Media) SetDuration(v float32) {
+func (o *GetMediaPlayerInfoResponse) SetDuration(v float32) {
 	o.Duration = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Media) GetId() string {
+func (o *GetMediaPlayerInfoResponse) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -260,7 +258,7 @@ func (o *Media) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetIdOk() (*string, bool) {
+func (o *GetMediaPlayerInfoResponse) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -268,7 +266,7 @@ func (o *Media) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *Media) HasId() bool {
+func (o *GetMediaPlayerInfoResponse) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -277,12 +275,12 @@ func (o *Media) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Media) SetId(v string) {
+func (o *GetMediaPlayerInfoResponse) SetId(v string) {
 	o.Id = &v
 }
 
 // GetIsMp4 returns the IsMp4 field value if set, zero value otherwise.
-func (o *Media) GetIsMp4() bool {
+func (o *GetMediaPlayerInfoResponse) GetIsMp4() bool {
 	if o == nil || o.IsMp4 == nil {
 		var ret bool
 		return ret
@@ -292,7 +290,7 @@ func (o *Media) GetIsMp4() bool {
 
 // GetIsMp4Ok returns a tuple with the IsMp4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetIsMp4Ok() (*bool, bool) {
+func (o *GetMediaPlayerInfoResponse) GetIsMp4Ok() (*bool, bool) {
 	if o == nil || o.IsMp4 == nil {
 		return nil, false
 	}
@@ -300,7 +298,7 @@ func (o *Media) GetIsMp4Ok() (*bool, bool) {
 }
 
 // HasIsMp4 returns a boolean if a field has been set.
-func (o *Media) HasIsMp4() bool {
+func (o *GetMediaPlayerInfoResponse) HasIsMp4() bool {
 	if o != nil && o.IsMp4 != nil {
 		return true
 	}
@@ -309,12 +307,12 @@ func (o *Media) HasIsMp4() bool {
 }
 
 // SetIsMp4 gets a reference to the given bool and assigns it to the IsMp4 field.
-func (o *Media) SetIsMp4(v bool) {
+func (o *GetMediaPlayerInfoResponse) SetIsMp4(v bool) {
 	o.IsMp4 = &v
 }
 
 // GetIsPublic returns the IsPublic field value if set, zero value otherwise.
-func (o *Media) GetIsPublic() bool {
+func (o *GetMediaPlayerInfoResponse) GetIsPublic() bool {
 	if o == nil || o.IsPublic == nil {
 		var ret bool
 		return ret
@@ -324,7 +322,7 @@ func (o *Media) GetIsPublic() bool {
 
 // GetIsPublicOk returns a tuple with the IsPublic field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetIsPublicOk() (*bool, bool) {
+func (o *GetMediaPlayerInfoResponse) GetIsPublicOk() (*bool, bool) {
 	if o == nil || o.IsPublic == nil {
 		return nil, false
 	}
@@ -332,7 +330,7 @@ func (o *Media) GetIsPublicOk() (*bool, bool) {
 }
 
 // HasIsPublic returns a boolean if a field has been set.
-func (o *Media) HasIsPublic() bool {
+func (o *GetMediaPlayerInfoResponse) HasIsPublic() bool {
 	if o != nil && o.IsPublic != nil {
 		return true
 	}
@@ -341,12 +339,12 @@ func (o *Media) HasIsPublic() bool {
 }
 
 // SetIsPublic gets a reference to the given bool and assigns it to the IsPublic field.
-func (o *Media) SetIsPublic(v bool) {
+func (o *GetMediaPlayerInfoResponse) SetIsPublic(v bool) {
 	o.IsPublic = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *Media) GetMetadata() []Metadata {
+func (o *GetMediaPlayerInfoResponse) GetMetadata() []Metadata {
 	if o == nil || o.Metadata == nil {
 		var ret []Metadata
 		return ret
@@ -356,7 +354,7 @@ func (o *Media) GetMetadata() []Metadata {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetMetadataOk() (*[]Metadata, bool) {
+func (o *GetMediaPlayerInfoResponse) GetMetadataOk() (*[]Metadata, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -364,7 +362,7 @@ func (o *Media) GetMetadataOk() (*[]Metadata, bool) {
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *Media) HasMetadata() bool {
+func (o *GetMediaPlayerInfoResponse) HasMetadata() bool {
 	if o != nil && o.Metadata != nil {
 		return true
 	}
@@ -373,12 +371,12 @@ func (o *Media) HasMetadata() bool {
 }
 
 // SetMetadata gets a reference to the given []Metadata and assigns it to the Metadata field.
-func (o *Media) SetMetadata(v []Metadata) {
+func (o *GetMediaPlayerInfoResponse) SetMetadata(v []Metadata) {
 	o.Metadata = &v
 }
 
 // GetPlayerTheme returns the PlayerTheme field value if set, zero value otherwise.
-func (o *Media) GetPlayerTheme() PlayerTheme {
+func (o *GetMediaPlayerInfoResponse) GetPlayerTheme() PlayerTheme {
 	if o == nil || o.PlayerTheme == nil {
 		var ret PlayerTheme
 		return ret
@@ -388,7 +386,7 @@ func (o *Media) GetPlayerTheme() PlayerTheme {
 
 // GetPlayerThemeOk returns a tuple with the PlayerTheme field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetPlayerThemeOk() (*PlayerTheme, bool) {
+func (o *GetMediaPlayerInfoResponse) GetPlayerThemeOk() (*PlayerTheme, bool) {
 	if o == nil || o.PlayerTheme == nil {
 		return nil, false
 	}
@@ -396,7 +394,7 @@ func (o *Media) GetPlayerThemeOk() (*PlayerTheme, bool) {
 }
 
 // HasPlayerTheme returns a boolean if a field has been set.
-func (o *Media) HasPlayerTheme() bool {
+func (o *GetMediaPlayerInfoResponse) HasPlayerTheme() bool {
 	if o != nil && o.PlayerTheme != nil {
 		return true
 	}
@@ -405,12 +403,12 @@ func (o *Media) HasPlayerTheme() bool {
 }
 
 // SetPlayerTheme gets a reference to the given PlayerTheme and assigns it to the PlayerTheme field.
-func (o *Media) SetPlayerTheme(v PlayerTheme) {
+func (o *GetMediaPlayerInfoResponse) SetPlayerTheme(v PlayerTheme) {
 	o.PlayerTheme = &v
 }
 
 // GetPlayerThemeId returns the PlayerThemeId field value if set, zero value otherwise.
-func (o *Media) GetPlayerThemeId() string {
+func (o *GetMediaPlayerInfoResponse) GetPlayerThemeId() string {
 	if o == nil || o.PlayerThemeId == nil {
 		var ret string
 		return ret
@@ -420,7 +418,7 @@ func (o *Media) GetPlayerThemeId() string {
 
 // GetPlayerThemeIdOk returns a tuple with the PlayerThemeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetPlayerThemeIdOk() (*string, bool) {
+func (o *GetMediaPlayerInfoResponse) GetPlayerThemeIdOk() (*string, bool) {
 	if o == nil || o.PlayerThemeId == nil {
 		return nil, false
 	}
@@ -428,7 +426,7 @@ func (o *Media) GetPlayerThemeIdOk() (*string, bool) {
 }
 
 // HasPlayerThemeId returns a boolean if a field has been set.
-func (o *Media) HasPlayerThemeId() bool {
+func (o *GetMediaPlayerInfoResponse) HasPlayerThemeId() bool {
 	if o != nil && o.PlayerThemeId != nil {
 		return true
 	}
@@ -437,12 +435,12 @@ func (o *Media) HasPlayerThemeId() bool {
 }
 
 // SetPlayerThemeId gets a reference to the given string and assigns it to the PlayerThemeId field.
-func (o *Media) SetPlayerThemeId(v string) {
+func (o *GetMediaPlayerInfoResponse) SetPlayerThemeId(v string) {
 	o.PlayerThemeId = &v
 }
 
 // GetQualities returns the Qualities field value if set, zero value otherwise.
-func (o *Media) GetQualities() []QualityObject {
+func (o *GetMediaPlayerInfoResponse) GetQualities() []QualityObject {
 	if o == nil || o.Qualities == nil {
 		var ret []QualityObject
 		return ret
@@ -452,7 +450,7 @@ func (o *Media) GetQualities() []QualityObject {
 
 // GetQualitiesOk returns a tuple with the Qualities field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetQualitiesOk() (*[]QualityObject, bool) {
+func (o *GetMediaPlayerInfoResponse) GetQualitiesOk() (*[]QualityObject, bool) {
 	if o == nil || o.Qualities == nil {
 		return nil, false
 	}
@@ -460,7 +458,7 @@ func (o *Media) GetQualitiesOk() (*[]QualityObject, bool) {
 }
 
 // HasQualities returns a boolean if a field has been set.
-func (o *Media) HasQualities() bool {
+func (o *GetMediaPlayerInfoResponse) HasQualities() bool {
 	if o != nil && o.Qualities != nil {
 		return true
 	}
@@ -469,12 +467,12 @@ func (o *Media) HasQualities() bool {
 }
 
 // SetQualities gets a reference to the given []QualityObject and assigns it to the Qualities field.
-func (o *Media) SetQualities(v []QualityObject) {
+func (o *GetMediaPlayerInfoResponse) SetQualities(v []QualityObject) {
 	o.Qualities = &v
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *Media) GetSize() int32 {
+func (o *GetMediaPlayerInfoResponse) GetSize() int32 {
 	if o == nil || o.Size == nil {
 		var ret int32
 		return ret
@@ -484,7 +482,7 @@ func (o *Media) GetSize() int32 {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetSizeOk() (*int32, bool) {
+func (o *GetMediaPlayerInfoResponse) GetSizeOk() (*int32, bool) {
 	if o == nil || o.Size == nil {
 		return nil, false
 	}
@@ -492,7 +490,7 @@ func (o *Media) GetSizeOk() (*int32, bool) {
 }
 
 // HasSize returns a boolean if a field has been set.
-func (o *Media) HasSize() bool {
+func (o *GetMediaPlayerInfoResponse) HasSize() bool {
 	if o != nil && o.Size != nil {
 		return true
 	}
@@ -501,12 +499,12 @@ func (o *Media) HasSize() bool {
 }
 
 // SetSize gets a reference to the given int32 and assigns it to the Size field.
-func (o *Media) SetSize(v int32) {
+func (o *GetMediaPlayerInfoResponse) SetSize(v int32) {
 	o.Size = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Media) GetStatus() string {
+func (o *GetMediaPlayerInfoResponse) GetStatus() string {
 	if o == nil || o.Status == nil {
 		var ret string
 		return ret
@@ -516,7 +514,7 @@ func (o *Media) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetStatusOk() (*string, bool) {
+func (o *GetMediaPlayerInfoResponse) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -524,7 +522,7 @@ func (o *Media) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *Media) HasStatus() bool {
+func (o *GetMediaPlayerInfoResponse) HasStatus() bool {
 	if o != nil && o.Status != nil {
 		return true
 	}
@@ -533,12 +531,12 @@ func (o *Media) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *Media) SetStatus(v string) {
+func (o *GetMediaPlayerInfoResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *Media) GetTags() []string {
+func (o *GetMediaPlayerInfoResponse) GetTags() []string {
 	if o == nil || o.Tags == nil {
 		var ret []string
 		return ret
@@ -548,7 +546,7 @@ func (o *Media) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetTagsOk() (*[]string, bool) {
+func (o *GetMediaPlayerInfoResponse) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -556,7 +554,7 @@ func (o *Media) GetTagsOk() (*[]string, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *Media) HasTags() bool {
+func (o *GetMediaPlayerInfoResponse) HasTags() bool {
 	if o != nil && o.Tags != nil {
 		return true
 	}
@@ -565,12 +563,12 @@ func (o *Media) HasTags() bool {
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *Media) SetTags(v []string) {
+func (o *GetMediaPlayerInfoResponse) SetTags(v []string) {
 	o.Tags = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
-func (o *Media) GetTitle() string {
+func (o *GetMediaPlayerInfoResponse) GetTitle() string {
 	if o == nil || o.Title == nil {
 		var ret string
 		return ret
@@ -580,7 +578,7 @@ func (o *Media) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetTitleOk() (*string, bool) {
+func (o *GetMediaPlayerInfoResponse) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
 		return nil, false
 	}
@@ -588,7 +586,7 @@ func (o *Media) GetTitleOk() (*string, bool) {
 }
 
 // HasTitle returns a boolean if a field has been set.
-func (o *Media) HasTitle() bool {
+func (o *GetMediaPlayerInfoResponse) HasTitle() bool {
 	if o != nil && o.Title != nil {
 		return true
 	}
@@ -597,44 +595,12 @@ func (o *Media) HasTitle() bool {
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *Media) SetTitle(v string) {
+func (o *GetMediaPlayerInfoResponse) SetTitle(v string) {
 	o.Title = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *Media) GetType() string {
-	if o == nil || o.Type == nil {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Media) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *Media) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Media) SetType(v string) {
-	o.Type = &v
-}
-
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Media) GetUpdatedAt() string {
+func (o *GetMediaPlayerInfoResponse) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
 		var ret string
 		return ret
@@ -644,7 +610,7 @@ func (o *Media) GetUpdatedAt() string {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetUpdatedAtOk() (*string, bool) {
+func (o *GetMediaPlayerInfoResponse) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -652,7 +618,7 @@ func (o *Media) GetUpdatedAtOk() (*string, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *Media) HasUpdatedAt() bool {
+func (o *GetMediaPlayerInfoResponse) HasUpdatedAt() bool {
 	if o != nil && o.UpdatedAt != nil {
 		return true
 	}
@@ -661,12 +627,12 @@ func (o *Media) HasUpdatedAt() bool {
 }
 
 // SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
-func (o *Media) SetUpdatedAt(v string) {
+func (o *GetMediaPlayerInfoResponse) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *Media) GetUserId() string {
+func (o *GetMediaPlayerInfoResponse) GetUserId() string {
 	if o == nil || o.UserId == nil {
 		var ret string
 		return ret
@@ -676,7 +642,7 @@ func (o *Media) GetUserId() string {
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetUserIdOk() (*string, bool) {
+func (o *GetMediaPlayerInfoResponse) GetUserIdOk() (*string, bool) {
 	if o == nil || o.UserId == nil {
 		return nil, false
 	}
@@ -684,7 +650,7 @@ func (o *Media) GetUserIdOk() (*string, bool) {
 }
 
 // HasUserId returns a boolean if a field has been set.
-func (o *Media) HasUserId() bool {
+func (o *GetMediaPlayerInfoResponse) HasUserId() bool {
 	if o != nil && o.UserId != nil {
 		return true
 	}
@@ -693,65 +659,33 @@ func (o *Media) HasUserId() bool {
 }
 
 // SetUserId gets a reference to the given string and assigns it to the UserId field.
-func (o *Media) SetUserId(v string) {
+func (o *GetMediaPlayerInfoResponse) SetUserId(v string) {
 	o.UserId = &v
 }
 
-// GetView returns the View field value if set, zero value otherwise.
-func (o *Media) GetView() int32 {
-	if o == nil || o.View == nil {
-		var ret int32
-		return ret
-	}
-	return *o.View
-}
-
-// GetViewOk returns a tuple with the View field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Media) GetViewOk() (*int32, bool) {
-	if o == nil || o.View == nil {
-		return nil, false
-	}
-	return o.View, true
-}
-
-// HasView returns a boolean if a field has been set.
-func (o *Media) HasView() bool {
-	if o != nil && o.View != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetView gets a reference to the given int32 and assigns it to the View field.
-func (o *Media) SetView(v int32) {
-	o.View = &v
-}
-
-type NullableMedia struct {
-	value *Media
+type NullableGetMediaPlayerInfoResponse struct {
+	value *GetMediaPlayerInfoResponse
 	isSet bool
 }
 
-func (v NullableMedia) Get() *Media {
+func (v NullableGetMediaPlayerInfoResponse) Get() *GetMediaPlayerInfoResponse {
 	return v.value
 }
 
-func (v *NullableMedia) Set(val *Media) {
+func (v *NullableGetMediaPlayerInfoResponse) Set(val *GetMediaPlayerInfoResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMedia) IsSet() bool {
+func (v NullableGetMediaPlayerInfoResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMedia) Unset() {
+func (v *NullableGetMediaPlayerInfoResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMedia(val *Media) *NullableMedia {
-	return &NullableMedia{value: val, isSet: true}
+func NewNullableGetMediaPlayerInfoResponse(val *GetMediaPlayerInfoResponse) *NullableGetMediaPlayerInfoResponse {
+	return &NullableGetMediaPlayerInfoResponse{value: val, isSet: true}
 }

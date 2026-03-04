@@ -19,11 +19,11 @@ import (
 type PlaylistItem struct {
 	CreatedAt  *string            `json:"created_at,omitempty"`
 	Id         *string            `json:"id,omitempty"`
+	Media      *PlaylistItemMedia `json:"media,omitempty"`
 	NextId     *string            `json:"next_id,omitempty"`
 	PlaylistId *string            `json:"playlist_id,omitempty"`
 	PreviousId *string            `json:"previous_id,omitempty"`
 	UpdatedAt  *string            `json:"updated_at,omitempty"`
-	Video      *PlaylistItemMedia `json:"video,omitempty"`
 	VideoId    *string            `json:"video_id,omitempty"`
 }
 
@@ -106,6 +106,38 @@ func (o *PlaylistItem) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *PlaylistItem) SetId(v string) {
 	o.Id = &v
+}
+
+// GetMedia returns the Media field value if set, zero value otherwise.
+func (o *PlaylistItem) GetMedia() PlaylistItemMedia {
+	if o == nil || o.Media == nil {
+		var ret PlaylistItemMedia
+		return ret
+	}
+	return *o.Media
+}
+
+// GetMediaOk returns a tuple with the Media field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaylistItem) GetMediaOk() (*PlaylistItemMedia, bool) {
+	if o == nil || o.Media == nil {
+		return nil, false
+	}
+	return o.Media, true
+}
+
+// HasMedia returns a boolean if a field has been set.
+func (o *PlaylistItem) HasMedia() bool {
+	if o != nil && o.Media != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMedia gets a reference to the given PlaylistItemMedia and assigns it to the Media field.
+func (o *PlaylistItem) SetMedia(v PlaylistItemMedia) {
+	o.Media = &v
 }
 
 // GetNextId returns the NextId field value if set, zero value otherwise.
@@ -234,38 +266,6 @@ func (o *PlaylistItem) HasUpdatedAt() bool {
 // SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *PlaylistItem) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
-}
-
-// GetVideo returns the Video field value if set, zero value otherwise.
-func (o *PlaylistItem) GetVideo() PlaylistItemMedia {
-	if o == nil || o.Video == nil {
-		var ret PlaylistItemMedia
-		return ret
-	}
-	return *o.Video
-}
-
-// GetVideoOk returns a tuple with the Video field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PlaylistItem) GetVideoOk() (*PlaylistItemMedia, bool) {
-	if o == nil || o.Video == nil {
-		return nil, false
-	}
-	return o.Video, true
-}
-
-// HasVideo returns a boolean if a field has been set.
-func (o *PlaylistItem) HasVideo() bool {
-	if o != nil && o.Video != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVideo gets a reference to the given PlaylistItemMedia and assigns it to the Video field.
-func (o *PlaylistItem) SetVideo(v PlaylistItemMedia) {
-	o.Video = &v
 }
 
 // GetVideoId returns the VideoId field value if set, zero value otherwise.

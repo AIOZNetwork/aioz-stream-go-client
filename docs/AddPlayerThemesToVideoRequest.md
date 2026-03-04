@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**MediaId** | Pointer to **string** |  | [optional] 
 **PlayerThemeId** | Pointer to **string** |  | [optional] 
-**VideoId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -25,6 +25,31 @@ will change when the set of required properties is changed
 NewAddPlayerThemesToVideoRequestWithDefaults instantiates a new AddPlayerThemesToVideoRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetMediaId
+
+`func (o *AddPlayerThemesToVideoRequest) GetMediaId() string`
+
+GetMediaId returns the MediaId field if non-nil, zero value otherwise.
+
+### GetMediaIdOk
+
+`func (o *AddPlayerThemesToVideoRequest) GetMediaIdOk() (*string, bool)`
+
+GetMediaIdOk returns a tuple with the MediaId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMediaId
+
+`func (o *AddPlayerThemesToVideoRequest) SetMediaId(v string)`
+
+SetMediaId sets MediaId field to given value.
+
+### HasMediaId
+
+`func (o *AddPlayerThemesToVideoRequest) HasMediaId() bool`
+
+HasMediaId returns a boolean if a field has been set.
 
 ### GetPlayerThemeId
 
@@ -50,31 +75,6 @@ SetPlayerThemeId sets PlayerThemeId field to given value.
 `func (o *AddPlayerThemesToVideoRequest) HasPlayerThemeId() bool`
 
 HasPlayerThemeId returns a boolean if a field has been set.
-
-### GetVideoId
-
-`func (o *AddPlayerThemesToVideoRequest) GetVideoId() string`
-
-GetVideoId returns the VideoId field if non-nil, zero value otherwise.
-
-### GetVideoIdOk
-
-`func (o *AddPlayerThemesToVideoRequest) GetVideoIdOk() (*string, bool)`
-
-GetVideoIdOk returns a tuple with the VideoId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVideoId
-
-`func (o *AddPlayerThemesToVideoRequest) SetVideoId(v string)`
-
-SetVideoId sets VideoId field to given value.
-
-### HasVideoId
-
-`func (o *AddPlayerThemesToVideoRequest) HasVideoId() bool`
-
-HasVideoId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

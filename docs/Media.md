@@ -1,576 +1,1139 @@
-# Media
+# \Media
 
-## Properties
+All URIs are relative to https://api.aiozstream.network/api
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**Assets** | Pointer to [**VideoAssets**](VideoAssets.md) |  | [optional] 
-**Captions** | Pointer to [**[]VideoCaption**](VideoCaption.md) |  | [optional] 
-**Chapters** | Pointer to [**[]VideoChapter**](VideoChapter.md) |  | [optional] 
-**CreatedAt** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Duration** | Pointer to **float32** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**IsMp4** | Pointer to **bool** |  | [optional] 
-**IsPublic** | Pointer to **bool** |  | [optional] 
-**Metadata** | Pointer to [**[]Metadata**](Metadata.md) |  | [optional] 
-**PlayerTheme** | Pointer to [**PlayerTheme**](PlayerTheme.md) |  | [optional] 
-**PlayerThemeId** | Pointer to **string** |  | [optional] 
-**Qualities** | Pointer to [**[]QualityObject**](QualityObject.md) |  | [optional] 
-**Size** | Pointer to **int32** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
-**Title** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
-**UserId** | Pointer to **string** |  | [optional] 
-**View** | Pointer to **int32** |  | [optional] 
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**Create**](Media.md#Create) | **Post** /media/create | Create media object
+[**Update**](Media.md#Update) | **Patch** /media/{id} | update media info
+[**Delete**](Media.md#Delete) | **Delete** /media/{id} | Delete media
+[**UploadThumbnail**](Media.md#UploadThumbnail) | **Post** /media/{id}/thumbnail | Upload media thumbnail
+[**DeleteThumbnail**](Media.md#DeleteThumbnail) | **Delete** /media/{id}/thumbnail | Delete media thumbnail
+[**CreateCaption**](Media.md#CreateCaption) | **Post** /media/{id}/captions/{lan} | Create a new media caption
+[**DeleteCaption**](Media.md#DeleteCaption) | **Delete** /media/{id}/captions/{lan} | Delete a media caption
+[**GetCaptions**](Media.md#GetCaptions) | **Get** /media/{id}/captions | Get media captions
+[**GetCost**](Media.md#GetCost) | **Get** /media/cost | get media transcoding cost
+[**GetDetail**](Media.md#GetDetail) | **Get** /media/{id} | get media detail
+[**GetMediaList**](Media.md#GetMediaList) | **Post** /media | Get user videos list
+[**GetMediaPlayerInfo**](Media.md#GetMediaPlayerInfo) | **Get** /media/{id}/player.json | Get media object
+[**SetDefaultCaption**](Media.md#SetDefaultCaption) | **Patch** /media/{id}/captions/{lan} | Set default caption
+[**UploadMediaComplete**](Media.md#UploadMediaComplete) | **Get** /media/{id}/complete | Get upload media when complete
+[**UploadPart**](Media.md#UploadPart) | **Post** /media/{id}/part | Upload part of media
 
-## Methods
 
-### NewMedia
 
-`func NewMedia() *Media`
+## Create
 
-NewMedia instantiates a new Media object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+> Create(request CreateMediaRequest) (*CreateMediaResponse, error)
 
-### NewMediaWithDefaults
+> CreateWithContext(ctx context.Context, request CreateMediaRequest) (*CreateMediaResponse, error)
 
-`func NewMediaWithDefaults() *Media`
 
-NewMediaWithDefaults instantiates a new Media object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+Create media object
 
-### GetAssets
 
-`func (o *Media) GetAssets() VideoAssets`
 
-GetAssets returns the Assets field if non-nil, zero value otherwise.
+### Example
 
-### GetAssetsOk
+```go
+package main
 
-`func (o *Media) GetAssetsOk() (*VideoAssets, bool)`
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-GetAssetsOk returns a tuple with the Assets field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    request := *aiozstreamsdk.NewCreateMediaRequest() // CreateMediaRequest | media's info
 
-### SetAssets
+    
+    res, err := client.Media.Create(request)
 
-`func (o *Media) SetAssets(v VideoAssets)`
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.Create``: %v\n", err)
+    }
+    // response from `Create`: CreateMediaResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.Create`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-SetAssets sets Assets field to given value.
 
-### HasAssets
 
-`func (o *Media) HasAssets() bool`
+### Other Parameters
 
-HasAssets returns a boolean if a field has been set.
 
-### GetCaptions
 
-`func (o *Media) GetCaptions() []VideoCaption`
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**request** | [**CreateMediaRequest**](CreateMediaRequest.md) | media&#39;s info | 
 
-GetCaptions returns the Captions field if non-nil, zero value otherwise.
+### Return type
 
-### GetCaptionsOk
+[**CreateMediaResponse**](CreateMediaResponse.md)
 
-`func (o *Media) GetCaptionsOk() (*[]VideoCaption, bool)`
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-GetCaptionsOk returns a tuple with the Captions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
 
-### SetCaptions
+## Update
 
-`func (o *Media) SetCaptions(v []VideoCaption)`
+> Update(id string, input UpdateMediaInfoRequest) (*ResponseSuccess, error)
 
-SetCaptions sets Captions field to given value.
+> UpdateWithContext(ctx context.Context, id string, input UpdateMediaInfoRequest) (*ResponseSuccess, error)
 
-### HasCaptions
 
-`func (o *Media) HasCaptions() bool`
+update media info
 
-HasCaptions returns a boolean if a field has been set.
+### Example
 
-### GetChapters
+```go
+package main
 
-`func (o *Media) GetChapters() []VideoChapter`
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-GetChapters returns the Chapters field if non-nil, zero value otherwise.
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | media's id
+    input := *aiozstreamsdk.NewUpdateMediaInfoRequest() // UpdateMediaInfoRequest | input
 
-### GetChaptersOk
+    
+    res, err := client.Media.Update(id, input)
 
-`func (o *Media) GetChaptersOk() (*[]VideoChapter, bool)`
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.Update``: %v\n", err)
+    }
+    // response from `Update`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.Update`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-GetChaptersOk returns a tuple with the Chapters field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
 
-### SetChapters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | media&#39;s id | 
 
-`func (o *Media) SetChapters(v []VideoChapter)`
+### Other Parameters
 
-SetChapters sets Chapters field to given value.
 
-### HasChapters
 
-`func (o *Media) HasChapters() bool`
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**input** | [**UpdateMediaInfoRequest**](UpdateMediaInfoRequest.md) | input | 
 
-HasChapters returns a boolean if a field has been set.
+### Return type
 
-### GetCreatedAt
+[**ResponseSuccess**](ResponseSuccess.md)
 
-`func (o *Media) GetCreatedAt() string`
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+## Delete
 
-`func (o *Media) GetCreatedAtOk() (*string, bool)`
+> Delete(id string) (*ResponseSuccess, error)
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+> DeleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
-### SetCreatedAt
 
-`func (o *Media) SetCreatedAt(v string)`
+Delete media
 
-SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
 
-`func (o *Media) HasCreatedAt() bool`
+### Example
 
-HasCreatedAt returns a boolean if a field has been set.
+```go
+package main
 
-### GetDescription
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-`func (o *Media) GetDescription() string`
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | Media ID
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+    
+    res, err := client.Media.Delete(id)
 
-### GetDescriptionOk
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.Delete``: %v\n", err)
+    }
+    // response from `Delete`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.Delete`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-`func (o *Media) GetDescriptionOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | Media ID | 
 
-### SetDescription
+### Other Parameters
 
-`func (o *Media) SetDescription(v string)`
 
-SetDescription sets Description field to given value.
 
-### HasDescription
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-`func (o *Media) HasDescription() bool`
+### Return type
 
-HasDescription returns a boolean if a field has been set.
+[**ResponseSuccess**](ResponseSuccess.md)
 
-### GetDuration
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-`func (o *Media) GetDuration() float32`
 
-GetDuration returns the Duration field if non-nil, zero value otherwise.
+## UploadThumbnail
 
-### GetDurationOk
+> UploadThumbnailFile(id string, file *os.File) (*ResponseSuccess, error)
+> UploadThumbnail(id string, fileName string, fileReader io.Reader)
+> UploadThumbnailFileWithContext(ctx context.Context, id string, file *os.File) (*ResponseSuccess, error)
+> UploadThumbnailWithContext(ctx context.Context, id string, fileName string, fileReader io.Reader)
 
-`func (o *Media) GetDurationOk() (*float32, bool)`
+Upload media thumbnail
 
-GetDurationOk returns a tuple with the Duration field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### Example
 
-### SetDuration
+```go
+package main
 
-`func (o *Media) SetDuration(v float32)`
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-SetDuration sets Duration field to given value.
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | media's id
+    file := os.NewFile(1234, "some_file") // *os.File | file media to be uploaded
 
-### HasDuration
+    
+    res, err := client.Media.UploadThumbnailFile(id, file)
 
-`func (o *Media) HasDuration() bool`
+    // you can also use a Reader instead of a File:
+    // we recommend using Reader instead!
+    // client.Media.UploadThumbnail(id, fileName, fileReader)
 
-HasDuration returns a boolean if a field has been set.
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.UploadThumbnail``: %v\n", err)
+    }
+    // response from `UploadThumbnail`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.UploadThumbnail`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-### GetId
 
-`func (o *Media) GetId() string`
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | media&#39;s id | 
 
-GetId returns the Id field if non-nil, zero value otherwise.
+### Other Parameters
 
-### GetIdOk
 
-`func (o *Media) GetIdOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**file** | ***os.File** | file media to be uploaded | 
 
-### SetId
+### Return type
 
-`func (o *Media) SetId(v string)`
+[**ResponseSuccess**](ResponseSuccess.md)
 
-SetId sets Id field to given value.
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-### HasId
 
-`func (o *Media) HasId() bool`
+## DeleteThumbnail
 
-HasId returns a boolean if a field has been set.
+> DeleteThumbnail(id string) (*ResponseSuccess, error)
 
-### GetIsMp4
+> DeleteThumbnailWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
-`func (o *Media) GetIsMp4() bool`
 
-GetIsMp4 returns the IsMp4 field if non-nil, zero value otherwise.
+Delete media thumbnail
 
-### GetIsMp4Ok
+### Example
 
-`func (o *Media) GetIsMp4Ok() (*bool, bool)`
+```go
+package main
 
-GetIsMp4Ok returns a tuple with the IsMp4 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-### SetIsMp4
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | media's id
 
-`func (o *Media) SetIsMp4(v bool)`
+    
+    res, err := client.Media.DeleteThumbnail(id)
 
-SetIsMp4 sets IsMp4 field to given value.
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.DeleteThumbnail``: %v\n", err)
+    }
+    // response from `DeleteThumbnail`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.DeleteThumbnail`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-### HasIsMp4
 
-`func (o *Media) HasIsMp4() bool`
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | media&#39;s id | 
 
-HasIsMp4 returns a boolean if a field has been set.
+### Other Parameters
 
-### GetIsPublic
 
-`func (o *Media) GetIsPublic() bool`
 
-GetIsPublic returns the IsPublic field if non-nil, zero value otherwise.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-### GetIsPublicOk
+### Return type
 
-`func (o *Media) GetIsPublicOk() (*bool, bool)`
+[**ResponseSuccess**](ResponseSuccess.md)
 
-GetIsPublicOk returns a tuple with the IsPublic field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-### SetIsPublic
 
-`func (o *Media) SetIsPublic(v bool)`
+## CreateCaption
 
-SetIsPublic sets IsPublic field to given value.
+> CreateCaptionFile(id string, lan string, file *os.File) (*CreateMediaCaptionResponse, error)
+> CreateCaption(id string, lan string, fileName string, fileReader io.Reader)
+> CreateCaptionFileWithContext(ctx context.Context, id string, lan string, file *os.File) (*CreateMediaCaptionResponse, error)
+> CreateCaptionWithContext(ctx context.Context, id string, lan string, fileName string, fileReader io.Reader)
 
-### HasIsPublic
+Create a new media caption
 
-`func (o *Media) HasIsPublic() bool`
 
-HasIsPublic returns a boolean if a field has been set.
 
-### GetMetadata
+### Example
 
-`func (o *Media) GetMetadata() []Metadata`
+```go
+package main
 
-GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-### GetMetadataOk
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | Media ID
+    lan := "lan_example" // string | Language
+    file := os.NewFile(1234, "some_file") // *os.File | VTT File
 
-`func (o *Media) GetMetadataOk() (*[]Metadata, bool)`
+    
+    res, err := client.Media.CreateCaptionFile(id, lan, file)
 
-GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+    // you can also use a Reader instead of a File:
+    // we recommend using Reader instead!
+    // client.Media.CreateCaption(id, lan, fileName, fileReader)
 
-### SetMetadata
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.CreateCaption``: %v\n", err)
+    }
+    // response from `CreateCaption`: CreateMediaCaptionResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.CreateCaption`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-`func (o *Media) SetMetadata(v []Metadata)`
 
-SetMetadata sets Metadata field to given value.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | Media ID | 
+**lan** | **string** | Language | 
 
-### HasMetadata
+### Other Parameters
 
-`func (o *Media) HasMetadata() bool`
 
-HasMetadata returns a boolean if a field has been set.
 
-### GetPlayerTheme
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**file** | ***os.File** | VTT File | 
 
-`func (o *Media) GetPlayerTheme() PlayerTheme`
+### Return type
 
-GetPlayerTheme returns the PlayerTheme field if non-nil, zero value otherwise.
+[**CreateMediaCaptionResponse**](CreateMediaCaptionResponse.md)
 
-### GetPlayerThemeOk
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-`func (o *Media) GetPlayerThemeOk() (*PlayerTheme, bool)`
 
-GetPlayerThemeOk returns a tuple with the PlayerTheme field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+## DeleteCaption
 
-### SetPlayerTheme
+> DeleteCaption(id string, lan string) (*ResponseSuccess, error)
 
-`func (o *Media) SetPlayerTheme(v PlayerTheme)`
+> DeleteCaptionWithContext(ctx context.Context, id string, lan string) (*ResponseSuccess, error)
 
-SetPlayerTheme sets PlayerTheme field to given value.
 
-### HasPlayerTheme
+Delete a media caption
 
-`func (o *Media) HasPlayerTheme() bool`
 
-HasPlayerTheme returns a boolean if a field has been set.
 
-### GetPlayerThemeId
+### Example
 
-`func (o *Media) GetPlayerThemeId() string`
+```go
+package main
 
-GetPlayerThemeId returns the PlayerThemeId field if non-nil, zero value otherwise.
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-### GetPlayerThemeIdOk
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | Media ID
+    lan := "lan_example" // string | Language
 
-`func (o *Media) GetPlayerThemeIdOk() (*string, bool)`
+    
+    res, err := client.Media.DeleteCaption(id, lan)
 
-GetPlayerThemeIdOk returns a tuple with the PlayerThemeId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.DeleteCaption``: %v\n", err)
+    }
+    // response from `DeleteCaption`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.DeleteCaption`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-### SetPlayerThemeId
 
-`func (o *Media) SetPlayerThemeId(v string)`
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | Media ID | 
+**lan** | **string** | Language | 
 
-SetPlayerThemeId sets PlayerThemeId field to given value.
+### Other Parameters
 
-### HasPlayerThemeId
 
-`func (o *Media) HasPlayerThemeId() bool`
 
-HasPlayerThemeId returns a boolean if a field has been set.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-### GetQualities
+### Return type
 
-`func (o *Media) GetQualities() []QualityObject`
+[**ResponseSuccess**](ResponseSuccess.md)
 
-GetQualities returns the Qualities field if non-nil, zero value otherwise.
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-### GetQualitiesOk
 
-`func (o *Media) GetQualitiesOk() (*[]QualityObject, bool)`
+## GetCaptions
 
-GetQualitiesOk returns a tuple with the Qualities field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+> GetCaptions(id string, r MediaApiGetCaptionsRequest) (*GetMediaCaptionsResponse, error)
 
-### SetQualities
 
-`func (o *Media) SetQualities(v []QualityObject)`
+> GetCaptionsWithContext(ctx context.Context, id string, r MediaApiGetCaptionsRequest) (*GetMediaCaptionsResponse, error)
 
-SetQualities sets Qualities field to given value.
 
-### HasQualities
 
-`func (o *Media) HasQualities() bool`
+Get media captions
 
-HasQualities returns a boolean if a field has been set.
 
-### GetSize
 
-`func (o *Media) GetSize() int32`
+### Example
 
-GetSize returns the Size field if non-nil, zero value otherwise.
+```go
+package main
 
-### GetSizeOk
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-`func (o *Media) GetSizeOk() (*int32, bool)`
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+    req := aiozstreamsdk.MediaApiGetCaptionsRequest{}
+    
+    req.Id("id_example") // string | Media ID
+    req.Offset(int32(56)) // int32 | offset, allowed values greater than or equal to 0. Default(0) (default to 0)
+    req.Limit(int32(56)) // int32 | results per page. Allowed values 1-100, default is 25 (default to 25)
 
-GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+    res, err := client.Media.GetCaptions(id string, req)
+    
 
-### SetSize
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.GetCaptions``: %v\n", err)
+    }
+    // response from `GetCaptions`: GetMediaCaptionsResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.GetCaptions`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-`func (o *Media) SetSize(v int32)`
 
-SetSize sets Size field to given value.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | Media ID | 
 
-### HasSize
+### Other Parameters
 
-`func (o *Media) HasSize() bool`
 
-HasSize returns a boolean if a field has been set.
 
-### GetStatus
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**offset** | **int32** | offset, allowed values greater than or equal to 0. Default(0) | [default to 0]
+**limit** | **int32** | results per page. Allowed values 1-100, default is 25 | [default to 25]
 
-`func (o *Media) GetStatus() string`
+### Return type
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+[**GetMediaCaptionsResponse**](GetMediaCaptionsResponse.md)
 
-### GetStatusOk
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-`func (o *Media) GetStatusOk() (*string, bool)`
 
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+## GetCost
 
-### SetStatus
+> GetCost(qualities string, type_ string, duration float32) (*GetTranscodeCostResponse, error)
 
-`func (o *Media) SetStatus(v string)`
+> GetCostWithContext(ctx context.Context, qualities string, type_ string, duration float32) (*GetTranscodeCostResponse, error)
 
-SetStatus sets Status field to given value.
 
-### HasStatus
+get media transcoding cost
 
-`func (o *Media) HasStatus() bool`
 
-HasStatus returns a boolean if a field has been set.
 
-### GetTags
+### Example
 
-`func (o *Media) GetTags() []string`
+```go
+package main
 
-GetTags returns the Tags field if non-nil, zero value otherwise.
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-### GetTagsOk
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    qualities := "qualities_example" // string | media's qualities
+    type_ := "type__example" // string | media's type
+    duration := float32(8.14) // float32 | media's duration
 
-`func (o *Media) GetTagsOk() (*[]string, bool)`
+    
+    res, err := client.Media.GetCost(qualities, type_, duration)
 
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.GetCost``: %v\n", err)
+    }
+    // response from `GetCost`: GetTranscodeCostResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.GetCost`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-### SetTags
 
-`func (o *Media) SetTags(v []string)`
 
-SetTags sets Tags field to given value.
+### Other Parameters
 
-### HasTags
 
-`func (o *Media) HasTags() bool`
 
-HasTags returns a boolean if a field has been set.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**qualities** | **string** | media&#39;s qualities | 
+**type_** | **string** | media&#39;s type | 
+**duration** | **float32** | media&#39;s duration | 
 
-### GetTitle
+### Return type
 
-`func (o *Media) GetTitle() string`
+[**GetTranscodeCostResponse**](GetTranscodeCostResponse.md)
 
-GetTitle returns the Title field if non-nil, zero value otherwise.
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-### GetTitleOk
 
-`func (o *Media) GetTitleOk() (*string, bool)`
+## GetDetail
 
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+> GetDetail(id string) (*GetMediaDetailResponse, error)
 
-### SetTitle
+> GetDetailWithContext(ctx context.Context, id string) (*GetMediaDetailResponse, error)
 
-`func (o *Media) SetTitle(v string)`
 
-SetTitle sets Title field to given value.
+get media detail
 
-### HasTitle
 
-`func (o *Media) HasTitle() bool`
 
-HasTitle returns a boolean if a field has been set.
+### Example
 
-### GetType
+```go
+package main
 
-`func (o *Media) GetType() string`
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-GetType returns the Type field if non-nil, zero value otherwise.
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | mediav's id
 
-### GetTypeOk
+    
+    res, err := client.Media.GetDetail(id)
 
-`func (o *Media) GetTypeOk() (*string, bool)`
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.GetDetail``: %v\n", err)
+    }
+    // response from `GetDetail`: GetMediaDetailResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.GetDetail`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
 
-### SetType
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | mediav&#39;s id | 
 
-`func (o *Media) SetType(v string)`
+### Other Parameters
 
-SetType sets Type field to given value.
 
-### HasType
 
-`func (o *Media) HasType() bool`
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
-HasType returns a boolean if a field has been set.
+### Return type
 
-### GetUpdatedAt
+[**GetMediaDetailResponse**](GetMediaDetailResponse.md)
 
-`func (o *Media) GetUpdatedAt() string`
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
-### GetUpdatedAtOk
+## GetMediaList
 
-`func (o *Media) GetUpdatedAtOk() (*string, bool)`
+> GetMediaList(request GetMediaListRequest) (*GetMediaListResponse, error)
 
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+> GetMediaListWithContext(ctx context.Context, request GetMediaListRequest) (*GetMediaListResponse, error)
 
-### SetUpdatedAt
 
-`func (o *Media) SetUpdatedAt(v string)`
+Get user videos list
 
-SetUpdatedAt sets UpdatedAt field to given value.
 
-### HasUpdatedAt
 
-`func (o *Media) HasUpdatedAt() bool`
+### Example
 
-HasUpdatedAt returns a boolean if a field has been set.
+```go
+package main
 
-### GetUserId
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-`func (o *Media) GetUserId() string`
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    request := *aiozstreamsdk.NewGetMediaListRequest() // GetMediaListRequest | video's info
 
-GetUserId returns the UserId field if non-nil, zero value otherwise.
+    
+    res, err := client.Media.GetMediaList(request)
 
-### GetUserIdOk
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.GetMediaList``: %v\n", err)
+    }
+    // response from `GetMediaList`: GetMediaListResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.GetMediaList`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-`func (o *Media) GetUserIdOk() (*string, bool)`
 
-GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
 
-### SetUserId
+### Other Parameters
 
-`func (o *Media) SetUserId(v string)`
 
-SetUserId sets UserId field to given value.
 
-### HasUserId
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**request** | [**GetMediaListRequest**](GetMediaListRequest.md) | video&#39;s info | 
 
-`func (o *Media) HasUserId() bool`
+### Return type
 
-HasUserId returns a boolean if a field has been set.
+[**GetMediaListResponse**](GetMediaListResponse.md)
 
-### GetView
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-`func (o *Media) GetView() int32`
 
-GetView returns the View field if non-nil, zero value otherwise.
+## GetMediaPlayerInfo
 
-### GetViewOk
+> GetMediaPlayerInfo(id string, r MediaApiGetMediaPlayerInfoRequest) (*GetMediaPlayerInfoResponse, error)
 
-`func (o *Media) GetViewOk() (*int32, bool)`
 
-GetViewOk returns a tuple with the View field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+> GetMediaPlayerInfoWithContext(ctx context.Context, id string, r MediaApiGetMediaPlayerInfoRequest) (*GetMediaPlayerInfoResponse, error)
 
-### SetView
 
-`func (o *Media) SetView(v int32)`
 
-SetView sets View field to given value.
+Get media object
 
-### HasView
 
-`func (o *Media) HasView() bool`
 
-HasView returns a boolean if a field has been set.
+### Example
 
+```go
+package main
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+    req := aiozstreamsdk.MediaApiGetMediaPlayerInfoRequest{}
+    
+    req.Id("id_example") // string | media ID
+    req.Token("token_example") // string | Token
+
+    res, err := client.Media.GetMediaPlayerInfo(id string, req)
+    
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.GetMediaPlayerInfo``: %v\n", err)
+    }
+    // response from `GetMediaPlayerInfo`: GetMediaPlayerInfoResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.GetMediaPlayerInfo`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | media ID | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**token** | **string** | Token | 
+
+### Return type
+
+[**GetMediaPlayerInfoResponse**](GetMediaPlayerInfoResponse.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetDefaultCaption
+
+> SetDefaultCaption(id string, lan string) (*ResponseSuccess, error)
+
+> SetDefaultCaptionWithContext(ctx context.Context, id string, lan string) (*ResponseSuccess, error)
+
+
+Set default caption
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | Media ID
+    lan := "lan_example" // string | Language
+
+    
+    res, err := client.Media.SetDefaultCaption(id, lan)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.SetDefaultCaption``: %v\n", err)
+    }
+    // response from `SetDefaultCaption`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.SetDefaultCaption`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | Media ID | 
+**lan** | **string** | Language | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+### Return type
+
+[**ResponseSuccess**](ResponseSuccess.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UploadMediaComplete
+
+> UploadMediaComplete(id string) (*ResponseSuccess, error)
+
+> UploadMediaCompleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
+
+
+Get upload media when complete
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | media's id
+
+    
+    res, err := client.Media.UploadMediaComplete(id)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.UploadMediaComplete``: %v\n", err)
+    }
+    // response from `UploadMediaComplete`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.UploadMediaComplete`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | media&#39;s id | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+### Return type
+
+[**ResponseSuccess**](ResponseSuccess.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UploadPart
+
+> UploadPartFile(id string, file *os.File) (*ResponseSuccess, error)
+> UploadPart(id string, fileName string, fileReader io.Reader, fileSize int64)
+> UploadPartFileWithContext(ctx context.Context, id string, file *os.File) (*ResponseSuccess, error)
+> UploadPartWithContext(ctx context.Context, id string, fileName string, fileReader io.Reader, fileSize int64)
+
+Upload part of media
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | video's id
+    file := os.NewFile(1234, "some_file") // *os.File | File media to be uploaded
+    hash := "hash_example" // string | Md5 hash of part
+    index := "index_example" // string | Index of the part
+
+    
+    res, err := client.Media.UploadPartFile(id, file)
+
+    // you can also use a Reader instead of a File:
+    // we recommend using Reader instead!
+    // client.Media.UploadPart(id, fileName, fileReader, fileSize)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Media.UploadPart``: %v\n", err)
+    }
+    // response from `UploadPart`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Media.UploadPart`")
+    fmt.Println(string(newJsonString))
+}
+```
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | video&#39;s id | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**file** | ***os.File** | File media to be uploaded | 
+**hash** | **string** | Md5 hash of part | 
+**index** | **string** | Index of the part | 
+
+### Return type
+
+[**ResponseSuccess**](ResponseSuccess.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

@@ -17,8 +17,8 @@ import (
 
 // AddPlayerThemesToVideoRequest struct for AddPlayerThemesToVideoRequest
 type AddPlayerThemesToVideoRequest struct {
+	MediaId       *string `json:"media_id,omitempty"`
 	PlayerThemeId *string `json:"player_theme_id,omitempty"`
-	VideoId       *string `json:"video_id,omitempty"`
 }
 
 // NewAddPlayerThemesToVideoRequest instantiates a new AddPlayerThemesToVideoRequest object
@@ -36,6 +36,38 @@ func NewAddPlayerThemesToVideoRequest() *AddPlayerThemesToVideoRequest {
 func NewAddPlayerThemesToVideoRequestWithDefaults() *AddPlayerThemesToVideoRequest {
 	this := AddPlayerThemesToVideoRequest{}
 	return &this
+}
+
+// GetMediaId returns the MediaId field value if set, zero value otherwise.
+func (o *AddPlayerThemesToVideoRequest) GetMediaId() string {
+	if o == nil || o.MediaId == nil {
+		var ret string
+		return ret
+	}
+	return *o.MediaId
+}
+
+// GetMediaIdOk returns a tuple with the MediaId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddPlayerThemesToVideoRequest) GetMediaIdOk() (*string, bool) {
+	if o == nil || o.MediaId == nil {
+		return nil, false
+	}
+	return o.MediaId, true
+}
+
+// HasMediaId returns a boolean if a field has been set.
+func (o *AddPlayerThemesToVideoRequest) HasMediaId() bool {
+	if o != nil && o.MediaId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMediaId gets a reference to the given string and assigns it to the MediaId field.
+func (o *AddPlayerThemesToVideoRequest) SetMediaId(v string) {
+	o.MediaId = &v
 }
 
 // GetPlayerThemeId returns the PlayerThemeId field value if set, zero value otherwise.
@@ -68,38 +100,6 @@ func (o *AddPlayerThemesToVideoRequest) HasPlayerThemeId() bool {
 // SetPlayerThemeId gets a reference to the given string and assigns it to the PlayerThemeId field.
 func (o *AddPlayerThemesToVideoRequest) SetPlayerThemeId(v string) {
 	o.PlayerThemeId = &v
-}
-
-// GetVideoId returns the VideoId field value if set, zero value otherwise.
-func (o *AddPlayerThemesToVideoRequest) GetVideoId() string {
-	if o == nil || o.VideoId == nil {
-		var ret string
-		return ret
-	}
-	return *o.VideoId
-}
-
-// GetVideoIdOk returns a tuple with the VideoId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AddPlayerThemesToVideoRequest) GetVideoIdOk() (*string, bool) {
-	if o == nil || o.VideoId == nil {
-		return nil, false
-	}
-	return o.VideoId, true
-}
-
-// HasVideoId returns a boolean if a field has been set.
-func (o *AddPlayerThemesToVideoRequest) HasVideoId() bool {
-	if o != nil && o.VideoId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVideoId gets a reference to the given string and assigns it to the VideoId field.
-func (o *AddPlayerThemesToVideoRequest) SetVideoId(v string) {
-	o.VideoId = &v
 }
 
 type NullableAddPlayerThemesToVideoRequest struct {

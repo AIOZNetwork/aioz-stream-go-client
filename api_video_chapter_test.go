@@ -88,7 +88,7 @@ func TestVideoChapterService_Create(t *testing.T) {
 				fileName = tt.file.Name()
 			}
 
-			resp, err := testClient.VideoChapter.Create(tt.videoID, tt.lang, fileName, reader)
+			resp, err := testClient.MediaChapter.Create(tt.videoID, tt.lang, fileName, reader)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -104,19 +104,19 @@ func TestVideoChapterService_Get(t *testing.T) {
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
-		videoID string
+		MediaId string
 		wantErr bool
 	}{
 		{
 			name:    "Get other",
-			videoID: testVideoIDForChapter,
+			MediaId: testVideoIDForChapter,
 			wantErr: true,
 		},
 	}
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.VideoChapter.Get(tt.videoID, VideoChapterApiGetRequest{})
+			resp, err := testAnonymousClient.MediaChapter.Get(tt.MediaId, MediaChapterApiGetRequest{})
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -130,38 +130,38 @@ func TestVideoChapterService_Get(t *testing.T) {
 	tests := []struct {
 		name    string
 		videoID string
-		request VideoChapterApiGetRequest
+		request MediaChapterApiGetRequest
 		wantErr bool
-		checkFn func(*testing.T, *GetVideoChaptersResponse)
+		checkFn func(*testing.T, *GetMediaChaptersResponse)
 	}{
 		{
 			name:    "Valid Get",
 			videoID: testVideoIDForChapter,
-			request: VideoChapterApiGetRequest{}.
+			request: MediaChapterApiGetRequest{}.
 				Limit(10).
 				Offset(0),
 			wantErr: false,
-			checkFn: func(t *testing.T, resp *GetVideoChaptersResponse) {
+			checkFn: func(t *testing.T, resp *GetMediaChaptersResponse) {
 				assert.NotNil(t, resp.Data)
 			},
 		},
 		{
 			name:    "Invalid Video ID",
 			videoID: "invalid-id",
-			request: VideoChapterApiGetRequest{},
+			request: MediaChapterApiGetRequest{},
 			wantErr: true,
 		},
 		{
 			name:    "Not Exist ID",
 			videoID: notExistId,
-			request: VideoChapterApiGetRequest{},
+			request: MediaChapterApiGetRequest{},
 			wantErr: true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.VideoChapter.Get(tt.videoID, tt.request)
+			resp, err := testClient.MediaChapter.Get(tt.videoID, tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -194,7 +194,7 @@ func TestVideoChapterService_Delete(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.VideoChapter.Delete(tt.videoID, tt.lang)
+			resp, err := testAnonymousClient.MediaChapter.Delete(tt.videoID, tt.lang)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -251,7 +251,7 @@ func TestVideoChapterService_Delete(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.VideoChapter.Delete(tt.videoID, tt.lang)
+			resp, err := testClient.MediaChapter.Delete(tt.videoID, tt.lang)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)

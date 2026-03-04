@@ -22,6 +22,7 @@ type Playlist struct {
 	Id           *string            `json:"id,omitempty"`
 	Iframe       *string            `json:"iframe,omitempty"`
 	ItemCount    *int32             `json:"item_count,omitempty"`
+	Items        *[]PlaylistItem    `json:"items,omitempty"`
 	Metadata     *map[string]string `json:"metadata,omitempty"`
 	Name         *string            `json:"name,omitempty"`
 	PlaylistType *string            `json:"playlist_type,omitempty"`
@@ -31,7 +32,6 @@ type Playlist struct {
 	ThumbnailUrl *string            `json:"thumbnail_url,omitempty"`
 	UpdatedAt    *string            `json:"updated_at,omitempty"`
 	UserId       *string            `json:"user_id,omitempty"`
-	VideoItems   *[]PlaylistItem    `json:"video_items,omitempty"`
 }
 
 // NewPlaylist instantiates a new Playlist object
@@ -209,6 +209,38 @@ func (o *Playlist) HasItemCount() bool {
 // SetItemCount gets a reference to the given int32 and assigns it to the ItemCount field.
 func (o *Playlist) SetItemCount(v int32) {
 	o.ItemCount = &v
+}
+
+// GetItems returns the Items field value if set, zero value otherwise.
+func (o *Playlist) GetItems() []PlaylistItem {
+	if o == nil || o.Items == nil {
+		var ret []PlaylistItem
+		return ret
+	}
+	return *o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Playlist) GetItemsOk() (*[]PlaylistItem, bool) {
+	if o == nil || o.Items == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// HasItems returns a boolean if a field has been set.
+func (o *Playlist) HasItems() bool {
+	if o != nil && o.Items != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetItems gets a reference to the given []PlaylistItem and assigns it to the Items field.
+func (o *Playlist) SetItems(v []PlaylistItem) {
+	o.Items = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -497,38 +529,6 @@ func (o *Playlist) HasUserId() bool {
 // SetUserId gets a reference to the given string and assigns it to the UserId field.
 func (o *Playlist) SetUserId(v string) {
 	o.UserId = &v
-}
-
-// GetVideoItems returns the VideoItems field value if set, zero value otherwise.
-func (o *Playlist) GetVideoItems() []PlaylistItem {
-	if o == nil || o.VideoItems == nil {
-		var ret []PlaylistItem
-		return ret
-	}
-	return *o.VideoItems
-}
-
-// GetVideoItemsOk returns a tuple with the VideoItems field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Playlist) GetVideoItemsOk() (*[]PlaylistItem, bool) {
-	if o == nil || o.VideoItems == nil {
-		return nil, false
-	}
-	return o.VideoItems, true
-}
-
-// HasVideoItems returns a boolean if a field has been set.
-func (o *Playlist) HasVideoItems() bool {
-	if o != nil && o.VideoItems != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVideoItems gets a reference to the given []PlaylistItem and assigns it to the VideoItems field.
-func (o *Playlist) SetVideoItems(v []PlaylistItem) {
-	o.VideoItems = &v
 }
 
 type NullablePlaylist struct {

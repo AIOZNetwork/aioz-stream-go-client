@@ -35,10 +35,10 @@ type Client struct {
 	BearerToken        string
 
 	ApiKey       ApiKeyServiceI
+	Media        MediaServiceI
+	MediaChapter MediaChapterServiceI
 	Players      PlayersServiceI
 	Playlist     PlaylistServiceI
-	Video        VideoServiceI
-	VideoChapter VideoChapterServiceI
 	Webhook      WebhookServiceI
 }
 
@@ -200,10 +200,10 @@ func (cb *Builder) Build() *Client {
 	}
 
 	c.ApiKey = &ApiKeyService{client: c}
+	c.Media = &MediaService{client: c}
+	c.MediaChapter = &MediaChapterService{client: c}
 	c.Players = &PlayersService{client: c}
 	c.Playlist = &PlaylistService{client: c}
-	c.Video = &VideoService{client: c}
-	c.VideoChapter = &VideoChapterService{client: c}
 	c.Webhook = &WebhookService{client: c}
 
 	return c
