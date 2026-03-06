@@ -44,7 +44,7 @@ func main() {
 	videoData := aiozstreamsdk.CreateVideoRequest{
 		Title: &title,
 	}
-	createResult, err := client.Video.Create(videoData)
+	createResult, err := client.Media.Create(videoData)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating video: %v\n", err)
 		return
