@@ -17,6 +17,917 @@ externalDocs:
 servers:
 - url: /api/
 paths:
+  /analytics/data:
+    get:
+      description: Retrieve data usage statistics over a time range with a specific
+        interval
+      operationId: GET-data-usage
+      parameters:
+      - description: start time (unix timestamp)
+        explode: true
+        in: query
+        name: from
+        required: true
+        schema:
+          type: integer
+        style: form
+      - description: end time (unix timestamp)
+        explode: true
+        in: query
+        name: to
+        required: true
+        schema:
+          type: integer
+        style: form
+      - description: time interval
+        explode: true
+        in: query
+        name: interval
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: offset, allowed values greater than or equal to 0. Default(0)
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
+        style: form
+      - description: results per page. Allowed values 1-100, default is 25
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDataUsageResponse'
+          description: OK
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Bad Request
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+      security:
+      - Bearer: []
+      - BasicAuth: []
+      summary: Get data usage
+      tags:
+      - analytics
+      x-client-action: GetDataUsage
+      x-client-paginated: true
+      x-group-parameters: true
+      x-optional-object: true
+  /analytics/media:
+    get:
+      description: Retrieve a list of statistic media
+      operationId: GET-analytic-media
+      parameters:
+      - description: start time
+        explode: true
+        in: query
+        name: from
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: end time
+        explode: true
+        in: query
+        name: to
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: media type
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: offset, allowed values greater than or equal to 0. Default(0)
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
+        style: form
+      - description: results per page. Allowed values 1-100, default is 25
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetStatisticMediasResponse'
+          description: OK
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Bad Request
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+      security:
+      - Bearer: []
+      - BasicAuth: []
+      summary: Get statistic media
+      tags:
+      - analytics
+      x-client-action: GetStatisticMedias
+      x-client-paginated: true
+      x-group-parameters: true
+      x-optional-object: true
+  /analytics/metrics/bucket/{metric}/{breakdown}:
+    post:
+      description: Retrieve metric data broken down by a specific dimension
+      operationId: POST-breakdown-metrics
+      parameters:
+      - description: metric name
+        explode: false
+        in: path
+        name: metric
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: breakdown dimension
+        explode: false
+        in: path
+        name: breakdown
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetBreakdownMetricsRequest'
+        description: query parameters
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBreakdownMetricsResponse'
+          description: OK
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Bad Request
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+      security:
+      - Bearer: []
+      - BasicAuth: []
+      summary: Get breakdown metrics
+      tags:
+      - analytics
+      x-client-action: GetBreakdownMetrics
+      x-client-paginated: true
+      x-codegen-request-body-name: request
+  /analytics/metrics/data/{metric}/{aggregation}:
+    post:
+      description: Retrieve aggregated metric data with a specific aggregation method
+      operationId: POST-aggregated-metrics
+      parameters:
+      - description: metric name
+        explode: false
+        in: path
+        name: metric
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: aggregation method
+        explode: false
+        in: path
+        name: aggregation
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/internal_controllers.GetAggreatedMetricsMetricsRequest'
+        description: query parameters
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAggregatedMetricsResponse'
+          description: OK
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Bad Request
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+      security:
+      - Bearer: []
+      - BasicAuth: []
+      summary: Get aggregated metrics
+      tags:
+      - analytics
+      x-client-action: GetAggregatedMetrics
+      x-codegen-request-body-name: request
+  /analytics/metrics/timeseries/{metric}/{interval}:
+    post:
+      description: Retrieve metric data over time with a specific interval
+      operationId: POST-overtime-metrics
+      parameters:
+      - description: metric name
+        explode: false
+        in: path
+        name: metric
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: time interval
+        explode: false
+        in: path
+        name: interval
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetBreakdownMetricsRequest'
+        description: query parameters
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOvertimeMetricsResponse'
+          description: OK
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Bad Request
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+      security:
+      - Bearer: []
+      - BasicAuth: []
+      summary: Get overtime metrics
+      tags:
+      - analytics
+      x-client-action: GetOvertimeMetrics
+      x-client-paginated: true
+      x-codegen-request-body-name: request
   /api_keys:
     get:
       description: Retrieve a list of all API keys for the current workspace.
@@ -9355,6 +10266,152 @@ paths:
       - playlist
       x-client-action: createPlaylist
       x-codegen-request-body-name: request
+  /user/me:
+    get:
+      description: get current user's information
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMeResponse'
+          description: OK
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Bad Request
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
+          headers:
+            X-RateLimit-Remaining:
+              description: The number of available requests left for the current time
+                window
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Retry-After:
+              description: The number of seconds left until the current rate limit
+                window resets
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Limit:
+              description: The request limit per minute
+              explode: false
+              schema:
+                type: integer
+              style: simple
+      security:
+      - Bearer: []
+      - BasicAuth: []
+      summary: Get me
+      tags:
+      - user
+      x-client-action: GetMe
   /webhooks:
     get:
       description: Retrieve a list of all webhooks configured for the current workspace.
@@ -10837,9 +11894,9 @@ components:
           tags:
           - tags
           - tags
-          duration: 5.637376656633329
+          duration: 0.8008281904610115
           is_mp4: true
-          view: 3
+          view: 5
           assets:
             dash_iframe: dash_iframe
             dash_url: dash_url
@@ -10850,7 +11907,7 @@ components:
             mp4_url: mp4_url
             source_url: source_url
             hls_iframe: hls_iframe
-          size: 9
+          size: 5
           updated_at: updated_at
           user_id: user_id
           player_theme_id: player_theme_id
@@ -10858,17 +11915,17 @@ components:
           qualities:
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           id: id
           status: status
@@ -11295,9 +12352,9 @@ components:
             tags:
             - tags
             - tags
-            duration: 5.637376656633329
+            duration: 0.8008281904610115
             is_mp4: true
-            view: 3
+            view: 5
             assets:
               dash_iframe: dash_iframe
               dash_url: dash_url
@@ -11308,7 +12365,7 @@ components:
               mp4_url: mp4_url
               source_url: source_url
               hls_iframe: hls_iframe
-            size: 9
+            size: 5
             updated_at: updated_at
             user_id: user_id
             player_theme_id: player_theme_id
@@ -11316,17 +12373,17 @@ components:
             qualities:
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             id: id
             status: status
@@ -11406,6 +12463,59 @@ components:
           $ref: '#/components/schemas/CreateWebhookData'
         status:
           type: string
+      type: object
+    DataUsage:
+      example:
+        delivery: 0
+        user_id: user_id
+        created_at: created_at
+      properties:
+        created_at:
+          type: string
+        delivery:
+          type: integer
+        user_id:
+          type: string
+      type: object
+    GetAggregatedMetricsResponse:
+      example:
+        data: 0.8008281904610115
+        context:
+          filter:
+            media_ids:
+            - media_ids
+            - media_ids
+            os:
+            - os
+            - os
+            media_type: media_type
+            countries:
+            - countries
+            - countries
+            device_types:
+            - device_types
+            - device_types
+            browsers:
+            - browsers
+            - browsers
+            continents:
+            - continents
+            - continents
+            tags:
+            - tags
+            - tags
+          metric: metric
+          time_frame:
+            from: from
+            to: to
+          breakdown: breakdown
+          aggregation: aggregation
+          interval: interval
+      properties:
+        context:
+          $ref: '#/components/schemas/MetricsContext'
+        data:
+          type: number
       type: object
     GetApiKeysData:
       example:
@@ -11530,6 +12640,125 @@ components:
           $ref: '#/components/schemas/GetApiKeysData'
         status:
           type: string
+      type: object
+    GetBreakdownMetricsRequest:
+      example:
+        offset: 1
+        sum_others: true
+        limit: 6
+        filter_by:
+          media_ids:
+          - media_ids
+          - media_ids
+          os:
+          - os
+          - os
+          media_type: media_type
+          countries:
+          - countries
+          - countries
+          device_types:
+          - device_types
+          - device_types
+          browsers:
+          - browsers
+          - browsers
+          continents:
+          - continents
+          - continents
+          tags:
+          - tags
+          - tags
+        order_by: order_by
+        from: 0
+        sort_by: sort_by
+        to: 5
+      properties:
+        filter_by:
+          $ref: '#/components/schemas/MetricFilter'
+        from:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+        order_by:
+          type: string
+        sort_by:
+          type: string
+        sum_others:
+          type: boolean
+        to:
+          type: integer
+      type: object
+    GetBreakdownMetricsResponse:
+      example:
+        total: 6
+        data:
+        - dimension_value: dimension_value
+          emitted_at: emitted_at
+          metric_value: 0.8008281904610115
+        - dimension_value: dimension_value
+          emitted_at: emitted_at
+          metric_value: 0.8008281904610115
+        context:
+          filter:
+            media_ids:
+            - media_ids
+            - media_ids
+            os:
+            - os
+            - os
+            media_type: media_type
+            countries:
+            - countries
+            - countries
+            device_types:
+            - device_types
+            - device_types
+            browsers:
+            - browsers
+            - browsers
+            continents:
+            - continents
+            - continents
+            tags:
+            - tags
+            - tags
+          metric: metric
+          time_frame:
+            from: from
+            to: to
+          breakdown: breakdown
+          aggregation: aggregation
+          interval: interval
+      properties:
+        context:
+          $ref: '#/components/schemas/MetricsContext'
+        data:
+          items:
+            $ref: '#/components/schemas/MetricItem'
+          type: array
+        total:
+          type: integer
+      type: object
+    GetDataUsageResponse:
+      example:
+        total: 6
+        data:
+        - delivery: 0
+          user_id: user_id
+          created_at: created_at
+        - delivery: 0
+          user_id: user_id
+          created_at: created_at
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/DataUsage'
+          type: array
+        total:
+          type: integer
       type: object
     GetLiveStreamKeyData:
       example:
@@ -11672,7 +12901,7 @@ components:
     GetLiveStreamMediasResponse:
       example:
         data:
-          total: 4
+          total: 2
           media:
           - current_view: 6
             save: true
@@ -11733,9 +12962,9 @@ components:
               tags:
               - tags
               - tags
-              duration: 5.637376656633329
+              duration: 0.8008281904610115
               is_mp4: true
-              view: 3
+              view: 5
               assets:
                 dash_iframe: dash_iframe
                 dash_url: dash_url
@@ -11746,7 +12975,7 @@ components:
                 mp4_url: mp4_url
                 source_url: source_url
                 hls_iframe: hls_iframe
-              size: 9
+              size: 5
               updated_at: updated_at
               user_id: user_id
               player_theme_id: player_theme_id
@@ -11754,17 +12983,17 @@ components:
               qualities:
               - video_codec: video_codec
                 name: name
-                audio_bitrate: 2
+                audio_bitrate: 6
                 audio_codec: audio_codec
                 type: type
-                video_bitrate: 7
+                video_bitrate: 1
                 status: status
               - video_codec: video_codec
                 name: name
-                audio_bitrate: 2
+                audio_bitrate: 6
                 audio_codec: audio_codec
                 type: type
-                video_bitrate: 7
+                video_bitrate: 1
                 status: status
               id: id
               status: status
@@ -11778,7 +13007,7 @@ components:
               iframe: iframe
               thumbnail_url: thumbnail_url
             updated_at: updated_at
-            total_view: 2
+            total_view: 5
             user_id: user_id
             qualities:
             - qualities
@@ -11845,9 +13074,9 @@ components:
               tags:
               - tags
               - tags
-              duration: 5.637376656633329
+              duration: 0.8008281904610115
               is_mp4: true
-              view: 3
+              view: 5
               assets:
                 dash_iframe: dash_iframe
                 dash_url: dash_url
@@ -11858,7 +13087,7 @@ components:
                 mp4_url: mp4_url
                 source_url: source_url
                 hls_iframe: hls_iframe
-              size: 9
+              size: 5
               updated_at: updated_at
               user_id: user_id
               player_theme_id: player_theme_id
@@ -11866,17 +13095,17 @@ components:
               qualities:
               - video_codec: video_codec
                 name: name
-                audio_bitrate: 2
+                audio_bitrate: 6
                 audio_codec: audio_codec
                 type: type
-                video_bitrate: 7
+                video_bitrate: 1
                 status: status
               - video_codec: video_codec
                 name: name
-                audio_bitrate: 2
+                audio_bitrate: 6
                 audio_codec: audio_codec
                 type: type
-                video_bitrate: 7
+                video_bitrate: 1
                 status: status
               id: id
               status: status
@@ -11890,7 +13119,7 @@ components:
               iframe: iframe
               thumbnail_url: thumbnail_url
             updated_at: updated_at
-            total_view: 2
+            total_view: 5
             user_id: user_id
             qualities:
             - qualities
@@ -12002,9 +13231,9 @@ components:
             tags:
             - tags
             - tags
-            duration: 5.637376656633329
+            duration: 0.8008281904610115
             is_mp4: true
-            view: 3
+            view: 5
             assets:
               dash_iframe: dash_iframe
               dash_url: dash_url
@@ -12015,7 +13244,7 @@ components:
               mp4_url: mp4_url
               source_url: source_url
               hls_iframe: hls_iframe
-            size: 9
+            size: 5
             updated_at: updated_at
             user_id: user_id
             player_theme_id: player_theme_id
@@ -12023,17 +13252,17 @@ components:
             qualities:
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             id: id
             status: status
@@ -12047,7 +13276,7 @@ components:
             iframe: iframe
             thumbnail_url: thumbnail_url
           updated_at: updated_at
-          total_view: 2
+          total_view: 5
           user_id: user_id
           qualities:
           - qualities
@@ -12124,9 +13353,9 @@ components:
             tags:
             - tags
             - tags
-            duration: 5.637376656633329
+            duration: 0.8008281904610115
             is_mp4: true
-            view: 3
+            view: 5
             assets:
               dash_iframe: dash_iframe
               dash_url: dash_url
@@ -12137,7 +13366,7 @@ components:
               mp4_url: mp4_url
               source_url: source_url
               hls_iframe: hls_iframe
-            size: 9
+            size: 5
             updated_at: updated_at
             user_id: user_id
             player_theme_id: player_theme_id
@@ -12145,17 +13374,17 @@ components:
             qualities:
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             id: id
             status: status
@@ -12169,7 +13398,7 @@ components:
             iframe: iframe
             thumbnail_url: thumbnail_url
           updated_at: updated_at
-          total_view: 2
+          total_view: 5
           user_id: user_id
           qualities:
           - qualities
@@ -12181,6 +13410,30 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/LiveStreamMediaResponse'
+        status:
+          type: string
+      type: object
+    GetMeResponse:
+      example:
+        data:
+          user:
+            wallet_address: wallet_address
+            exclusive_code: exclusive_code
+            created_at: created_at
+            last_name: last_name
+            balance: 0.8008281904610115
+            last_requested_at: last_requested_at
+            updated_at: updated_at
+            wallet_connection: wallet_connection
+            id: id
+            debt: 6.027456183070403
+            first_name: first_name
+            email: email
+            media_qualities_config: media_qualities_config
+        status: status
+      properties:
+        data:
+          $ref: '#/components/schemas/GetUserData'
         status:
           type: string
       type: object
@@ -12317,9 +13570,9 @@ components:
           tags:
           - tags
           - tags
-          duration: 5.637376656633329
+          duration: 0.8008281904610115
           is_mp4: true
-          view: 3
+          view: 5
           assets:
             dash_iframe: dash_iframe
             dash_url: dash_url
@@ -12330,7 +13583,7 @@ components:
             mp4_url: mp4_url
             source_url: source_url
             hls_iframe: hls_iframe
-          size: 9
+          size: 5
           updated_at: updated_at
           user_id: user_id
           player_theme_id: player_theme_id
@@ -12338,17 +13591,17 @@ components:
           qualities:
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           id: id
           status: status
@@ -12417,9 +13670,9 @@ components:
           tags:
           - tags
           - tags
-          duration: 5.637376656633329
+          duration: 0.8008281904610115
           is_mp4: true
-          view: 3
+          view: 5
           assets:
             dash_iframe: dash_iframe
             dash_url: dash_url
@@ -12430,7 +13683,7 @@ components:
             mp4_url: mp4_url
             source_url: source_url
             hls_iframe: hls_iframe
-          size: 9
+          size: 5
           updated_at: updated_at
           user_id: user_id
           player_theme_id: player_theme_id
@@ -12438,17 +13691,17 @@ components:
           qualities:
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           id: id
           status: status
@@ -12506,9 +13759,9 @@ components:
           tags:
           - tags
           - tags
-          duration: 5.637376656633329
+          duration: 0.8008281904610115
           is_mp4: true
-          view: 3
+          view: 5
           assets:
             dash_iframe: dash_iframe
             dash_url: dash_url
@@ -12519,7 +13772,7 @@ components:
             mp4_url: mp4_url
             source_url: source_url
             hls_iframe: hls_iframe
-          size: 9
+          size: 5
           updated_at: updated_at
           user_id: user_id
           player_theme_id: player_theme_id
@@ -12527,17 +13780,17 @@ components:
           qualities:
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           id: id
           status: status
@@ -12653,9 +13906,9 @@ components:
             tags:
             - tags
             - tags
-            duration: 5.637376656633329
+            duration: 0.8008281904610115
             is_mp4: true
-            view: 3
+            view: 5
             assets:
               dash_iframe: dash_iframe
               dash_url: dash_url
@@ -12666,7 +13919,7 @@ components:
               mp4_url: mp4_url
               source_url: source_url
               hls_iframe: hls_iframe
-            size: 9
+            size: 5
             updated_at: updated_at
             user_id: user_id
             player_theme_id: player_theme_id
@@ -12674,17 +13927,17 @@ components:
             qualities:
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             id: id
             status: status
@@ -12742,9 +13995,9 @@ components:
             tags:
             - tags
             - tags
-            duration: 5.637376656633329
+            duration: 0.8008281904610115
             is_mp4: true
-            view: 3
+            view: 5
             assets:
               dash_iframe: dash_iframe
               dash_url: dash_url
@@ -12755,7 +14008,7 @@ components:
               mp4_url: mp4_url
               source_url: source_url
               hls_iframe: hls_iframe
-            size: 9
+            size: 5
             updated_at: updated_at
             user_id: user_id
             player_theme_id: player_theme_id
@@ -12763,17 +14016,17 @@ components:
             qualities:
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             id: id
             status: status
@@ -12859,17 +14112,17 @@ components:
         qualities:
         - video_codec: video_codec
           name: name
-          audio_bitrate: 2
+          audio_bitrate: 6
           audio_codec: audio_codec
           type: type
-          video_bitrate: 7
+          video_bitrate: 1
           status: status
         - video_codec: video_codec
           name: name
-          audio_bitrate: 2
+          audio_bitrate: 6
           audio_codec: audio_codec
           type: type
-          video_bitrate: 7
+          video_bitrate: 1
           status: status
         id: id
         status: status
@@ -12922,6 +14175,57 @@ components:
           type: string
         user_id:
           type: string
+      type: object
+    GetOvertimeMetricsResponse:
+      example:
+        total: 0
+        data:
+        - dimension_value: dimension_value
+          emitted_at: emitted_at
+          metric_value: 0.8008281904610115
+        - dimension_value: dimension_value
+          emitted_at: emitted_at
+          metric_value: 0.8008281904610115
+        context:
+          filter:
+            media_ids:
+            - media_ids
+            - media_ids
+            os:
+            - os
+            - os
+            media_type: media_type
+            countries:
+            - countries
+            - countries
+            device_types:
+            - device_types
+            - device_types
+            browsers:
+            - browsers
+            - browsers
+            continents:
+            - continents
+            - continents
+            tags:
+            - tags
+            - tags
+          metric: metric
+          time_frame:
+            from: from
+            to: to
+          breakdown: breakdown
+          aggregation: aggregation
+          interval: interval
+      properties:
+        context:
+          $ref: '#/components/schemas/MetricsContext'
+        data:
+          items:
+            $ref: '#/components/schemas/MetricItem'
+          type: array
+        total:
+          type: integer
       type: object
     GetPlayerThemeByIdData:
       example:
@@ -13663,6 +14967,196 @@ components:
         status:
           type: string
       type: object
+    GetStatisticMediasResponse:
+      example:
+        total: 2
+        media:
+        - metadata:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          chapters:
+          - language: language
+            url: url
+          - language: language
+            url: url
+          player_theme:
+            controls:
+              force_autoplay: true
+              enable_controls: true
+              enable_api: true
+              hide_title: true
+              force_loop: true
+            user_id: user_id
+            name: name
+            created_at: created_at
+            theme:
+              text_track_background: text_track_background
+              main_color: main_color
+              progress_bar_height: progress_bar_height
+              progress_bar_circle_size: progress_bar_circle_size
+              control_bar_background_color: control_bar_background_color
+              text_color: text_color
+              menu_item_background_hover: menu_item_background_hover
+              text_track_color: text_track_color
+              control_bar_height: control_bar_height
+              menu_background_color: menu_background_color
+            id: id
+            asset:
+              logo_link: logo_link
+              logo_image_link: logo_image_link
+            is_default: true
+          created_at: created_at
+          description: description
+          title: title
+          type: type
+          captions:
+          - description: description
+            language: language
+            is_default: true
+            url: url
+            status: status
+          - description: description
+            language: language
+            is_default: true
+            url: url
+            status: status
+          tags:
+          - tags
+          - tags
+          duration: 0.8008281904610115
+          is_mp4: true
+          view: 5
+          assets:
+            dash_iframe: dash_iframe
+            dash_url: dash_url
+            dash_player_url: dash_player_url
+            hls_url: hls_url
+            hls_player_url: hls_player_url
+            thumbnail_url: thumbnail_url
+            mp4_url: mp4_url
+            source_url: source_url
+            hls_iframe: hls_iframe
+          size: 5
+          updated_at: updated_at
+          user_id: user_id
+          player_theme_id: player_theme_id
+          is_public: true
+          qualities:
+          - video_codec: video_codec
+            name: name
+            audio_bitrate: 6
+            audio_codec: audio_codec
+            type: type
+            video_bitrate: 1
+            status: status
+          - video_codec: video_codec
+            name: name
+            audio_bitrate: 6
+            audio_codec: audio_codec
+            type: type
+            video_bitrate: 1
+            status: status
+          id: id
+          status: status
+        - metadata:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          chapters:
+          - language: language
+            url: url
+          - language: language
+            url: url
+          player_theme:
+            controls:
+              force_autoplay: true
+              enable_controls: true
+              enable_api: true
+              hide_title: true
+              force_loop: true
+            user_id: user_id
+            name: name
+            created_at: created_at
+            theme:
+              text_track_background: text_track_background
+              main_color: main_color
+              progress_bar_height: progress_bar_height
+              progress_bar_circle_size: progress_bar_circle_size
+              control_bar_background_color: control_bar_background_color
+              text_color: text_color
+              menu_item_background_hover: menu_item_background_hover
+              text_track_color: text_track_color
+              control_bar_height: control_bar_height
+              menu_background_color: menu_background_color
+            id: id
+            asset:
+              logo_link: logo_link
+              logo_image_link: logo_image_link
+            is_default: true
+          created_at: created_at
+          description: description
+          title: title
+          type: type
+          captions:
+          - description: description
+            language: language
+            is_default: true
+            url: url
+            status: status
+          - description: description
+            language: language
+            is_default: true
+            url: url
+            status: status
+          tags:
+          - tags
+          - tags
+          duration: 0.8008281904610115
+          is_mp4: true
+          view: 5
+          assets:
+            dash_iframe: dash_iframe
+            dash_url: dash_url
+            dash_player_url: dash_player_url
+            hls_url: hls_url
+            hls_player_url: hls_player_url
+            thumbnail_url: thumbnail_url
+            mp4_url: mp4_url
+            source_url: source_url
+            hls_iframe: hls_iframe
+          size: 5
+          updated_at: updated_at
+          user_id: user_id
+          player_theme_id: player_theme_id
+          is_public: true
+          qualities:
+          - video_codec: video_codec
+            name: name
+            audio_bitrate: 6
+            audio_codec: audio_codec
+            type: type
+            video_bitrate: 1
+            status: status
+          - video_codec: video_codec
+            name: name
+            audio_bitrate: 6
+            audio_codec: audio_codec
+            type: type
+            video_bitrate: 1
+            status: status
+          id: id
+          status: status
+      properties:
+        media:
+          items:
+            $ref: '#/components/schemas/Media'
+          type: array
+        total:
+          type: integer
+      type: object
     GetStreamingResponse:
       example:
         data:
@@ -13725,9 +15219,9 @@ components:
             tags:
             - tags
             - tags
-            duration: 5.637376656633329
+            duration: 0.8008281904610115
             is_mp4: true
-            view: 3
+            view: 5
             assets:
               dash_iframe: dash_iframe
               dash_url: dash_url
@@ -13738,7 +15232,7 @@ components:
               mp4_url: mp4_url
               source_url: source_url
               hls_iframe: hls_iframe
-            size: 9
+            size: 5
             updated_at: updated_at
             user_id: user_id
             player_theme_id: player_theme_id
@@ -13746,17 +15240,17 @@ components:
             qualities:
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             id: id
             status: status
@@ -13770,7 +15264,7 @@ components:
             iframe: iframe
             thumbnail_url: thumbnail_url
           updated_at: updated_at
-          total_view: 2
+          total_view: 5
           user_id: user_id
           qualities:
           - qualities
@@ -13788,7 +15282,7 @@ components:
     GetStreamingsResponse:
       example:
         data:
-          total: 4
+          total: 2
           media:
           - current_view: 6
             save: true
@@ -13849,9 +15343,9 @@ components:
               tags:
               - tags
               - tags
-              duration: 5.637376656633329
+              duration: 0.8008281904610115
               is_mp4: true
-              view: 3
+              view: 5
               assets:
                 dash_iframe: dash_iframe
                 dash_url: dash_url
@@ -13862,7 +15356,7 @@ components:
                 mp4_url: mp4_url
                 source_url: source_url
                 hls_iframe: hls_iframe
-              size: 9
+              size: 5
               updated_at: updated_at
               user_id: user_id
               player_theme_id: player_theme_id
@@ -13870,17 +15364,17 @@ components:
               qualities:
               - video_codec: video_codec
                 name: name
-                audio_bitrate: 2
+                audio_bitrate: 6
                 audio_codec: audio_codec
                 type: type
-                video_bitrate: 7
+                video_bitrate: 1
                 status: status
               - video_codec: video_codec
                 name: name
-                audio_bitrate: 2
+                audio_bitrate: 6
                 audio_codec: audio_codec
                 type: type
-                video_bitrate: 7
+                video_bitrate: 1
                 status: status
               id: id
               status: status
@@ -13894,7 +15388,7 @@ components:
               iframe: iframe
               thumbnail_url: thumbnail_url
             updated_at: updated_at
-            total_view: 2
+            total_view: 5
             user_id: user_id
             qualities:
             - qualities
@@ -13961,9 +15455,9 @@ components:
               tags:
               - tags
               - tags
-              duration: 5.637376656633329
+              duration: 0.8008281904610115
               is_mp4: true
-              view: 3
+              view: 5
               assets:
                 dash_iframe: dash_iframe
                 dash_url: dash_url
@@ -13974,7 +15468,7 @@ components:
                 mp4_url: mp4_url
                 source_url: source_url
                 hls_iframe: hls_iframe
-              size: 9
+              size: 5
               updated_at: updated_at
               user_id: user_id
               player_theme_id: player_theme_id
@@ -13982,17 +15476,17 @@ components:
               qualities:
               - video_codec: video_codec
                 name: name
-                audio_bitrate: 2
+                audio_bitrate: 6
                 audio_codec: audio_codec
                 type: type
-                video_bitrate: 7
+                video_bitrate: 1
                 status: status
               - video_codec: video_codec
                 name: name
-                audio_bitrate: 2
+                audio_bitrate: 6
                 audio_codec: audio_codec
                 type: type
-                video_bitrate: 7
+                video_bitrate: 1
                 status: status
               id: id
               status: status
@@ -14006,7 +15500,7 @@ components:
               iframe: iframe
               thumbnail_url: thumbnail_url
             updated_at: updated_at
-            total_view: 2
+            total_view: 5
             user_id: user_id
             qualities:
             - qualities
@@ -14042,6 +15536,26 @@ components:
           $ref: '#/components/schemas/GetTranscodeCostData'
         status:
           type: string
+      type: object
+    GetUserData:
+      example:
+        user:
+          wallet_address: wallet_address
+          exclusive_code: exclusive_code
+          created_at: created_at
+          last_name: last_name
+          balance: 0.8008281904610115
+          last_requested_at: last_requested_at
+          updated_at: updated_at
+          wallet_connection: wallet_connection
+          id: id
+          debt: 6.027456183070403
+          first_name: first_name
+          email: email
+          media_qualities_config: media_qualities_config
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
       type: object
     GetUserWebhookData:
       example:
@@ -14275,9 +15789,9 @@ components:
           tags:
           - tags
           - tags
-          duration: 5.637376656633329
+          duration: 0.8008281904610115
           is_mp4: true
-          view: 3
+          view: 5
           assets:
             dash_iframe: dash_iframe
             dash_url: dash_url
@@ -14288,7 +15802,7 @@ components:
             mp4_url: mp4_url
             source_url: source_url
             hls_iframe: hls_iframe
-          size: 9
+          size: 5
           updated_at: updated_at
           user_id: user_id
           player_theme_id: player_theme_id
@@ -14296,17 +15810,17 @@ components:
           qualities:
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           id: id
           status: status
@@ -14402,9 +15916,9 @@ components:
           tags:
           - tags
           - tags
-          duration: 5.637376656633329
+          duration: 0.8008281904610115
           is_mp4: true
-          view: 3
+          view: 5
           assets:
             dash_iframe: dash_iframe
             dash_url: dash_url
@@ -14415,7 +15929,7 @@ components:
             mp4_url: mp4_url
             source_url: source_url
             hls_iframe: hls_iframe
-          size: 9
+          size: 5
           updated_at: updated_at
           user_id: user_id
           player_theme_id: player_theme_id
@@ -14423,17 +15937,17 @@ components:
           qualities:
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           - video_codec: video_codec
             name: name
-            audio_bitrate: 2
+            audio_bitrate: 6
             audio_codec: audio_codec
             type: type
-            video_bitrate: 7
+            video_bitrate: 1
             status: status
           id: id
           status: status
@@ -14447,7 +15961,7 @@ components:
           iframe: iframe
           thumbnail_url: thumbnail_url
         updated_at: updated_at
-        total_view: 2
+        total_view: 5
         user_id: user_id
         qualities:
         - qualities
@@ -14495,7 +16009,7 @@ components:
       type: object
     LiveStreamMediasResponse:
       example:
-        total: 4
+        total: 2
         media:
         - current_view: 6
           save: true
@@ -14556,9 +16070,9 @@ components:
             tags:
             - tags
             - tags
-            duration: 5.637376656633329
+            duration: 0.8008281904610115
             is_mp4: true
-            view: 3
+            view: 5
             assets:
               dash_iframe: dash_iframe
               dash_url: dash_url
@@ -14569,7 +16083,7 @@ components:
               mp4_url: mp4_url
               source_url: source_url
               hls_iframe: hls_iframe
-            size: 9
+            size: 5
             updated_at: updated_at
             user_id: user_id
             player_theme_id: player_theme_id
@@ -14577,17 +16091,17 @@ components:
             qualities:
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             id: id
             status: status
@@ -14601,7 +16115,7 @@ components:
             iframe: iframe
             thumbnail_url: thumbnail_url
           updated_at: updated_at
-          total_view: 2
+          total_view: 5
           user_id: user_id
           qualities:
           - qualities
@@ -14668,9 +16182,9 @@ components:
             tags:
             - tags
             - tags
-            duration: 5.637376656633329
+            duration: 0.8008281904610115
             is_mp4: true
-            view: 3
+            view: 5
             assets:
               dash_iframe: dash_iframe
               dash_url: dash_url
@@ -14681,7 +16195,7 @@ components:
               mp4_url: mp4_url
               source_url: source_url
               hls_iframe: hls_iframe
-            size: 9
+            size: 5
             updated_at: updated_at
             user_id: user_id
             player_theme_id: player_theme_id
@@ -14689,17 +16203,17 @@ components:
             qualities:
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             - video_codec: video_codec
               name: name
-              audio_bitrate: 2
+              audio_bitrate: 6
               audio_codec: audio_codec
               type: type
-              video_bitrate: 7
+              video_bitrate: 1
               status: status
             id: id
             status: status
@@ -14713,7 +16227,7 @@ components:
             iframe: iframe
             thumbnail_url: thumbnail_url
           updated_at: updated_at
-          total_view: 2
+          total_view: 5
           user_id: user_id
           qualities:
           - qualities
@@ -14836,9 +16350,9 @@ components:
         tags:
         - tags
         - tags
-        duration: 5.637376656633329
+        duration: 0.8008281904610115
         is_mp4: true
-        view: 3
+        view: 5
         assets:
           dash_iframe: dash_iframe
           dash_url: dash_url
@@ -14849,7 +16363,7 @@ components:
           mp4_url: mp4_url
           source_url: source_url
           hls_iframe: hls_iframe
-        size: 9
+        size: 5
         updated_at: updated_at
         user_id: user_id
         player_theme_id: player_theme_id
@@ -14857,17 +16371,17 @@ components:
         qualities:
         - video_codec: video_codec
           name: name
-          audio_bitrate: 2
+          audio_bitrate: 6
           audio_codec: audio_codec
           type: type
-          video_bitrate: 7
+          video_bitrate: 1
           status: status
         - video_codec: video_codec
           name: name
-          audio_bitrate: 2
+          audio_bitrate: 6
           audio_codec: audio_codec
           type: type
-          video_bitrate: 7
+          video_bitrate: 1
           status: status
         id: id
         status: status
@@ -14994,6 +16508,121 @@ components:
           type: string
         value:
           type: string
+      type: object
+    MetricFilter:
+      example:
+        media_ids:
+        - media_ids
+        - media_ids
+        os:
+        - os
+        - os
+        media_type: media_type
+        countries:
+        - countries
+        - countries
+        device_types:
+        - device_types
+        - device_types
+        browsers:
+        - browsers
+        - browsers
+        continents:
+        - continents
+        - continents
+        tags:
+        - tags
+        - tags
+      properties:
+        browsers:
+          items:
+            type: string
+          type: array
+        continents:
+          items:
+            type: string
+          type: array
+        countries:
+          items:
+            type: string
+          type: array
+        device_types:
+          items:
+            type: string
+          type: array
+        media_ids:
+          items:
+            type: string
+          type: array
+        media_type:
+          type: string
+        os:
+          items:
+            type: string
+          type: array
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
+    MetricItem:
+      example:
+        dimension_value: dimension_value
+        emitted_at: emitted_at
+        metric_value: 0.8008281904610115
+      properties:
+        dimension_value:
+          type: string
+        emitted_at:
+          type: string
+        metric_value:
+          type: number
+      type: object
+    MetricsContext:
+      example:
+        filter:
+          media_ids:
+          - media_ids
+          - media_ids
+          os:
+          - os
+          - os
+          media_type: media_type
+          countries:
+          - countries
+          - countries
+          device_types:
+          - device_types
+          - device_types
+          browsers:
+          - browsers
+          - browsers
+          continents:
+          - continents
+          - continents
+          tags:
+          - tags
+          - tags
+        metric: metric
+        time_frame:
+          from: from
+          to: to
+        breakdown: breakdown
+        aggregation: aggregation
+        interval: interval
+      properties:
+        aggregation:
+          type: string
+        breakdown:
+          type: string
+        filter:
+          $ref: '#/components/schemas/MetricFilter'
+        interval:
+          type: string
+        metric:
+          type: string
+        time_frame:
+          $ref: '#/components/schemas/TimeFrame'
       type: object
     MoveVideoInPlaylistRequest:
       example:
@@ -15422,10 +17051,10 @@ components:
       example:
         video_codec: video_codec
         name: name
-        audio_bitrate: 2
+        audio_bitrate: 6
         audio_codec: audio_codec
         type: type
-        video_bitrate: 7
+        video_bitrate: 1
         status: status
       properties:
         audio_bitrate:
@@ -15525,6 +17154,16 @@ components:
         text_track_background:
           type: string
         text_track_color:
+          type: string
+      type: object
+    TimeFrame:
+      example:
+        from: from
+        to: to
+      properties:
+        from:
+          type: string
+        to:
           type: string
       type: object
     UpdateLiveStreamKeyData:
@@ -15968,6 +17607,15 @@ components:
           type: string
         user_id:
           type: string
+      type: object
+    internal_controllers.GetAggreatedMetricsMetricsRequest:
+      properties:
+        filter_by:
+          $ref: '#/components/schemas/MetricFilter'
+        from:
+          type: integer
+        to:
+          type: integer
       type: object
     inline_object:
       properties:

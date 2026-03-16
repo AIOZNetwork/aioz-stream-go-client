@@ -107,6 +107,32 @@ func main() {
 All urls are relative to https://api.aiozstream.network/api
 
 
+#### Analytics
+
+
+##### Retrieve an instance of the Analytics API:
+```go
+secretKey := "YOUR_SECRET_KEY" // Replace with your actual secret key
+publicKey := "YOUR_PUBLIC_KEY" // Replace with your public key
+apiCreds := aiozstreamsdk.AuthCredentials{
+	PublicKey: publicKey,
+	SecretKey: secretKey,
+}
+client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+analyticsApi := client.Analytics
+```
+
+##### Endpoints
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**GetAggregatedMetrics**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Analytics.md#GetAggregatedMetrics) | **Post** `/analytics/metrics/data/{metric}/{aggregation}` | Get aggregated metrics
+[**GetBreakdownMetrics**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Analytics.md#GetBreakdownMetrics) | **Post** `/analytics/metrics/bucket/{metric}/{breakdown}` | Get breakdown metrics
+[**GetDataUsage**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Analytics.md#GetDataUsage) | **Get** `/analytics/data` | Get data usage
+[**GetOvertimeMetrics**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Analytics.md#GetOvertimeMetrics) | **Post** `/analytics/metrics/timeseries/{metric}/{interval}` | Get overtime metrics
+[**GetStatisticMedias**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Analytics.md#GetStatisticMedias) | **Get** `/analytics/media` | Get statistic media
+
+
 #### ApiKey
 
 
@@ -293,6 +319,28 @@ Method | HTTP request | Description
 [**UpdatePlaylist**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Playlist.md#UpdatePlaylist) | **Patch** `/playlists/{id}` | Update a playlist
 
 
+#### User
+
+
+##### Retrieve an instance of the User API:
+```go
+secretKey := "YOUR_SECRET_KEY" // Replace with your actual secret key
+publicKey := "YOUR_PUBLIC_KEY" // Replace with your public key
+apiCreds := aiozstreamsdk.AuthCredentials{
+	PublicKey: publicKey,
+	SecretKey: secretKey,
+}
+client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+userApi := client.User
+```
+
+##### Endpoints
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**GetMe**](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/User.md#GetMe) | **Get** `/user/me` | Get me
+
+
 #### Webhook
 
 
@@ -352,8 +400,13 @@ Method | HTTP request | Description
  - [CreateWebhookData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateWebhookData.md)
  - [CreateWebhookRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateWebhookRequest.md)
  - [CreateWebhookResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/CreateWebhookResponse.md)
+ - [DataUsage](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/DataUsage.md)
+ - [GetAggregatedMetricsResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetAggregatedMetricsResponse.md)
  - [GetApiKeysData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetApiKeysData.md)
  - [GetApiKeysResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetApiKeysResponse.md)
+ - [GetBreakdownMetricsRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetBreakdownMetricsRequest.md)
+ - [GetBreakdownMetricsResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetBreakdownMetricsResponse.md)
+ - [GetDataUsageResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetDataUsageResponse.md)
  - [GetLiveStreamKeyData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamKeyData.md)
  - [GetLiveStreamKeyResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamKeyResponse.md)
  - [GetLiveStreamKeysListData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamKeysListData.md)
@@ -364,6 +417,7 @@ Method | HTTP request | Description
  - [GetLiveStreamStatisticResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamStatisticResponse.md)
  - [GetLiveStreamVideoPublicResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamVideoPublicResponse.md)
  - [GetLiveStreamVideoResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetLiveStreamVideoResponse.md)
+ - [GetMeResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMeResponse.md)
  - [GetMediaCaptionsData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaCaptionsData.md)
  - [GetMediaCaptionsResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaCaptionsResponse.md)
  - [GetMediaChaptersData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaChaptersData.md)
@@ -373,6 +427,7 @@ Method | HTTP request | Description
  - [GetMediaListRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaListRequest.md)
  - [GetMediaListResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaListResponse.md)
  - [GetMediaPlayerInfoResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetMediaPlayerInfoResponse.md)
+ - [GetOvertimeMetricsResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetOvertimeMetricsResponse.md)
  - [GetPlayerThemeByIdData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlayerThemeByIdData.md)
  - [GetPlayerThemeByIdResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlayerThemeByIdResponse.md)
  - [GetPlayerThemeData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlayerThemeData.md)
@@ -382,14 +437,17 @@ Method | HTTP request | Description
  - [GetPlaylistListData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlaylistListData.md)
  - [GetPlaylistListRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlaylistListRequest.md)
  - [GetPlaylistListResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetPlaylistListResponse.md)
+ - [GetStatisticMediasResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetStatisticMediasResponse.md)
  - [GetStreamingResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetStreamingResponse.md)
  - [GetStreamingsResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetStreamingsResponse.md)
  - [GetTranscodeCostData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetTranscodeCostData.md)
  - [GetTranscodeCostResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetTranscodeCostResponse.md)
+ - [GetUserData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetUserData.md)
  - [GetUserWebhookData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetUserWebhookData.md)
  - [GetUserWebhookResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetUserWebhookResponse.md)
  - [GetWebhooksListData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetWebhooksListData.md)
  - [GetWebhooksListResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/GetWebhooksListResponse.md)
+ - [InternalControllersGetAggreatedMetricsMetricsRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/InternalControllersGetAggreatedMetricsMetricsRequest.md)
  - [LiveStreamAssets](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStreamAssets.md)
  - [LiveStreamKeyData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStreamKeyData.md)
  - [LiveStreamMediaData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/LiveStreamMediaData.md)
@@ -402,6 +460,9 @@ Method | HTTP request | Description
  - [MediaCaption](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MediaCaption.md)
  - [MediaChapter](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MediaChapter.md)
  - [Metadata](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Metadata.md)
+ - [MetricFilter](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MetricFilter.md)
+ - [MetricItem](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MetricItem.md)
+ - [MetricsContext](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MetricsContext.md)
  - [MoveVideoInPlaylistRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/MoveVideoInPlaylistRequest.md)
  - [PlayerTheme](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/PlayerTheme.md)
  - [Playlist](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Playlist.md)
@@ -417,6 +478,7 @@ Method | HTTP request | Description
  - [ResponseError](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/ResponseError.md)
  - [ResponseSuccess](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/ResponseSuccess.md)
  - [Theme](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/Theme.md)
+ - [TimeFrame](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/TimeFrame.md)
  - [UpdateLiveStreamKeyData](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateLiveStreamKeyData.md)
  - [UpdateLiveStreamKeyRequest](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateLiveStreamKeyRequest.md)
  - [UpdateLiveStreamKeyResponse](https://github.com/AIOZNetwork/aioz-stream-go-client/blob/main/docs/UpdateLiveStreamKeyResponse.md)

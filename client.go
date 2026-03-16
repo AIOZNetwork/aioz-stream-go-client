@@ -34,12 +34,14 @@ type Client struct {
 	sdkVersion         string
 	BearerToken        string
 
+	Analytics    AnalyticsServiceI
 	ApiKey       ApiKeyServiceI
 	LiveStream   LiveStreamServiceI
 	Media        MediaServiceI
 	MediaChapter MediaChapterServiceI
 	Players      PlayersServiceI
 	Playlist     PlaylistServiceI
+	User         UserServiceI
 	Webhook      WebhookServiceI
 }
 
@@ -200,12 +202,14 @@ func (cb *Builder) Build() *Client {
 		BearerToken:        cb.bearerToken,
 	}
 
+	c.Analytics = &AnalyticsService{client: c}
 	c.ApiKey = &ApiKeyService{client: c}
 	c.LiveStream = &LiveStreamService{client: c}
 	c.Media = &MediaService{client: c}
 	c.MediaChapter = &MediaChapterService{client: c}
 	c.Players = &PlayersService{client: c}
 	c.Playlist = &PlaylistService{client: c}
+	c.User = &UserService{client: c}
 	c.Webhook = &WebhookService{client: c}
 
 	return c
