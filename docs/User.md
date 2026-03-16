@@ -1,368 +1,74 @@
-# User
+# \User
 
-## Properties
+All URIs are relative to https://api.aiozstream.network/api
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**Balance** | Pointer to **float32** |  | [optional] 
-**CreatedAt** | Pointer to **string** |  | [optional] 
-**Debt** | Pointer to **float32** |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
-**ExclusiveCode** | Pointer to **string** |  | [optional] 
-**FirstName** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**LastName** | Pointer to **string** |  | [optional] 
-**LastRequestedAt** | Pointer to **string** |  | [optional] 
-**MediaQualitiesConfig** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
-**WalletAddress** | Pointer to **string** |  | [optional] 
-**WalletConnection** | Pointer to **string** |  | [optional] 
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**GetMe**](User.md#GetMe) | **Get** /user/me | Get me
 
-## Methods
 
-### NewUser
 
-`func NewUser() *User`
+## GetMe
 
-NewUser instantiates a new User object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+> GetMe() (*GetMeResponse, error)
 
-### NewUserWithDefaults
+> GetMeWithContext(ctx context.Context, ) (*GetMeResponse, error)
 
-`func NewUserWithDefaults() *User`
 
-NewUserWithDefaults instantiates a new User object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+Get me
 
-### GetBalance
 
-`func (o *User) GetBalance() float32`
 
-GetBalance returns the Balance field if non-nil, zero value otherwise.
+### Example
 
-### GetBalanceOk
+```go
+package main
 
-`func (o *User) GetBalanceOk() (*float32, bool)`
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+)
 
-GetBalanceOk returns a tuple with the Balance field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
 
-### SetBalance
+    
+    res, err := client.User.GetMe()
 
-`func (o *User) SetBalance(v float32)`
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `User.GetMe``: %v\n", err)
+    }
+    // response from `GetMe`: GetMeResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `User.GetMe`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
 
-SetBalance sets Balance field to given value.
+This endpoint does not need any parameter.
 
-### HasBalance
+### Other Parameters
 
-`func (o *User) HasBalance() bool`
 
-HasBalance returns a boolean if a field has been set.
 
-### GetCreatedAt
+### Return type
 
-`func (o *User) GetCreatedAt() string`
+[**GetMeResponse**](GetMeResponse.md)
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *User) GetCreatedAtOk() (*string, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *User) SetCreatedAt(v string)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-### HasCreatedAt
-
-`func (o *User) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
-
-### GetDebt
-
-`func (o *User) GetDebt() float32`
-
-GetDebt returns the Debt field if non-nil, zero value otherwise.
-
-### GetDebtOk
-
-`func (o *User) GetDebtOk() (*float32, bool)`
-
-GetDebtOk returns a tuple with the Debt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDebt
-
-`func (o *User) SetDebt(v float32)`
-
-SetDebt sets Debt field to given value.
-
-### HasDebt
-
-`func (o *User) HasDebt() bool`
-
-HasDebt returns a boolean if a field has been set.
-
-### GetEmail
-
-`func (o *User) GetEmail() string`
-
-GetEmail returns the Email field if non-nil, zero value otherwise.
-
-### GetEmailOk
-
-`func (o *User) GetEmailOk() (*string, bool)`
-
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmail
-
-`func (o *User) SetEmail(v string)`
-
-SetEmail sets Email field to given value.
-
-### HasEmail
-
-`func (o *User) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
-
-### GetExclusiveCode
-
-`func (o *User) GetExclusiveCode() string`
-
-GetExclusiveCode returns the ExclusiveCode field if non-nil, zero value otherwise.
-
-### GetExclusiveCodeOk
-
-`func (o *User) GetExclusiveCodeOk() (*string, bool)`
-
-GetExclusiveCodeOk returns a tuple with the ExclusiveCode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExclusiveCode
-
-`func (o *User) SetExclusiveCode(v string)`
-
-SetExclusiveCode sets ExclusiveCode field to given value.
-
-### HasExclusiveCode
-
-`func (o *User) HasExclusiveCode() bool`
-
-HasExclusiveCode returns a boolean if a field has been set.
-
-### GetFirstName
-
-`func (o *User) GetFirstName() string`
-
-GetFirstName returns the FirstName field if non-nil, zero value otherwise.
-
-### GetFirstNameOk
-
-`func (o *User) GetFirstNameOk() (*string, bool)`
-
-GetFirstNameOk returns a tuple with the FirstName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFirstName
-
-`func (o *User) SetFirstName(v string)`
-
-SetFirstName sets FirstName field to given value.
-
-### HasFirstName
-
-`func (o *User) HasFirstName() bool`
-
-HasFirstName returns a boolean if a field has been set.
-
-### GetId
-
-`func (o *User) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *User) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *User) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *User) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetLastName
-
-`func (o *User) GetLastName() string`
-
-GetLastName returns the LastName field if non-nil, zero value otherwise.
-
-### GetLastNameOk
-
-`func (o *User) GetLastNameOk() (*string, bool)`
-
-GetLastNameOk returns a tuple with the LastName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastName
-
-`func (o *User) SetLastName(v string)`
-
-SetLastName sets LastName field to given value.
-
-### HasLastName
-
-`func (o *User) HasLastName() bool`
-
-HasLastName returns a boolean if a field has been set.
-
-### GetLastRequestedAt
-
-`func (o *User) GetLastRequestedAt() string`
-
-GetLastRequestedAt returns the LastRequestedAt field if non-nil, zero value otherwise.
-
-### GetLastRequestedAtOk
-
-`func (o *User) GetLastRequestedAtOk() (*string, bool)`
-
-GetLastRequestedAtOk returns a tuple with the LastRequestedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastRequestedAt
-
-`func (o *User) SetLastRequestedAt(v string)`
-
-SetLastRequestedAt sets LastRequestedAt field to given value.
-
-### HasLastRequestedAt
-
-`func (o *User) HasLastRequestedAt() bool`
-
-HasLastRequestedAt returns a boolean if a field has been set.
-
-### GetMediaQualitiesConfig
-
-`func (o *User) GetMediaQualitiesConfig() string`
-
-GetMediaQualitiesConfig returns the MediaQualitiesConfig field if non-nil, zero value otherwise.
-
-### GetMediaQualitiesConfigOk
-
-`func (o *User) GetMediaQualitiesConfigOk() (*string, bool)`
-
-GetMediaQualitiesConfigOk returns a tuple with the MediaQualitiesConfig field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMediaQualitiesConfig
-
-`func (o *User) SetMediaQualitiesConfig(v string)`
-
-SetMediaQualitiesConfig sets MediaQualitiesConfig field to given value.
-
-### HasMediaQualitiesConfig
-
-`func (o *User) HasMediaQualitiesConfig() bool`
-
-HasMediaQualitiesConfig returns a boolean if a field has been set.
-
-### GetUpdatedAt
-
-`func (o *User) GetUpdatedAt() string`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *User) GetUpdatedAtOk() (*string, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *User) SetUpdatedAt(v string)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
-
-### HasUpdatedAt
-
-`func (o *User) HasUpdatedAt() bool`
-
-HasUpdatedAt returns a boolean if a field has been set.
-
-### GetWalletAddress
-
-`func (o *User) GetWalletAddress() string`
-
-GetWalletAddress returns the WalletAddress field if non-nil, zero value otherwise.
-
-### GetWalletAddressOk
-
-`func (o *User) GetWalletAddressOk() (*string, bool)`
-
-GetWalletAddressOk returns a tuple with the WalletAddress field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWalletAddress
-
-`func (o *User) SetWalletAddress(v string)`
-
-SetWalletAddress sets WalletAddress field to given value.
-
-### HasWalletAddress
-
-`func (o *User) HasWalletAddress() bool`
-
-HasWalletAddress returns a boolean if a field has been set.
-
-### GetWalletConnection
-
-`func (o *User) GetWalletConnection() string`
-
-GetWalletConnection returns the WalletConnection field if non-nil, zero value otherwise.
-
-### GetWalletConnectionOk
-
-`func (o *User) GetWalletConnectionOk() (*string, bool)`
-
-GetWalletConnectionOk returns a tuple with the WalletConnection field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWalletConnection
-
-`func (o *User) SetWalletConnection(v string)`
-
-SetWalletConnection sets WalletConnection field to given value.
-
-### HasWalletConnection
-
-`func (o *User) HasWalletConnection() bool`
-
-HasWalletConnection returns a boolean if a field has been set.
-
-
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
