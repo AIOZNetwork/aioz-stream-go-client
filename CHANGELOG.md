@@ -1,6 +1,21 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [1.0.16] - 2026-03-16
+- Release analytics
+
+## [1.0.15] - 2026-03-11
+- Release livestream sdk
+
+## [1.0.14] - 2026-03-07
+- Update new path for media
+
+## [1.0.13] - 2026-03-04
+- Update path api media
+
+## [1.0.12] - 2026-02-25
+- Add audio and update type
+
 ## [1.0.11] - 2025-08-15
 - Upgrade from temporarily hiding livestream
 
