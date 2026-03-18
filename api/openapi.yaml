@@ -11501,12 +11501,12 @@ components:
           exclusive_code: exclusive_code
           created_at: created_at
           last_name: last_name
-          balance: 0.8008281904610115
+          balance: balance
           last_requested_at: last_requested_at
           updated_at: updated_at
           wallet_connection: wallet_connection
           id: id
-          debt: 6.027456183070403
+          debt: debt
           first_name: first_name
           email: email
           media_qualities_config: media_qualities_config
@@ -11606,12 +11606,12 @@ components:
             exclusive_code: exclusive_code
             created_at: created_at
             last_name: last_name
-            balance: 0.8008281904610115
+            balance: balance
             last_requested_at: last_requested_at
             updated_at: updated_at
             wallet_connection: wallet_connection
             id: id
-            debt: 6.027456183070403
+            debt: debt
             first_name: first_name
             email: email
             media_qualities_config: media_qualities_config
@@ -11652,12 +11652,12 @@ components:
               exclusive_code: exclusive_code
               created_at: created_at
               last_name: last_name
-              balance: 0.8008281904610115
+              balance: balance
               last_requested_at: last_requested_at
               updated_at: updated_at
               wallet_connection: wallet_connection
               id: id
-              debt: 6.027456183070403
+              debt: debt
               first_name: first_name
               email: email
               media_qualities_config: media_qualities_config
@@ -12561,7 +12561,7 @@ components:
       type: object
     GetApiKeysData:
       example:
-        total: 1
+        total: 0
         api_keys:
         - public_key: public_key
           last_requested_at: last_requested_at
@@ -12579,12 +12579,12 @@ components:
             exclusive_code: exclusive_code
             created_at: created_at
             last_name: last_name
-            balance: 0.8008281904610115
+            balance: balance
             last_requested_at: last_requested_at
             updated_at: updated_at
             wallet_connection: wallet_connection
             id: id
-            debt: 6.027456183070403
+            debt: debt
             first_name: first_name
             email: email
             media_qualities_config: media_qualities_config
@@ -12604,12 +12604,12 @@ components:
             exclusive_code: exclusive_code
             created_at: created_at
             last_name: last_name
-            balance: 0.8008281904610115
+            balance: balance
             last_requested_at: last_requested_at
             updated_at: updated_at
             wallet_connection: wallet_connection
             id: id
-            debt: 6.027456183070403
+            debt: debt
             first_name: first_name
             email: email
             media_qualities_config: media_qualities_config
@@ -12624,7 +12624,7 @@ components:
     GetApiKeysResponse:
       example:
         data:
-          total: 1
+          total: 0
           api_keys:
           - public_key: public_key
             last_requested_at: last_requested_at
@@ -12642,12 +12642,12 @@ components:
               exclusive_code: exclusive_code
               created_at: created_at
               last_name: last_name
-              balance: 0.8008281904610115
+              balance: balance
               last_requested_at: last_requested_at
               updated_at: updated_at
               wallet_connection: wallet_connection
               id: id
-              debt: 6.027456183070403
+              debt: debt
               first_name: first_name
               email: email
               media_qualities_config: media_qualities_config
@@ -12667,12 +12667,12 @@ components:
               exclusive_code: exclusive_code
               created_at: created_at
               last_name: last_name
-              balance: 0.8008281904610115
+              balance: balance
               last_requested_at: last_requested_at
               updated_at: updated_at
               wallet_connection: wallet_connection
               id: id
-              debt: 6.027456183070403
+              debt: debt
               first_name: first_name
               email: email
               media_qualities_config: media_qualities_config
@@ -13530,12 +13530,12 @@ components:
             exclusive_code: exclusive_code
             created_at: created_at
             last_name: last_name
-            balance: 0.8008281904610115
+            balance: balance
             last_requested_at: last_requested_at
             updated_at: updated_at
             wallet_connection: wallet_connection
             id: id
-            debt: 6.027456183070403
+            debt: debt
             first_name: first_name
             email: email
             media_qualities_config: media_qualities_config
@@ -15892,12 +15892,12 @@ components:
           exclusive_code: exclusive_code
           created_at: created_at
           last_name: last_name
-          balance: 0.8008281904610115
+          balance: balance
           last_requested_at: last_requested_at
           updated_at: updated_at
           wallet_connection: wallet_connection
           id: id
-          debt: 6.027456183070403
+          debt: debt
           first_name: first_name
           email: email
           media_qualities_config: media_qualities_config
@@ -17847,22 +17847,22 @@ components:
         exclusive_code: exclusive_code
         created_at: created_at
         last_name: last_name
-        balance: 0.8008281904610115
+        balance: balance
         last_requested_at: last_requested_at
         updated_at: updated_at
         wallet_connection: wallet_connection
         id: id
-        debt: 6.027456183070403
+        debt: debt
         first_name: first_name
         email: email
         media_qualities_config: media_qualities_config
       properties:
         balance:
-          type: number
+          type: string
         created_at:
           type: string
         debt:
-          type: number
+          type: string
         email:
           type: string
         exclusive_code:
