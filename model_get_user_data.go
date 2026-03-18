@@ -11,7 +11,9 @@
 
 package aiozstreamsdk
 
+import (
 //"encoding/json"
+)
 
 // GetUserData struct for GetUserData
 type GetUserData struct {
