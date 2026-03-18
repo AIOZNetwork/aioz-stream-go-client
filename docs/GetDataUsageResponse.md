@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**[]DataUsage**](DataUsage.md) |  | [optional] 
-**Total** | Pointer to **int32** |  | [optional] 
+**Data** | Pointer to [**GetDataUsageData**](GetDataUsageData.md) |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *GetDataUsageResponse) GetData() []DataUsage`
+`func (o *GetDataUsageResponse) GetData() GetDataUsageData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *GetDataUsageResponse) GetDataOk() (*[]DataUsage, bool)`
+`func (o *GetDataUsageResponse) GetDataOk() (*GetDataUsageData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *GetDataUsageResponse) SetData(v []DataUsage)`
+`func (o *GetDataUsageResponse) SetData(v GetDataUsageData)`
 
 SetData sets Data field to given value.
 
@@ -51,30 +51,30 @@ SetData sets Data field to given value.
 
 HasData returns a boolean if a field has been set.
 
-### GetTotal
+### GetStatus
 
-`func (o *GetDataUsageResponse) GetTotal() int32`
+`func (o *GetDataUsageResponse) GetStatus() string`
 
-GetTotal returns the Total field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetTotalOk
+### GetStatusOk
 
-`func (o *GetDataUsageResponse) GetTotalOk() (*int32, bool)`
+`func (o *GetDataUsageResponse) GetStatusOk() (*string, bool)`
 
-GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotal
+### SetStatus
 
-`func (o *GetDataUsageResponse) SetTotal(v int32)`
+`func (o *GetDataUsageResponse) SetStatus(v string)`
 
-SetTotal sets Total field to given value.
+SetStatus sets Status field to given value.
 
-### HasTotal
+### HasStatus
 
-`func (o *GetDataUsageResponse) HasTotal() bool`
+`func (o *GetDataUsageResponse) HasStatus() bool`
 
-HasTotal returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

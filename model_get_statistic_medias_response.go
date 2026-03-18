@@ -17,8 +17,8 @@ import (
 
 // GetStatisticMediasResponse struct for GetStatisticMediasResponse
 type GetStatisticMediasResponse struct {
-	Media *[]Media `json:"media,omitempty"`
-	Total *int32   `json:"total,omitempty"`
+	Data   *GetStatisticMediasData `json:"data,omitempty"`
+	Status *string                 `json:"status,omitempty"`
 }
 
 // NewGetStatisticMediasResponse instantiates a new GetStatisticMediasResponse object
@@ -38,68 +38,68 @@ func NewGetStatisticMediasResponseWithDefaults() *GetStatisticMediasResponse {
 	return &this
 }
 
-// GetMedia returns the Media field value if set, zero value otherwise.
-func (o *GetStatisticMediasResponse) GetMedia() []Media {
-	if o == nil || o.Media == nil {
-		var ret []Media
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *GetStatisticMediasResponse) GetData() GetStatisticMediasData {
+	if o == nil || o.Data == nil {
+		var ret GetStatisticMediasData
 		return ret
 	}
-	return *o.Media
+	return *o.Data
 }
 
-// GetMediaOk returns a tuple with the Media field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetStatisticMediasResponse) GetMediaOk() (*[]Media, bool) {
-	if o == nil || o.Media == nil {
+func (o *GetStatisticMediasResponse) GetDataOk() (*GetStatisticMediasData, bool) {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Media, true
+	return o.Data, true
 }
 
-// HasMedia returns a boolean if a field has been set.
-func (o *GetStatisticMediasResponse) HasMedia() bool {
-	if o != nil && o.Media != nil {
+// HasData returns a boolean if a field has been set.
+func (o *GetStatisticMediasResponse) HasData() bool {
+	if o != nil && o.Data != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetMedia gets a reference to the given []Media and assigns it to the Media field.
-func (o *GetStatisticMediasResponse) SetMedia(v []Media) {
-	o.Media = &v
+// SetData gets a reference to the given GetStatisticMediasData and assigns it to the Data field.
+func (o *GetStatisticMediasResponse) SetData(v GetStatisticMediasData) {
+	o.Data = &v
 }
 
-// GetTotal returns the Total field value if set, zero value otherwise.
-func (o *GetStatisticMediasResponse) GetTotal() int32 {
-	if o == nil || o.Total == nil {
-		var ret int32
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *GetStatisticMediasResponse) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
 		return ret
 	}
-	return *o.Total
+	return *o.Status
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetStatisticMediasResponse) GetTotalOk() (*int32, bool) {
-	if o == nil || o.Total == nil {
+func (o *GetStatisticMediasResponse) GetStatusOk() (*string, bool) {
+	if o == nil || o.Status == nil {
 		return nil, false
 	}
-	return o.Total, true
+	return o.Status, true
 }
 
-// HasTotal returns a boolean if a field has been set.
-func (o *GetStatisticMediasResponse) HasTotal() bool {
-	if o != nil && o.Total != nil {
+// HasStatus returns a boolean if a field has been set.
+func (o *GetStatisticMediasResponse) HasStatus() bool {
+	if o != nil && o.Status != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *GetStatisticMediasResponse) SetTotal(v int32) {
-	o.Total = &v
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *GetStatisticMediasResponse) SetStatus(v string) {
+	o.Status = &v
 }
 
 type NullableGetStatisticMediasResponse struct {

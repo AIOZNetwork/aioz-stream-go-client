@@ -4,9 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Context** | Pointer to [**MetricsContext**](MetricsContext.md) |  | [optional] 
-**Data** | Pointer to [**[]MetricItem**](MetricItem.md) |  | [optional] 
-**Total** | Pointer to **int32** |  | [optional] 
+**Data** | Pointer to [**GetBreakdownMetricsData**](GetBreakdownMetricsData.md) |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -27,47 +26,22 @@ NewGetBreakdownMetricsResponseWithDefaults instantiates a new GetBreakdownMetric
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetContext
-
-`func (o *GetBreakdownMetricsResponse) GetContext() MetricsContext`
-
-GetContext returns the Context field if non-nil, zero value otherwise.
-
-### GetContextOk
-
-`func (o *GetBreakdownMetricsResponse) GetContextOk() (*MetricsContext, bool)`
-
-GetContextOk returns a tuple with the Context field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContext
-
-`func (o *GetBreakdownMetricsResponse) SetContext(v MetricsContext)`
-
-SetContext sets Context field to given value.
-
-### HasContext
-
-`func (o *GetBreakdownMetricsResponse) HasContext() bool`
-
-HasContext returns a boolean if a field has been set.
-
 ### GetData
 
-`func (o *GetBreakdownMetricsResponse) GetData() []MetricItem`
+`func (o *GetBreakdownMetricsResponse) GetData() GetBreakdownMetricsData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *GetBreakdownMetricsResponse) GetDataOk() (*[]MetricItem, bool)`
+`func (o *GetBreakdownMetricsResponse) GetDataOk() (*GetBreakdownMetricsData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *GetBreakdownMetricsResponse) SetData(v []MetricItem)`
+`func (o *GetBreakdownMetricsResponse) SetData(v GetBreakdownMetricsData)`
 
 SetData sets Data field to given value.
 
@@ -77,30 +51,30 @@ SetData sets Data field to given value.
 
 HasData returns a boolean if a field has been set.
 
-### GetTotal
+### GetStatus
 
-`func (o *GetBreakdownMetricsResponse) GetTotal() int32`
+`func (o *GetBreakdownMetricsResponse) GetStatus() string`
 
-GetTotal returns the Total field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetTotalOk
+### GetStatusOk
 
-`func (o *GetBreakdownMetricsResponse) GetTotalOk() (*int32, bool)`
+`func (o *GetBreakdownMetricsResponse) GetStatusOk() (*string, bool)`
 
-GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotal
+### SetStatus
 
-`func (o *GetBreakdownMetricsResponse) SetTotal(v int32)`
+`func (o *GetBreakdownMetricsResponse) SetStatus(v string)`
 
-SetTotal sets Total field to given value.
+SetStatus sets Status field to given value.
 
-### HasTotal
+### HasStatus
 
-`func (o *GetBreakdownMetricsResponse) HasTotal() bool`
+`func (o *GetBreakdownMetricsResponse) HasStatus() bool`
 
-HasTotal returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

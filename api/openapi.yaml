@@ -12477,7 +12477,7 @@ components:
         user_id:
           type: string
       type: object
-    GetAggregatedMetricsResponse:
+    GetAggregatedMetricsData:
       example:
         data: 0.8008281904610115
         context:
@@ -12516,6 +12516,48 @@ components:
           $ref: '#/components/schemas/MetricsContext'
         data:
           type: number
+      type: object
+    GetAggregatedMetricsResponse:
+      example:
+        data:
+          data: 0.8008281904610115
+          context:
+            filter:
+              media_ids:
+              - media_ids
+              - media_ids
+              os:
+              - os
+              - os
+              media_type: media_type
+              countries:
+              - countries
+              - countries
+              device_types:
+              - device_types
+              - device_types
+              browsers:
+              - browsers
+              - browsers
+              continents:
+              - continents
+              - continents
+              tags:
+              - tags
+              - tags
+            metric: metric
+            time_frame:
+              from: from
+              to: to
+            breakdown: breakdown
+            aggregation: aggregation
+            interval: interval
+        status: status
+      properties:
+        data:
+          $ref: '#/components/schemas/GetAggregatedMetricsData'
+        status:
+          type: string
       type: object
     GetApiKeysData:
       example:
@@ -12641,6 +12683,57 @@ components:
         status:
           type: string
       type: object
+    GetBreakdownMetricsData:
+      example:
+        total: 6
+        data:
+        - dimension_value: dimension_value
+          emitted_at: emitted_at
+          metric_value: 0.8008281904610115
+        - dimension_value: dimension_value
+          emitted_at: emitted_at
+          metric_value: 0.8008281904610115
+        context:
+          filter:
+            media_ids:
+            - media_ids
+            - media_ids
+            os:
+            - os
+            - os
+            media_type: media_type
+            countries:
+            - countries
+            - countries
+            device_types:
+            - device_types
+            - device_types
+            browsers:
+            - browsers
+            - browsers
+            continents:
+            - continents
+            - continents
+            tags:
+            - tags
+            - tags
+          metric: metric
+          time_frame:
+            from: from
+            to: to
+          breakdown: breakdown
+          aggregation: aggregation
+          interval: interval
+      properties:
+        context:
+          $ref: '#/components/schemas/MetricsContext'
+        data:
+          items:
+            $ref: '#/components/schemas/MetricItem'
+          type: array
+        total:
+          type: integer
+      type: object
     GetBreakdownMetricsRequest:
       example:
         offset: 1
@@ -12693,56 +12786,54 @@ components:
       type: object
     GetBreakdownMetricsResponse:
       example:
-        total: 6
         data:
-        - dimension_value: dimension_value
-          emitted_at: emitted_at
-          metric_value: 0.8008281904610115
-        - dimension_value: dimension_value
-          emitted_at: emitted_at
-          metric_value: 0.8008281904610115
-        context:
-          filter:
-            media_ids:
-            - media_ids
-            - media_ids
-            os:
-            - os
-            - os
-            media_type: media_type
-            countries:
-            - countries
-            - countries
-            device_types:
-            - device_types
-            - device_types
-            browsers:
-            - browsers
-            - browsers
-            continents:
-            - continents
-            - continents
-            tags:
-            - tags
-            - tags
-          metric: metric
-          time_frame:
-            from: from
-            to: to
-          breakdown: breakdown
-          aggregation: aggregation
-          interval: interval
+          total: 6
+          data:
+          - dimension_value: dimension_value
+            emitted_at: emitted_at
+            metric_value: 0.8008281904610115
+          - dimension_value: dimension_value
+            emitted_at: emitted_at
+            metric_value: 0.8008281904610115
+          context:
+            filter:
+              media_ids:
+              - media_ids
+              - media_ids
+              os:
+              - os
+              - os
+              media_type: media_type
+              countries:
+              - countries
+              - countries
+              device_types:
+              - device_types
+              - device_types
+              browsers:
+              - browsers
+              - browsers
+              continents:
+              - continents
+              - continents
+              tags:
+              - tags
+              - tags
+            metric: metric
+            time_frame:
+              from: from
+              to: to
+            breakdown: breakdown
+            aggregation: aggregation
+            interval: interval
+        status: status
       properties:
-        context:
-          $ref: '#/components/schemas/MetricsContext'
         data:
-          items:
-            $ref: '#/components/schemas/MetricItem'
-          type: array
-        total:
-          type: integer
+          $ref: '#/components/schemas/GetBreakdownMetricsData'
+        status:
+          type: string
       type: object
-    GetDataUsageResponse:
+    GetDataUsageData:
       example:
         total: 6
         data:
@@ -12759,6 +12850,24 @@ components:
           type: array
         total:
           type: integer
+      type: object
+    GetDataUsageResponse:
+      example:
+        data:
+          total: 6
+          data:
+          - delivery: 0
+            user_id: user_id
+            created_at: created_at
+          - delivery: 0
+            user_id: user_id
+            created_at: created_at
+        status: status
+      properties:
+        data:
+          $ref: '#/components/schemas/GetDataUsageData'
+        status:
+          type: string
       type: object
     GetLiveStreamKeyData:
       example:
@@ -14176,7 +14285,7 @@ components:
         user_id:
           type: string
       type: object
-    GetOvertimeMetricsResponse:
+    GetOvertimeMetricsData:
       example:
         total: 0
         data:
@@ -14226,6 +14335,55 @@ components:
           type: array
         total:
           type: integer
+      type: object
+    GetOvertimeMetricsResponse:
+      example:
+        data:
+          total: 0
+          data:
+          - dimension_value: dimension_value
+            emitted_at: emitted_at
+            metric_value: 0.8008281904610115
+          - dimension_value: dimension_value
+            emitted_at: emitted_at
+            metric_value: 0.8008281904610115
+          context:
+            filter:
+              media_ids:
+              - media_ids
+              - media_ids
+              os:
+              - os
+              - os
+              media_type: media_type
+              countries:
+              - countries
+              - countries
+              device_types:
+              - device_types
+              - device_types
+              browsers:
+              - browsers
+              - browsers
+              continents:
+              - continents
+              - continents
+              tags:
+              - tags
+              - tags
+            metric: metric
+            time_frame:
+              from: from
+              to: to
+            breakdown: breakdown
+            aggregation: aggregation
+            interval: interval
+        status: status
+      properties:
+        data:
+          $ref: '#/components/schemas/GetOvertimeMetricsData'
+        status:
+          type: string
       type: object
     GetPlayerThemeByIdData:
       example:
@@ -14967,7 +15125,7 @@ components:
         status:
           type: string
       type: object
-    GetStatisticMediasResponse:
+    GetStatisticMediasData:
       example:
         total: 2
         media:
@@ -15156,6 +15314,196 @@ components:
           type: array
         total:
           type: integer
+      type: object
+    GetStatisticMediasResponse:
+      example:
+        data:
+          total: 2
+          media:
+          - metadata:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            chapters:
+            - language: language
+              url: url
+            - language: language
+              url: url
+            player_theme:
+              controls:
+                force_autoplay: true
+                enable_controls: true
+                enable_api: true
+                hide_title: true
+                force_loop: true
+              user_id: user_id
+              name: name
+              created_at: created_at
+              theme:
+                text_track_background: text_track_background
+                main_color: main_color
+                progress_bar_height: progress_bar_height
+                progress_bar_circle_size: progress_bar_circle_size
+                control_bar_background_color: control_bar_background_color
+                text_color: text_color
+                menu_item_background_hover: menu_item_background_hover
+                text_track_color: text_track_color
+                control_bar_height: control_bar_height
+                menu_background_color: menu_background_color
+              id: id
+              asset:
+                logo_link: logo_link
+                logo_image_link: logo_image_link
+              is_default: true
+            created_at: created_at
+            description: description
+            title: title
+            type: type
+            captions:
+            - description: description
+              language: language
+              is_default: true
+              url: url
+              status: status
+            - description: description
+              language: language
+              is_default: true
+              url: url
+              status: status
+            tags:
+            - tags
+            - tags
+            duration: 0.8008281904610115
+            is_mp4: true
+            view: 5
+            assets:
+              dash_iframe: dash_iframe
+              dash_url: dash_url
+              dash_player_url: dash_player_url
+              hls_url: hls_url
+              hls_player_url: hls_player_url
+              thumbnail_url: thumbnail_url
+              mp4_url: mp4_url
+              source_url: source_url
+              hls_iframe: hls_iframe
+            size: 5
+            updated_at: updated_at
+            user_id: user_id
+            player_theme_id: player_theme_id
+            is_public: true
+            qualities:
+            - video_codec: video_codec
+              name: name
+              audio_bitrate: 6
+              audio_codec: audio_codec
+              type: type
+              video_bitrate: 1
+              status: status
+            - video_codec: video_codec
+              name: name
+              audio_bitrate: 6
+              audio_codec: audio_codec
+              type: type
+              video_bitrate: 1
+              status: status
+            id: id
+            status: status
+          - metadata:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            chapters:
+            - language: language
+              url: url
+            - language: language
+              url: url
+            player_theme:
+              controls:
+                force_autoplay: true
+                enable_controls: true
+                enable_api: true
+                hide_title: true
+                force_loop: true
+              user_id: user_id
+              name: name
+              created_at: created_at
+              theme:
+                text_track_background: text_track_background
+                main_color: main_color
+                progress_bar_height: progress_bar_height
+                progress_bar_circle_size: progress_bar_circle_size
+                control_bar_background_color: control_bar_background_color
+                text_color: text_color
+                menu_item_background_hover: menu_item_background_hover
+                text_track_color: text_track_color
+                control_bar_height: control_bar_height
+                menu_background_color: menu_background_color
+              id: id
+              asset:
+                logo_link: logo_link
+                logo_image_link: logo_image_link
+              is_default: true
+            created_at: created_at
+            description: description
+            title: title
+            type: type
+            captions:
+            - description: description
+              language: language
+              is_default: true
+              url: url
+              status: status
+            - description: description
+              language: language
+              is_default: true
+              url: url
+              status: status
+            tags:
+            - tags
+            - tags
+            duration: 0.8008281904610115
+            is_mp4: true
+            view: 5
+            assets:
+              dash_iframe: dash_iframe
+              dash_url: dash_url
+              dash_player_url: dash_player_url
+              hls_url: hls_url
+              hls_player_url: hls_player_url
+              thumbnail_url: thumbnail_url
+              mp4_url: mp4_url
+              source_url: source_url
+              hls_iframe: hls_iframe
+            size: 5
+            updated_at: updated_at
+            user_id: user_id
+            player_theme_id: player_theme_id
+            is_public: true
+            qualities:
+            - video_codec: video_codec
+              name: name
+              audio_bitrate: 6
+              audio_codec: audio_codec
+              type: type
+              video_bitrate: 1
+              status: status
+            - video_codec: video_codec
+              name: name
+              audio_bitrate: 6
+              audio_codec: audio_codec
+              type: type
+              video_bitrate: 1
+              status: status
+            id: id
+            status: status
+        status: status
+      properties:
+        data:
+          $ref: '#/components/schemas/GetStatisticMediasData'
+        status:
+          type: string
       type: object
     GetStreamingResponse:
       example:
