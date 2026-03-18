@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Media** | Pointer to [**[]Media**](Media.md) |  | [optional] 
-**Total** | Pointer to **int32** |  | [optional] 
+**Data** | Pointer to [**GetStatisticMediasData**](GetStatisticMediasData.md) |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -26,55 +26,55 @@ NewGetStatisticMediasResponseWithDefaults instantiates a new GetStatisticMediasR
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMedia
+### GetData
 
-`func (o *GetStatisticMediasResponse) GetMedia() []Media`
+`func (o *GetStatisticMediasResponse) GetData() GetStatisticMediasData`
 
-GetMedia returns the Media field if non-nil, zero value otherwise.
+GetData returns the Data field if non-nil, zero value otherwise.
 
-### GetMediaOk
+### GetDataOk
 
-`func (o *GetStatisticMediasResponse) GetMediaOk() (*[]Media, bool)`
+`func (o *GetStatisticMediasResponse) GetDataOk() (*GetStatisticMediasData, bool)`
 
-GetMediaOk returns a tuple with the Media field if it's non-nil, zero value otherwise
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMedia
+### SetData
 
-`func (o *GetStatisticMediasResponse) SetMedia(v []Media)`
+`func (o *GetStatisticMediasResponse) SetData(v GetStatisticMediasData)`
 
-SetMedia sets Media field to given value.
+SetData sets Data field to given value.
 
-### HasMedia
+### HasData
 
-`func (o *GetStatisticMediasResponse) HasMedia() bool`
+`func (o *GetStatisticMediasResponse) HasData() bool`
 
-HasMedia returns a boolean if a field has been set.
+HasData returns a boolean if a field has been set.
 
-### GetTotal
+### GetStatus
 
-`func (o *GetStatisticMediasResponse) GetTotal() int32`
+`func (o *GetStatisticMediasResponse) GetStatus() string`
 
-GetTotal returns the Total field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetTotalOk
+### GetStatusOk
 
-`func (o *GetStatisticMediasResponse) GetTotalOk() (*int32, bool)`
+`func (o *GetStatisticMediasResponse) GetStatusOk() (*string, bool)`
 
-GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotal
+### SetStatus
 
-`func (o *GetStatisticMediasResponse) SetTotal(v int32)`
+`func (o *GetStatisticMediasResponse) SetStatus(v string)`
 
-SetTotal sets Total field to given value.
+SetStatus sets Status field to given value.
 
-### HasTotal
+### HasStatus
 
-`func (o *GetStatisticMediasResponse) HasTotal() bool`
+`func (o *GetStatisticMediasResponse) HasStatus() bool`
 
-HasTotal returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

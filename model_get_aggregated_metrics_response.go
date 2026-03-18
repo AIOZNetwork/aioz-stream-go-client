@@ -17,8 +17,8 @@ import (
 
 // GetAggregatedMetricsResponse struct for GetAggregatedMetricsResponse
 type GetAggregatedMetricsResponse struct {
-	Context *MetricsContext `json:"context,omitempty"`
-	Data    *float32        `json:"data,omitempty"`
+	Data   *GetAggregatedMetricsData `json:"data,omitempty"`
+	Status *string                   `json:"status,omitempty"`
 }
 
 // NewGetAggregatedMetricsResponse instantiates a new GetAggregatedMetricsResponse object
@@ -38,42 +38,10 @@ func NewGetAggregatedMetricsResponseWithDefaults() *GetAggregatedMetricsResponse
 	return &this
 }
 
-// GetContext returns the Context field value if set, zero value otherwise.
-func (o *GetAggregatedMetricsResponse) GetContext() MetricsContext {
-	if o == nil || o.Context == nil {
-		var ret MetricsContext
-		return ret
-	}
-	return *o.Context
-}
-
-// GetContextOk returns a tuple with the Context field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetAggregatedMetricsResponse) GetContextOk() (*MetricsContext, bool) {
-	if o == nil || o.Context == nil {
-		return nil, false
-	}
-	return o.Context, true
-}
-
-// HasContext returns a boolean if a field has been set.
-func (o *GetAggregatedMetricsResponse) HasContext() bool {
-	if o != nil && o.Context != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetContext gets a reference to the given MetricsContext and assigns it to the Context field.
-func (o *GetAggregatedMetricsResponse) SetContext(v MetricsContext) {
-	o.Context = &v
-}
-
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *GetAggregatedMetricsResponse) GetData() float32 {
+func (o *GetAggregatedMetricsResponse) GetData() GetAggregatedMetricsData {
 	if o == nil || o.Data == nil {
-		var ret float32
+		var ret GetAggregatedMetricsData
 		return ret
 	}
 	return *o.Data
@@ -81,7 +49,7 @@ func (o *GetAggregatedMetricsResponse) GetData() float32 {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAggregatedMetricsResponse) GetDataOk() (*float32, bool) {
+func (o *GetAggregatedMetricsResponse) GetDataOk() (*GetAggregatedMetricsData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -97,9 +65,41 @@ func (o *GetAggregatedMetricsResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given float32 and assigns it to the Data field.
-func (o *GetAggregatedMetricsResponse) SetData(v float32) {
+// SetData gets a reference to the given GetAggregatedMetricsData and assigns it to the Data field.
+func (o *GetAggregatedMetricsResponse) SetData(v GetAggregatedMetricsData) {
 	o.Data = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *GetAggregatedMetricsResponse) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetAggregatedMetricsResponse) GetStatusOk() (*string, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *GetAggregatedMetricsResponse) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *GetAggregatedMetricsResponse) SetStatus(v string) {
+	o.Status = &v
 }
 
 type NullableGetAggregatedMetricsResponse struct {

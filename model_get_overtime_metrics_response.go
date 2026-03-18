@@ -17,9 +17,8 @@ import (
 
 // GetOvertimeMetricsResponse struct for GetOvertimeMetricsResponse
 type GetOvertimeMetricsResponse struct {
-	Context *MetricsContext `json:"context,omitempty"`
-	Data    *[]MetricItem   `json:"data,omitempty"`
-	Total   *int32          `json:"total,omitempty"`
+	Data   *GetOvertimeMetricsData `json:"data,omitempty"`
+	Status *string                 `json:"status,omitempty"`
 }
 
 // NewGetOvertimeMetricsResponse instantiates a new GetOvertimeMetricsResponse object
@@ -39,42 +38,10 @@ func NewGetOvertimeMetricsResponseWithDefaults() *GetOvertimeMetricsResponse {
 	return &this
 }
 
-// GetContext returns the Context field value if set, zero value otherwise.
-func (o *GetOvertimeMetricsResponse) GetContext() MetricsContext {
-	if o == nil || o.Context == nil {
-		var ret MetricsContext
-		return ret
-	}
-	return *o.Context
-}
-
-// GetContextOk returns a tuple with the Context field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetOvertimeMetricsResponse) GetContextOk() (*MetricsContext, bool) {
-	if o == nil || o.Context == nil {
-		return nil, false
-	}
-	return o.Context, true
-}
-
-// HasContext returns a boolean if a field has been set.
-func (o *GetOvertimeMetricsResponse) HasContext() bool {
-	if o != nil && o.Context != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetContext gets a reference to the given MetricsContext and assigns it to the Context field.
-func (o *GetOvertimeMetricsResponse) SetContext(v MetricsContext) {
-	o.Context = &v
-}
-
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *GetOvertimeMetricsResponse) GetData() []MetricItem {
+func (o *GetOvertimeMetricsResponse) GetData() GetOvertimeMetricsData {
 	if o == nil || o.Data == nil {
-		var ret []MetricItem
+		var ret GetOvertimeMetricsData
 		return ret
 	}
 	return *o.Data
@@ -82,7 +49,7 @@ func (o *GetOvertimeMetricsResponse) GetData() []MetricItem {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOvertimeMetricsResponse) GetDataOk() (*[]MetricItem, bool) {
+func (o *GetOvertimeMetricsResponse) GetDataOk() (*GetOvertimeMetricsData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -98,41 +65,41 @@ func (o *GetOvertimeMetricsResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []MetricItem and assigns it to the Data field.
-func (o *GetOvertimeMetricsResponse) SetData(v []MetricItem) {
+// SetData gets a reference to the given GetOvertimeMetricsData and assigns it to the Data field.
+func (o *GetOvertimeMetricsResponse) SetData(v GetOvertimeMetricsData) {
 	o.Data = &v
 }
 
-// GetTotal returns the Total field value if set, zero value otherwise.
-func (o *GetOvertimeMetricsResponse) GetTotal() int32 {
-	if o == nil || o.Total == nil {
-		var ret int32
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *GetOvertimeMetricsResponse) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
 		return ret
 	}
-	return *o.Total
+	return *o.Status
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOvertimeMetricsResponse) GetTotalOk() (*int32, bool) {
-	if o == nil || o.Total == nil {
+func (o *GetOvertimeMetricsResponse) GetStatusOk() (*string, bool) {
+	if o == nil || o.Status == nil {
 		return nil, false
 	}
-	return o.Total, true
+	return o.Status, true
 }
 
-// HasTotal returns a boolean if a field has been set.
-func (o *GetOvertimeMetricsResponse) HasTotal() bool {
-	if o != nil && o.Total != nil {
+// HasStatus returns a boolean if a field has been set.
+func (o *GetOvertimeMetricsResponse) HasStatus() bool {
+	if o != nil && o.Status != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *GetOvertimeMetricsResponse) SetTotal(v int32) {
-	o.Total = &v
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *GetOvertimeMetricsResponse) SetStatus(v string) {
+	o.Status = &v
 }
 
 type NullableGetOvertimeMetricsResponse struct {

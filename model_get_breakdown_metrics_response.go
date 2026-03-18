@@ -17,9 +17,8 @@ import (
 
 // GetBreakdownMetricsResponse struct for GetBreakdownMetricsResponse
 type GetBreakdownMetricsResponse struct {
-	Context *MetricsContext `json:"context,omitempty"`
-	Data    *[]MetricItem   `json:"data,omitempty"`
-	Total   *int32          `json:"total,omitempty"`
+	Data   *GetBreakdownMetricsData `json:"data,omitempty"`
+	Status *string                  `json:"status,omitempty"`
 }
 
 // NewGetBreakdownMetricsResponse instantiates a new GetBreakdownMetricsResponse object
@@ -39,42 +38,10 @@ func NewGetBreakdownMetricsResponseWithDefaults() *GetBreakdownMetricsResponse {
 	return &this
 }
 
-// GetContext returns the Context field value if set, zero value otherwise.
-func (o *GetBreakdownMetricsResponse) GetContext() MetricsContext {
-	if o == nil || o.Context == nil {
-		var ret MetricsContext
-		return ret
-	}
-	return *o.Context
-}
-
-// GetContextOk returns a tuple with the Context field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetBreakdownMetricsResponse) GetContextOk() (*MetricsContext, bool) {
-	if o == nil || o.Context == nil {
-		return nil, false
-	}
-	return o.Context, true
-}
-
-// HasContext returns a boolean if a field has been set.
-func (o *GetBreakdownMetricsResponse) HasContext() bool {
-	if o != nil && o.Context != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetContext gets a reference to the given MetricsContext and assigns it to the Context field.
-func (o *GetBreakdownMetricsResponse) SetContext(v MetricsContext) {
-	o.Context = &v
-}
-
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *GetBreakdownMetricsResponse) GetData() []MetricItem {
+func (o *GetBreakdownMetricsResponse) GetData() GetBreakdownMetricsData {
 	if o == nil || o.Data == nil {
-		var ret []MetricItem
+		var ret GetBreakdownMetricsData
 		return ret
 	}
 	return *o.Data
@@ -82,7 +49,7 @@ func (o *GetBreakdownMetricsResponse) GetData() []MetricItem {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetBreakdownMetricsResponse) GetDataOk() (*[]MetricItem, bool) {
+func (o *GetBreakdownMetricsResponse) GetDataOk() (*GetBreakdownMetricsData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -98,41 +65,41 @@ func (o *GetBreakdownMetricsResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []MetricItem and assigns it to the Data field.
-func (o *GetBreakdownMetricsResponse) SetData(v []MetricItem) {
+// SetData gets a reference to the given GetBreakdownMetricsData and assigns it to the Data field.
+func (o *GetBreakdownMetricsResponse) SetData(v GetBreakdownMetricsData) {
 	o.Data = &v
 }
 
-// GetTotal returns the Total field value if set, zero value otherwise.
-func (o *GetBreakdownMetricsResponse) GetTotal() int32 {
-	if o == nil || o.Total == nil {
-		var ret int32
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *GetBreakdownMetricsResponse) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
 		return ret
 	}
-	return *o.Total
+	return *o.Status
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetBreakdownMetricsResponse) GetTotalOk() (*int32, bool) {
-	if o == nil || o.Total == nil {
+func (o *GetBreakdownMetricsResponse) GetStatusOk() (*string, bool) {
+	if o == nil || o.Status == nil {
 		return nil, false
 	}
-	return o.Total, true
+	return o.Status, true
 }
 
-// HasTotal returns a boolean if a field has been set.
-func (o *GetBreakdownMetricsResponse) HasTotal() bool {
-	if o != nil && o.Total != nil {
+// HasStatus returns a boolean if a field has been set.
+func (o *GetBreakdownMetricsResponse) HasStatus() bool {
+	if o != nil && o.Status != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *GetBreakdownMetricsResponse) SetTotal(v int32) {
-	o.Total = &v
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *GetBreakdownMetricsResponse) SetStatus(v string) {
+	o.Status = &v
 }
 
 type NullableGetBreakdownMetricsResponse struct {

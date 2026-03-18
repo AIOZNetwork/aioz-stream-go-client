@@ -17,8 +17,8 @@ import (
 
 // GetDataUsageResponse struct for GetDataUsageResponse
 type GetDataUsageResponse struct {
-	Data  *[]DataUsage `json:"data,omitempty"`
-	Total *int32       `json:"total,omitempty"`
+	Data   *GetDataUsageData `json:"data,omitempty"`
+	Status *string           `json:"status,omitempty"`
 }
 
 // NewGetDataUsageResponse instantiates a new GetDataUsageResponse object
@@ -39,9 +39,9 @@ func NewGetDataUsageResponseWithDefaults() *GetDataUsageResponse {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *GetDataUsageResponse) GetData() []DataUsage {
+func (o *GetDataUsageResponse) GetData() GetDataUsageData {
 	if o == nil || o.Data == nil {
-		var ret []DataUsage
+		var ret GetDataUsageData
 		return ret
 	}
 	return *o.Data
@@ -49,7 +49,7 @@ func (o *GetDataUsageResponse) GetData() []DataUsage {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetDataUsageResponse) GetDataOk() (*[]DataUsage, bool) {
+func (o *GetDataUsageResponse) GetDataOk() (*GetDataUsageData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -65,41 +65,41 @@ func (o *GetDataUsageResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []DataUsage and assigns it to the Data field.
-func (o *GetDataUsageResponse) SetData(v []DataUsage) {
+// SetData gets a reference to the given GetDataUsageData and assigns it to the Data field.
+func (o *GetDataUsageResponse) SetData(v GetDataUsageData) {
 	o.Data = &v
 }
 
-// GetTotal returns the Total field value if set, zero value otherwise.
-func (o *GetDataUsageResponse) GetTotal() int32 {
-	if o == nil || o.Total == nil {
-		var ret int32
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *GetDataUsageResponse) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
 		return ret
 	}
-	return *o.Total
+	return *o.Status
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetDataUsageResponse) GetTotalOk() (*int32, bool) {
-	if o == nil || o.Total == nil {
+func (o *GetDataUsageResponse) GetStatusOk() (*string, bool) {
+	if o == nil || o.Status == nil {
 		return nil, false
 	}
-	return o.Total, true
+	return o.Status, true
 }
 
-// HasTotal returns a boolean if a field has been set.
-func (o *GetDataUsageResponse) HasTotal() bool {
-	if o != nil && o.Total != nil {
+// HasStatus returns a boolean if a field has been set.
+func (o *GetDataUsageResponse) HasStatus() bool {
+	if o != nil && o.Status != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *GetDataUsageResponse) SetTotal(v int32) {
-	o.Total = &v
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *GetDataUsageResponse) SetStatus(v string) {
+	o.Status = &v
 }
 
 type NullableGetDataUsageResponse struct {

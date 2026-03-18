@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Context** | Pointer to [**MetricsContext**](MetricsContext.md) |  | [optional] 
-**Data** | Pointer to **float32** |  | [optional] 
+**Data** | Pointer to [**GetAggregatedMetricsData**](GetAggregatedMetricsData.md) |  | [optional] 
+**Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -26,47 +26,22 @@ NewGetAggregatedMetricsResponseWithDefaults instantiates a new GetAggregatedMetr
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetContext
-
-`func (o *GetAggregatedMetricsResponse) GetContext() MetricsContext`
-
-GetContext returns the Context field if non-nil, zero value otherwise.
-
-### GetContextOk
-
-`func (o *GetAggregatedMetricsResponse) GetContextOk() (*MetricsContext, bool)`
-
-GetContextOk returns a tuple with the Context field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContext
-
-`func (o *GetAggregatedMetricsResponse) SetContext(v MetricsContext)`
-
-SetContext sets Context field to given value.
-
-### HasContext
-
-`func (o *GetAggregatedMetricsResponse) HasContext() bool`
-
-HasContext returns a boolean if a field has been set.
-
 ### GetData
 
-`func (o *GetAggregatedMetricsResponse) GetData() float32`
+`func (o *GetAggregatedMetricsResponse) GetData() GetAggregatedMetricsData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *GetAggregatedMetricsResponse) GetDataOk() (*float32, bool)`
+`func (o *GetAggregatedMetricsResponse) GetDataOk() (*GetAggregatedMetricsData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *GetAggregatedMetricsResponse) SetData(v float32)`
+`func (o *GetAggregatedMetricsResponse) SetData(v GetAggregatedMetricsData)`
 
 SetData sets Data field to given value.
 
@@ -75,6 +50,31 @@ SetData sets Data field to given value.
 `func (o *GetAggregatedMetricsResponse) HasData() bool`
 
 HasData returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *GetAggregatedMetricsResponse) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *GetAggregatedMetricsResponse) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *GetAggregatedMetricsResponse) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *GetAggregatedMetricsResponse) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
