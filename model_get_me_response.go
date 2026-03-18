@@ -11,9 +11,7 @@
 
 package aiozstreamsdk
 
-import (
 //"encoding/json"
-)
 
 // GetMeResponse struct for GetMeResponse
 type GetMeResponse struct {
