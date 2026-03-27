@@ -20,6 +20,7 @@ type User struct {
 	Balance              *string `json:"balance,omitempty"`
 	CreatedAt            *string `json:"created_at,omitempty"`
 	Debt                 *string `json:"debt,omitempty"`
+	DeletedAt            *string `json:"deleted_at,omitempty"`
 	Email                *string `json:"email,omitempty"`
 	ExclusiveCode        *string `json:"exclusive_code,omitempty"`
 	FirstName            *string `json:"first_name,omitempty"`
@@ -143,6 +144,38 @@ func (o *User) HasDebt() bool {
 // SetDebt gets a reference to the given string and assigns it to the Debt field.
 func (o *User) SetDebt(v string) {
 	o.Debt = &v
+}
+
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
+func (o *User) GetDeletedAt() string {
+	if o == nil || o.DeletedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeletedAt
+}
+
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetDeletedAtOk() (*string, bool) {
+	if o == nil || o.DeletedAt == nil {
+		return nil, false
+	}
+	return o.DeletedAt, true
+}
+
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *User) HasDeletedAt() bool {
+	if o != nil && o.DeletedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given string and assigns it to the DeletedAt field.
+func (o *User) SetDeletedAt(v string) {
+	o.DeletedAt = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.

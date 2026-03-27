@@ -11486,21 +11486,22 @@ components:
     ApiKey:
       example:
         public_key: public_key
-        last_requested_at: last_requested_at
-        updated_at: updated_at
-        name: name
         created_at: created_at
         expired_at: expired_at
-        id: id
         secret: secret
         truncated_secret: truncated_secret
         type: type
         ttl: ttl
+        last_requested_at: last_requested_at
+        updated_at: updated_at
+        name: name
+        id: id
         user:
           wallet_address: wallet_address
           exclusive_code: exclusive_code
           created_at: created_at
           last_name: last_name
+          deleted_at: deleted_at
           balance: balance
           last_requested_at: last_requested_at
           updated_at: updated_at
@@ -11510,6 +11511,7 @@ components:
           first_name: first_name
           email: email
           media_qualities_config: media_qualities_config
+        status: status
       properties:
         created_at:
           type: string
@@ -11524,6 +11526,8 @@ components:
         public_key:
           type: string
         secret:
+          type: string
+        status:
           type: string
         truncated_secret:
           type: string
@@ -11591,21 +11595,22 @@ components:
       example:
         api_key:
           public_key: public_key
-          last_requested_at: last_requested_at
-          updated_at: updated_at
-          name: name
           created_at: created_at
           expired_at: expired_at
-          id: id
           secret: secret
           truncated_secret: truncated_secret
           type: type
           ttl: ttl
+          last_requested_at: last_requested_at
+          updated_at: updated_at
+          name: name
+          id: id
           user:
             wallet_address: wallet_address
             exclusive_code: exclusive_code
             created_at: created_at
             last_name: last_name
+            deleted_at: deleted_at
             balance: balance
             last_requested_at: last_requested_at
             updated_at: updated_at
@@ -11615,6 +11620,7 @@ components:
             first_name: first_name
             email: email
             media_qualities_config: media_qualities_config
+          status: status
       properties:
         api_key:
           $ref: '#/components/schemas/ApiKey'
@@ -11637,21 +11643,22 @@ components:
         data:
           api_key:
             public_key: public_key
-            last_requested_at: last_requested_at
-            updated_at: updated_at
-            name: name
             created_at: created_at
             expired_at: expired_at
-            id: id
             secret: secret
             truncated_secret: truncated_secret
             type: type
             ttl: ttl
+            last_requested_at: last_requested_at
+            updated_at: updated_at
+            name: name
+            id: id
             user:
               wallet_address: wallet_address
               exclusive_code: exclusive_code
               created_at: created_at
               last_name: last_name
+              deleted_at: deleted_at
               balance: balance
               last_requested_at: last_requested_at
               updated_at: updated_at
@@ -11661,6 +11668,7 @@ components:
               first_name: first_name
               email: email
               media_qualities_config: media_qualities_config
+            status: status
         status: status
       properties:
         data:
@@ -12564,21 +12572,22 @@ components:
         total: 0
         api_keys:
         - public_key: public_key
-          last_requested_at: last_requested_at
-          updated_at: updated_at
-          name: name
           created_at: created_at
           expired_at: expired_at
-          id: id
           secret: secret
           truncated_secret: truncated_secret
           type: type
           ttl: ttl
+          last_requested_at: last_requested_at
+          updated_at: updated_at
+          name: name
+          id: id
           user:
             wallet_address: wallet_address
             exclusive_code: exclusive_code
             created_at: created_at
             last_name: last_name
+            deleted_at: deleted_at
             balance: balance
             last_requested_at: last_requested_at
             updated_at: updated_at
@@ -12588,22 +12597,24 @@ components:
             first_name: first_name
             email: email
             media_qualities_config: media_qualities_config
+          status: status
         - public_key: public_key
-          last_requested_at: last_requested_at
-          updated_at: updated_at
-          name: name
           created_at: created_at
           expired_at: expired_at
-          id: id
           secret: secret
           truncated_secret: truncated_secret
           type: type
           ttl: ttl
+          last_requested_at: last_requested_at
+          updated_at: updated_at
+          name: name
+          id: id
           user:
             wallet_address: wallet_address
             exclusive_code: exclusive_code
             created_at: created_at
             last_name: last_name
+            deleted_at: deleted_at
             balance: balance
             last_requested_at: last_requested_at
             updated_at: updated_at
@@ -12613,6 +12624,7 @@ components:
             first_name: first_name
             email: email
             media_qualities_config: media_qualities_config
+          status: status
       properties:
         api_keys:
           items:
@@ -12627,21 +12639,22 @@ components:
           total: 0
           api_keys:
           - public_key: public_key
-            last_requested_at: last_requested_at
-            updated_at: updated_at
-            name: name
             created_at: created_at
             expired_at: expired_at
-            id: id
             secret: secret
             truncated_secret: truncated_secret
             type: type
             ttl: ttl
+            last_requested_at: last_requested_at
+            updated_at: updated_at
+            name: name
+            id: id
             user:
               wallet_address: wallet_address
               exclusive_code: exclusive_code
               created_at: created_at
               last_name: last_name
+              deleted_at: deleted_at
               balance: balance
               last_requested_at: last_requested_at
               updated_at: updated_at
@@ -12651,22 +12664,24 @@ components:
               first_name: first_name
               email: email
               media_qualities_config: media_qualities_config
+            status: status
           - public_key: public_key
-            last_requested_at: last_requested_at
-            updated_at: updated_at
-            name: name
             created_at: created_at
             expired_at: expired_at
-            id: id
             secret: secret
             truncated_secret: truncated_secret
             type: type
             ttl: ttl
+            last_requested_at: last_requested_at
+            updated_at: updated_at
+            name: name
+            id: id
             user:
               wallet_address: wallet_address
               exclusive_code: exclusive_code
               created_at: created_at
               last_name: last_name
+              deleted_at: deleted_at
               balance: balance
               last_requested_at: last_requested_at
               updated_at: updated_at
@@ -12676,6 +12691,7 @@ components:
               first_name: first_name
               email: email
               media_qualities_config: media_qualities_config
+            status: status
         status: status
       properties:
         data:
@@ -13530,6 +13546,7 @@ components:
             exclusive_code: exclusive_code
             created_at: created_at
             last_name: last_name
+            deleted_at: deleted_at
             balance: balance
             last_requested_at: last_requested_at
             updated_at: updated_at
@@ -14271,6 +14288,7 @@ components:
             $ref: '#/components/schemas/QualityObject'
           type: array
         size:
+          format: int64
           type: integer
         status:
           type: string
@@ -15892,6 +15910,7 @@ components:
           exclusive_code: exclusive_code
           created_at: created_at
           last_name: last_name
+          deleted_at: deleted_at
           balance: balance
           last_requested_at: last_requested_at
           updated_at: updated_at
@@ -16769,6 +16788,7 @@ components:
             $ref: '#/components/schemas/QualityObject'
           type: array
         size:
+          format: int64
           type: integer
         status:
           type: string
@@ -17847,6 +17867,7 @@ components:
         exclusive_code: exclusive_code
         created_at: created_at
         last_name: last_name
+        deleted_at: deleted_at
         balance: balance
         last_requested_at: last_requested_at
         updated_at: updated_at
@@ -17862,6 +17883,8 @@ components:
         created_at:
           type: string
         debt:
+          type: string
+        deleted_at:
           type: string
         email:
           type: string
