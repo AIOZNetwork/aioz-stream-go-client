@@ -24,6 +24,7 @@ type ApiKey struct {
 	Name            *string `json:"name,omitempty"`
 	PublicKey       *string `json:"public_key,omitempty"`
 	Secret          *string `json:"secret,omitempty"`
+	Status          *string `json:"status,omitempty"`
 	TruncatedSecret *string `json:"truncated_secret,omitempty"`
 	Ttl             *string `json:"ttl,omitempty"`
 	Type            *string `json:"type,omitempty"`
@@ -270,6 +271,38 @@ func (o *ApiKey) HasSecret() bool {
 // SetSecret gets a reference to the given string and assigns it to the Secret field.
 func (o *ApiKey) SetSecret(v string) {
 	o.Secret = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *ApiKey) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApiKey) GetStatusOk() (*string, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *ApiKey) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *ApiKey) SetStatus(v string) {
+	o.Status = &v
 }
 
 // GetTruncatedSecret returns the TruncatedSecret field value if set, zero value otherwise.

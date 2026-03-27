@@ -30,7 +30,7 @@ type Media struct {
 	PlayerTheme   *PlayerTheme     `json:"player_theme,omitempty"`
 	PlayerThemeId *string          `json:"player_theme_id,omitempty"`
 	Qualities     *[]QualityObject `json:"qualities,omitempty"`
-	Size          *int32           `json:"size,omitempty"`
+	Size          *int64           `json:"size,omitempty"`
 	Status        *string          `json:"status,omitempty"`
 	Tags          *[]string        `json:"tags,omitempty"`
 	Title         *string          `json:"title,omitempty"`
@@ -474,9 +474,9 @@ func (o *Media) SetQualities(v []QualityObject) {
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *Media) GetSize() int32 {
+func (o *Media) GetSize() int64 {
 	if o == nil || o.Size == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Size
@@ -484,7 +484,7 @@ func (o *Media) GetSize() int32 {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Media) GetSizeOk() (*int32, bool) {
+func (o *Media) GetSizeOk() (*int64, bool) {
 	if o == nil || o.Size == nil {
 		return nil, false
 	}
@@ -500,8 +500,8 @@ func (o *Media) HasSize() bool {
 	return false
 }
 
-// SetSize gets a reference to the given int32 and assigns it to the Size field.
-func (o *Media) SetSize(v int32) {
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *Media) SetSize(v int64) {
 	o.Size = &v
 }
 
