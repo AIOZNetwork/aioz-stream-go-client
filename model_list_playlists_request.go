@@ -13,9 +13,9 @@ package aiozstreamsdk
 
 // ListPlaylistsRequest struct for ListPlaylistsRequest
 type ListPlaylistsRequest struct {
-	Limit        *int32      `json:"limit,omitempty"`
+	Limit        *int64      `json:"limit,omitempty"`
 	Metadata     *[]Metadata `json:"metadata,omitempty"`
-	Offset       *int32      `json:"offset,omitempty"`
+	Offset       *int64      `json:"offset,omitempty"`
 	OrderBy      *string     `json:"order_by,omitempty"`
 	PlaylistType *string     `json:"playlist_type,omitempty"`
 	Search       *string     `json:"search,omitempty"`
@@ -29,7 +29,7 @@ type ListPlaylistsRequest struct {
 // will change when the set of required properties is changed
 func NewListPlaylistsRequest() *ListPlaylistsRequest {
 	this := ListPlaylistsRequest{}
-	var limit int32 = 25
+	var limit int64 = 25
 	this.Limit = &limit
 	return &this
 }
@@ -39,15 +39,15 @@ func NewListPlaylistsRequest() *ListPlaylistsRequest {
 // but it doesn't guarantee that properties required by API are set
 func NewListPlaylistsRequestWithDefaults() *ListPlaylistsRequest {
 	this := ListPlaylistsRequest{}
-	var limit int32 = 25
+	var limit int64 = 25
 	this.Limit = &limit
 	return &this
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
-func (o *ListPlaylistsRequest) GetLimit() int32 {
+func (o *ListPlaylistsRequest) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Limit
@@ -55,7 +55,7 @@ func (o *ListPlaylistsRequest) GetLimit() int32 {
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListPlaylistsRequest) GetLimitOk() (*int32, bool) {
+func (o *ListPlaylistsRequest) GetLimitOk() (*int64, bool) {
 	if o == nil || o.Limit == nil {
 		return nil, false
 	}
@@ -71,8 +71,8 @@ func (o *ListPlaylistsRequest) HasLimit() bool {
 	return false
 }
 
-// SetLimit gets a reference to the given int32 and assigns it to the Limit field.
-func (o *ListPlaylistsRequest) SetLimit(v int32) {
+// SetLimit gets a reference to the given int64 and assigns it to the Limit field.
+func (o *ListPlaylistsRequest) SetLimit(v int64) {
 	o.Limit = &v
 }
 
@@ -109,9 +109,9 @@ func (o *ListPlaylistsRequest) SetMetadata(v []Metadata) {
 }
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *ListPlaylistsRequest) GetOffset() int32 {
+func (o *ListPlaylistsRequest) GetOffset() int64 {
 	if o == nil || o.Offset == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Offset
@@ -119,7 +119,7 @@ func (o *ListPlaylistsRequest) GetOffset() int32 {
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListPlaylistsRequest) GetOffsetOk() (*int32, bool) {
+func (o *ListPlaylistsRequest) GetOffsetOk() (*int64, bool) {
 	if o == nil || o.Offset == nil {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *ListPlaylistsRequest) HasOffset() bool {
 	return false
 }
 
-// SetOffset gets a reference to the given int32 and assigns it to the Offset field.
-func (o *ListPlaylistsRequest) SetOffset(v int32) {
+// SetOffset gets a reference to the given int64 and assigns it to the Offset field.
+func (o *ListPlaylistsRequest) SetOffset(v int64) {
 	o.Offset = &v
 }
 

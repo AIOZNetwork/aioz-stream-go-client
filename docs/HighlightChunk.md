@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **DeletedAt** | Pointer to [**DeletedAt**](DeletedAt.md) |  | [optional] 
 **FileMd5** | Pointer to **string** |  | [optional] 
-**FileSize** | Pointer to **int32** | FileSize is the size of the uploaded chunk in bytes. | [optional] 
+**FileSize** | Pointer to **int64** | FileSize is the size of the uploaded chunk in bytes. | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **MediaId** | Pointer to **string** |  | [optional] 
 **ObjUrl** | Pointer to **string** |  | [optional] 
-**Offset** | Pointer to **int32** |  | [optional] 
+**Offset** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to [**HighlightChunkStatus**](HighlightChunkStatus.md) |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 
@@ -111,20 +111,20 @@ HasFileMd5 returns a boolean if a field has been set.
 
 ### GetFileSize
 
-`func (o *HighlightChunk) GetFileSize() int32`
+`func (o *HighlightChunk) GetFileSize() int64`
 
 GetFileSize returns the FileSize field if non-nil, zero value otherwise.
 
 ### GetFileSizeOk
 
-`func (o *HighlightChunk) GetFileSizeOk() (*int32, bool)`
+`func (o *HighlightChunk) GetFileSizeOk() (*int64, bool)`
 
 GetFileSizeOk returns a tuple with the FileSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFileSize
 
-`func (o *HighlightChunk) SetFileSize(v int32)`
+`func (o *HighlightChunk) SetFileSize(v int64)`
 
 SetFileSize sets FileSize field to given value.
 
@@ -211,20 +211,20 @@ HasObjUrl returns a boolean if a field has been set.
 
 ### GetOffset
 
-`func (o *HighlightChunk) GetOffset() int32`
+`func (o *HighlightChunk) GetOffset() int64`
 
 GetOffset returns the Offset field if non-nil, zero value otherwise.
 
 ### GetOffsetOk
 
-`func (o *HighlightChunk) GetOffsetOk() (*int32, bool)`
+`func (o *HighlightChunk) GetOffsetOk() (*int64, bool)`
 
 GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOffset
 
-`func (o *HighlightChunk) SetOffset(v int32)`
+`func (o *HighlightChunk) SetOffset(v int64)`
 
 SetOffset sets Offset field to given value.
 

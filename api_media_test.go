@@ -330,8 +330,8 @@ func TestMediaService_GetMediaList(t *testing.T) {
 		{
 			name: "Valid Get Media List With Filter",
 			request: GetMediaListRequest{
-				Limit:   int32Ptr(10),
-				Offset:  int32Ptr(0),
+				Limit:   int64Ptr(10),
+				Offset:  int64Ptr(0),
 				OrderBy: stringPtr("created_at"),
 				SortBy:  stringPtr("desc"),
 			},
@@ -342,7 +342,7 @@ func TestMediaService_GetMediaList(t *testing.T) {
 			request: GetMediaListRequest{
 				Status: &[]string{"done"},
 				Type:   stringPtr("video"),
-				Limit:  int32Ptr(10),
+				Limit:  int64Ptr(10),
 			},
 			wantErr: false,
 		},
@@ -1533,7 +1533,7 @@ func loadReadyMediaIDs() ([]string, error) {
 	resp, err := testClient.Media.GetMediaList(GetMediaListRequest{
 		Status:  &[]string{"done"},
 		Type:    stringPtr("video"),
-		Limit:   int32Ptr(100),
+		Limit:   int64Ptr(100),
 		SortBy:  stringPtr("created_at"),
 		OrderBy: stringPtr("asc"),
 	})

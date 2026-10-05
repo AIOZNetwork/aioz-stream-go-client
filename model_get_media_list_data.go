@@ -14,7 +14,7 @@ package aiozstreamsdk
 // GetMediaListData struct for GetMediaListData
 type GetMediaListData struct {
 	Media *[]MediaObject `json:"media,omitempty"`
-	Total *int32         `json:"total,omitempty"`
+	Total *int64         `json:"total,omitempty"`
 }
 
 // NewGetMediaListData instantiates a new GetMediaListData object
@@ -67,9 +67,9 @@ func (o *GetMediaListData) SetMedia(v []MediaObject) {
 }
 
 // GetTotal returns the Total field value if set, zero value otherwise.
-func (o *GetMediaListData) GetTotal() int32 {
+func (o *GetMediaListData) GetTotal() int64 {
 	if o == nil || o.Total == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Total
@@ -77,7 +77,7 @@ func (o *GetMediaListData) GetTotal() int32 {
 
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetMediaListData) GetTotalOk() (*int32, bool) {
+func (o *GetMediaListData) GetTotalOk() (*int64, bool) {
 	if o == nil || o.Total == nil {
 		return nil, false
 	}
@@ -93,8 +93,8 @@ func (o *GetMediaListData) HasTotal() bool {
 	return false
 }
 
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *GetMediaListData) SetTotal(v int32) {
+// SetTotal gets a reference to the given int64 and assigns it to the Total field.
+func (o *GetMediaListData) SetTotal(v int64) {
 	o.Total = &v
 }
 

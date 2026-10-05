@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **PlayerTheme** | Pointer to [**PlayerTheme**](PlayerTheme.md) |  | [optional] 
 **PlayerThemeId** | Pointer to **string** |  | [optional] 
 **Qualities** | Pointer to [**[]QualityObject**](QualityObject.md) |  | [optional] 
-**Size** | Pointer to **int32** |  | [optional] 
+**Size** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
@@ -370,20 +370,20 @@ HasQualities returns a boolean if a field has been set.
 
 ### GetSize
 
-`func (o *GetMediaPlayerInfoResponse) GetSize() int32`
+`func (o *GetMediaPlayerInfoResponse) GetSize() int64`
 
 GetSize returns the Size field if non-nil, zero value otherwise.
 
 ### GetSizeOk
 
-`func (o *GetMediaPlayerInfoResponse) GetSizeOk() (*int32, bool)`
+`func (o *GetMediaPlayerInfoResponse) GetSizeOk() (*int64, bool)`
 
 GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSize
 
-`func (o *GetMediaPlayerInfoResponse) SetSize(v int32)`
+`func (o *GetMediaPlayerInfoResponse) SetSize(v int64)`
 
 SetSize sets Size field to given value.
 

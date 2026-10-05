@@ -26,18 +26,18 @@ var (
 )
 
 type PlayersApiListRequest struct {
-	limit   *int32
-	offset  *int32
+	limit   *int64
+	offset  *int64
 	orderBy *string
 	search  *string
 	sortBy  *string
 }
 
-func (r PlayersApiListRequest) Limit(limit int32) PlayersApiListRequest {
+func (r PlayersApiListRequest) Limit(limit int64) PlayersApiListRequest {
 	r.limit = &limit
 	return r
 }
-func (r PlayersApiListRequest) Offset(offset int32) PlayersApiListRequest {
+func (r PlayersApiListRequest) Offset(offset int64) PlayersApiListRequest {
 	r.offset = &offset
 	return r
 }

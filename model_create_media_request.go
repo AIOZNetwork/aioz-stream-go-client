@@ -23,7 +23,7 @@ type CreateMediaRequest struct {
 	// Qualities of the media (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p)
 	Qualities *[]QualityConfig `json:"qualities,omitempty"`
 	// SegmentConfig
-	SegmentDuration *int32 `json:"segment_duration,omitempty"`
+	SegmentDuration *int64 `json:"segment_duration,omitempty"`
 	// Import an existing HLS manifest instead of uploading a file. When set, the renditions are mirrored from that manifest and the part-upload flow is skipped, so `qualities` and `watermark` must be omitted.
 	SourceUrl *string `json:"source_url,omitempty"`
 	// Tags of the media (max: 50 items, max length: 255)
@@ -213,9 +213,9 @@ func (o *CreateMediaRequest) SetQualities(v []QualityConfig) {
 }
 
 // GetSegmentDuration returns the SegmentDuration field value if set, zero value otherwise.
-func (o *CreateMediaRequest) GetSegmentDuration() int32 {
+func (o *CreateMediaRequest) GetSegmentDuration() int64 {
 	if o == nil || o.SegmentDuration == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SegmentDuration
@@ -223,7 +223,7 @@ func (o *CreateMediaRequest) GetSegmentDuration() int32 {
 
 // GetSegmentDurationOk returns a tuple with the SegmentDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateMediaRequest) GetSegmentDurationOk() (*int32, bool) {
+func (o *CreateMediaRequest) GetSegmentDurationOk() (*int64, bool) {
 	if o == nil || o.SegmentDuration == nil {
 		return nil, false
 	}
@@ -239,8 +239,8 @@ func (o *CreateMediaRequest) HasSegmentDuration() bool {
 	return false
 }
 
-// SetSegmentDuration gets a reference to the given int32 and assigns it to the SegmentDuration field.
-func (o *CreateMediaRequest) SetSegmentDuration(v int32) {
+// SetSegmentDuration gets a reference to the given int64 and assigns it to the SegmentDuration field.
+func (o *CreateMediaRequest) SetSegmentDuration(v int64) {
 	o.SegmentDuration = &v
 }
 

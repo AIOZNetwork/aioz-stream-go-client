@@ -14,7 +14,7 @@ package aiozstreamsdk
 // ListWebhooksData struct for ListWebhooksData
 type ListWebhooksData struct {
 	Query    *ListWebhooksRequest `json:"query,omitempty"`
-	Total    *int32               `json:"total,omitempty"`
+	Total    *int64               `json:"total,omitempty"`
 	Webhooks *[]Webhook           `json:"webhooks,omitempty"`
 }
 
@@ -68,9 +68,9 @@ func (o *ListWebhooksData) SetQuery(v ListWebhooksRequest) {
 }
 
 // GetTotal returns the Total field value if set, zero value otherwise.
-func (o *ListWebhooksData) GetTotal() int32 {
+func (o *ListWebhooksData) GetTotal() int64 {
 	if o == nil || o.Total == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Total
@@ -78,7 +78,7 @@ func (o *ListWebhooksData) GetTotal() int32 {
 
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListWebhooksData) GetTotalOk() (*int32, bool) {
+func (o *ListWebhooksData) GetTotalOk() (*int64, bool) {
 	if o == nil || o.Total == nil {
 		return nil, false
 	}
@@ -94,8 +94,8 @@ func (o *ListWebhooksData) HasTotal() bool {
 	return false
 }
 
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *ListWebhooksData) SetTotal(v int32) {
+// SetTotal gets a reference to the given int64 and assigns it to the Total field.
+func (o *ListWebhooksData) SetTotal(v int64) {
 	o.Total = &v
 }
 

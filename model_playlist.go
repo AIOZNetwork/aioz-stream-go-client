@@ -17,13 +17,13 @@ type Playlist struct {
 	Duration     *float32                `json:"duration,omitempty"`
 	Id           *string                 `json:"id,omitempty"`
 	Iframe       *string                 `json:"iframe,omitempty"`
-	ItemCount    *int32                  `json:"item_count,omitempty"`
+	ItemCount    *int64                  `json:"item_count,omitempty"`
 	Items        *[]PlaylistItem         `json:"items,omitempty"`
 	Metadata     *map[string]interface{} `json:"metadata,omitempty"`
 	Name         *string                 `json:"name,omitempty"`
 	PlaylistType *string                 `json:"playlist_type,omitempty"`
 	PlaylistUrl  *string                 `json:"playlist_url,omitempty"`
-	Size         *int32                  `json:"size,omitempty"`
+	Size         *int64                  `json:"size,omitempty"`
 	Tags         *string                 `json:"tags,omitempty"`
 	ThumbnailUrl *string                 `json:"thumbnail_url,omitempty"`
 	UpdatedAt    *string                 `json:"updated_at,omitempty"`
@@ -176,9 +176,9 @@ func (o *Playlist) SetIframe(v string) {
 }
 
 // GetItemCount returns the ItemCount field value if set, zero value otherwise.
-func (o *Playlist) GetItemCount() int32 {
+func (o *Playlist) GetItemCount() int64 {
 	if o == nil || o.ItemCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ItemCount
@@ -186,7 +186,7 @@ func (o *Playlist) GetItemCount() int32 {
 
 // GetItemCountOk returns a tuple with the ItemCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Playlist) GetItemCountOk() (*int32, bool) {
+func (o *Playlist) GetItemCountOk() (*int64, bool) {
 	if o == nil || o.ItemCount == nil {
 		return nil, false
 	}
@@ -202,8 +202,8 @@ func (o *Playlist) HasItemCount() bool {
 	return false
 }
 
-// SetItemCount gets a reference to the given int32 and assigns it to the ItemCount field.
-func (o *Playlist) SetItemCount(v int32) {
+// SetItemCount gets a reference to the given int64 and assigns it to the ItemCount field.
+func (o *Playlist) SetItemCount(v int64) {
 	o.ItemCount = &v
 }
 
@@ -368,9 +368,9 @@ func (o *Playlist) SetPlaylistUrl(v string) {
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *Playlist) GetSize() int32 {
+func (o *Playlist) GetSize() int64 {
 	if o == nil || o.Size == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Size
@@ -378,7 +378,7 @@ func (o *Playlist) GetSize() int32 {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Playlist) GetSizeOk() (*int32, bool) {
+func (o *Playlist) GetSizeOk() (*int64, bool) {
 	if o == nil || o.Size == nil {
 		return nil, false
 	}
@@ -394,8 +394,8 @@ func (o *Playlist) HasSize() bool {
 	return false
 }
 
-// SetSize gets a reference to the given int32 and assigns it to the Size field.
-func (o *Playlist) SetSize(v int32) {
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *Playlist) SetSize(v int64) {
 	o.Size = &v
 }
 

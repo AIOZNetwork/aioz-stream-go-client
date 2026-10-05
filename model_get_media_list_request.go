@@ -13,9 +13,9 @@ package aiozstreamsdk
 
 // GetMediaListRequest struct for GetMediaListRequest
 type GetMediaListRequest struct {
-	Limit    *int32      `json:"limit,omitempty"`
+	Limit    *int64      `json:"limit,omitempty"`
 	Metadata *[]Metadata `json:"metadata,omitempty"`
-	Offset   *int32      `json:"offset,omitempty"`
+	Offset   *int64      `json:"offset,omitempty"`
 	OrderBy  *string     `json:"order_by,omitempty"`
 	Search   *string     `json:"search,omitempty"`
 	SortBy   *string     `json:"sort_by,omitempty"`
@@ -42,9 +42,9 @@ func NewGetMediaListRequestWithDefaults() *GetMediaListRequest {
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
-func (o *GetMediaListRequest) GetLimit() int32 {
+func (o *GetMediaListRequest) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Limit
@@ -52,7 +52,7 @@ func (o *GetMediaListRequest) GetLimit() int32 {
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetMediaListRequest) GetLimitOk() (*int32, bool) {
+func (o *GetMediaListRequest) GetLimitOk() (*int64, bool) {
 	if o == nil || o.Limit == nil {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *GetMediaListRequest) HasLimit() bool {
 	return false
 }
 
-// SetLimit gets a reference to the given int32 and assigns it to the Limit field.
-func (o *GetMediaListRequest) SetLimit(v int32) {
+// SetLimit gets a reference to the given int64 and assigns it to the Limit field.
+func (o *GetMediaListRequest) SetLimit(v int64) {
 	o.Limit = &v
 }
 
@@ -106,9 +106,9 @@ func (o *GetMediaListRequest) SetMetadata(v []Metadata) {
 }
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *GetMediaListRequest) GetOffset() int32 {
+func (o *GetMediaListRequest) GetOffset() int64 {
 	if o == nil || o.Offset == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Offset
@@ -116,7 +116,7 @@ func (o *GetMediaListRequest) GetOffset() int32 {
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetMediaListRequest) GetOffsetOk() (*int32, bool) {
+func (o *GetMediaListRequest) GetOffsetOk() (*int64, bool) {
 	if o == nil || o.Offset == nil {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *GetMediaListRequest) HasOffset() bool {
 	return false
 }
 
-// SetOffset gets a reference to the given int32 and assigns it to the Offset field.
-func (o *GetMediaListRequest) SetOffset(v int32) {
+// SetOffset gets a reference to the given int64 and assigns it to the Offset field.
+func (o *GetMediaListRequest) SetOffset(v int64) {
 	o.Offset = &v
 }
 

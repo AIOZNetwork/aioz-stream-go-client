@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bitrate** | Pointer to **int32** |  | [optional] 
+**Bitrate** | Pointer to **int64** |  | [optional] 
 **Codec** | Pointer to **string** |  | [optional] 
-**Index** | Pointer to **int32** |  | [optional] 
+**Index** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBitrate
 
-`func (o *VideoConfig) GetBitrate() int32`
+`func (o *VideoConfig) GetBitrate() int64`
 
 GetBitrate returns the Bitrate field if non-nil, zero value otherwise.
 
 ### GetBitrateOk
 
-`func (o *VideoConfig) GetBitrateOk() (*int32, bool)`
+`func (o *VideoConfig) GetBitrateOk() (*int64, bool)`
 
 GetBitrateOk returns a tuple with the Bitrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBitrate
 
-`func (o *VideoConfig) SetBitrate(v int32)`
+`func (o *VideoConfig) SetBitrate(v int64)`
 
 SetBitrate sets Bitrate field to given value.
 
@@ -79,20 +79,20 @@ HasCodec returns a boolean if a field has been set.
 
 ### GetIndex
 
-`func (o *VideoConfig) GetIndex() int32`
+`func (o *VideoConfig) GetIndex() int64`
 
 GetIndex returns the Index field if non-nil, zero value otherwise.
 
 ### GetIndexOk
 
-`func (o *VideoConfig) GetIndexOk() (*int32, bool)`
+`func (o *VideoConfig) GetIndexOk() (*int64, bool)`
 
 GetIndexOk returns a tuple with the Index field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIndex
 
-`func (o *VideoConfig) SetIndex(v int32)`
+`func (o *VideoConfig) SetIndex(v int64)`
 
 SetIndex sets Index field to given value.
 

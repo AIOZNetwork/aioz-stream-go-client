@@ -19,9 +19,9 @@ type HighlightClip struct {
 	Id             *string                 `json:"id,omitempty"`
 	MediaId        *string                 `json:"media_id,omitempty"`
 	Reasoning      *string                 `json:"reasoning,omitempty"`
-	RelevanceScore *int32                  `json:"relevance_score,omitempty"`
-	SourceInMs     *int32                  `json:"source_in_ms,omitempty"`
-	SourceOutMs    *int32                  `json:"source_out_ms,omitempty"`
+	RelevanceScore *int64                  `json:"relevance_score,omitempty"`
+	SourceInMs     *int64                  `json:"source_in_ms,omitempty"`
+	SourceOutMs    *int64                  `json:"source_out_ms,omitempty"`
 	Text           *string                 `json:"text,omitempty"`
 	Title          *string                 `json:"title,omitempty"`
 	UpdatedAt      *string                 `json:"updated_at,omitempty"`
@@ -238,9 +238,9 @@ func (o *HighlightClip) SetReasoning(v string) {
 }
 
 // GetRelevanceScore returns the RelevanceScore field value if set, zero value otherwise.
-func (o *HighlightClip) GetRelevanceScore() int32 {
+func (o *HighlightClip) GetRelevanceScore() int64 {
 	if o == nil || o.RelevanceScore == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RelevanceScore
@@ -248,7 +248,7 @@ func (o *HighlightClip) GetRelevanceScore() int32 {
 
 // GetRelevanceScoreOk returns a tuple with the RelevanceScore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightClip) GetRelevanceScoreOk() (*int32, bool) {
+func (o *HighlightClip) GetRelevanceScoreOk() (*int64, bool) {
 	if o == nil || o.RelevanceScore == nil {
 		return nil, false
 	}
@@ -264,15 +264,15 @@ func (o *HighlightClip) HasRelevanceScore() bool {
 	return false
 }
 
-// SetRelevanceScore gets a reference to the given int32 and assigns it to the RelevanceScore field.
-func (o *HighlightClip) SetRelevanceScore(v int32) {
+// SetRelevanceScore gets a reference to the given int64 and assigns it to the RelevanceScore field.
+func (o *HighlightClip) SetRelevanceScore(v int64) {
 	o.RelevanceScore = &v
 }
 
 // GetSourceInMs returns the SourceInMs field value if set, zero value otherwise.
-func (o *HighlightClip) GetSourceInMs() int32 {
+func (o *HighlightClip) GetSourceInMs() int64 {
 	if o == nil || o.SourceInMs == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SourceInMs
@@ -280,7 +280,7 @@ func (o *HighlightClip) GetSourceInMs() int32 {
 
 // GetSourceInMsOk returns a tuple with the SourceInMs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightClip) GetSourceInMsOk() (*int32, bool) {
+func (o *HighlightClip) GetSourceInMsOk() (*int64, bool) {
 	if o == nil || o.SourceInMs == nil {
 		return nil, false
 	}
@@ -296,15 +296,15 @@ func (o *HighlightClip) HasSourceInMs() bool {
 	return false
 }
 
-// SetSourceInMs gets a reference to the given int32 and assigns it to the SourceInMs field.
-func (o *HighlightClip) SetSourceInMs(v int32) {
+// SetSourceInMs gets a reference to the given int64 and assigns it to the SourceInMs field.
+func (o *HighlightClip) SetSourceInMs(v int64) {
 	o.SourceInMs = &v
 }
 
 // GetSourceOutMs returns the SourceOutMs field value if set, zero value otherwise.
-func (o *HighlightClip) GetSourceOutMs() int32 {
+func (o *HighlightClip) GetSourceOutMs() int64 {
 	if o == nil || o.SourceOutMs == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SourceOutMs
@@ -312,7 +312,7 @@ func (o *HighlightClip) GetSourceOutMs() int32 {
 
 // GetSourceOutMsOk returns a tuple with the SourceOutMs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightClip) GetSourceOutMsOk() (*int32, bool) {
+func (o *HighlightClip) GetSourceOutMsOk() (*int64, bool) {
 	if o == nil || o.SourceOutMs == nil {
 		return nil, false
 	}
@@ -328,8 +328,8 @@ func (o *HighlightClip) HasSourceOutMs() bool {
 	return false
 }
 
-// SetSourceOutMs gets a reference to the given int32 and assigns it to the SourceOutMs field.
-func (o *HighlightClip) SetSourceOutMs(v int32) {
+// SetSourceOutMs gets a reference to the given int64 and assigns it to the SourceOutMs field.
+func (o *HighlightClip) SetSourceOutMs(v int64) {
 	o.SourceOutMs = &v
 }
 

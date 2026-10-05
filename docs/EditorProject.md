@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Media** | Pointer to [**HighlightMedia**](HighlightMedia.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
-**Revision** | Pointer to **int32** |  | [optional] 
+**Revision** | Pointer to **int64** |  | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** |  | [optional] 
@@ -212,20 +212,20 @@ HasMetadata returns a boolean if a field has been set.
 
 ### GetRevision
 
-`func (o *EditorProject) GetRevision() int32`
+`func (o *EditorProject) GetRevision() int64`
 
 GetRevision returns the Revision field if non-nil, zero value otherwise.
 
 ### GetRevisionOk
 
-`func (o *EditorProject) GetRevisionOk() (*int32, bool)`
+`func (o *EditorProject) GetRevisionOk() (*int64, bool)`
 
 GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRevision
 
-`func (o *EditorProject) SetRevision(v int32)`
+`func (o *EditorProject) SetRevision(v int64)`
 
 SetRevision sets Revision field to given value.
 

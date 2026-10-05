@@ -339,8 +339,8 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
     req := aiozstreamsdk.PlayersApiListRequest{}
     
-    req.Limit(int32(56)) // int32 |  (default to 25)
-    req.Offset(int32(56)) // int32 | 
+    req.Limit(int64(789)) // int64 |  (default to 25)
+    req.Offset(int64(789)) // int64 | 
     req.OrderBy("orderBy_example") // string | 
     req.Search("search_example") // string | 
     req.SortBy("sortBy_example") // string | 
@@ -370,8 +370,8 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**limit** | **int32** |  | [default to 25]
-**offset** | **int32** |  | 
+**limit** | **int64** |  | [default to 25]
+**offset** | **int64** |  | 
 **orderBy** | **string** |  | 
 **search** | **string** |  | 
 **sortBy** | **string** |  | 

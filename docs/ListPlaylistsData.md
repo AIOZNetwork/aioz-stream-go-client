@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Playlists** | Pointer to [**[]Playlist**](Playlist.md) |  | [optional] 
 **Query** | Pointer to [**ListPlaylistsRequest**](ListPlaylistsRequest.md) |  | [optional] 
-**Total** | Pointer to **int32** |  | [optional] 
+**Total** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasQuery returns a boolean if a field has been set.
 
 ### GetTotal
 
-`func (o *ListPlaylistsData) GetTotal() int32`
+`func (o *ListPlaylistsData) GetTotal() int64`
 
 GetTotal returns the Total field if non-nil, zero value otherwise.
 
 ### GetTotalOk
 
-`func (o *ListPlaylistsData) GetTotalOk() (*int32, bool)`
+`func (o *ListPlaylistsData) GetTotalOk() (*int64, bool)`
 
 GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotal
 
-`func (o *ListPlaylistsData) SetTotal(v int32)`
+`func (o *ListPlaylistsData) SetTotal(v int64)`
 
 SetTotal sets Total field to given value.
 

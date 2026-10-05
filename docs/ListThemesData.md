@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PlayerThemes** | Pointer to [**[]PlayerTheme**](PlayerTheme.md) |  | [optional] 
 **Query** | Pointer to [**ListThemesRequest**](ListThemesRequest.md) |  | [optional] 
-**Total** | Pointer to **int32** |  | [optional] 
+**Total** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasQuery returns a boolean if a field has been set.
 
 ### GetTotal
 
-`func (o *ListThemesData) GetTotal() int32`
+`func (o *ListThemesData) GetTotal() int64`
 
 GetTotal returns the Total field if non-nil, zero value otherwise.
 
 ### GetTotalOk
 
-`func (o *ListThemesData) GetTotalOk() (*int32, bool)`
+`func (o *ListThemesData) GetTotalOk() (*int64, bool)`
 
 GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotal
 
-`func (o *ListThemesData) SetTotal(v int32)`
+`func (o *ListThemesData) SetTotal(v int64)`
 
 SetTotal sets Total field to given value.
 

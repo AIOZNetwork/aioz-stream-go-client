@@ -13,12 +13,12 @@ package aiozstreamsdk
 
 // AudioConfig struct for AudioConfig
 type AudioConfig struct {
-	Bitrate    *int32  `json:"bitrate,omitempty"`
+	Bitrate    *int64  `json:"bitrate,omitempty"`
 	Channels   *string `json:"channels,omitempty"`
 	Codec      *string `json:"codec,omitempty"`
-	Index      *int32  `json:"index,omitempty"`
+	Index      *int64  `json:"index,omitempty"`
 	Language   *string `json:"language,omitempty"`
-	SampleRate *int32  `json:"sample_rate,omitempty"`
+	SampleRate *int64  `json:"sample_rate,omitempty"`
 }
 
 // NewAudioConfig instantiates a new AudioConfig object
@@ -39,9 +39,9 @@ func NewAudioConfigWithDefaults() *AudioConfig {
 }
 
 // GetBitrate returns the Bitrate field value if set, zero value otherwise.
-func (o *AudioConfig) GetBitrate() int32 {
+func (o *AudioConfig) GetBitrate() int64 {
 	if o == nil || o.Bitrate == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Bitrate
@@ -49,7 +49,7 @@ func (o *AudioConfig) GetBitrate() int32 {
 
 // GetBitrateOk returns a tuple with the Bitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudioConfig) GetBitrateOk() (*int32, bool) {
+func (o *AudioConfig) GetBitrateOk() (*int64, bool) {
 	if o == nil || o.Bitrate == nil {
 		return nil, false
 	}
@@ -65,8 +65,8 @@ func (o *AudioConfig) HasBitrate() bool {
 	return false
 }
 
-// SetBitrate gets a reference to the given int32 and assigns it to the Bitrate field.
-func (o *AudioConfig) SetBitrate(v int32) {
+// SetBitrate gets a reference to the given int64 and assigns it to the Bitrate field.
+func (o *AudioConfig) SetBitrate(v int64) {
 	o.Bitrate = &v
 }
 
@@ -135,9 +135,9 @@ func (o *AudioConfig) SetCodec(v string) {
 }
 
 // GetIndex returns the Index field value if set, zero value otherwise.
-func (o *AudioConfig) GetIndex() int32 {
+func (o *AudioConfig) GetIndex() int64 {
 	if o == nil || o.Index == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Index
@@ -145,7 +145,7 @@ func (o *AudioConfig) GetIndex() int32 {
 
 // GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudioConfig) GetIndexOk() (*int32, bool) {
+func (o *AudioConfig) GetIndexOk() (*int64, bool) {
 	if o == nil || o.Index == nil {
 		return nil, false
 	}
@@ -161,8 +161,8 @@ func (o *AudioConfig) HasIndex() bool {
 	return false
 }
 
-// SetIndex gets a reference to the given int32 and assigns it to the Index field.
-func (o *AudioConfig) SetIndex(v int32) {
+// SetIndex gets a reference to the given int64 and assigns it to the Index field.
+func (o *AudioConfig) SetIndex(v int64) {
 	o.Index = &v
 }
 
@@ -199,9 +199,9 @@ func (o *AudioConfig) SetLanguage(v string) {
 }
 
 // GetSampleRate returns the SampleRate field value if set, zero value otherwise.
-func (o *AudioConfig) GetSampleRate() int32 {
+func (o *AudioConfig) GetSampleRate() int64 {
 	if o == nil || o.SampleRate == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SampleRate
@@ -209,7 +209,7 @@ func (o *AudioConfig) GetSampleRate() int32 {
 
 // GetSampleRateOk returns a tuple with the SampleRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudioConfig) GetSampleRateOk() (*int32, bool) {
+func (o *AudioConfig) GetSampleRateOk() (*int64, bool) {
 	if o == nil || o.SampleRate == nil {
 		return nil, false
 	}
@@ -225,8 +225,8 @@ func (o *AudioConfig) HasSampleRate() bool {
 	return false
 }
 
-// SetSampleRate gets a reference to the given int32 and assigns it to the SampleRate field.
-func (o *AudioConfig) SetSampleRate(v int32) {
+// SetSampleRate gets a reference to the given int64 and assigns it to the SampleRate field.
+func (o *AudioConfig) SetSampleRate(v int64) {
 	o.SampleRate = &v
 }
 

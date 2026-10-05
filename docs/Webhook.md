@@ -340,8 +340,8 @@ func main() {
     req.EncodingFinished(true) // bool | 
     req.EncodingStarted(true) // bool | 
     req.FileReceived(true) // bool | 
-    req.Limit(int32(56)) // int32 |  (default to 25)
-    req.Offset(int32(56)) // int32 | 
+    req.Limit(int64(789)) // int64 |  (default to 25)
+    req.Offset(int64(789)) // int64 | 
     req.OrderBy("orderBy_example") // string | 
     req.PartialFinished(true) // bool | 
     req.Search("search_example") // string | 
@@ -376,8 +376,8 @@ Name | Type | Description  | Notes
 **encodingFinished** | **bool** |  | 
 **encodingStarted** | **bool** |  | 
 **fileReceived** | **bool** |  | 
-**limit** | **int32** |  | [default to 25]
-**offset** | **int32** |  | 
+**limit** | **int64** |  | [default to 25]
+**offset** | **int64** |  | 
 **orderBy** | **string** |  | 
 **partialFinished** | **bool** |  | 
 **search** | **string** |  | 

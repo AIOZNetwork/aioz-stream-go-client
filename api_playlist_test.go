@@ -114,8 +114,8 @@ func TestPlaylistService_List(t *testing.T) {
 		{
 			name: "Valid Request with Filter",
 			request: ListPlaylistsRequest{
-				Limit:   int32Ptr(10),
-				Offset:  int32Ptr(0),
+				Limit:   int64Ptr(10),
+				Offset:  int64Ptr(0),
 				SortBy:  stringPtr("created_at"),
 				OrderBy: stringPtr("desc"),
 			},
@@ -980,6 +980,6 @@ func TestPlaylistService_Delete(t *testing.T) {
 	}
 }
 
-func int32Ptr(i int32) *int32 {
+func int64Ptr(i int64) *int64 {
 	return &i
 }

@@ -24,19 +24,19 @@ var (
 )
 
 type ApiKeyApiListRequest struct {
-	limit   *int32
-	offset  *int32
+	limit   *int64
+	offset  *int64
 	orderBy *string
 	search  *string
 	sortBy  *string
 	type_   *string
 }
 
-func (r ApiKeyApiListRequest) Limit(limit int32) ApiKeyApiListRequest {
+func (r ApiKeyApiListRequest) Limit(limit int64) ApiKeyApiListRequest {
 	r.limit = &limit
 	return r
 }
-func (r ApiKeyApiListRequest) Offset(offset int32) ApiKeyApiListRequest {
+func (r ApiKeyApiListRequest) Offset(offset int64) ApiKeyApiListRequest {
 	r.offset = &offset
 	return r
 }

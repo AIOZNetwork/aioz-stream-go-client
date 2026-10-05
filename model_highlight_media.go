@@ -18,7 +18,7 @@ type HighlightMedia struct {
 	EditorProjectId    *string                 `json:"editor_project_id,omitempty"`
 	FileMd5            *string                 `json:"file_md5,omitempty"`
 	FileName           *string                 `json:"file_name,omitempty"`
-	FileSize           *int32                  `json:"file_size,omitempty"`
+	FileSize           *int64                  `json:"file_size,omitempty"`
 	HighlightChunks    *[]HighlightChunk       `json:"highlight_chunks,omitempty"`
 	HighlightClips     *[]HighlightClip        `json:"highlight_clips,omitempty"`
 	HighlightManifests *[]HighlightManifest    `json:"highlight_manifests,omitempty"`
@@ -28,7 +28,7 @@ type HighlightMedia struct {
 	MimeType           *string                 `json:"mime_type,omitempty"`
 	ObjUrl             *string                 `json:"obj_url,omitempty"`
 	Status             *HighlightMediaStatus   `json:"status,omitempty"`
-	TotalChunk         *int32                  `json:"total_chunk,omitempty"`
+	TotalChunk         *int64                  `json:"total_chunk,omitempty"`
 	UpdatedAt          *string                 `json:"updated_at,omitempty"`
 }
 
@@ -210,9 +210,9 @@ func (o *HighlightMedia) SetFileName(v string) {
 }
 
 // GetFileSize returns the FileSize field value if set, zero value otherwise.
-func (o *HighlightMedia) GetFileSize() int32 {
+func (o *HighlightMedia) GetFileSize() int64 {
 	if o == nil || o.FileSize == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.FileSize
@@ -220,7 +220,7 @@ func (o *HighlightMedia) GetFileSize() int32 {
 
 // GetFileSizeOk returns a tuple with the FileSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightMedia) GetFileSizeOk() (*int32, bool) {
+func (o *HighlightMedia) GetFileSizeOk() (*int64, bool) {
 	if o == nil || o.FileSize == nil {
 		return nil, false
 	}
@@ -236,8 +236,8 @@ func (o *HighlightMedia) HasFileSize() bool {
 	return false
 }
 
-// SetFileSize gets a reference to the given int32 and assigns it to the FileSize field.
-func (o *HighlightMedia) SetFileSize(v int32) {
+// SetFileSize gets a reference to the given int64 and assigns it to the FileSize field.
+func (o *HighlightMedia) SetFileSize(v int64) {
 	o.FileSize = &v
 }
 
@@ -530,9 +530,9 @@ func (o *HighlightMedia) SetStatus(v HighlightMediaStatus) {
 }
 
 // GetTotalChunk returns the TotalChunk field value if set, zero value otherwise.
-func (o *HighlightMedia) GetTotalChunk() int32 {
+func (o *HighlightMedia) GetTotalChunk() int64 {
 	if o == nil || o.TotalChunk == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TotalChunk
@@ -540,7 +540,7 @@ func (o *HighlightMedia) GetTotalChunk() int32 {
 
 // GetTotalChunkOk returns a tuple with the TotalChunk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightMedia) GetTotalChunkOk() (*int32, bool) {
+func (o *HighlightMedia) GetTotalChunkOk() (*int64, bool) {
 	if o == nil || o.TotalChunk == nil {
 		return nil, false
 	}
@@ -556,8 +556,8 @@ func (o *HighlightMedia) HasTotalChunk() bool {
 	return false
 }
 
-// SetTotalChunk gets a reference to the given int32 and assigns it to the TotalChunk field.
-func (o *HighlightMedia) SetTotalChunk(v int32) {
+// SetTotalChunk gets a reference to the given int64 and assigns it to the TotalChunk field.
+func (o *HighlightMedia) SetTotalChunk(v int64) {
 	o.TotalChunk = &v
 }
 

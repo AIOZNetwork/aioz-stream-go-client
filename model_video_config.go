@@ -13,9 +13,9 @@ package aiozstreamsdk
 
 // VideoConfig struct for VideoConfig
 type VideoConfig struct {
-	Bitrate *int32  `json:"bitrate,omitempty"`
+	Bitrate *int64  `json:"bitrate,omitempty"`
 	Codec   *string `json:"codec,omitempty"`
-	Index   *int32  `json:"index,omitempty"`
+	Index   *int64  `json:"index,omitempty"`
 }
 
 // NewVideoConfig instantiates a new VideoConfig object
@@ -36,9 +36,9 @@ func NewVideoConfigWithDefaults() *VideoConfig {
 }
 
 // GetBitrate returns the Bitrate field value if set, zero value otherwise.
-func (o *VideoConfig) GetBitrate() int32 {
+func (o *VideoConfig) GetBitrate() int64 {
 	if o == nil || o.Bitrate == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Bitrate
@@ -46,7 +46,7 @@ func (o *VideoConfig) GetBitrate() int32 {
 
 // GetBitrateOk returns a tuple with the Bitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VideoConfig) GetBitrateOk() (*int32, bool) {
+func (o *VideoConfig) GetBitrateOk() (*int64, bool) {
 	if o == nil || o.Bitrate == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *VideoConfig) HasBitrate() bool {
 	return false
 }
 
-// SetBitrate gets a reference to the given int32 and assigns it to the Bitrate field.
-func (o *VideoConfig) SetBitrate(v int32) {
+// SetBitrate gets a reference to the given int64 and assigns it to the Bitrate field.
+func (o *VideoConfig) SetBitrate(v int64) {
 	o.Bitrate = &v
 }
 
@@ -100,9 +100,9 @@ func (o *VideoConfig) SetCodec(v string) {
 }
 
 // GetIndex returns the Index field value if set, zero value otherwise.
-func (o *VideoConfig) GetIndex() int32 {
+func (o *VideoConfig) GetIndex() int64 {
 	if o == nil || o.Index == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Index
@@ -110,7 +110,7 @@ func (o *VideoConfig) GetIndex() int32 {
 
 // GetIndexOk returns a tuple with the Index field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VideoConfig) GetIndexOk() (*int32, bool) {
+func (o *VideoConfig) GetIndexOk() (*int64, bool) {
 	if o == nil || o.Index == nil {
 		return nil, false
 	}
@@ -126,8 +126,8 @@ func (o *VideoConfig) HasIndex() bool {
 	return false
 }
 
-// SetIndex gets a reference to the given int32 and assigns it to the Index field.
-func (o *VideoConfig) SetIndex(v int32) {
+// SetIndex gets a reference to the given int64 and assigns it to the Index field.
+func (o *VideoConfig) SetIndex(v int64) {
 	o.Index = &v
 }
 

@@ -26,15 +26,15 @@ var (
 )
 
 type MediaChapterApiGetRequest struct {
-	offset *int32
-	limit  *int32
+	offset *int64
+	limit  *int64
 }
 
-func (r MediaChapterApiGetRequest) Offset(offset int32) MediaChapterApiGetRequest {
+func (r MediaChapterApiGetRequest) Offset(offset int64) MediaChapterApiGetRequest {
 	r.offset = &offset
 	return r
 }
-func (r MediaChapterApiGetRequest) Limit(limit int32) MediaChapterApiGetRequest {
+func (r MediaChapterApiGetRequest) Limit(limit int64) MediaChapterApiGetRequest {
 	r.limit = &limit
 	return r
 }

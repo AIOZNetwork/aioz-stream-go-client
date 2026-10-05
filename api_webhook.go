@@ -28,8 +28,8 @@ type WebhookApiListRequest struct {
 	encodingFinished *bool
 	encodingStarted  *bool
 	fileReceived     *bool
-	limit            *int32
-	offset           *int32
+	limit            *int64
+	offset           *int64
 	orderBy          *string
 	partialFinished  *bool
 	search           *string
@@ -52,11 +52,11 @@ func (r WebhookApiListRequest) FileReceived(fileReceived bool) WebhookApiListReq
 	r.fileReceived = &fileReceived
 	return r
 }
-func (r WebhookApiListRequest) Limit(limit int32) WebhookApiListRequest {
+func (r WebhookApiListRequest) Limit(limit int64) WebhookApiListRequest {
 	r.limit = &limit
 	return r
 }
-func (r WebhookApiListRequest) Offset(offset int32) WebhookApiListRequest {
+func (r WebhookApiListRequest) Offset(offset int64) WebhookApiListRequest {
 	r.offset = &offset
 	return r
 }

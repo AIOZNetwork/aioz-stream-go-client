@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **EditorProjectId** | Pointer to **string** |  | [optional] 
 **FileMd5** | Pointer to **string** |  | [optional] 
 **FileName** | Pointer to **string** |  | [optional] 
-**FileSize** | Pointer to **int32** |  | [optional] 
+**FileSize** | Pointer to **int64** |  | [optional] 
 **HighlightChunks** | Pointer to [**[]HighlightChunk**](HighlightChunk.md) |  | [optional] 
 **HighlightClips** | Pointer to [**[]HighlightClip**](HighlightClip.md) |  | [optional] 
 **HighlightManifests** | Pointer to [**[]HighlightManifest**](HighlightManifest.md) |  | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **MimeType** | Pointer to **string** |  | [optional] 
 **ObjUrl** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**HighlightMediaStatus**](HighlightMediaStatus.md) |  | [optional] 
-**TotalChunk** | Pointer to **int32** |  | [optional] 
+**TotalChunk** | Pointer to **int64** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -168,20 +168,20 @@ HasFileName returns a boolean if a field has been set.
 
 ### GetFileSize
 
-`func (o *HighlightMedia) GetFileSize() int32`
+`func (o *HighlightMedia) GetFileSize() int64`
 
 GetFileSize returns the FileSize field if non-nil, zero value otherwise.
 
 ### GetFileSizeOk
 
-`func (o *HighlightMedia) GetFileSizeOk() (*int32, bool)`
+`func (o *HighlightMedia) GetFileSizeOk() (*int64, bool)`
 
 GetFileSizeOk returns a tuple with the FileSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFileSize
 
-`func (o *HighlightMedia) SetFileSize(v int32)`
+`func (o *HighlightMedia) SetFileSize(v int64)`
 
 SetFileSize sets FileSize field to given value.
 
@@ -418,20 +418,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetTotalChunk
 
-`func (o *HighlightMedia) GetTotalChunk() int32`
+`func (o *HighlightMedia) GetTotalChunk() int64`
 
 GetTotalChunk returns the TotalChunk field if non-nil, zero value otherwise.
 
 ### GetTotalChunkOk
 
-`func (o *HighlightMedia) GetTotalChunkOk() (*int32, bool)`
+`func (o *HighlightMedia) GetTotalChunkOk() (*int64, bool)`
 
 GetTotalChunkOk returns a tuple with the TotalChunk field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalChunk
 
-`func (o *HighlightMedia) SetTotalChunk(v int32)`
+`func (o *HighlightMedia) SetTotalChunk(v int64)`
 
 SetTotalChunk sets TotalChunk field to given value.
 

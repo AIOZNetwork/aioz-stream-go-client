@@ -26,15 +26,15 @@ var (
 )
 
 type MediaApiGetCaptionsRequest struct {
-	offset *int32
-	limit  *int32
+	offset *int64
+	limit  *int64
 }
 
-func (r MediaApiGetCaptionsRequest) Offset(offset int32) MediaApiGetCaptionsRequest {
+func (r MediaApiGetCaptionsRequest) Offset(offset int64) MediaApiGetCaptionsRequest {
 	r.offset = &offset
 	return r
 }
-func (r MediaApiGetCaptionsRequest) Limit(limit int32) MediaApiGetCaptionsRequest {
+func (r MediaApiGetCaptionsRequest) Limit(limit int64) MediaApiGetCaptionsRequest {
 	r.limit = &limit
 	return r
 }

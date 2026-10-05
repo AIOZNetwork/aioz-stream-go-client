@@ -17,11 +17,11 @@ type HighlightChunk struct {
 	DeletedAt *DeletedAt `json:"deleted_at,omitempty"`
 	FileMd5   *string    `json:"file_md5,omitempty"`
 	// FileSize is the size of the uploaded chunk in bytes.
-	FileSize  *int32                `json:"file_size,omitempty"`
+	FileSize  *int64                `json:"file_size,omitempty"`
 	Id        *string               `json:"id,omitempty"`
 	MediaId   *string               `json:"media_id,omitempty"`
 	ObjUrl    *string               `json:"obj_url,omitempty"`
-	Offset    *int32                `json:"offset,omitempty"`
+	Offset    *int64                `json:"offset,omitempty"`
 	Status    *HighlightChunkStatus `json:"status,omitempty"`
 	UpdatedAt *string               `json:"updated_at,omitempty"`
 }
@@ -140,9 +140,9 @@ func (o *HighlightChunk) SetFileMd5(v string) {
 }
 
 // GetFileSize returns the FileSize field value if set, zero value otherwise.
-func (o *HighlightChunk) GetFileSize() int32 {
+func (o *HighlightChunk) GetFileSize() int64 {
 	if o == nil || o.FileSize == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.FileSize
@@ -150,7 +150,7 @@ func (o *HighlightChunk) GetFileSize() int32 {
 
 // GetFileSizeOk returns a tuple with the FileSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightChunk) GetFileSizeOk() (*int32, bool) {
+func (o *HighlightChunk) GetFileSizeOk() (*int64, bool) {
 	if o == nil || o.FileSize == nil {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *HighlightChunk) HasFileSize() bool {
 	return false
 }
 
-// SetFileSize gets a reference to the given int32 and assigns it to the FileSize field.
-func (o *HighlightChunk) SetFileSize(v int32) {
+// SetFileSize gets a reference to the given int64 and assigns it to the FileSize field.
+func (o *HighlightChunk) SetFileSize(v int64) {
 	o.FileSize = &v
 }
 
@@ -268,9 +268,9 @@ func (o *HighlightChunk) SetObjUrl(v string) {
 }
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *HighlightChunk) GetOffset() int32 {
+func (o *HighlightChunk) GetOffset() int64 {
 	if o == nil || o.Offset == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Offset
@@ -278,7 +278,7 @@ func (o *HighlightChunk) GetOffset() int32 {
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HighlightChunk) GetOffsetOk() (*int32, bool) {
+func (o *HighlightChunk) GetOffsetOk() (*int64, bool) {
 	if o == nil || o.Offset == nil {
 		return nil, false
 	}
@@ -294,8 +294,8 @@ func (o *HighlightChunk) HasOffset() bool {
 	return false
 }
 
-// SetOffset gets a reference to the given int32 and assigns it to the Offset field.
-func (o *HighlightChunk) SetOffset(v int32) {
+// SetOffset gets a reference to the given int64 and assigns it to the Offset field.
+func (o *HighlightChunk) SetOffset(v int64) {
 	o.Offset = &v
 }
 

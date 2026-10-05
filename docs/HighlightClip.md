@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **MediaId** | Pointer to **string** |  | [optional] 
 **Reasoning** | Pointer to **string** |  | [optional] 
-**RelevanceScore** | Pointer to **int32** |  | [optional] 
-**SourceInMs** | Pointer to **int32** |  | [optional] 
-**SourceOutMs** | Pointer to **int32** |  | [optional] 
+**RelevanceScore** | Pointer to **int64** |  | [optional] 
+**SourceInMs** | Pointer to **int64** |  | [optional] 
+**SourceOutMs** | Pointer to **int64** |  | [optional] 
 **Text** | Pointer to **string** |  | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
@@ -189,20 +189,20 @@ HasReasoning returns a boolean if a field has been set.
 
 ### GetRelevanceScore
 
-`func (o *HighlightClip) GetRelevanceScore() int32`
+`func (o *HighlightClip) GetRelevanceScore() int64`
 
 GetRelevanceScore returns the RelevanceScore field if non-nil, zero value otherwise.
 
 ### GetRelevanceScoreOk
 
-`func (o *HighlightClip) GetRelevanceScoreOk() (*int32, bool)`
+`func (o *HighlightClip) GetRelevanceScoreOk() (*int64, bool)`
 
 GetRelevanceScoreOk returns a tuple with the RelevanceScore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRelevanceScore
 
-`func (o *HighlightClip) SetRelevanceScore(v int32)`
+`func (o *HighlightClip) SetRelevanceScore(v int64)`
 
 SetRelevanceScore sets RelevanceScore field to given value.
 
@@ -214,20 +214,20 @@ HasRelevanceScore returns a boolean if a field has been set.
 
 ### GetSourceInMs
 
-`func (o *HighlightClip) GetSourceInMs() int32`
+`func (o *HighlightClip) GetSourceInMs() int64`
 
 GetSourceInMs returns the SourceInMs field if non-nil, zero value otherwise.
 
 ### GetSourceInMsOk
 
-`func (o *HighlightClip) GetSourceInMsOk() (*int32, bool)`
+`func (o *HighlightClip) GetSourceInMsOk() (*int64, bool)`
 
 GetSourceInMsOk returns a tuple with the SourceInMs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSourceInMs
 
-`func (o *HighlightClip) SetSourceInMs(v int32)`
+`func (o *HighlightClip) SetSourceInMs(v int64)`
 
 SetSourceInMs sets SourceInMs field to given value.
 
@@ -239,20 +239,20 @@ HasSourceInMs returns a boolean if a field has been set.
 
 ### GetSourceOutMs
 
-`func (o *HighlightClip) GetSourceOutMs() int32`
+`func (o *HighlightClip) GetSourceOutMs() int64`
 
 GetSourceOutMs returns the SourceOutMs field if non-nil, zero value otherwise.
 
 ### GetSourceOutMsOk
 
-`func (o *HighlightClip) GetSourceOutMsOk() (*int32, bool)`
+`func (o *HighlightClip) GetSourceOutMsOk() (*int64, bool)`
 
 GetSourceOutMsOk returns a tuple with the SourceOutMs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSourceOutMs
 
-`func (o *HighlightClip) SetSourceOutMs(v int32)`
+`func (o *HighlightClip) SetSourceOutMs(v int64)`
 
 SetSourceOutMs sets SourceOutMs field to given value.
 

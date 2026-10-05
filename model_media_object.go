@@ -27,7 +27,7 @@ type MediaObject struct {
 	PlayerTheme   *PlayerTheme     `json:"player_theme,omitempty"`
 	PlayerThemeId *string          `json:"player_theme_id,omitempty"`
 	Qualities     *[]QualityObject `json:"qualities,omitempty"`
-	Size          *int32           `json:"size,omitempty"`
+	Size          *int64           `json:"size,omitempty"`
 	Status        *string          `json:"status,omitempty"`
 	Summaries     *[]MediaSummary  `json:"summaries,omitempty"`
 	Tags          *[]string        `json:"tags,omitempty"`
@@ -35,7 +35,7 @@ type MediaObject struct {
 	Type          *string          `json:"type,omitempty"`
 	UpdatedAt     *string          `json:"updated_at,omitempty"`
 	UserId        *string          `json:"user_id,omitempty"`
-	View          *int32           `json:"view,omitempty"`
+	View          *int64           `json:"view,omitempty"`
 }
 
 // NewMediaObject instantiates a new MediaObject object
@@ -504,9 +504,9 @@ func (o *MediaObject) SetQualities(v []QualityObject) {
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *MediaObject) GetSize() int32 {
+func (o *MediaObject) GetSize() int64 {
 	if o == nil || o.Size == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Size
@@ -514,7 +514,7 @@ func (o *MediaObject) GetSize() int32 {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MediaObject) GetSizeOk() (*int32, bool) {
+func (o *MediaObject) GetSizeOk() (*int64, bool) {
 	if o == nil || o.Size == nil {
 		return nil, false
 	}
@@ -530,8 +530,8 @@ func (o *MediaObject) HasSize() bool {
 	return false
 }
 
-// SetSize gets a reference to the given int32 and assigns it to the Size field.
-func (o *MediaObject) SetSize(v int32) {
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *MediaObject) SetSize(v int64) {
 	o.Size = &v
 }
 
@@ -760,9 +760,9 @@ func (o *MediaObject) SetUserId(v string) {
 }
 
 // GetView returns the View field value if set, zero value otherwise.
-func (o *MediaObject) GetView() int32 {
+func (o *MediaObject) GetView() int64 {
 	if o == nil || o.View == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.View
@@ -770,7 +770,7 @@ func (o *MediaObject) GetView() int32 {
 
 // GetViewOk returns a tuple with the View field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MediaObject) GetViewOk() (*int32, bool) {
+func (o *MediaObject) GetViewOk() (*int64, bool) {
 	if o == nil || o.View == nil {
 		return nil, false
 	}
@@ -786,8 +786,8 @@ func (o *MediaObject) HasView() bool {
 	return false
 }
 
-// SetView gets a reference to the given int32 and assigns it to the View field.
-func (o *MediaObject) SetView(v int32) {
+// SetView gets a reference to the given int64 and assigns it to the View field.
+func (o *MediaObject) SetView(v int64) {
 	o.View = &v
 }
 

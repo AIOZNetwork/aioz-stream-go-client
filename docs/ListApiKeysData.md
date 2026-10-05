@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApiKeys** | Pointer to [**[]ApiKey**](ApiKey.md) |  | [optional] 
 **Query** | Pointer to [**ListApiKeysRequest**](ListApiKeysRequest.md) |  | [optional] 
-**Total** | Pointer to **int32** |  | [optional] 
+**Total** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasQuery returns a boolean if a field has been set.
 
 ### GetTotal
 
-`func (o *ListApiKeysData) GetTotal() int32`
+`func (o *ListApiKeysData) GetTotal() int64`
 
 GetTotal returns the Total field if non-nil, zero value otherwise.
 
 ### GetTotalOk
 
-`func (o *ListApiKeysData) GetTotalOk() (*int32, bool)`
+`func (o *ListApiKeysData) GetTotalOk() (*int64, bool)`
 
 GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotal
 
-`func (o *ListApiKeysData) SetTotal(v int32)`
+`func (o *ListApiKeysData) SetTotal(v int64)`
 
 SetTotal sets Total field to given value.
 

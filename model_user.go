@@ -13,9 +13,9 @@ package aiozstreamsdk
 
 // User struct for User
 type User struct {
-	Balance              *float32         `json:"balance,omitempty"`
+	Balance              *string          `json:"balance,omitempty"`
 	CreatedAt            *string          `json:"created_at,omitempty"`
-	Debt                 *float32         `json:"debt,omitempty"`
+	Debt                 *string          `json:"debt,omitempty"`
 	DeletedAt            *string          `json:"deleted_at,omitempty"`
 	EditorProjects       *[]EditorProject `json:"editor_projects,omitempty"`
 	Email                *string          `json:"email,omitempty"`
@@ -48,9 +48,9 @@ func NewUserWithDefaults() *User {
 }
 
 // GetBalance returns the Balance field value if set, zero value otherwise.
-func (o *User) GetBalance() float32 {
+func (o *User) GetBalance() string {
 	if o == nil || o.Balance == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Balance
@@ -58,7 +58,7 @@ func (o *User) GetBalance() float32 {
 
 // GetBalanceOk returns a tuple with the Balance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetBalanceOk() (*float32, bool) {
+func (o *User) GetBalanceOk() (*string, bool) {
 	if o == nil || o.Balance == nil {
 		return nil, false
 	}
@@ -74,8 +74,8 @@ func (o *User) HasBalance() bool {
 	return false
 }
 
-// SetBalance gets a reference to the given float32 and assigns it to the Balance field.
-func (o *User) SetBalance(v float32) {
+// SetBalance gets a reference to the given string and assigns it to the Balance field.
+func (o *User) SetBalance(v string) {
 	o.Balance = &v
 }
 
@@ -112,9 +112,9 @@ func (o *User) SetCreatedAt(v string) {
 }
 
 // GetDebt returns the Debt field value if set, zero value otherwise.
-func (o *User) GetDebt() float32 {
+func (o *User) GetDebt() string {
 	if o == nil || o.Debt == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Debt
@@ -122,7 +122,7 @@ func (o *User) GetDebt() float32 {
 
 // GetDebtOk returns a tuple with the Debt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetDebtOk() (*float32, bool) {
+func (o *User) GetDebtOk() (*string, bool) {
 	if o == nil || o.Debt == nil {
 		return nil, false
 	}
@@ -138,8 +138,8 @@ func (o *User) HasDebt() bool {
 	return false
 }
 
-// SetDebt gets a reference to the given float32 and assigns it to the Debt field.
-func (o *User) SetDebt(v float32) {
+// SetDebt gets a reference to the given string and assigns it to the Debt field.
+func (o *User) SetDebt(v string) {
 	o.Debt = &v
 }
 

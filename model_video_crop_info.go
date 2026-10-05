@@ -13,10 +13,10 @@ package aiozstreamsdk
 
 // VideoCropInfo struct for VideoCropInfo
 type VideoCropInfo struct {
-	Height *int32 `json:"height,omitempty"`
-	Width  *int32 `json:"width,omitempty"`
-	X      *int32 `json:"x,omitempty"`
-	Y      *int32 `json:"y,omitempty"`
+	Height *int64 `json:"height,omitempty"`
+	Width  *int64 `json:"width,omitempty"`
+	X      *int64 `json:"x,omitempty"`
+	Y      *int64 `json:"y,omitempty"`
 }
 
 // NewVideoCropInfo instantiates a new VideoCropInfo object
@@ -37,9 +37,9 @@ func NewVideoCropInfoWithDefaults() *VideoCropInfo {
 }
 
 // GetHeight returns the Height field value if set, zero value otherwise.
-func (o *VideoCropInfo) GetHeight() int32 {
+func (o *VideoCropInfo) GetHeight() int64 {
 	if o == nil || o.Height == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Height
@@ -47,7 +47,7 @@ func (o *VideoCropInfo) GetHeight() int32 {
 
 // GetHeightOk returns a tuple with the Height field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VideoCropInfo) GetHeightOk() (*int32, bool) {
+func (o *VideoCropInfo) GetHeightOk() (*int64, bool) {
 	if o == nil || o.Height == nil {
 		return nil, false
 	}
@@ -63,15 +63,15 @@ func (o *VideoCropInfo) HasHeight() bool {
 	return false
 }
 
-// SetHeight gets a reference to the given int32 and assigns it to the Height field.
-func (o *VideoCropInfo) SetHeight(v int32) {
+// SetHeight gets a reference to the given int64 and assigns it to the Height field.
+func (o *VideoCropInfo) SetHeight(v int64) {
 	o.Height = &v
 }
 
 // GetWidth returns the Width field value if set, zero value otherwise.
-func (o *VideoCropInfo) GetWidth() int32 {
+func (o *VideoCropInfo) GetWidth() int64 {
 	if o == nil || o.Width == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Width
@@ -79,7 +79,7 @@ func (o *VideoCropInfo) GetWidth() int32 {
 
 // GetWidthOk returns a tuple with the Width field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VideoCropInfo) GetWidthOk() (*int32, bool) {
+func (o *VideoCropInfo) GetWidthOk() (*int64, bool) {
 	if o == nil || o.Width == nil {
 		return nil, false
 	}
@@ -95,15 +95,15 @@ func (o *VideoCropInfo) HasWidth() bool {
 	return false
 }
 
-// SetWidth gets a reference to the given int32 and assigns it to the Width field.
-func (o *VideoCropInfo) SetWidth(v int32) {
+// SetWidth gets a reference to the given int64 and assigns it to the Width field.
+func (o *VideoCropInfo) SetWidth(v int64) {
 	o.Width = &v
 }
 
 // GetX returns the X field value if set, zero value otherwise.
-func (o *VideoCropInfo) GetX() int32 {
+func (o *VideoCropInfo) GetX() int64 {
 	if o == nil || o.X == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.X
@@ -111,7 +111,7 @@ func (o *VideoCropInfo) GetX() int32 {
 
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VideoCropInfo) GetXOk() (*int32, bool) {
+func (o *VideoCropInfo) GetXOk() (*int64, bool) {
 	if o == nil || o.X == nil {
 		return nil, false
 	}
@@ -127,15 +127,15 @@ func (o *VideoCropInfo) HasX() bool {
 	return false
 }
 
-// SetX gets a reference to the given int32 and assigns it to the X field.
-func (o *VideoCropInfo) SetX(v int32) {
+// SetX gets a reference to the given int64 and assigns it to the X field.
+func (o *VideoCropInfo) SetX(v int64) {
 	o.X = &v
 }
 
 // GetY returns the Y field value if set, zero value otherwise.
-func (o *VideoCropInfo) GetY() int32 {
+func (o *VideoCropInfo) GetY() int64 {
 	if o == nil || o.Y == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Y
@@ -143,7 +143,7 @@ func (o *VideoCropInfo) GetY() int32 {
 
 // GetYOk returns a tuple with the Y field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VideoCropInfo) GetYOk() (*int32, bool) {
+func (o *VideoCropInfo) GetYOk() (*int64, bool) {
 	if o == nil || o.Y == nil {
 		return nil, false
 	}
@@ -159,8 +159,8 @@ func (o *VideoCropInfo) HasY() bool {
 	return false
 }
 
-// SetY gets a reference to the given int32 and assigns it to the Y field.
-func (o *VideoCropInfo) SetY(v int32) {
+// SetY gets a reference to the given int64 and assigns it to the Y field.
+func (o *VideoCropInfo) SetY(v int64) {
 	o.Y = &v
 }
 

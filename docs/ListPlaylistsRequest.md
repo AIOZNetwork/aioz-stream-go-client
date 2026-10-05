@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Limit** | Pointer to **int32** |  | [optional] [default to 25]
+**Limit** | Pointer to **int64** |  | [optional] [default to 25]
 **Metadata** | Pointer to [**[]Metadata**](Metadata.md) |  | [optional] 
-**Offset** | Pointer to **int32** |  | [optional] 
+**Offset** | Pointer to **int64** |  | [optional] 
 **OrderBy** | Pointer to **string** |  | [optional] 
 **PlaylistType** | Pointer to **string** |  | [optional] 
 **Search** | Pointer to **string** |  | [optional] 
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLimit
 
-`func (o *ListPlaylistsRequest) GetLimit() int32`
+`func (o *ListPlaylistsRequest) GetLimit() int64`
 
 GetLimit returns the Limit field if non-nil, zero value otherwise.
 
 ### GetLimitOk
 
-`func (o *ListPlaylistsRequest) GetLimitOk() (*int32, bool)`
+`func (o *ListPlaylistsRequest) GetLimitOk() (*int64, bool)`
 
 GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLimit
 
-`func (o *ListPlaylistsRequest) SetLimit(v int32)`
+`func (o *ListPlaylistsRequest) SetLimit(v int64)`
 
 SetLimit sets Limit field to given value.
 
@@ -84,20 +84,20 @@ HasMetadata returns a boolean if a field has been set.
 
 ### GetOffset
 
-`func (o *ListPlaylistsRequest) GetOffset() int32`
+`func (o *ListPlaylistsRequest) GetOffset() int64`
 
 GetOffset returns the Offset field if non-nil, zero value otherwise.
 
 ### GetOffsetOk
 
-`func (o *ListPlaylistsRequest) GetOffsetOk() (*int32, bool)`
+`func (o *ListPlaylistsRequest) GetOffsetOk() (*int64, bool)`
 
 GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOffset
 
-`func (o *ListPlaylistsRequest) SetOffset(v int32)`
+`func (o *ListPlaylistsRequest) SetOffset(v int64)`
 
 SetOffset sets Offset field to given value.
 

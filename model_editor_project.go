@@ -20,7 +20,7 @@ type EditorProject struct {
 	Id          *string                 `json:"id,omitempty"`
 	Media       *HighlightMedia         `json:"media,omitempty"`
 	Metadata    *map[string]interface{} `json:"metadata,omitempty"`
-	Revision    *int32                  `json:"revision,omitempty"`
+	Revision    *int64                  `json:"revision,omitempty"`
 	Title       *string                 `json:"title,omitempty"`
 	UpdatedAt   *string                 `json:"updated_at,omitempty"`
 	UserId      *string                 `json:"user_id,omitempty"`
@@ -268,9 +268,9 @@ func (o *EditorProject) SetMetadata(v map[string]interface{}) {
 }
 
 // GetRevision returns the Revision field value if set, zero value otherwise.
-func (o *EditorProject) GetRevision() int32 {
+func (o *EditorProject) GetRevision() int64 {
 	if o == nil || o.Revision == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Revision
@@ -278,7 +278,7 @@ func (o *EditorProject) GetRevision() int32 {
 
 // GetRevisionOk returns a tuple with the Revision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EditorProject) GetRevisionOk() (*int32, bool) {
+func (o *EditorProject) GetRevisionOk() (*int64, bool) {
 	if o == nil || o.Revision == nil {
 		return nil, false
 	}
@@ -294,8 +294,8 @@ func (o *EditorProject) HasRevision() bool {
 	return false
 }
 
-// SetRevision gets a reference to the given int32 and assigns it to the Revision field.
-func (o *EditorProject) SetRevision(v int32) {
+// SetRevision gets a reference to the given int64 and assigns it to the Revision field.
+func (o *EditorProject) SetRevision(v int64) {
 	o.Revision = &v
 }
 

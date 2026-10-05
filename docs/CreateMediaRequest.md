@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **IsPublic** | Pointer to **bool** | // Is panoramic media IsPanoramic *bool &#x60;json:\&quot;is_panoramic\&quot; form:\&quot;is_panoramic\&quot;&#x60; Is public media | [optional] 
 **Metadata** | Pointer to [**[]Metadata**](Metadata.md) | Metadata of the media (key-value pair, max: 50 items, key max length: 255, value max length: 255) | [optional] 
 **Qualities** | Pointer to [**[]QualityConfig**](QualityConfig.md) | Qualities of the media (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p) | [optional] 
-**SegmentDuration** | Pointer to **int32** | SegmentConfig | [optional] 
+**SegmentDuration** | Pointer to **int64** | SegmentConfig | [optional] 
 **SourceUrl** | Pointer to **string** | Import an existing HLS manifest instead of uploading a file. When set, the renditions are mirrored from that manifest and the part-upload flow is skipped, so &#x60;qualities&#x60; and &#x60;watermark&#x60; must be omitted. | [optional] 
 **Tags** | Pointer to **[]string** | Tags of the media (max: 50 items, max length: 255) | [optional] 
 **Title** | Pointer to **string** | Title of the media | [optional] 
@@ -162,20 +162,20 @@ HasQualities returns a boolean if a field has been set.
 
 ### GetSegmentDuration
 
-`func (o *CreateMediaRequest) GetSegmentDuration() int32`
+`func (o *CreateMediaRequest) GetSegmentDuration() int64`
 
 GetSegmentDuration returns the SegmentDuration field if non-nil, zero value otherwise.
 
 ### GetSegmentDurationOk
 
-`func (o *CreateMediaRequest) GetSegmentDurationOk() (*int32, bool)`
+`func (o *CreateMediaRequest) GetSegmentDurationOk() (*int64, bool)`
 
 GetSegmentDurationOk returns a tuple with the SegmentDuration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSegmentDuration
 
-`func (o *CreateMediaRequest) SetSegmentDuration(v int32)`
+`func (o *CreateMediaRequest) SetSegmentDuration(v int64)`
 
 SetSegmentDuration sets SegmentDuration field to given value.
 

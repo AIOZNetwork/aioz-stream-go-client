@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Limit** | Pointer to **int32** |  | [optional] [default to 25]
-**Offset** | Pointer to **int32** |  | [optional] 
+**Limit** | Pointer to **int64** |  | [optional] [default to 25]
+**Offset** | Pointer to **int64** |  | [optional] 
 **OrderBy** | Pointer to **string** |  | [optional] 
 **Search** | Pointer to **string** |  | [optional] 
 **SortBy** | Pointer to **string** |  | [optional] 
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLimit
 
-`func (o *ListApiKeysRequest) GetLimit() int32`
+`func (o *ListApiKeysRequest) GetLimit() int64`
 
 GetLimit returns the Limit field if non-nil, zero value otherwise.
 
 ### GetLimitOk
 
-`func (o *ListApiKeysRequest) GetLimitOk() (*int32, bool)`
+`func (o *ListApiKeysRequest) GetLimitOk() (*int64, bool)`
 
 GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLimit
 
-`func (o *ListApiKeysRequest) SetLimit(v int32)`
+`func (o *ListApiKeysRequest) SetLimit(v int64)`
 
 SetLimit sets Limit field to given value.
 
@@ -57,20 +57,20 @@ HasLimit returns a boolean if a field has been set.
 
 ### GetOffset
 
-`func (o *ListApiKeysRequest) GetOffset() int32`
+`func (o *ListApiKeysRequest) GetOffset() int64`
 
 GetOffset returns the Offset field if non-nil, zero value otherwise.
 
 ### GetOffsetOk
 
-`func (o *ListApiKeysRequest) GetOffsetOk() (*int32, bool)`
+`func (o *ListApiKeysRequest) GetOffsetOk() (*int64, bool)`
 
 GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOffset
 
-`func (o *ListApiKeysRequest) SetOffset(v int32)`
+`func (o *ListApiKeysRequest) SetOffset(v int64)`
 
 SetOffset sets Offset field to given value.
 

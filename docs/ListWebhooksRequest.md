@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **EncodingFinished** | Pointer to **bool** |  | [optional] 
 **EncodingStarted** | Pointer to **bool** |  | [optional] 
 **FileReceived** | Pointer to **bool** |  | [optional] 
-**Limit** | Pointer to **int32** |  | [optional] [default to 25]
-**Offset** | Pointer to **int32** |  | [optional] 
+**Limit** | Pointer to **int64** |  | [optional] [default to 25]
+**Offset** | Pointer to **int64** |  | [optional] 
 **OrderBy** | Pointer to **string** |  | [optional] 
 **PartialFinished** | Pointer to **bool** |  | [optional] 
 **Search** | Pointer to **string** |  | [optional] 
@@ -136,20 +136,20 @@ HasFileReceived returns a boolean if a field has been set.
 
 ### GetLimit
 
-`func (o *ListWebhooksRequest) GetLimit() int32`
+`func (o *ListWebhooksRequest) GetLimit() int64`
 
 GetLimit returns the Limit field if non-nil, zero value otherwise.
 
 ### GetLimitOk
 
-`func (o *ListWebhooksRequest) GetLimitOk() (*int32, bool)`
+`func (o *ListWebhooksRequest) GetLimitOk() (*int64, bool)`
 
 GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLimit
 
-`func (o *ListWebhooksRequest) SetLimit(v int32)`
+`func (o *ListWebhooksRequest) SetLimit(v int64)`
 
 SetLimit sets Limit field to given value.
 
@@ -161,20 +161,20 @@ HasLimit returns a boolean if a field has been set.
 
 ### GetOffset
 
-`func (o *ListWebhooksRequest) GetOffset() int32`
+`func (o *ListWebhooksRequest) GetOffset() int64`
 
 GetOffset returns the Offset field if non-nil, zero value otherwise.
 
 ### GetOffsetOk
 
-`func (o *ListWebhooksRequest) GetOffsetOk() (*int32, bool)`
+`func (o *ListWebhooksRequest) GetOffsetOk() (*int64, bool)`
 
 GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOffset
 
-`func (o *ListWebhooksRequest) SetOffset(v int32)`
+`func (o *ListWebhooksRequest) SetOffset(v int64)`
 
 SetOffset sets Offset field to given value.
 

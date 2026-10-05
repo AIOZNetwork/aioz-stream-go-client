@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Duration** | Pointer to **float32** |  | [optional] 
 **HlsUrl** | Pointer to **string** |  | [optional] 
 **Qualities** | Pointer to **string** |  | [optional] 
-**Size** | Pointer to **int32** |  | [optional] 
+**Size** | Pointer to **int64** |  | [optional] 
 **ThumbnailUrl** | Pointer to **string** |  | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
 
@@ -185,20 +185,20 @@ HasQualities returns a boolean if a field has been set.
 
 ### GetSize
 
-`func (o *PlaylistItemMedia) GetSize() int32`
+`func (o *PlaylistItemMedia) GetSize() int64`
 
 GetSize returns the Size field if non-nil, zero value otherwise.
 
 ### GetSizeOk
 
-`func (o *PlaylistItemMedia) GetSizeOk() (*int32, bool)`
+`func (o *PlaylistItemMedia) GetSizeOk() (*int64, bool)`
 
 GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSize
 
-`func (o *PlaylistItemMedia) SetSize(v int32)`
+`func (o *PlaylistItemMedia) SetSize(v int64)`
 
 SetSize sets Size field to given value.
 

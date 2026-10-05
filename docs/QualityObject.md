@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AudioBitrate** | Pointer to **int32** |  | [optional] 
+**AudioBitrate** | Pointer to **int64** |  | [optional] 
 **AudioCodec** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**VideoBitrate** | Pointer to **int32** |  | [optional] 
+**VideoBitrate** | Pointer to **int64** |  | [optional] 
 **VideoCodec** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAudioBitrate
 
-`func (o *QualityObject) GetAudioBitrate() int32`
+`func (o *QualityObject) GetAudioBitrate() int64`
 
 GetAudioBitrate returns the AudioBitrate field if non-nil, zero value otherwise.
 
 ### GetAudioBitrateOk
 
-`func (o *QualityObject) GetAudioBitrateOk() (*int32, bool)`
+`func (o *QualityObject) GetAudioBitrateOk() (*int64, bool)`
 
 GetAudioBitrateOk returns a tuple with the AudioBitrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAudioBitrate
 
-`func (o *QualityObject) SetAudioBitrate(v int32)`
+`func (o *QualityObject) SetAudioBitrate(v int64)`
 
 SetAudioBitrate sets AudioBitrate field to given value.
 
@@ -158,20 +158,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetVideoBitrate
 
-`func (o *QualityObject) GetVideoBitrate() int32`
+`func (o *QualityObject) GetVideoBitrate() int64`
 
 GetVideoBitrate returns the VideoBitrate field if non-nil, zero value otherwise.
 
 ### GetVideoBitrateOk
 
-`func (o *QualityObject) GetVideoBitrateOk() (*int32, bool)`
+`func (o *QualityObject) GetVideoBitrateOk() (*int64, bool)`
 
 GetVideoBitrateOk returns a tuple with the VideoBitrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVideoBitrate
 
-`func (o *QualityObject) SetVideoBitrate(v int32)`
+`func (o *QualityObject) SetVideoBitrate(v int64)`
 
 SetVideoBitrate sets VideoBitrate field to given value.
 

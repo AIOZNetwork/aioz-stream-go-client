@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **PlayerTheme** | Pointer to [**PlayerTheme**](PlayerTheme.md) |  | [optional] 
 **PlayerThemeId** | Pointer to **string** |  | [optional] 
 **Qualities** | Pointer to [**[]QualityObject**](QualityObject.md) |  | [optional] 
-**Size** | Pointer to **int32** |  | [optional] 
+**Size** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Summaries** | Pointer to [**[]MediaSummary**](MediaSummary.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** |  | [optional] 
-**View** | Pointer to **int32** |  | [optional] 
+**View** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -399,20 +399,20 @@ HasQualities returns a boolean if a field has been set.
 
 ### GetSize
 
-`func (o *MediaObject) GetSize() int32`
+`func (o *MediaObject) GetSize() int64`
 
 GetSize returns the Size field if non-nil, zero value otherwise.
 
 ### GetSizeOk
 
-`func (o *MediaObject) GetSizeOk() (*int32, bool)`
+`func (o *MediaObject) GetSizeOk() (*int64, bool)`
 
 GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSize
 
-`func (o *MediaObject) SetSize(v int32)`
+`func (o *MediaObject) SetSize(v int64)`
 
 SetSize sets Size field to given value.
 
@@ -599,20 +599,20 @@ HasUserId returns a boolean if a field has been set.
 
 ### GetView
 
-`func (o *MediaObject) GetView() int32`
+`func (o *MediaObject) GetView() int64`
 
 GetView returns the View field if non-nil, zero value otherwise.
 
 ### GetViewOk
 
-`func (o *MediaObject) GetViewOk() (*int32, bool)`
+`func (o *MediaObject) GetViewOk() (*int64, bool)`
 
 GetViewOk returns a tuple with the View field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetView
 
-`func (o *MediaObject) SetView(v int32)`
+`func (o *MediaObject) SetView(v int64)`
 
 SetView sets View field to given value.
 

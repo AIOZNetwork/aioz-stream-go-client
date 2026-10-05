@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bitrate** | Pointer to **int32** |  | [optional] 
+**Bitrate** | Pointer to **int64** |  | [optional] 
 **Channels** | Pointer to **string** |  | [optional] 
 **Codec** | Pointer to **string** |  | [optional] 
-**Index** | Pointer to **int32** |  | [optional] 
+**Index** | Pointer to **int64** |  | [optional] 
 **Language** | Pointer to **string** |  | [optional] 
-**SampleRate** | Pointer to **int32** |  | [optional] 
+**SampleRate** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBitrate
 
-`func (o *AudioConfig) GetBitrate() int32`
+`func (o *AudioConfig) GetBitrate() int64`
 
 GetBitrate returns the Bitrate field if non-nil, zero value otherwise.
 
 ### GetBitrateOk
 
-`func (o *AudioConfig) GetBitrateOk() (*int32, bool)`
+`func (o *AudioConfig) GetBitrateOk() (*int64, bool)`
 
 GetBitrateOk returns a tuple with the Bitrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBitrate
 
-`func (o *AudioConfig) SetBitrate(v int32)`
+`func (o *AudioConfig) SetBitrate(v int64)`
 
 SetBitrate sets Bitrate field to given value.
 
@@ -107,20 +107,20 @@ HasCodec returns a boolean if a field has been set.
 
 ### GetIndex
 
-`func (o *AudioConfig) GetIndex() int32`
+`func (o *AudioConfig) GetIndex() int64`
 
 GetIndex returns the Index field if non-nil, zero value otherwise.
 
 ### GetIndexOk
 
-`func (o *AudioConfig) GetIndexOk() (*int32, bool)`
+`func (o *AudioConfig) GetIndexOk() (*int64, bool)`
 
 GetIndexOk returns a tuple with the Index field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIndex
 
-`func (o *AudioConfig) SetIndex(v int32)`
+`func (o *AudioConfig) SetIndex(v int64)`
 
 SetIndex sets Index field to given value.
 
@@ -157,20 +157,20 @@ HasLanguage returns a boolean if a field has been set.
 
 ### GetSampleRate
 
-`func (o *AudioConfig) GetSampleRate() int32`
+`func (o *AudioConfig) GetSampleRate() int64`
 
 GetSampleRate returns the SampleRate field if non-nil, zero value otherwise.
 
 ### GetSampleRateOk
 
-`func (o *AudioConfig) GetSampleRateOk() (*int32, bool)`
+`func (o *AudioConfig) GetSampleRateOk() (*int64, bool)`
 
 GetSampleRateOk returns a tuple with the SampleRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSampleRate
 
-`func (o *AudioConfig) SetSampleRate(v int32)`
+`func (o *AudioConfig) SetSampleRate(v int64)`
 
 SetSampleRate sets SampleRate field to given value.
 

@@ -13,12 +13,12 @@ package aiozstreamsdk
 
 // QualityObject struct for QualityObject
 type QualityObject struct {
-	AudioBitrate *int32  `json:"audio_bitrate,omitempty"`
+	AudioBitrate *int64  `json:"audio_bitrate,omitempty"`
 	AudioCodec   *string `json:"audio_codec,omitempty"`
 	Name         *string `json:"name,omitempty"`
 	Status       *string `json:"status,omitempty"`
 	Type         *string `json:"type,omitempty"`
-	VideoBitrate *int32  `json:"video_bitrate,omitempty"`
+	VideoBitrate *int64  `json:"video_bitrate,omitempty"`
 	VideoCodec   *string `json:"video_codec,omitempty"`
 }
 
@@ -40,9 +40,9 @@ func NewQualityObjectWithDefaults() *QualityObject {
 }
 
 // GetAudioBitrate returns the AudioBitrate field value if set, zero value otherwise.
-func (o *QualityObject) GetAudioBitrate() int32 {
+func (o *QualityObject) GetAudioBitrate() int64 {
 	if o == nil || o.AudioBitrate == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AudioBitrate
@@ -50,7 +50,7 @@ func (o *QualityObject) GetAudioBitrate() int32 {
 
 // GetAudioBitrateOk returns a tuple with the AudioBitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QualityObject) GetAudioBitrateOk() (*int32, bool) {
+func (o *QualityObject) GetAudioBitrateOk() (*int64, bool) {
 	if o == nil || o.AudioBitrate == nil {
 		return nil, false
 	}
@@ -66,8 +66,8 @@ func (o *QualityObject) HasAudioBitrate() bool {
 	return false
 }
 
-// SetAudioBitrate gets a reference to the given int32 and assigns it to the AudioBitrate field.
-func (o *QualityObject) SetAudioBitrate(v int32) {
+// SetAudioBitrate gets a reference to the given int64 and assigns it to the AudioBitrate field.
+func (o *QualityObject) SetAudioBitrate(v int64) {
 	o.AudioBitrate = &v
 }
 
@@ -200,9 +200,9 @@ func (o *QualityObject) SetType(v string) {
 }
 
 // GetVideoBitrate returns the VideoBitrate field value if set, zero value otherwise.
-func (o *QualityObject) GetVideoBitrate() int32 {
+func (o *QualityObject) GetVideoBitrate() int64 {
 	if o == nil || o.VideoBitrate == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.VideoBitrate
@@ -210,7 +210,7 @@ func (o *QualityObject) GetVideoBitrate() int32 {
 
 // GetVideoBitrateOk returns a tuple with the VideoBitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *QualityObject) GetVideoBitrateOk() (*int32, bool) {
+func (o *QualityObject) GetVideoBitrateOk() (*int64, bool) {
 	if o == nil || o.VideoBitrate == nil {
 		return nil, false
 	}
@@ -226,8 +226,8 @@ func (o *QualityObject) HasVideoBitrate() bool {
 	return false
 }
 
-// SetVideoBitrate gets a reference to the given int32 and assigns it to the VideoBitrate field.
-func (o *QualityObject) SetVideoBitrate(v int32) {
+// SetVideoBitrate gets a reference to the given int64 and assigns it to the VideoBitrate field.
+func (o *QualityObject) SetVideoBitrate(v int64) {
 	o.VideoBitrate = &v
 }
 

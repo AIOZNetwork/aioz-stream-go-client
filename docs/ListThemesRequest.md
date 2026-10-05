@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Limit** | Pointer to **int32** |  | [optional] [default to 25]
-**Offset** | Pointer to **int32** |  | [optional] 
+**Limit** | Pointer to **int64** |  | [optional] [default to 25]
+**Offset** | Pointer to **int64** |  | [optional] 
 **OrderBy** | Pointer to **string** |  | [optional] 
 **Search** | Pointer to **string** |  | [optional] 
 **SortBy** | Pointer to **string** |  | [optional] 
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLimit
 
-`func (o *ListThemesRequest) GetLimit() int32`
+`func (o *ListThemesRequest) GetLimit() int64`
 
 GetLimit returns the Limit field if non-nil, zero value otherwise.
 
 ### GetLimitOk
 
-`func (o *ListThemesRequest) GetLimitOk() (*int32, bool)`
+`func (o *ListThemesRequest) GetLimitOk() (*int64, bool)`
 
 GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLimit
 
-`func (o *ListThemesRequest) SetLimit(v int32)`
+`func (o *ListThemesRequest) SetLimit(v int64)`
 
 SetLimit sets Limit field to given value.
 
@@ -56,20 +56,20 @@ HasLimit returns a boolean if a field has been set.
 
 ### GetOffset
 
-`func (o *ListThemesRequest) GetOffset() int32`
+`func (o *ListThemesRequest) GetOffset() int64`
 
 GetOffset returns the Offset field if non-nil, zero value otherwise.
 
 ### GetOffsetOk
 
-`func (o *ListThemesRequest) GetOffsetOk() (*int32, bool)`
+`func (o *ListThemesRequest) GetOffsetOk() (*int64, bool)`
 
 GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOffset
 
-`func (o *ListThemesRequest) SetOffset(v int32)`
+`func (o *ListThemesRequest) SetOffset(v int64)`
 
 SetOffset sets Offset field to given value.
 

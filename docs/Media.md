@@ -574,8 +574,8 @@ func main() {
     req := aiozstreamsdk.MediaApiGetCaptionsRequest{}
     
     req.Id("id_example") // string | Media ID
-    req.Offset(int32(56)) // int32 | offset, allowed values greater than or equal to 0. Default(0) (default to 0)
-    req.Limit(int32(56)) // int32 | results per page. Allowed values 1-100, default is 25 (default to 25)
+    req.Offset(int64(789)) // int64 | offset, allowed values greater than or equal to 0. Default(0) (default to 0)
+    req.Limit(int64(789)) // int64 | results per page. Allowed values 1-100, default is 25 (default to 25)
 
     res, err := client.Media.GetCaptions(id string, req)
     
@@ -605,8 +605,8 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**offset** | **int32** | offset, allowed values greater than or equal to 0. Default(0) | [default to 0]
-**limit** | **int32** | results per page. Allowed values 1-100, default is 25 | [default to 25]
+**offset** | **int64** | offset, allowed values greater than or equal to 0. Default(0) | [default to 0]
+**limit** | **int64** | results per page. Allowed values 1-100, default is 25 | [default to 25]
 
 ### Return type
 
