@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Create**](MediaChapter.md#Create) | **Post** /media/{id}/chapters/{lan} | Create a media chapter
 [**Get**](MediaChapter.md#Get) | **Get** /media/{id}/chapters | Get media chapters
-[**Delete**](MediaChapter.md#Delete) | **Delete** /media/{id}/chapters/{lan} | Delete a video chapter
+[**Delete**](MediaChapter.md#Delete) | **Delete** /media/{id}/chapters/{lan} | Delete a media chapter
 
 
 
@@ -31,7 +31,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -113,7 +113,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 > DeleteWithContext(ctx context.Context, id string, lan string) (*ResponseSuccess, error)
 
 
-Delete a video chapter
+Delete a media chapter
 
 
 
@@ -190,7 +190,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -201,7 +201,7 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "id_example" // string | Video ID
+    id := "id_example" // string | Media ID
     lan := "lan_example" // string | Language
 
     
@@ -224,7 +224,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**id** | **string** | Video ID | 
+**id** | **string** | Media ID | 
 **lan** | **string** | Language | 
 
 ### Other Parameters

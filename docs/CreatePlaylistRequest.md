@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Metadata** | Pointer to [**[]Metadata**](Metadata.md) |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**PlaylistType** | Pointer to **string** |  | [optional] 
+**PlaylistType** | Pointer to **string** |  | [optional] [default to "video"]
 **Tags** | Pointer to **[]string** |  | [optional] 
 
 ## Methods

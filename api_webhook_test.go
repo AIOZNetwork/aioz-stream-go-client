@@ -1,17 +1,21 @@
 package aiozstreamsdk
 
 import (
+	"os"
 	"testing"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 var (
 	testWebhookForUpdateAndDelete string
-	webhookURL                    = "https://webhook.site/b112b207-054e-415b-9540-1eba2bef5001"
-	webhookName                   = "Test Webhook"
-	deleteWebhooksLater           []string
+	// webhookURL defaults to a webhook.site endpoint; TEST_WEBHOOK_URL
+	// overrides it (applied in loadEnvVariables, after .env is loaded).
+	webhookURL          = "https://webhook.site/b112b207-054e-415b-9540-1eba2bef5001"
+	webhookName         = "Test Webhook"
+	deleteWebhooksLater []string
 )
 
 func boolPtr(b bool) *bool {
@@ -21,12 +25,12 @@ func boolPtr(b bool) *bool {
 func TestWebhookService_Create(t *testing.T) {
 	tests := []struct {
 		name    string
-		request CreateWebhookRequest
+		request WriteWebhookRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Create Request with All Fields",
-			request: CreateWebhookRequest{
+			request: WriteWebhookRequest{
 				EncodingFinished: boolPtr(true),
 				EncodingStarted:  boolPtr(true),
 				FileReceived:     boolPtr(true),
@@ -37,7 +41,7 @@ func TestWebhookService_Create(t *testing.T) {
 		},
 		{
 			name: "Invalid Create Request Without Events",
-			request: CreateWebhookRequest{
+			request: WriteWebhookRequest{
 				Url:  stringPtr(webhookURL),
 				Name: stringPtr(webhookName),
 			},
@@ -45,7 +49,7 @@ func TestWebhookService_Create(t *testing.T) {
 		},
 		{
 			name: "Invalid URL",
-			request: CreateWebhookRequest{
+			request: WriteWebhookRequest{
 				Url:  stringPtr("not-a-url"),
 				Name: stringPtr(webhookName),
 			},
@@ -53,14 +57,14 @@ func TestWebhookService_Create(t *testing.T) {
 		},
 		{
 			name: "Missing URL",
-			request: CreateWebhookRequest{
+			request: WriteWebhookRequest{
 				Name: stringPtr(webhookName),
 			},
 			wantErr: true,
 		},
 		{
 			name: "Missing Name",
-			request: CreateWebhookRequest{
+			request: WriteWebhookRequest{
 				Url:              stringPtr(webhookURL),
 				EncodingFinished: boolPtr(true),
 				EncodingStarted:  boolPtr(true),
@@ -70,7 +74,7 @@ func TestWebhookService_Create(t *testing.T) {
 		},
 		{
 			name:    "Empty Request",
-			request: CreateWebhookRequest{},
+			request: WriteWebhookRequest{},
 			wantErr: true,
 		},
 	}
@@ -82,10 +86,16 @@ func TestWebhookService_Create(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
 			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-				assert.NotEmpty(t, resp.Data.Webhook.Id)
-				deleteWebhooksLater = append(deleteWebhooksLater, *resp.Data.Webhook.Id)
+				require.NoError(t, err)
+				require.NotNil(t, resp)
+				require.NotNil(t, resp.Data)
+				require.NotNil(t, resp.Data.Webhook)
+				require.NotNil(t, resp.Data.Webhook.Id)
+				assert.NotEmpty(t, *resp.Data.Webhook.Id)
+				deleteWebhooksLater = append(
+					deleteWebhooksLater,
+					*resp.Data.Webhook.Id,
+				)
 				testWebhookForUpdateAndDelete = *resp.Data.Webhook.Id
 			}
 		})
@@ -93,17 +103,22 @@ func TestWebhookService_Create(t *testing.T) {
 }
 
 func TestWebhookService_Update(t *testing.T) {
+	requireSetupID(
+		t,
+		"testWebhookForUpdateAndDelete",
+		testWebhookForUpdateAndDelete,
+	)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
 		id      string
-		request UpdateWebhookRequest
+		request WriteWebhookRequest
 		wantErr bool
 	}{
 		{
 			name: "Update other",
 			id:   testWebhookForUpdateAndDelete,
-			request: UpdateWebhookRequest{
+			request: WriteWebhookRequest{
 				Name: stringPtr("Updated Webhook"),
 			},
 			wantErr: true,
@@ -126,13 +141,13 @@ func TestWebhookService_Update(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		request UpdateWebhookRequest
+		request WriteWebhookRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Update All Fields",
 			id:   testWebhookForUpdateAndDelete,
-			request: UpdateWebhookRequest{
+			request: WriteWebhookRequest{
 				EncodingFinished: boolPtr(true),
 				EncodingStarted:  boolPtr(false),
 				FileReceived:     boolPtr(true),
@@ -142,9 +157,33 @@ func TestWebhookService_Update(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: "Update Partial Fields, only Name",
+			id:   testWebhookForUpdateAndDelete,
+			request: WriteWebhookRequest{
+				Name: stringPtr("Updated Name Only"),
+			},
+			wantErr: false,
+		},
+		{
+			name: "Empty Name",
+			id:   testWebhookForUpdateAndDelete,
+			request: WriteWebhookRequest{
+				Name: stringPtr(""),
+			},
+			wantErr: true,
+		},
+		{
+			name: "Blank Name",
+			id:   testWebhookForUpdateAndDelete,
+			request: WriteWebhookRequest{
+				Name: stringPtr("   "),
+			},
+			wantErr: true,
+		},
+		{
 			name: "Invalid URL",
 			id:   testWebhookForUpdateAndDelete,
-			request: UpdateWebhookRequest{
+			request: WriteWebhookRequest{
 				Url: stringPtr("not-a-url"),
 			},
 			wantErr: true,
@@ -152,13 +191,13 @@ func TestWebhookService_Update(t *testing.T) {
 		{
 			name:    "Invalid ID",
 			id:      "invalid-id",
-			request: UpdateWebhookRequest{},
+			request: WriteWebhookRequest{},
 			wantErr: true,
 		},
 		{
 			name:    "Not Exist ID",
 			id:      notExistId,
-			request: UpdateWebhookRequest{},
+			request: WriteWebhookRequest{},
 			wantErr: true,
 		},
 	}
@@ -182,13 +221,13 @@ func TestWebhookService_List(t *testing.T) {
 		name    string
 		request WebhookApiListRequest
 		wantErr bool
-		checkFn func(*testing.T, *GetWebhooksListResponse)
+		checkFn func(*testing.T, *ListWebhooksResponse)
 	}{
 		{
 			name:    "List All Webhooks",
 			request: WebhookApiListRequest{},
 			wantErr: false,
-			checkFn: func(t *testing.T, resp *GetWebhooksListResponse) {
+			checkFn: func(t *testing.T, resp *ListWebhooksResponse) {
 				assert.NotNil(t, resp.Data)
 			},
 		},
@@ -198,8 +237,9 @@ func TestWebhookService_List(t *testing.T) {
 				Limit(10).
 				Offset(0),
 			wantErr: false,
-			checkFn: func(t *testing.T, resp *GetWebhooksListResponse) {
-				assert.NotNil(t, resp.Data)
+			checkFn: func(t *testing.T, resp *ListWebhooksResponse) {
+				require.NotNil(t, resp.Data)
+				require.NotNil(t, resp.Data.Webhooks)
 				assert.LessOrEqual(t, len(*resp.Data.Webhooks), 10)
 			},
 		},
@@ -232,8 +272,8 @@ func TestWebhookService_List(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
 			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
+				require.NoError(t, err)
+				require.NotNil(t, resp)
 				if tt.checkFn != nil {
 					tt.checkFn(t, resp)
 				}
@@ -243,6 +283,11 @@ func TestWebhookService_List(t *testing.T) {
 }
 
 func TestWebhookService_Get(t *testing.T) {
+	requireSetupID(
+		t,
+		"testWebhookForUpdateAndDelete",
+		testWebhookForUpdateAndDelete,
+	)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
@@ -273,13 +318,15 @@ func TestWebhookService_Get(t *testing.T) {
 		name    string
 		id      string
 		wantErr bool
-		checkFn func(*testing.T, *GetUserWebhookResponse)
+		checkFn func(*testing.T, *WebhookResponse)
 	}{
 		{
 			name:    "Valid Get",
 			id:      testWebhookForUpdateAndDelete,
 			wantErr: false,
-			checkFn: func(t *testing.T, resp *GetUserWebhookResponse) {
+			checkFn: func(t *testing.T, resp *WebhookResponse) {
+				require.NotNil(t, resp.Data)
+				require.NotNil(t, resp.Data.Webhook)
 				assert.NotEmpty(t, resp.Data.Webhook.Id)
 				assert.NotEmpty(t, resp.Data.Webhook.Url)
 				assert.NotEmpty(t, resp.Data.Webhook.Name)
@@ -304,8 +351,8 @@ func TestWebhookService_Get(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
 			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
+				require.NoError(t, err)
+				require.NotNil(t, resp)
 				if tt.checkFn != nil {
 					tt.checkFn(t, resp)
 				}
@@ -314,7 +361,90 @@ func TestWebhookService_Get(t *testing.T) {
 	}
 }
 
+// TestWebhookService_Check must run before TestWebhookService_Delete removes
+// testWebhookForUpdateAndDelete. The backend delivers a real test event to the
+// webhook's URL, so the valid case also depends on outbound delivery.
+func TestWebhookService_Check(t *testing.T) {
+	requireSetupID(
+		t,
+		"testWebhookForUpdateAndDelete",
+		testWebhookForUpdateAndDelete,
+	)
+	notExistId := uuid.New().String()
+	anonymousTest := []struct {
+		name    string
+		id      string
+		wantErr bool
+	}{
+		{
+			name:    "Check other",
+			id:      testWebhookForUpdateAndDelete,
+			wantErr: true,
+		},
+	}
+
+	for _, tt := range anonymousTest {
+		t.Run(tt.name, func(t *testing.T) {
+			resp, err := testAnonymousClient.Webhook.Check(tt.id)
+			if tt.wantErr {
+				assert.Error(t, err)
+				assert.Nil(t, resp)
+			} else {
+				assert.NoError(t, err)
+				assert.NotNil(t, resp)
+			}
+		})
+	}
+
+	tests := []struct {
+		name          string
+		id            string
+		wantErr       bool
+		needsDelivery bool
+	}{
+		{
+			name:          "Valid Check",
+			id:            testWebhookForUpdateAndDelete,
+			wantErr:       false,
+			needsDelivery: true,
+		},
+		{
+			name:    "Invalid ID",
+			id:      "invalid-id",
+			wantErr: true,
+		},
+		{
+			name:    "Not Exist ID",
+			id:      notExistId,
+			wantErr: true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if tt.needsDelivery && os.Getenv("TEST_WEBHOOK_URL") == "" {
+				t.Skip(
+					"Webhook.Check delivers a real test event; set TEST_WEBHOOK_URL to a public endpoint that answers 2xx (the default webhook.site URL returns 404, so the backend answers 502 webhook-check-failed)",
+				)
+			}
+			resp, err := testClient.Webhook.Check(tt.id)
+			if tt.wantErr {
+				assert.Error(t, err)
+				assert.Nil(t, resp)
+			} else {
+				assert.NoError(t, err)
+				assert.NotNil(t, resp)
+			}
+		})
+	}
+}
+
 func TestWebhookService_Delete(t *testing.T) {
+	requireSetupID(
+		t,
+		"testWebhookForUpdateAndDelete",
+		testWebhookForUpdateAndDelete,
+	)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string

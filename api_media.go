@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -24,13 +24,6 @@ import (
 var (
 	_ context.Context
 )
-
-// VideosService communicating with the Videos
-// endpoints of the Aioz Stream API
-type IUploadStream interface {
-	UploadPart(fileName string, fileReader io.Reader, fileSize int64) (*Media, error)
-	UploadPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*Media, error)
-}
 
 type MediaApiGetCaptionsRequest struct {
 	offset *int32
@@ -61,7 +54,7 @@ type MediaServiceI interface {
 	 * @return MediaApiCreateRequest
 	 */
 
-	Create(request CreateMediaRequest) (*CreateMediaResponse, error)
+	Create(createMediaRequest CreateMediaRequest) (*CreateMediaResponse, error)
 
 	/*
 	 * Create Create media object
@@ -69,7 +62,7 @@ type MediaServiceI interface {
 	 * @return MediaApiCreateRequest
 	 */
 
-	CreateWithContext(ctx context.Context, request CreateMediaRequest) (*CreateMediaResponse, error)
+	CreateWithContext(ctx context.Context, createMediaRequest CreateMediaRequest) (*CreateMediaResponse, error)
 
 	/*
 	 * Update update media info
@@ -77,7 +70,7 @@ type MediaServiceI interface {
 	 * @return MediaApiUpdateRequest
 	 */
 
-	Update(id string, input UpdateMediaInfoRequest) (*ResponseSuccess, error)
+	Update(id string, updateMediaInfoRequest UpdateMediaInfoRequest) (*ResponseSuccess, error)
 
 	/*
 	 * Update update media info
@@ -86,7 +79,7 @@ type MediaServiceI interface {
 	 * @return MediaApiUpdateRequest
 	 */
 
-	UpdateWithContext(ctx context.Context, id string, input UpdateMediaInfoRequest) (*ResponseSuccess, error)
+	UpdateWithContext(ctx context.Context, id string, updateMediaInfoRequest UpdateMediaInfoRequest) (*ResponseSuccess, error)
 
 	/*
 	 * Delete Delete media
@@ -142,7 +135,7 @@ type MediaServiceI interface {
 	 * @param lan Language
 	 * @return MediaApiCreateCaptionRequest
 	 */
-	CreateCaption(id string, lan string, fileName string, fileReader io.Reader) (*CreateMediaCaptionResponse, error)
+	CreateCaption(id string, lan string, description *string, fileName string, fileReader io.Reader) (*CreateMediaCaptionResponse, error)
 	/*
 	 * CreateCaption Create a new media caption
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -150,7 +143,7 @@ type MediaServiceI interface {
 	 * @param lan Language
 	 * @return MediaApiCreateCaptionRequest
 	 */
-	CreateCaptionWithContext(ctx context.Context, id string, lan string, fileName string, fileReader io.Reader) (*CreateMediaCaptionResponse, error)
+	CreateCaptionWithContext(ctx context.Context, id string, lan string, description *string, fileName string, fileReader io.Reader) (*CreateMediaCaptionResponse, error)
 
 	/*
 	 * DeleteCaption Delete a media caption
@@ -205,7 +198,7 @@ type MediaServiceI interface {
 
 	/*
 	 * GetDetail get media detail
-	 * @param id mediav's id
+	 * @param id media's id
 	 * @return MediaApiGetDetailRequest
 	 */
 
@@ -214,62 +207,62 @@ type MediaServiceI interface {
 	/*
 	 * GetDetail get media detail
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param id mediav's id
+	 * @param id media's id
 	 * @return MediaApiGetDetailRequest
 	 */
 
 	GetDetailWithContext(ctx context.Context, id string) (*GetMediaDetailResponse, error)
 
 	/*
-	 * GetMediaList Get user videos list
+	 * GetMediaList Get user media list
 	 * @return MediaApiGetMediaListRequest
 	 */
 
-	GetMediaList(request GetMediaListRequest) (*GetMediaListResponse, error)
+	GetMediaList(getMediaListRequest GetMediaListRequest) (*GetMediaListResponse, error)
 
 	/*
-	 * GetMediaList Get user videos list
+	 * GetMediaList Get user media list
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return MediaApiGetMediaListRequest
 	 */
 
-	GetMediaListWithContext(ctx context.Context, request GetMediaListRequest) (*GetMediaListResponse, error)
+	GetMediaListWithContext(ctx context.Context, getMediaListRequest GetMediaListRequest) (*GetMediaListResponse, error)
 
 	/*
-	 * GetMediaPlayerInfo Get media object
-	 * @param id media ID
+	 * GetMediaPlayerInfo Get media player info
+	 * @param id Media ID
 	 * @return MediaApiGetMediaPlayerInfoRequest
 	 */
 
 	GetMediaPlayerInfo(id string, r MediaApiGetMediaPlayerInfoRequest) (*GetMediaPlayerInfoResponse, error)
 
 	/*
-	 * GetMediaPlayerInfo Get media object
+	 * GetMediaPlayerInfo Get media player info
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param id media ID
+	 * @param id Media ID
 	 * @return MediaApiGetMediaPlayerInfoRequest
 	 */
 
 	GetMediaPlayerInfoWithContext(ctx context.Context, id string, r MediaApiGetMediaPlayerInfoRequest) (*GetMediaPlayerInfoResponse, error)
 
 	/*
-	 * SetDefaultCaption Set default caption
+	 * SetDefaultCaption Set the default caption
 	 * @param id Media ID
 	 * @param lan Language
 	 * @return MediaApiSetDefaultCaptionRequest
 	 */
 
-	SetDefaultCaption(id string, lan string) (*ResponseSuccess, error)
+	SetDefaultCaption(id string, lan string, setDefaultCaptionRequest SetDefaultCaptionRequest) (*ResponseSuccess, error)
 
 	/*
-	 * SetDefaultCaption Set default caption
+	 * SetDefaultCaption Set the default caption
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Media ID
 	 * @param lan Language
 	 * @return MediaApiSetDefaultCaptionRequest
 	 */
 
-	SetDefaultCaptionWithContext(ctx context.Context, id string, lan string) (*ResponseSuccess, error)
+	SetDefaultCaptionWithContext(ctx context.Context, id string, lan string, setDefaultCaptionRequest SetDefaultCaptionRequest) (*ResponseSuccess, error)
 
 	/*
 	 * UploadMediaComplete Get upload media when complete
@@ -290,14 +283,14 @@ type MediaServiceI interface {
 
 	/*
 	 * UploadPart Upload part of media
-	 * @param id video's id
+	 * @param id media's id
 	 * @return MediaApiUploadPartRequest
 	 */
 	UploadPart(id string, hash *string, index *string, fileName string, fileReader io.Reader, fileSize int64) (*ResponseSuccess, error)
 	/*
 	 * UploadPart Upload part of media
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param id video's id
+	 * @param id media's id
 	 * @return MediaApiUploadPartRequest
 	 */
 	UploadPartWithContext(ctx context.Context, id string, hash *string, index *string, fileName string, fileReader io.Reader, fileSize int64) (*ResponseSuccess, error)
@@ -316,9 +309,9 @@ type MediaService struct {
  * @return MediaApiCreateRequest
  */
 
-func (s *MediaService) Create(request CreateMediaRequest) (*CreateMediaResponse, error) {
+func (s *MediaService) Create(createMediaRequest CreateMediaRequest) (*CreateMediaResponse, error) {
 
-	return s.CreateWithContext(context.Background(), request)
+	return s.CreateWithContext(context.Background(), createMediaRequest)
 
 }
 
@@ -329,7 +322,7 @@ func (s *MediaService) Create(request CreateMediaRequest) (*CreateMediaResponse,
  * @return MediaApiCreateRequest
  */
 
-func (s *MediaService) CreateWithContext(ctx context.Context, request CreateMediaRequest) (*CreateMediaResponse, error) {
+func (s *MediaService) CreateWithContext(ctx context.Context, createMediaRequest CreateMediaRequest) (*CreateMediaResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/media/create"
@@ -338,7 +331,7 @@ func (s *MediaService) CreateWithContext(ctx context.Context, request CreateMedi
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = request
+	localVarPostBody = createMediaRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
@@ -363,9 +356,9 @@ func (s *MediaService) CreateWithContext(ctx context.Context, request CreateMedi
  * @return MediaApiUpdateRequest
  */
 
-func (s *MediaService) Update(id string, input UpdateMediaInfoRequest) (*ResponseSuccess, error) {
+func (s *MediaService) Update(id string, updateMediaInfoRequest UpdateMediaInfoRequest) (*ResponseSuccess, error) {
 
-	return s.UpdateWithContext(context.Background(), id, input)
+	return s.UpdateWithContext(context.Background(), id, updateMediaInfoRequest)
 
 }
 
@@ -376,7 +369,7 @@ func (s *MediaService) Update(id string, input UpdateMediaInfoRequest) (*Respons
  * @return MediaApiUpdateRequest
  */
 
-func (s *MediaService) UpdateWithContext(ctx context.Context, id string, input UpdateMediaInfoRequest) (*ResponseSuccess, error) {
+func (s *MediaService) UpdateWithContext(ctx context.Context, id string, updateMediaInfoRequest UpdateMediaInfoRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/media/{id}"
@@ -386,7 +379,7 @@ func (s *MediaService) UpdateWithContext(ctx context.Context, id string, input U
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = input
+	localVarPostBody = updateMediaInfoRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPatch, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
@@ -470,7 +463,14 @@ func (s *MediaService) UploadThumbnailFile(id string, file *os.File) (*ResponseS
  */
 
 func (s *MediaService) UploadThumbnailFileWithContext(ctx context.Context, id string, file *os.File) (*ResponseSuccess, error) {
-	return s.UploadThumbnailWithContext(ctx, id, file.Name(), io.Reader(file))
+	// A nil file sends no file part, for an endpoint whose file is optional.
+	var fileName string
+	var fileReader io.Reader
+	if file != nil {
+		fileName, fileReader = file.Name(), file
+	}
+
+	return s.UploadThumbnailWithContext(ctx, id, fileName, fileReader)
 }
 
 /*
@@ -498,7 +498,6 @@ func (s *MediaService) UploadThumbnailWithContext(ctx context.Context, id string
 	localVarFormParams := make(map[string]string)
 
 	req, err := s.client.prepareUploadRequest(ctx, http.MethodPost, localVarPath, fileName, fileReader, localVarHeaderParams, localVarQueryParams, localVarFormParams)
-
 	if err != nil {
 		return nil, err
 	}
@@ -568,8 +567,8 @@ func (s *MediaService) DeleteThumbnailWithContext(ctx context.Context, id string
  * @return MediaApiCreateCaptionRequest
  */
 
-func (s *MediaService) CreateCaptionFile(id string, lan string, file *os.File) (*CreateMediaCaptionResponse, error) {
-	return s.CreateCaptionFileWithContext(context.Background(), id, lan, file)
+func (s *MediaService) CreateCaptionFile(id string, lan string, file *os.File, description *string) (*CreateMediaCaptionResponse, error) {
+	return s.CreateCaptionFileWithContext(context.Background(), id, lan, file, description)
 }
 
 /*
@@ -581,8 +580,15 @@ func (s *MediaService) CreateCaptionFile(id string, lan string, file *os.File) (
  * @return MediaApiCreateCaptionRequest
  */
 
-func (s *MediaService) CreateCaptionFileWithContext(ctx context.Context, id string, lan string, file *os.File) (*CreateMediaCaptionResponse, error) {
-	return s.CreateCaptionWithContext(ctx, id, lan, file.Name(), io.Reader(file))
+func (s *MediaService) CreateCaptionFileWithContext(ctx context.Context, id string, lan string, file *os.File, description *string) (*CreateMediaCaptionResponse, error) {
+	// A nil file sends no file part, for an endpoint whose file is optional.
+	var fileName string
+	var fileReader io.Reader
+	if file != nil {
+		fileName, fileReader = file.Name(), file
+	}
+
+	return s.CreateCaptionWithContext(ctx, id, lan, description, fileName, fileReader)
 }
 
 /*
@@ -593,8 +599,8 @@ func (s *MediaService) CreateCaptionFileWithContext(ctx context.Context, id stri
 * @param lan Language
 * @return MediaApiCreateCaptionRequest
  */
-func (s *MediaService) CreateCaption(id string, lan string, fileName string, fileReader io.Reader) (*CreateMediaCaptionResponse, error) {
-	return s.CreateCaptionWithContext(context.Background(), id, lan, fileName, fileReader)
+func (s *MediaService) CreateCaption(id string, lan string, description *string, fileName string, fileReader io.Reader) (*CreateMediaCaptionResponse, error) {
+	return s.CreateCaptionWithContext(context.Background(), id, lan, description, fileName, fileReader)
 }
 
 /*
@@ -605,7 +611,7 @@ func (s *MediaService) CreateCaption(id string, lan string, fileName string, fil
  * @param lan Language
  * @return MediaApiCreateCaptionRequest
  */
-func (s *MediaService) CreateCaptionWithContext(ctx context.Context, id string, lan string, fileName string, fileReader io.Reader) (*CreateMediaCaptionResponse, error) {
+func (s *MediaService) CreateCaptionWithContext(ctx context.Context, id string, lan string, description *string, fileName string, fileReader io.Reader) (*CreateMediaCaptionResponse, error) {
 	localVarPath := "/media/{id}/captions/{lan}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"lan"+"}", url.PathEscape(parameterToString(lan, "")), -1)
@@ -614,8 +620,11 @@ func (s *MediaService) CreateCaptionWithContext(ctx context.Context, id string, 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := make(map[string]string)
 
-	req, err := s.client.prepareUploadRequest(ctx, http.MethodPost, localVarPath, fileName, fileReader, localVarHeaderParams, localVarQueryParams, localVarFormParams)
+	if description != nil {
+		localVarFormParams["description"] = parameterToString(*description, "")
+	}
 
+	req, err := s.client.prepareUploadRequest(ctx, http.MethodPost, localVarPath, fileName, fileReader, localVarHeaderParams, localVarQueryParams, localVarFormParams)
 	if err != nil {
 		return nil, err
 	}
@@ -787,7 +796,7 @@ func (s *MediaService) GetCostWithContext(ctx context.Context, qualities string,
  * GetDetail get media detail
  * Retrieve the media details by media id.
 
- * @param id mediav's id
+ * @param id media's id
  * @return MediaApiGetDetailRequest
  */
 
@@ -801,7 +810,7 @@ func (s *MediaService) GetDetail(id string) (*GetMediaDetailResponse, error) {
  * GetDetail get media detail
  * Retrieve the media details by media id.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id mediav's id
+ * @param id media's id
  * @return MediaApiGetDetailRequest
  */
 
@@ -831,26 +840,26 @@ func (s *MediaService) GetDetailWithContext(ctx context.Context, id string) (*Ge
 }
 
 /*
- * GetMediaList Get user videos list
- * Retrieve a list of videos for the authenticated user.
+ * GetMediaList Get user media list
+ * Retrieve a list of media for the authenticated user.
 
  * @return MediaApiGetMediaListRequest
  */
 
-func (s *MediaService) GetMediaList(request GetMediaListRequest) (*GetMediaListResponse, error) {
+func (s *MediaService) GetMediaList(getMediaListRequest GetMediaListRequest) (*GetMediaListResponse, error) {
 
-	return s.GetMediaListWithContext(context.Background(), request)
+	return s.GetMediaListWithContext(context.Background(), getMediaListRequest)
 
 }
 
 /*
- * GetMediaList Get user videos list
- * Retrieve a list of videos for the authenticated user.
+ * GetMediaList Get user media list
+ * Retrieve a list of media for the authenticated user.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return MediaApiGetMediaListRequest
  */
 
-func (s *MediaService) GetMediaListWithContext(ctx context.Context, request GetMediaListRequest) (*GetMediaListResponse, error) {
+func (s *MediaService) GetMediaListWithContext(ctx context.Context, getMediaListRequest GetMediaListRequest) (*GetMediaListResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/media"
@@ -859,7 +868,7 @@ func (s *MediaService) GetMediaListWithContext(ctx context.Context, request GetM
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = request
+	localVarPostBody = getMediaListRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
@@ -878,10 +887,10 @@ func (s *MediaService) GetMediaListWithContext(ctx context.Context, request GetM
 }
 
 /*
- * GetMediaPlayerInfo Get media object
- * Get media object
+ * GetMediaPlayerInfo Get media player info
+ * Get media player info
 
- * @param id media ID
+ * @param id Media ID
  * @return MediaApiGetMediaPlayerInfoRequest
  */
 
@@ -892,10 +901,10 @@ func (s *MediaService) GetMediaPlayerInfo(id string, r MediaApiGetMediaPlayerInf
 }
 
 /*
- * GetMediaPlayerInfo Get media object
- * Get media object
+ * GetMediaPlayerInfo Get media player info
+ * Get media player info
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id media ID
+ * @param id Media ID
  * @return MediaApiGetMediaPlayerInfoRequest
  */
 
@@ -929,30 +938,30 @@ func (s *MediaService) GetMediaPlayerInfoWithContext(ctx context.Context, id str
 }
 
 /*
- * SetDefaultCaption Set default caption
- * Set default caption for a media
+ * SetDefaultCaption Set the default caption
+ * Mark or unmark the caption in a specific language as the one the player shows by default for this media.
 
  * @param id Media ID
  * @param lan Language
  * @return MediaApiSetDefaultCaptionRequest
  */
 
-func (s *MediaService) SetDefaultCaption(id string, lan string) (*ResponseSuccess, error) {
+func (s *MediaService) SetDefaultCaption(id string, lan string, setDefaultCaptionRequest SetDefaultCaptionRequest) (*ResponseSuccess, error) {
 
-	return s.SetDefaultCaptionWithContext(context.Background(), id, lan)
+	return s.SetDefaultCaptionWithContext(context.Background(), id, lan, setDefaultCaptionRequest)
 
 }
 
 /*
- * SetDefaultCaption Set default caption
- * Set default caption for a media
+ * SetDefaultCaption Set the default caption
+ * Mark or unmark the caption in a specific language as the one the player shows by default for this media.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Media ID
  * @param lan Language
  * @return MediaApiSetDefaultCaptionRequest
  */
 
-func (s *MediaService) SetDefaultCaptionWithContext(ctx context.Context, id string, lan string) (*ResponseSuccess, error) {
+func (s *MediaService) SetDefaultCaptionWithContext(ctx context.Context, id string, lan string, setDefaultCaptionRequest SetDefaultCaptionRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/media/{id}/captions/{lan}"
@@ -961,6 +970,9 @@ func (s *MediaService) SetDefaultCaptionWithContext(ctx context.Context, id stri
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
+
+	// body params
+	localVarPostBody = setDefaultCaptionRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPatch, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
@@ -1029,7 +1041,7 @@ func (s *MediaService) UploadMediaCompleteWithContext(ctx context.Context, id st
  * UploadPart Upload part of media
  * Upload part of media
 
- * @param id video's id
+ * @param id media's id
  * @return MediaApiUploadPartRequest
  */
 
@@ -1041,7 +1053,7 @@ func (s *MediaService) UploadPartFile(id string, file *os.File, hash *string, in
  * UploadPart Upload part of media
  * Upload part of media
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id video's id
+ * @param id media's id
  * @return MediaApiUploadPartRequest
  */
 
@@ -1049,11 +1061,24 @@ func (s *MediaService) UploadPartFileWithContext(ctx context.Context, id string,
 	fileInfo, _ := file.Stat()
 	fileSize := fileInfo.Size()
 
-	return s.UploadPartWithContext(ctx, id, hash, index, file.Name(), io.Reader(file), fileSize)
+	// A nil file sends no file part, for an endpoint whose file is optional.
+	var fileName string
+	var fileReader io.Reader
+	if file != nil {
+		fileName, fileReader = file.Name(), file
+	}
+
+	return s.UploadPartWithContext(ctx, id, hash, index, fileName, fileReader, fileSize)
 }
 
-// VideosService communicating with the Videos
-// endpoints of the AIOZ Stream API
+// IUploadStream uploads a file in parts through UploadPart. It is declared
+// with the operation, not at the top of the file, so that it can return the
+// operation's own response type.
+type IUploadStream interface {
+	UploadPart(fileName string, fileReader io.Reader, fileSize int64) (*ResponseSuccess, error)
+	UploadPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*ResponseSuccess, error)
+}
+
 type UploadPartStream struct {
 	client *Client
 	id     string
@@ -1066,7 +1091,7 @@ func (s *MediaService) CreateUploadPartStream(id string, hash *string, index *st
 	return &UploadPartStream{client: s.client, id: id, hash: hash, index: index, part: 1}, nil
 }
 
-func (s *UploadPartStream) UploadAPart(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64, isLast bool) (*Media, error) {
+func (s *UploadPartStream) UploadAPart(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64, isLast bool) (*ResponseSuccess, error) {
 	localVarPath := "/media/{id}/part"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(s.id, "")), -1)
 
@@ -1082,7 +1107,7 @@ func (s *UploadPartStream) UploadAPart(ctx context.Context, fileName string, fil
 
 	s.part = s.part + 1
 
-	res := new(Media)
+	res := new(ResponseSuccess)
 
 	_, err = s.client.do(request, res)
 	if err != nil {
@@ -1091,31 +1116,31 @@ func (s *UploadPartStream) UploadAPart(ctx context.Context, fileName string, fil
 
 	return res, nil
 }
-func (s *UploadPartStream) UploadPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*Media, error) {
+func (s *UploadPartStream) UploadPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*ResponseSuccess, error) {
 	return s.UploadAPart(ctx, fileName, fileReader, fileSize, false)
 }
-func (s *UploadPartStream) UploadLastPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*Media, error) {
+func (s *UploadPartStream) UploadLastPartWithContext(ctx context.Context, fileName string, fileReader io.Reader, fileSize int64) (*ResponseSuccess, error) {
 	return s.UploadAPart(ctx, fileName, fileReader, fileSize, true)
 }
-func (s *UploadPartStream) UploadPart(fileName string, fileReader io.Reader, fileSize int64) (*Media, error) {
+func (s *UploadPartStream) UploadPart(fileName string, fileReader io.Reader, fileSize int64) (*ResponseSuccess, error) {
 	return s.UploadPartWithContext(context.Background(), fileName, fileReader, fileSize)
 }
-func (s *UploadPartStream) UploadPartFile(file *os.File) (*Media, error) {
+func (s *UploadPartStream) UploadPartFile(file *os.File) (*ResponseSuccess, error) {
 	return s.UploadPartWithContextFile(context.Background(), file)
 }
-func (s *UploadPartStream) UploadPartWithContextFile(ctx context.Context, file *os.File) (*Media, error) {
+func (s *UploadPartStream) UploadPartWithContextFile(ctx context.Context, file *os.File) (*ResponseSuccess, error) {
 	fileInfo, _ := file.Stat()
 	fileSize := fileInfo.Size()
 
 	return s.UploadPartWithContext(ctx, file.Name(), io.Reader(file), fileSize)
 }
-func (s *UploadPartStream) UploadLastPart(fileName string, fileReader io.Reader, fileSize int64) (*Media, error) {
+func (s *UploadPartStream) UploadLastPart(fileName string, fileReader io.Reader, fileSize int64) (*ResponseSuccess, error) {
 	return s.UploadLastPartWithContext(context.Background(), fileName, fileReader, fileSize)
 }
-func (s *UploadPartStream) UploadLastPartFile(file *os.File) (*Media, error) {
+func (s *UploadPartStream) UploadLastPartFile(file *os.File) (*ResponseSuccess, error) {
 	return s.UploadLastPartWithContextFile(context.Background(), file)
 }
-func (s *UploadPartStream) UploadLastPartWithContextFile(ctx context.Context, file *os.File) (*Media, error) {
+func (s *UploadPartStream) UploadLastPartWithContextFile(ctx context.Context, file *os.File) (*ResponseSuccess, error) {
 	fileInfo, _ := file.Stat()
 	fileSize := fileInfo.Size()
 
@@ -1126,7 +1151,7 @@ func (s *UploadPartStream) UploadLastPartWithContextFile(ctx context.Context, fi
 * UploadPart Upload part of media
 * Upload part of media
 
-* @param id video's id
+* @param id media's id
 * @return MediaApiUploadPartRequest
  */
 func (s *MediaService) UploadPart(id string, hash *string, index *string, fileName string, fileReader io.Reader, fileSize int64) (*ResponseSuccess, error) {
@@ -1137,7 +1162,7 @@ func (s *MediaService) UploadPart(id string, hash *string, index *string, fileNa
  * UploadPart Upload part of media
  * Upload part of media
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id video's id
+ * @param id media's id
  * @return MediaApiUploadPartRequest
  */
 func (s *MediaService) UploadPartWithContext(ctx context.Context, id string, hash *string, index *string, fileName string, fileReader io.Reader, fileSize int64) (*ResponseSuccess, error) {
@@ -1156,7 +1181,6 @@ func (s *MediaService) UploadPartWithContext(ctx context.Context, id string, has
 	}
 
 	requests, err := s.client.prepareRangeRequests(ctx, localVarPath, fileName, fileReader, fileSize, localVarHeaderParams, localVarQueryParams, localVarFormParams)
-
 	if err != nil {
 		return nil, err
 	}

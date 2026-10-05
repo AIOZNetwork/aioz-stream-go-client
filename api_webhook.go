@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -24,34 +24,20 @@ var (
 )
 
 type WebhookApiListRequest struct {
-	search           *string
-	sortBy           *string
-	orderBy          *string
-	offset           *int32
-	limit            *int32
+	encodingFailed   *bool
 	encodingFinished *bool
 	encodingStarted  *bool
 	fileReceived     *bool
+	limit            *int32
+	offset           *int32
+	orderBy          *string
+	partialFinished  *bool
+	search           *string
+	sortBy           *string
 }
 
-func (r WebhookApiListRequest) Search(search string) WebhookApiListRequest {
-	r.search = &search
-	return r
-}
-func (r WebhookApiListRequest) SortBy(sortBy string) WebhookApiListRequest {
-	r.sortBy = &sortBy
-	return r
-}
-func (r WebhookApiListRequest) OrderBy(orderBy string) WebhookApiListRequest {
-	r.orderBy = &orderBy
-	return r
-}
-func (r WebhookApiListRequest) Offset(offset int32) WebhookApiListRequest {
-	r.offset = &offset
-	return r
-}
-func (r WebhookApiListRequest) Limit(limit int32) WebhookApiListRequest {
-	r.limit = &limit
+func (r WebhookApiListRequest) EncodingFailed(encodingFailed bool) WebhookApiListRequest {
+	r.encodingFailed = &encodingFailed
 	return r
 }
 func (r WebhookApiListRequest) EncodingFinished(encodingFinished bool) WebhookApiListRequest {
@@ -66,59 +52,83 @@ func (r WebhookApiListRequest) FileReceived(fileReceived bool) WebhookApiListReq
 	r.fileReceived = &fileReceived
 	return r
 }
+func (r WebhookApiListRequest) Limit(limit int32) WebhookApiListRequest {
+	r.limit = &limit
+	return r
+}
+func (r WebhookApiListRequest) Offset(offset int32) WebhookApiListRequest {
+	r.offset = &offset
+	return r
+}
+func (r WebhookApiListRequest) OrderBy(orderBy string) WebhookApiListRequest {
+	r.orderBy = &orderBy
+	return r
+}
+func (r WebhookApiListRequest) PartialFinished(partialFinished bool) WebhookApiListRequest {
+	r.partialFinished = &partialFinished
+	return r
+}
+func (r WebhookApiListRequest) Search(search string) WebhookApiListRequest {
+	r.search = &search
+	return r
+}
+func (r WebhookApiListRequest) SortBy(sortBy string) WebhookApiListRequest {
+	r.sortBy = &sortBy
+	return r
+}
 
 type WebhookServiceI interface {
 	/*
-	 * Create Create webhook
+	 * Create Create a webhook
 	 * @return WebhookApiCreateRequest
 	 */
 
-	Create(request CreateWebhookRequest) (*CreateWebhookResponse, error)
+	Create(writeWebhookRequest WriteWebhookRequest) (*WebhookResponse, error)
 
 	/*
-	 * Create Create webhook
+	 * Create Create a webhook
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return WebhookApiCreateRequest
 	 */
 
-	CreateWithContext(ctx context.Context, request CreateWebhookRequest) (*CreateWebhookResponse, error)
+	CreateWithContext(ctx context.Context, writeWebhookRequest WriteWebhookRequest) (*WebhookResponse, error)
 
 	/*
-	 * Get Get user's webhook by id
-	 * @param id webhook's id
+	 * Get Get a webhook
+	 * @param id Webhook ID
 	 * @return WebhookApiGetRequest
 	 */
 
-	Get(id string) (*GetUserWebhookResponse, error)
+	Get(id string) (*WebhookResponse, error)
 
 	/*
-	 * Get Get user's webhook by id
+	 * Get Get a webhook
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param id webhook's id
+	 * @param id Webhook ID
 	 * @return WebhookApiGetRequest
 	 */
 
-	GetWithContext(ctx context.Context, id string) (*GetUserWebhookResponse, error)
+	GetWithContext(ctx context.Context, id string) (*WebhookResponse, error)
 
 	/*
-	 * Update Update event webhook
-	 * @param id webhook's id
+	 * Update Update a webhook
+	 * @param id Webhook ID
 	 * @return WebhookApiUpdateRequest
 	 */
 
-	Update(id string, request UpdateWebhookRequest) (*ResponseSuccess, error)
+	Update(id string, writeWebhookRequest WriteWebhookRequest) (*ResponseSuccess, error)
 
 	/*
-	 * Update Update event webhook
+	 * Update Update a webhook
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param id webhook's id
+	 * @param id Webhook ID
 	 * @return WebhookApiUpdateRequest
 	 */
 
-	UpdateWithContext(ctx context.Context, id string, request UpdateWebhookRequest) (*ResponseSuccess, error)
+	UpdateWithContext(ctx context.Context, id string, writeWebhookRequest WriteWebhookRequest) (*ResponseSuccess, error)
 
 	/*
-	 * Delete Delete webhook
+	 * Delete Delete a webhook
 	 * @param id Webhook ID
 	 * @return WebhookApiDeleteRequest
 	 */
@@ -126,7 +136,7 @@ type WebhookServiceI interface {
 	Delete(id string) (*ResponseSuccess, error)
 
 	/*
-	 * Delete Delete webhook
+	 * Delete Delete a webhook
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Webhook ID
 	 * @return WebhookApiDeleteRequest
@@ -135,32 +145,32 @@ type WebhookServiceI interface {
 	DeleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 	/*
-	 * List Get list webhooks
+	 * List List webhooks
 	 * @return WebhookApiListRequest
 	 */
 
-	List(r WebhookApiListRequest) (*GetWebhooksListResponse, error)
+	List(r WebhookApiListRequest) (*ListWebhooksResponse, error)
 
 	/*
-	 * List Get list webhooks
+	 * List List webhooks
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return WebhookApiListRequest
 	 */
 
-	ListWithContext(ctx context.Context, r WebhookApiListRequest) (*GetWebhooksListResponse, error)
+	ListWithContext(ctx context.Context, r WebhookApiListRequest) (*ListWebhooksResponse, error)
 
 	/*
-	 * Check Check webhook by id
-	 * @param id webhook's id
+	 * Check Send a test event
+	 * @param id Webhook ID
 	 * @return WebhookApiCheckRequest
 	 */
 
 	Check(id string) (*ResponseSuccess, error)
 
 	/*
-	 * Check Check webhook by id
+	 * Check Send a test event
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param id webhook's id
+	 * @param id Webhook ID
 	 * @return WebhookApiCheckRequest
 	 */
 
@@ -174,26 +184,26 @@ type WebhookService struct {
 }
 
 /*
- * Create Create webhook
- * Webhooks can push notifications to your server, rather than polling streaming service for changes
+ * Create Create a webhook
+ * Registers a URL to be notified of media events, so your server does not have to poll.
 
  * @return WebhookApiCreateRequest
  */
 
-func (s *WebhookService) Create(request CreateWebhookRequest) (*CreateWebhookResponse, error) {
+func (s *WebhookService) Create(writeWebhookRequest WriteWebhookRequest) (*WebhookResponse, error) {
 
-	return s.CreateWithContext(context.Background(), request)
+	return s.CreateWithContext(context.Background(), writeWebhookRequest)
 
 }
 
 /*
- * Create Create webhook
- * Webhooks can push notifications to your server, rather than polling streaming service for changes
+ * Create Create a webhook
+ * Registers a URL to be notified of media events, so your server does not have to poll.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return WebhookApiCreateRequest
  */
 
-func (s *WebhookService) CreateWithContext(ctx context.Context, request CreateWebhookRequest) (*CreateWebhookResponse, error) {
+func (s *WebhookService) CreateWithContext(ctx context.Context, writeWebhookRequest WriteWebhookRequest) (*WebhookResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/webhooks"
@@ -202,14 +212,14 @@ func (s *WebhookService) CreateWithContext(ctx context.Context, request CreateWe
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = request
+	localVarPostBody = writeWebhookRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
 		return nil, err
 	}
 
-	res := new(CreateWebhookResponse)
+	res := new(WebhookResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -221,28 +231,28 @@ func (s *WebhookService) CreateWithContext(ctx context.Context, request CreateWe
 }
 
 /*
- * Get Get user's webhook by id
- * Retrieve webhook details by id.
+ * Get Get a webhook
+ * Returns one webhook by id.
 
- * @param id webhook's id
+ * @param id Webhook ID
  * @return WebhookApiGetRequest
  */
 
-func (s *WebhookService) Get(id string) (*GetUserWebhookResponse, error) {
+func (s *WebhookService) Get(id string) (*WebhookResponse, error) {
 
 	return s.GetWithContext(context.Background(), id)
 
 }
 
 /*
- * Get Get user's webhook by id
- * Retrieve webhook details by id.
+ * Get Get a webhook
+ * Returns one webhook by id.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id webhook's id
+ * @param id Webhook ID
  * @return WebhookApiGetRequest
  */
 
-func (s *WebhookService) GetWithContext(ctx context.Context, id string) (*GetUserWebhookResponse, error) {
+func (s *WebhookService) GetWithContext(ctx context.Context, id string) (*WebhookResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/webhooks/{id}"
@@ -256,7 +266,7 @@ func (s *WebhookService) GetWithContext(ctx context.Context, id string) (*GetUse
 		return nil, err
 	}
 
-	res := new(GetUserWebhookResponse)
+	res := new(WebhookResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -268,28 +278,28 @@ func (s *WebhookService) GetWithContext(ctx context.Context, id string) (*GetUse
 }
 
 /*
- * Update Update event webhook
- * This endpoint will update the indicated webhook.
+ * Update Update a webhook
+ * Changes a webhook's URL, name or events.
 
- * @param id webhook's id
+ * @param id Webhook ID
  * @return WebhookApiUpdateRequest
  */
 
-func (s *WebhookService) Update(id string, request UpdateWebhookRequest) (*ResponseSuccess, error) {
+func (s *WebhookService) Update(id string, writeWebhookRequest WriteWebhookRequest) (*ResponseSuccess, error) {
 
-	return s.UpdateWithContext(context.Background(), id, request)
+	return s.UpdateWithContext(context.Background(), id, writeWebhookRequest)
 
 }
 
 /*
- * Update Update event webhook
- * This endpoint will update the indicated webhook.
+ * Update Update a webhook
+ * Changes a webhook's URL, name or events.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id webhook's id
+ * @param id Webhook ID
  * @return WebhookApiUpdateRequest
  */
 
-func (s *WebhookService) UpdateWithContext(ctx context.Context, id string, request UpdateWebhookRequest) (*ResponseSuccess, error) {
+func (s *WebhookService) UpdateWithContext(ctx context.Context, id string, writeWebhookRequest WriteWebhookRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/webhooks/{id}"
@@ -299,7 +309,7 @@ func (s *WebhookService) UpdateWithContext(ctx context.Context, id string, reque
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = request
+	localVarPostBody = writeWebhookRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPatch, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
@@ -318,8 +328,8 @@ func (s *WebhookService) UpdateWithContext(ctx context.Context, id string, reque
 }
 
 /*
- * Delete Delete webhook
- * This endpoint will delete the indicated webhook.
+ * Delete Delete a webhook
+ * Removes a webhook. No further events are pushed to it.
 
  * @param id Webhook ID
  * @return WebhookApiDeleteRequest
@@ -332,8 +342,8 @@ func (s *WebhookService) Delete(id string) (*ResponseSuccess, error) {
 }
 
 /*
- * Delete Delete webhook
- * This endpoint will delete the indicated webhook.
+ * Delete Delete a webhook
+ * Removes a webhook. No further events are pushed to it.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Webhook ID
  * @return WebhookApiDeleteRequest
@@ -365,30 +375,26 @@ func (s *WebhookService) DeleteWithContext(ctx context.Context, id string) (*Res
 }
 
 /*
- * List Get list webhooks
- * This method returns a list of your webhooks (with all their details).
-
-You can filter what the webhook list that the API returns using the parameters described below.
+ * List List webhooks
+ * Returns a page of the webhooks configured for your workspace.
 
  * @return WebhookApiListRequest
-*/
+ */
 
-func (s *WebhookService) List(r WebhookApiListRequest) (*GetWebhooksListResponse, error) {
+func (s *WebhookService) List(r WebhookApiListRequest) (*ListWebhooksResponse, error) {
 
 	return s.ListWithContext(context.Background(), r)
 
 }
 
 /*
- * List Get list webhooks
- * This method returns a list of your webhooks (with all their details).
-
-You can filter what the webhook list that the API returns using the parameters described below.
+ * List List webhooks
+ * Returns a page of the webhooks configured for your workspace.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return WebhookApiListRequest
-*/
+ */
 
-func (s *WebhookService) ListWithContext(ctx context.Context, r WebhookApiListRequest) (*GetWebhooksListResponse, error) {
+func (s *WebhookService) ListWithContext(ctx context.Context, r WebhookApiListRequest) (*ListWebhooksResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/webhooks"
@@ -396,20 +402,8 @@ func (s *WebhookService) ListWithContext(ctx context.Context, r WebhookApiListRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 
-	if r.search != nil {
-		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
-	}
-	if r.sortBy != nil {
-		localVarQueryParams.Add("sort_by", parameterToString(*r.sortBy, ""))
-	}
-	if r.orderBy != nil {
-		localVarQueryParams.Add("order_by", parameterToString(*r.orderBy, ""))
-	}
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	if r.encodingFailed != nil {
+		localVarQueryParams.Add("encoding_failed", parameterToString(*r.encodingFailed, ""))
 	}
 	if r.encodingFinished != nil {
 		localVarQueryParams.Add("encoding_finished", parameterToString(*r.encodingFinished, ""))
@@ -420,13 +414,31 @@ func (s *WebhookService) ListWithContext(ctx context.Context, r WebhookApiListRe
 	if r.fileReceived != nil {
 		localVarQueryParams.Add("file_received", parameterToString(*r.fileReceived, ""))
 	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.orderBy != nil {
+		localVarQueryParams.Add("order_by", parameterToString(*r.orderBy, ""))
+	}
+	if r.partialFinished != nil {
+		localVarQueryParams.Add("partial_finished", parameterToString(*r.partialFinished, ""))
+	}
+	if r.search != nil {
+		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
+	}
+	if r.sortBy != nil {
+		localVarQueryParams.Add("sort_by", parameterToString(*r.sortBy, ""))
+	}
 
 	req, err := s.client.prepareRequest(ctx, http.MethodGet, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
 		return nil, err
 	}
 
-	res := new(GetWebhooksListResponse)
+	res := new(ListWebhooksResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -438,10 +450,10 @@ func (s *WebhookService) ListWithContext(ctx context.Context, r WebhookApiListRe
 }
 
 /*
- * Check Check webhook by id
- * This endpoint will check the indicated webhook.
+ * Check Send a test event
+ * Delivers a test event to a webhook, so you can confirm your endpoint accepts it.
 
- * @param id webhook's id
+ * @param id Webhook ID
  * @return WebhookApiCheckRequest
  */
 
@@ -452,10 +464,10 @@ func (s *WebhookService) Check(id string) (*ResponseSuccess, error) {
 }
 
 /*
- * Check Check webhook by id
- * This endpoint will check the indicated webhook.
+ * Check Send a test event
+ * Delivers a test event to a webhook, so you can confirm your endpoint accepts it.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id webhook's id
+ * @param id Webhook ID
  * @return WebhookApiCheckRequest
  */
 

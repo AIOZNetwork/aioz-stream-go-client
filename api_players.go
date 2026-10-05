@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -26,31 +26,31 @@ var (
 )
 
 type PlayersApiListRequest struct {
+	limit   *int32
+	offset  *int32
+	orderBy *string
 	search  *string
 	sortBy  *string
-	orderBy *string
-	offset  *int32
-	limit   *int32
 }
 
-func (r PlayersApiListRequest) Search(search string) PlayersApiListRequest {
-	r.search = &search
-	return r
-}
-func (r PlayersApiListRequest) SortBy(sortBy string) PlayersApiListRequest {
-	r.sortBy = &sortBy
-	return r
-}
-func (r PlayersApiListRequest) OrderBy(orderBy string) PlayersApiListRequest {
-	r.orderBy = &orderBy
+func (r PlayersApiListRequest) Limit(limit int32) PlayersApiListRequest {
+	r.limit = &limit
 	return r
 }
 func (r PlayersApiListRequest) Offset(offset int32) PlayersApiListRequest {
 	r.offset = &offset
 	return r
 }
-func (r PlayersApiListRequest) Limit(limit int32) PlayersApiListRequest {
-	r.limit = &limit
+func (r PlayersApiListRequest) OrderBy(orderBy string) PlayersApiListRequest {
+	r.orderBy = &orderBy
+	return r
+}
+func (r PlayersApiListRequest) Search(search string) PlayersApiListRequest {
+	r.search = &search
+	return r
+}
+func (r PlayersApiListRequest) SortBy(sortBy string) PlayersApiListRequest {
+	r.sortBy = &sortBy
 	return r
 }
 
@@ -60,7 +60,7 @@ type PlayersServiceI interface {
 	 * @return PlayersApiCreateRequest
 	 */
 
-	Create(request CreatePlayerThemeRequest) (*CreatePlayerThemesResponse, error)
+	Create(playerThemeInput PlayerThemeInput) (*ThemeResponse, error)
 
 	/*
 	 * Create Create a player theme
@@ -68,44 +68,44 @@ type PlayersServiceI interface {
 	 * @return PlayersApiCreateRequest
 	 */
 
-	CreateWithContext(ctx context.Context, request CreatePlayerThemeRequest) (*CreatePlayerThemesResponse, error)
+	CreateWithContext(ctx context.Context, playerThemeInput PlayerThemeInput) (*ThemeResponse, error)
 
 	/*
-	 * Get Get a player theme by ID
+	 * Get Get a player theme
 	 * @param id Player theme ID
 	 * @return PlayersApiGetRequest
 	 */
 
-	Get(id string) (*GetPlayerThemeByIdResponse, error)
+	Get(id string) (*ThemeResponse, error)
 
 	/*
-	 * Get Get a player theme by ID
+	 * Get Get a player theme
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Player theme ID
 	 * @return PlayersApiGetRequest
 	 */
 
-	GetWithContext(ctx context.Context, id string) (*GetPlayerThemeByIdResponse, error)
+	GetWithContext(ctx context.Context, id string) (*ThemeResponse, error)
 
 	/*
-	 * Update Update a player theme by ID
+	 * Update Update a player theme
 	 * @param id Player theme ID
 	 * @return PlayersApiUpdateRequest
 	 */
 
-	Update(id string, input UpdatePlayerThemeRequest) (*UpdatePlayerThemeResponse, error)
+	Update(id string, playerThemeInput PlayerThemeInput) (*ThemeResponse, error)
 
 	/*
-	 * Update Update a player theme by ID
+	 * Update Update a player theme
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Player theme ID
 	 * @return PlayersApiUpdateRequest
 	 */
 
-	UpdateWithContext(ctx context.Context, id string, input UpdatePlayerThemeRequest) (*UpdatePlayerThemeResponse, error)
+	UpdateWithContext(ctx context.Context, id string, playerThemeInput PlayerThemeInput) (*ThemeResponse, error)
 
 	/*
-	 * Delete Delete a player theme by ID
+	 * Delete Delete a player theme
 	 * @param id Player theme ID
 	 * @return PlayersApiDeleteRequest
 	 */
@@ -113,7 +113,7 @@ type PlayersServiceI interface {
 	Delete(id string) (*ResponseSuccess, error)
 
 	/*
-	 * Delete Delete a player theme by ID
+	 * Delete Delete a player theme
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Player theme ID
 	 * @return PlayersApiDeleteRequest
@@ -122,36 +122,36 @@ type PlayersServiceI interface {
 	DeleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 	/*
-	 * List List all player themes
+	 * List List player themes
 	 * @return PlayersApiListRequest
 	 */
 
-	List(r PlayersApiListRequest) (*GetPlayerThemeResponse, error)
+	List(r PlayersApiListRequest) (*ListThemesResponse, error)
 
 	/*
-	 * List List all player themes
+	 * List List player themes
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return PlayersApiListRequest
 	 */
 
-	ListWithContext(ctx context.Context, r PlayersApiListRequest) (*GetPlayerThemeResponse, error)
+	ListWithContext(ctx context.Context, r PlayersApiListRequest) (*ListThemesResponse, error)
 
 	/*
-	 * UploadLogo Upload a logo for a player theme by ID
+	 * UploadLogo Upload a player theme logo
 	 * @param id Player theme ID
 	 * @return PlayersApiUploadLogoRequest
 	 */
-	UploadLogo(id string, link string, fileName string, fileReader io.Reader) (*UploadLogoByIdResponse, error)
+	UploadLogo(id string, link *string, fileName string, fileReader io.Reader) (*ThemeResponse, error)
 	/*
-	 * UploadLogo Upload a logo for a player theme by ID
+	 * UploadLogo Upload a player theme logo
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Player theme ID
 	 * @return PlayersApiUploadLogoRequest
 	 */
-	UploadLogoWithContext(ctx context.Context, id string, link string, fileName string, fileReader io.Reader) (*UploadLogoByIdResponse, error)
+	UploadLogoWithContext(ctx context.Context, id string, link *string, fileName string, fileReader io.Reader) (*ThemeResponse, error)
 
 	/*
-	 * DeleteLogo Delete a logo for a player theme by ID
+	 * DeleteLogo Delete a player theme logo
 	 * @param id Player theme ID
 	 * @return PlayersApiDeleteLogoRequest
 	 */
@@ -159,7 +159,7 @@ type PlayersServiceI interface {
 	DeleteLogo(id string) (*ResponseSuccess, error)
 
 	/*
-	 * DeleteLogo Delete a logo for a player theme by ID
+	 * DeleteLogo Delete a player theme logo
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Player theme ID
 	 * @return PlayersApiDeleteLogoRequest
@@ -168,34 +168,34 @@ type PlayersServiceI interface {
 	DeleteLogoWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 	/*
-	 * AddPlayer Add a player theme to a video
-	 * @return PlayersApiAddPlayerRequest
+	 * Attach Add a player theme to a media
+	 * @return PlayersApiAttachRequest
 	 */
 
-	AddPlayer(request AddPlayerThemesToVideoRequest) (*ResponseSuccess, error)
+	Attach(attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error)
 
 	/*
-	 * AddPlayer Add a player theme to a video
+	 * Attach Add a player theme to a media
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @return PlayersApiAddPlayerRequest
+	 * @return PlayersApiAttachRequest
 	 */
 
-	AddPlayerWithContext(ctx context.Context, request AddPlayerThemesToVideoRequest) (*ResponseSuccess, error)
+	AttachWithContext(ctx context.Context, attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error)
 
 	/*
-	 * RemovePlayer Remove a player theme from a video
-	 * @return PlayersApiRemovePlayerRequest
+	 * Detach Remove a player theme from a media
+	 * @return PlayersApiDetachRequest
 	 */
 
-	RemovePlayer(request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error)
+	Detach(attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error)
 
 	/*
-	 * RemovePlayer Remove a player theme from a video
+	 * Detach Remove a player theme from a media
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @return PlayersApiRemovePlayerRequest
+	 * @return PlayersApiDetachRequest
 	 */
 
-	RemovePlayerWithContext(ctx context.Context, request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error)
+	DetachWithContext(ctx context.Context, attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error)
 }
 
 // PlayersService communicating with the Players
@@ -206,25 +206,25 @@ type PlayersService struct {
 
 /*
  * Create Create a player theme
- * Create a player for your video, and customize it.
+ * Creates a player theme for your media and customizes how it looks.
 
  * @return PlayersApiCreateRequest
  */
 
-func (s *PlayersService) Create(request CreatePlayerThemeRequest) (*CreatePlayerThemesResponse, error) {
+func (s *PlayersService) Create(playerThemeInput PlayerThemeInput) (*ThemeResponse, error) {
 
-	return s.CreateWithContext(context.Background(), request)
+	return s.CreateWithContext(context.Background(), playerThemeInput)
 
 }
 
 /*
  * Create Create a player theme
- * Create a player for your video, and customize it.
+ * Creates a player theme for your media and customizes how it looks.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return PlayersApiCreateRequest
  */
 
-func (s *PlayersService) CreateWithContext(ctx context.Context, request CreatePlayerThemeRequest) (*CreatePlayerThemesResponse, error) {
+func (s *PlayersService) CreateWithContext(ctx context.Context, playerThemeInput PlayerThemeInput) (*ThemeResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/players"
@@ -233,14 +233,14 @@ func (s *PlayersService) CreateWithContext(ctx context.Context, request CreatePl
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = request
+	localVarPostBody = playerThemeInput
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
 		return nil, err
 	}
 
-	res := new(CreatePlayerThemesResponse)
+	res := new(ThemeResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -252,28 +252,28 @@ func (s *PlayersService) CreateWithContext(ctx context.Context, request CreatePl
 }
 
 /*
- * Get Get a player theme by ID
- * Retrieve a player theme by its ID, as well as details about it.
+ * Get Get a player theme
+ * Returns one player theme by id.
 
  * @param id Player theme ID
  * @return PlayersApiGetRequest
  */
 
-func (s *PlayersService) Get(id string) (*GetPlayerThemeByIdResponse, error) {
+func (s *PlayersService) Get(id string) (*ThemeResponse, error) {
 
 	return s.GetWithContext(context.Background(), id)
 
 }
 
 /*
- * Get Get a player theme by ID
- * Retrieve a player theme by its ID, as well as details about it.
+ * Get Get a player theme
+ * Returns one player theme by id.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Player theme ID
  * @return PlayersApiGetRequest
  */
 
-func (s *PlayersService) GetWithContext(ctx context.Context, id string) (*GetPlayerThemeByIdResponse, error) {
+func (s *PlayersService) GetWithContext(ctx context.Context, id string) (*ThemeResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/players/{id}"
@@ -287,7 +287,7 @@ func (s *PlayersService) GetWithContext(ctx context.Context, id string) (*GetPla
 		return nil, err
 	}
 
-	res := new(GetPlayerThemeByIdResponse)
+	res := new(ThemeResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -299,28 +299,28 @@ func (s *PlayersService) GetWithContext(ctx context.Context, id string) (*GetPla
 }
 
 /*
- * Update Update a player theme by ID
- * Use a player ID to update specific details for a player.
+ * Update Update a player theme
+ * Applies the fields you send and leaves the rest of the theme alone.
 
  * @param id Player theme ID
  * @return PlayersApiUpdateRequest
  */
 
-func (s *PlayersService) Update(id string, input UpdatePlayerThemeRequest) (*UpdatePlayerThemeResponse, error) {
+func (s *PlayersService) Update(id string, playerThemeInput PlayerThemeInput) (*ThemeResponse, error) {
 
-	return s.UpdateWithContext(context.Background(), id, input)
+	return s.UpdateWithContext(context.Background(), id, playerThemeInput)
 
 }
 
 /*
- * Update Update a player theme by ID
- * Use a player ID to update specific details for a player.
+ * Update Update a player theme
+ * Applies the fields you send and leaves the rest of the theme alone.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Player theme ID
  * @return PlayersApiUpdateRequest
  */
 
-func (s *PlayersService) UpdateWithContext(ctx context.Context, id string, input UpdatePlayerThemeRequest) (*UpdatePlayerThemeResponse, error) {
+func (s *PlayersService) UpdateWithContext(ctx context.Context, id string, playerThemeInput PlayerThemeInput) (*ThemeResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/players/{id}"
@@ -330,14 +330,14 @@ func (s *PlayersService) UpdateWithContext(ctx context.Context, id string, input
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = input
+	localVarPostBody = playerThemeInput
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPatch, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
 		return nil, err
 	}
 
-	res := new(UpdatePlayerThemeResponse)
+	res := new(ThemeResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -349,8 +349,8 @@ func (s *PlayersService) UpdateWithContext(ctx context.Context, id string, input
 }
 
 /*
- * Delete Delete a player theme by ID
- * Delete a player if you no longer need it. You can delete any player that you have the player ID for.
+ * Delete Delete a player theme
+ * Deletes a player theme and its logo. A theme still applied to media cannot be deleted.
 
  * @param id Player theme ID
  * @return PlayersApiDeleteRequest
@@ -363,8 +363,8 @@ func (s *PlayersService) Delete(id string) (*ResponseSuccess, error) {
 }
 
 /*
- * Delete Delete a player theme by ID
- * Delete a player if you no longer need it. You can delete any player that you have the player ID for.
+ * Delete Delete a player theme
+ * Deletes a player theme and its logo. A theme still applied to media cannot be deleted.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Player theme ID
  * @return PlayersApiDeleteRequest
@@ -396,26 +396,26 @@ func (s *PlayersService) DeleteWithContext(ctx context.Context, id string) (*Res
 }
 
 /*
- * List List all player themes
- * Retrieve a list of all the player themes you created, as well as details about each one.
+ * List List player themes
+ * Returns a page of the player themes in your workspace.
 
  * @return PlayersApiListRequest
  */
 
-func (s *PlayersService) List(r PlayersApiListRequest) (*GetPlayerThemeResponse, error) {
+func (s *PlayersService) List(r PlayersApiListRequest) (*ListThemesResponse, error) {
 
 	return s.ListWithContext(context.Background(), r)
 
 }
 
 /*
- * List List all player themes
- * Retrieve a list of all the player themes you created, as well as details about each one.
+ * List List player themes
+ * Returns a page of the player themes in your workspace.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return PlayersApiListRequest
  */
 
-func (s *PlayersService) ListWithContext(ctx context.Context, r PlayersApiListRequest) (*GetPlayerThemeResponse, error) {
+func (s *PlayersService) ListWithContext(ctx context.Context, r PlayersApiListRequest) (*ListThemesResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/players"
@@ -423,20 +423,20 @@ func (s *PlayersService) ListWithContext(ctx context.Context, r PlayersApiListRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.orderBy != nil {
+		localVarQueryParams.Add("order_by", parameterToString(*r.orderBy, ""))
+	}
 	if r.search != nil {
 		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
 	}
 	if r.sortBy != nil {
 		localVarQueryParams.Add("sort_by", parameterToString(*r.sortBy, ""))
-	}
-	if r.orderBy != nil {
-		localVarQueryParams.Add("order_by", parameterToString(*r.orderBy, ""))
-	}
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 
 	req, err := s.client.prepareRequest(ctx, http.MethodGet, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
@@ -444,7 +444,7 @@ func (s *PlayersService) ListWithContext(ctx context.Context, r PlayersApiListRe
 		return nil, err
 	}
 
-	res := new(GetPlayerThemeResponse)
+	res := new(ListThemesResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -456,48 +456,55 @@ func (s *PlayersService) ListWithContext(ctx context.Context, r PlayersApiListRe
 }
 
 /*
- * UploadLogo Upload a logo for a player theme by ID
- * Upload a logo for a player theme by its ID.
+ * UploadLogo Upload a player theme logo
+ * Stores a JPG or PNG logo against a player theme, replacing whatever was there.
 
  * @param id Player theme ID
  * @return PlayersApiUploadLogoRequest
  */
 
-func (s *PlayersService) UploadLogoFile(id string, file *os.File, link string) (*UploadLogoByIdResponse, error) {
+func (s *PlayersService) UploadLogoFile(id string, file *os.File, link *string) (*ThemeResponse, error) {
 	return s.UploadLogoFileWithContext(context.Background(), id, file, link)
 }
 
 /*
- * UploadLogo Upload a logo for a player theme by ID
- * Upload a logo for a player theme by its ID.
+ * UploadLogo Upload a player theme logo
+ * Stores a JPG or PNG logo against a player theme, replacing whatever was there.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Player theme ID
  * @return PlayersApiUploadLogoRequest
  */
 
-func (s *PlayersService) UploadLogoFileWithContext(ctx context.Context, id string, file *os.File, link string) (*UploadLogoByIdResponse, error) {
-	return s.UploadLogoWithContext(ctx, id, link, file.Name(), io.Reader(file))
+func (s *PlayersService) UploadLogoFileWithContext(ctx context.Context, id string, file *os.File, link *string) (*ThemeResponse, error) {
+	// A nil file sends no file part, for an endpoint whose file is optional.
+	var fileName string
+	var fileReader io.Reader
+	if file != nil {
+		fileName, fileReader = file.Name(), file
+	}
+
+	return s.UploadLogoWithContext(ctx, id, link, fileName, fileReader)
 }
 
 /*
-* UploadLogo Upload a logo for a player theme by ID
-* Upload a logo for a player theme by its ID.
+* UploadLogo Upload a player theme logo
+* Stores a JPG or PNG logo against a player theme, replacing whatever was there.
 
 * @param id Player theme ID
 * @return PlayersApiUploadLogoRequest
  */
-func (s *PlayersService) UploadLogo(id string, link string, fileName string, fileReader io.Reader) (*UploadLogoByIdResponse, error) {
+func (s *PlayersService) UploadLogo(id string, link *string, fileName string, fileReader io.Reader) (*ThemeResponse, error) {
 	return s.UploadLogoWithContext(context.Background(), id, link, fileName, fileReader)
 }
 
 /*
- * UploadLogo Upload a logo for a player theme by ID
- * Upload a logo for a player theme by its ID.
+ * UploadLogo Upload a player theme logo
+ * Stores a JPG or PNG logo against a player theme, replacing whatever was there.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Player theme ID
  * @return PlayersApiUploadLogoRequest
  */
-func (s *PlayersService) UploadLogoWithContext(ctx context.Context, id string, link string, fileName string, fileReader io.Reader) (*UploadLogoByIdResponse, error) {
+func (s *PlayersService) UploadLogoWithContext(ctx context.Context, id string, link *string, fileName string, fileReader io.Reader) (*ThemeResponse, error) {
 	localVarPath := "/players/{id}/logo"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
 
@@ -505,15 +512,16 @@ func (s *PlayersService) UploadLogoWithContext(ctx context.Context, id string, l
 	localVarQueryParams := url.Values{}
 	localVarFormParams := make(map[string]string)
 
-	localVarFormParams["link"] = parameterToString(link, "")
+	if link != nil {
+		localVarFormParams["link"] = parameterToString(*link, "")
+	}
 
 	req, err := s.client.prepareUploadRequest(ctx, http.MethodPost, localVarPath, fileName, fileReader, localVarHeaderParams, localVarQueryParams, localVarFormParams)
-
 	if err != nil {
 		return nil, err
 	}
 
-	res := new(UploadLogoByIdResponse)
+	res := new(ThemeResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -525,8 +533,8 @@ func (s *PlayersService) UploadLogoWithContext(ctx context.Context, id string, l
 }
 
 /*
- * DeleteLogo Delete a logo for a player theme by ID
- * Delete the logo associated to a player.
+ * DeleteLogo Delete a player theme logo
+ * Removes the logo from a player theme.
 
  * @param id Player theme ID
  * @return PlayersApiDeleteLogoRequest
@@ -539,8 +547,8 @@ func (s *PlayersService) DeleteLogo(id string) (*ResponseSuccess, error) {
 }
 
 /*
- * DeleteLogo Delete a logo for a player theme by ID
- * Delete the logo associated to a player.
+ * DeleteLogo Delete a player theme logo
+ * Removes the logo from a player theme.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Player theme ID
  * @return PlayersApiDeleteLogoRequest
@@ -572,26 +580,26 @@ func (s *PlayersService) DeleteLogoWithContext(ctx context.Context, id string) (
 }
 
 /*
- * AddPlayer Add a player theme to a video
- * Add a player theme to a video by Id.
+ * Attach Add a player theme to a media
+ * Binds a player theme to a piece of media.
 
- * @return PlayersApiAddPlayerRequest
+ * @return PlayersApiAttachRequest
  */
 
-func (s *PlayersService) AddPlayer(request AddPlayerThemesToVideoRequest) (*ResponseSuccess, error) {
+func (s *PlayersService) Attach(attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error) {
 
-	return s.AddPlayerWithContext(context.Background(), request)
+	return s.AttachWithContext(context.Background(), attachThemeRequest)
 
 }
 
 /*
- * AddPlayer Add a player theme to a video
- * Add a player theme to a video by Id.
+ * Attach Add a player theme to a media
+ * Binds a player theme to a piece of media.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return PlayersApiAddPlayerRequest
+ * @return PlayersApiAttachRequest
  */
 
-func (s *PlayersService) AddPlayerWithContext(ctx context.Context, request AddPlayerThemesToVideoRequest) (*ResponseSuccess, error) {
+func (s *PlayersService) AttachWithContext(ctx context.Context, attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/players/add-player"
@@ -600,7 +608,7 @@ func (s *PlayersService) AddPlayerWithContext(ctx context.Context, request AddPl
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = request
+	localVarPostBody = attachThemeRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
@@ -619,26 +627,26 @@ func (s *PlayersService) AddPlayerWithContext(ctx context.Context, request AddPl
 }
 
 /*
- * RemovePlayer Remove a player theme from a video
- * Remove a player theme from a video by Id.
+ * Detach Remove a player theme from a media
+ * Releases a player theme from a piece of media.
 
- * @return PlayersApiRemovePlayerRequest
+ * @return PlayersApiDetachRequest
  */
 
-func (s *PlayersService) RemovePlayer(request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error) {
+func (s *PlayersService) Detach(attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error) {
 
-	return s.RemovePlayerWithContext(context.Background(), request)
+	return s.DetachWithContext(context.Background(), attachThemeRequest)
 
 }
 
 /*
- * RemovePlayer Remove a player theme from a video
- * Remove a player theme from a video by Id.
+ * Detach Remove a player theme from a media
+ * Releases a player theme from a piece of media.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return PlayersApiRemovePlayerRequest
+ * @return PlayersApiDetachRequest
  */
 
-func (s *PlayersService) RemovePlayerWithContext(ctx context.Context, request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error) {
+func (s *PlayersService) DetachWithContext(ctx context.Context, attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/players/remove-player"
@@ -647,7 +655,7 @@ func (s *PlayersService) RemovePlayerWithContext(ctx context.Context, request Re
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = request
+	localVarPostBody = attachThemeRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {

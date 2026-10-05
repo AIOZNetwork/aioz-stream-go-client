@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io

@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -11,14 +11,10 @@
 
 package aiozstreamsdk
 
-import (
-//"encoding/json"
-)
-
 // GetMediaListData struct for GetMediaListData
 type GetMediaListData struct {
-	Media *[]Media `json:"media,omitempty"`
-	Total *int32   `json:"total,omitempty"`
+	Media *[]MediaObject `json:"media,omitempty"`
+	Total *int32         `json:"total,omitempty"`
 }
 
 // NewGetMediaListData instantiates a new GetMediaListData object
@@ -39,9 +35,9 @@ func NewGetMediaListDataWithDefaults() *GetMediaListData {
 }
 
 // GetMedia returns the Media field value if set, zero value otherwise.
-func (o *GetMediaListData) GetMedia() []Media {
+func (o *GetMediaListData) GetMedia() []MediaObject {
 	if o == nil || o.Media == nil {
-		var ret []Media
+		var ret []MediaObject
 		return ret
 	}
 	return *o.Media
@@ -49,7 +45,7 @@ func (o *GetMediaListData) GetMedia() []Media {
 
 // GetMediaOk returns a tuple with the Media field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetMediaListData) GetMediaOk() (*[]Media, bool) {
+func (o *GetMediaListData) GetMediaOk() (*[]MediaObject, bool) {
 	if o == nil || o.Media == nil {
 		return nil, false
 	}
@@ -65,8 +61,8 @@ func (o *GetMediaListData) HasMedia() bool {
 	return false
 }
 
-// SetMedia gets a reference to the given []Media and assigns it to the Media field.
-func (o *GetMediaListData) SetMedia(v []Media) {
+// SetMedia gets a reference to the given []MediaObject and assigns it to the Media field.
+func (o *GetMediaListData) SetMedia(v []MediaObject) {
 	o.Media = &v
 }
 

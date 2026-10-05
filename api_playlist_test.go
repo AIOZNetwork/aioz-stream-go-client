@@ -2,69 +2,118 @@ package aiozstreamsdk
 
 import (
 	"io"
-	"os"
 	"testing"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 var (
-	testPlaylistID       string
-	testVideoIDOne       = "f45f9867-89c7-41fb-be3a-8079d32a607a"
-	testVideoIDTwo       = "e0609700-7232-4625-8d86-c6a9395a790d"
-	testVideoIDThree     = "557c6028-4261-4570-91f5-05015ce289f1"
-	testName             = "Test Playlist"
-	testCurrentId        string
-	testNextId           string
-	testPreviousId       string
-	deletePlaylistsLater []string
+	testPlaylistID            string
+	testAudioPlaylistID       string
+	testDefaultTypePlaylistID string
+	testPlaylistMediaAdded    bool
+	testName                  = "Test Playlist"
+	testCurrentId             string
+	testNextId                string
+	testPreviousId            string
+	deletePlaylistsLater      []string
 )
 
-func TestPlaylistService_CreatePlaylist(t *testing.T) {
+func TestPlaylistService_Create(t *testing.T) {
 	tests := []struct {
-		name    string
-		request CreatePlaylistRequest
-		wantErr bool
+		name     string
+		request  CreatePlaylistRequest
+		wantErr  bool
+		storeIn  *string
+		wantType string
 	}{
 		{
 			name: "Valid Create Request",
 			request: CreatePlaylistRequest{
-				Name: stringPtr(testName),
+				Name:         stringPtr(testName),
+				PlaylistType: stringPtr("video"),
 			},
-			wantErr: false,
+			wantErr:  false,
+			storeIn:  &testPlaylistID,
+			wantType: "video",
+		},
+		{
+			name: "Omitted Playlist Type Defaults To Video",
+			request: CreatePlaylistRequest{
+				Name: stringPtr(testName + " default-type"),
+			},
+			wantErr:  false,
+			storeIn:  &testDefaultTypePlaylistID,
+			wantType: "video",
+		},
+		{
+			name: "Valid Audio Playlist Type",
+			request: CreatePlaylistRequest{
+				Name:         stringPtr(testName + " audio"),
+				PlaylistType: stringPtr("audio"),
+			},
+			wantErr:  false,
+			storeIn:  &testAudioPlaylistID,
+			wantType: "audio",
+		},
+		{
+			name: "Invalid Playlist Type",
+			request: CreatePlaylistRequest{
+				Name:         stringPtr(testName),
+				PlaylistType: stringPtr("normal"),
+			},
+			wantErr: true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Playlist.CreatePlaylist(tt.request)
-			testPlaylistID = *resp.Data.Playlist.Id
+			resp, err := testClient.Playlist.Create(tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-				deletePlaylistsLater = append(deletePlaylistsLater, *resp.Data.Playlist.Id)
+				return
 			}
+			require.NoError(t, err)
+			require.NotNil(t, resp)
+			require.NotNil(t, resp.Data)
+			require.NotNil(t, resp.Data.Playlist)
+			require.NotNil(t, resp.Data.Playlist.Id)
+			id := *resp.Data.Playlist.Id
+			*tt.storeIn = id
+			deletePlaylistsLater = append(deletePlaylistsLater, id)
+
+			require.NotNil(t, resp.Data.Playlist.PlaylistType)
+			assert.Equal(t, tt.wantType, *resp.Data.Playlist.PlaylistType)
+
+			// The stored type, not just the create echo.
+			got, err := testClient.Playlist.Get(id, PlaylistApiGetRequest{})
+			require.NoError(t, err)
+			require.NotNil(t, got)
+			require.NotNil(t, got.Data)
+			require.NotNil(t, got.Data.Playlist)
+			require.NotNil(t, got.Data.Playlist.PlaylistType)
+			assert.Equal(t, tt.wantType, *got.Data.Playlist.PlaylistType)
 		})
 	}
 }
-func TestPlaylistService_GetPlaylists(t *testing.T) {
+
+func TestPlaylistService_List(t *testing.T) {
 	tests := []struct {
 		name    string
-		request GetPlaylistListRequest
+		request ListPlaylistsRequest
 		wantErr bool
 	}{
 		{
 			name:    "Valid Request",
-			request: GetPlaylistListRequest{},
+			request: ListPlaylistsRequest{},
 			wantErr: false,
 		},
 		{
 			name: "Valid Request with Filter",
-			request: GetPlaylistListRequest{
+			request: ListPlaylistsRequest{
 				Limit:   int32Ptr(10),
 				Offset:  int32Ptr(0),
 				SortBy:  stringPtr("created_at"),
@@ -73,15 +122,36 @@ func TestPlaylistService_GetPlaylists(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: "Valid Video Playlist Type Filter",
+			request: ListPlaylistsRequest{
+				PlaylistType: stringPtr("video"),
+			},
+			wantErr: false,
+		},
+		{
+			name: "Valid Audio Playlist Type Filter",
+			request: ListPlaylistsRequest{
+				PlaylistType: stringPtr("audio"),
+			},
+			wantErr: false,
+		},
+		{
+			name: "Invalid Playlist Type Filter",
+			request: ListPlaylistsRequest{
+				PlaylistType: stringPtr("normal"),
+			},
+			wantErr: true,
+		},
+		{
 			name: "Invalid SortBy",
-			request: GetPlaylistListRequest{
+			request: ListPlaylistsRequest{
 				SortBy: stringPtr("invalid"),
 			},
 			wantErr: true,
 		},
 		{
 			name: "Invalid OrderBy",
-			request: GetPlaylistListRequest{
+			request: ListPlaylistsRequest{
 				OrderBy: stringPtr("invalid"),
 			},
 			wantErr: true,
@@ -90,7 +160,7 @@ func TestPlaylistService_GetPlaylists(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Playlist.GetPlaylists(tt.request)
+			resp, err := testClient.Playlist.List(tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -102,110 +172,48 @@ func TestPlaylistService_GetPlaylists(t *testing.T) {
 	}
 }
 
-func TestPlaylistService_UpdatePlaylist(t *testing.T) {
+func TestPlaylistService_Update(t *testing.T) {
+	requireSetupID(t, "testPlaylistID", testPlaylistID)
 	notExistId := uuid.New().String()
-	thumbnailFileForAnonymous, err := openTestImageFile(t)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if thumbnailFileForAnonymous == nil {
-		t.Fatal("thumbnailFileForAnonymous is nil")
-	}
-	defer thumbnailFileForAnonymous.Close()
-
 	name := "Test Playlist"
-	anonymousTest := []struct {
-		name    string
-		id      string
-		Name    *string
-		wantErr bool
-		file    *os.File
-	}{
+
+	// Every case opens its own file so no case reads a stream an earlier
+	// case already consumed. An empty filePath sends no file part at all.
+	type updateCase struct {
+		name     string
+		id       string
+		Name     *string
+		fileName string
+		filePath string
+		wantErr  bool
+		checkFn  func(*testing.T)
+	}
+	openCaseFile := func(t *testing.T, filePath string) io.Reader {
+		if filePath == "" {
+			return nil
+		}
+		return openTestAsset(t, filePath)
+	}
+
+	anonymousTest := []updateCase{
 		{
-			name:    "Update other",
-			id:      testPlaylistID,
-			Name:    stringPtr(name),
-			wantErr: true,
-			file:    thumbnailFileForAnonymous,
+			name:     "Update other",
+			id:       testPlaylistID,
+			Name:     stringPtr(name),
+			fileName: "logo.png",
+			filePath: "logo.png",
+			wantErr:  true,
 		},
 	}
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			var reader io.Reader
-			if tt.file != nil {
-				reader = tt.file
-			}
-			resp, err := testAnonymousClient.Playlist.UpdatePlaylist(tt.id, nil, tt.Name, nil, "logo.png", reader)
-			if tt.wantErr {
-				assert.Error(t, err)
-				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-			}
-		})
-	}
-
-	thumbnailFile, err := openTestImageFile(t)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if thumbnailFile == nil {
-		t.Fatal("thumbnailFile is nil")
-	}
-	invalidFile := openInvalidFile(t)
-	defer invalidFile.Close()
-	defer thumbnailFile.Close()
-
-	tests := []struct {
-		name    string
-		id      string
-		Name    *string
-		wantErr bool
-		file    *os.File
-	}{
-		{
-			name:    "Valid Update Request With Name and Thumbnail",
-			id:      testPlaylistID,
-			Name:    stringPtr(name),
-			file:    thumbnailFile,
-			wantErr: false,
-		},
-		{
-			name:    "Invalid Playlist ID",
-			id:      "",
-			wantErr: true,
-			file:    thumbnailFile,
-		},
-		{
-			name:    "Invalid Thumbnail",
-			id:      testPlaylistID,
-			file:    invalidFile,
-			wantErr: true,
-		},
-		{
-			name:    "Not Exist ID",
-			id:      notExistId,
-			Name:    stringPtr(name),
-			file:    thumbnailFile,
-			wantErr: true,
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			var reader io.Reader
-			if tt.file != nil {
-				reader = tt.file
-			}
-			resp, err := testClient.Playlist.UpdatePlaylist(
+			resp, err := testAnonymousClient.Playlist.Update(
 				tt.id,
-				nil,
 				tt.Name,
 				nil,
-				"logo.png",
-				reader,
+				tt.fileName,
+				openCaseFile(t, tt.filePath),
 			)
 			if tt.wantErr {
 				assert.Error(t, err)
@@ -216,9 +224,114 @@ func TestPlaylistService_UpdatePlaylist(t *testing.T) {
 			}
 		})
 	}
+
+	tests := []updateCase{
+		{
+			name:    "Valid Update Name Only Without Thumbnail",
+			id:      testPlaylistID,
+			Name:    stringPtr(name),
+			wantErr: false,
+		},
+		{
+			name:     "Invalid Playlist ID",
+			id:       "",
+			fileName: "logo.png",
+			filePath: "logo.png",
+			wantErr:  true,
+		},
+		{
+			name:     "Invalid Thumbnail",
+			id:       testPlaylistID,
+			fileName: "invalid-file.txt",
+			filePath: "invalid-file.txt",
+			wantErr:  true,
+		},
+		{
+			name:     "PNG content named .jpg",
+			id:       testPlaylistID,
+			fileName: "logo.jpg",
+			filePath: "logo.png",
+			wantErr:  true,
+		},
+		{
+			name:     "Not Exist ID",
+			id:       notExistId,
+			Name:     stringPtr(name),
+			fileName: "logo.png",
+			filePath: "logo.png",
+			wantErr:  true,
+		},
+		{
+			name:     "Valid Update Request With Name and Thumbnail",
+			id:       testPlaylistID,
+			Name:     stringPtr(name),
+			fileName: "logo.png",
+			filePath: "logo.png",
+			wantErr:  false,
+			checkFn: func(t *testing.T) {
+				resp, err := testClient.Playlist.Get(
+					testPlaylistID,
+					PlaylistApiGetRequest{},
+				)
+				require.NoError(t, err)
+				require.NotNil(t, resp)
+				require.NotNil(t, resp.Data)
+				require.NotNil(t, resp.Data.Playlist)
+				require.NotNil(
+					t,
+					resp.Data.Playlist.ThumbnailUrl,
+					"playlist should have a thumbnail after a valid upload",
+				)
+				assert.NotEmpty(t, *resp.Data.Playlist.ThumbnailUrl)
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			resp, err := testClient.Playlist.Update(
+				tt.id,
+				tt.Name,
+				nil,
+				tt.fileName,
+				openCaseFile(t, tt.filePath),
+			)
+			if tt.wantErr {
+				assert.Error(t, err)
+				assert.Nil(t, resp)
+				return
+			}
+			require.NoError(t, err)
+			require.NotNil(t, resp)
+			if tt.checkFn != nil {
+				tt.checkFn(t)
+			}
+		})
+	}
+
+	t.Run("UpdateFile With Nil File", func(t *testing.T) {
+		// UpdateFile is defined on *PlaylistService but missing from the
+		// PlaylistServiceI interface, so reach it through the concrete type.
+		svc, ok := testClient.Playlist.(*PlaylistService)
+		require.True(
+			t,
+			ok,
+			"testClient.Playlist is %T, want *PlaylistService",
+			testClient.Playlist,
+		)
+		resp, err := svc.UpdateFile(
+			testPlaylistID,
+			nil,
+			stringPtr(name),
+			nil,
+		)
+		assert.NoError(t, err)
+		assert.NotNil(t, resp)
+	})
 }
 
-func TestPlaylistService_GetPlaylistPublicInfo(t *testing.T) {
+func TestPlaylistService_GetPublic(t *testing.T) {
+	requireSetupID(t, "testPlaylistID", testPlaylistID)
 	notExistId := uuid.New().String()
 	tests := []struct {
 		name    string
@@ -244,7 +357,7 @@ func TestPlaylistService_GetPlaylistPublicInfo(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Playlist.GetPlaylistPublicInfo(tt.id)
+			resp, err := testClient.Playlist.GetPublic(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -256,19 +369,41 @@ func TestPlaylistService_GetPlaylistPublicInfo(t *testing.T) {
 	}
 }
 
-func TestPlaylistService_AddVideoToPlaylist(t *testing.T) {
+func TestPlaylistService_AddMedia(t *testing.T) {
+	requireSetupID(t, "testPlaylistID", testPlaylistID)
+	mediaIDs := readyMediaIDs(t, 3)
 	notExistId := uuid.New().String()
+
+	// A freshly created media has not been uploaded or processed, so the
+	// backend must refuse to add it (409 media-not-ready).
+	notReady, err := testClient.Media.Create(CreateMediaRequest{
+		Title: stringPtr("Test Video Not Ready"),
+		Qualities: &[]QualityConfig{
+			{
+				Type:          stringPtr("hls"),
+				ContainerType: stringPtr("mpegts"),
+				Resolution:    stringPtr("240p"),
+			},
+		},
+	})
+	require.NoError(t, err)
+	require.NotNil(t, notReady)
+	require.NotNil(t, notReady.Data)
+	require.NotNil(t, notReady.Data.Id)
+	notReadyID := *notReady.Data.Id
+	t.Cleanup(func() { testClient.Media.Delete(notReadyID) })
+
 	anonymousTest := []struct {
 		name    string
 		id      string
-		request AddMediaToPlaylistRequest
+		request AddMediaRequest
 		wantErr bool
 	}{
 		{
 			name: "Add other",
 			id:   testPlaylistID,
-			request: AddMediaToPlaylistRequest{
-				MediaId: stringPtr(testVideoIDOne),
+			request: AddMediaRequest{
+				MediaId: stringPtr(mediaIDs[0]),
 			},
 			wantErr: true,
 		},
@@ -276,7 +411,10 @@ func TestPlaylistService_AddVideoToPlaylist(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Playlist.AddVideoToPlaylist(tt.id, tt.request)
+			resp, err := testAnonymousClient.Playlist.AddMedia(
+				tt.id,
+				tt.request,
+			)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -290,37 +428,61 @@ func TestPlaylistService_AddVideoToPlaylist(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		payload AddMediaToPlaylistRequest
+		payload AddMediaRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Add First Video Request",
 			id:   testPlaylistID,
-			payload: AddMediaToPlaylistRequest{
-				MediaId: stringPtr(testVideoIDOne),
+			payload: AddMediaRequest{
+				MediaId: stringPtr(mediaIDs[0]),
 			},
 			wantErr: false,
 		},
 		{
 			name: "Valid Add Second Video Request",
 			id:   testPlaylistID,
-			payload: AddMediaToPlaylistRequest{
-				MediaId: stringPtr(testVideoIDTwo),
+			payload: AddMediaRequest{
+				MediaId: stringPtr(mediaIDs[1]),
 			},
 			wantErr: false,
 		},
 		{
 			name: "Valid Add Third Video Request",
 			id:   testPlaylistID,
-			payload: AddMediaToPlaylistRequest{
-				MediaId: stringPtr(testVideoIDThree),
+			payload: AddMediaRequest{
+				MediaId: stringPtr(mediaIDs[2]),
 			},
 			wantErr: false,
 		},
 		{
+			name: "Media Not Ready",
+			id:   testPlaylistID,
+			payload: AddMediaRequest{
+				MediaId: stringPtr(notReadyID),
+			},
+			wantErr: true,
+		},
+		{
+			name: "Video Media Into Audio Playlist",
+			id:   testAudioPlaylistID,
+			payload: AddMediaRequest{
+				MediaId: stringPtr(mediaIDs[0]),
+			},
+			wantErr: true,
+		},
+		{
+			name: "Not Exist Media ID",
+			id:   testPlaylistID,
+			payload: AddMediaRequest{
+				MediaId: stringPtr(notExistId),
+			},
+			wantErr: true,
+		},
+		{
 			name: "Missing Video ID",
 			id:   testPlaylistID,
-			payload: AddMediaToPlaylistRequest{
+			payload: AddMediaRequest{
 				MediaId: stringPtr(""),
 			},
 			wantErr: true,
@@ -328,35 +490,39 @@ func TestPlaylistService_AddVideoToPlaylist(t *testing.T) {
 		{
 			name:    "Empty Request",
 			id:      testPlaylistID,
-			payload: AddMediaToPlaylistRequest{},
+			payload: AddMediaRequest{},
 			wantErr: true,
 		},
 		{
 			name: "Not Exist ID",
 			id:   notExistId,
-			payload: AddMediaToPlaylistRequest{
-				MediaId: stringPtr(testVideoIDOne),
+			payload: AddMediaRequest{
+				MediaId: stringPtr(mediaIDs[0]),
 			},
 			wantErr: true,
 		},
 	}
 
+	added := 0
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Playlist.AddVideoToPlaylist(tt.id, tt.payload)
+			resp, err := testClient.Playlist.AddMedia(
+				tt.id,
+				tt.payload,
+			)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
+			} else if assert.NoError(t, err) && assert.NotNil(t, resp) {
+				added++
 			}
 		})
 	}
-
+	testPlaylistMediaAdded = added == 3
 }
 
-func TestPlaylistService_GetPlaylistByID(t *testing.T) {
+func TestPlaylistService_Get(t *testing.T) {
+	requireSetupID(t, "testPlaylistID", testPlaylistID)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
@@ -372,7 +538,10 @@ func TestPlaylistService_GetPlaylistByID(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Playlist.GetPlaylistById(tt.id, PlaylistApiGetPlaylistByIdRequest{})
+			resp, err := testAnonymousClient.Playlist.Get(
+				tt.id,
+				PlaylistApiGetRequest{},
+			)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -386,7 +555,7 @@ func TestPlaylistService_GetPlaylistByID(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		request PlaylistApiGetPlaylistByIdRequest
+		request PlaylistApiGetRequest
 		wantErr bool
 	}{
 		{
@@ -397,10 +566,9 @@ func TestPlaylistService_GetPlaylistByID(t *testing.T) {
 		{
 			name: "Valid Playlist ID with sortBy and orderBy",
 			id:   testPlaylistID,
-			request: PlaylistApiGetPlaylistByIdRequest{
-				sortBy:  stringPtr("created_at"),
-				orderBy: stringPtr("desc"),
-			},
+			request: PlaylistApiGetRequest{}.
+				SortBy("created_at").
+				OrderBy("desc"),
 			wantErr: false,
 		},
 		{
@@ -411,23 +579,19 @@ func TestPlaylistService_GetPlaylistByID(t *testing.T) {
 		{
 			name:    "Empty Request",
 			id:      testPlaylistID,
-			request: PlaylistApiGetPlaylistByIdRequest{},
+			request: PlaylistApiGetRequest{},
 			wantErr: false,
 		},
 		{
-			name: "Invalid SortBy",
-			id:   testPlaylistID,
-			request: PlaylistApiGetPlaylistByIdRequest{
-				sortBy: stringPtr("invalid"),
-			},
+			name:    "Invalid SortBy",
+			id:      testPlaylistID,
+			request: PlaylistApiGetRequest{}.SortBy("invalid"),
 			wantErr: true,
 		},
 		{
-			name: "Invalid orderBy",
-			id:   testPlaylistID,
-			request: PlaylistApiGetPlaylistByIdRequest{
-				orderBy: stringPtr("invalid"),
-			},
+			name:    "Invalid orderBy",
+			id:      testPlaylistID,
+			request: PlaylistApiGetRequest{}.OrderBy("invalid"),
 			wantErr: true,
 		},
 		{
@@ -439,43 +603,76 @@ func TestPlaylistService_GetPlaylistByID(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Playlist.GetPlaylistById(tt.id, tt.request)
+			resp, err := testClient.Playlist.Get(tt.id, tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
-			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-				assert.NotNil(t, resp.Data)
-				assert.NotNil(t, resp.Data.Playlist)
+				return
+			}
+			require.NoError(t, err)
+			require.NotNil(t, resp)
+			require.NotNil(t, resp.Data)
+			require.NotNil(t, resp.Data.Playlist)
 
-				videoItems := *resp.Data.Playlist.Items
-				assert.NotNil(t, videoItems)
-
-				if len(videoItems) > 0 {
-					firstVideoItem := videoItems[1]
-					testCurrentId = *firstVideoItem.Id
-					testNextId = *firstVideoItem.NextId
-					testPreviousId = *firstVideoItem.PreviousId
-					return
+			if !testPlaylistMediaAdded {
+				t.Log(
+					"AddMedia did not add all three media; skipping item checks",
+				)
+				return
+			}
+			require.NotNil(t, resp.Data.Playlist.Items)
+			items := *resp.Data.Playlist.Items
+			require.Len(t, items, 3)
+			var middleFound bool
+			for _, item := range items {
+				assert.NotNil(
+					t,
+					item.Media,
+					"playlist item %v has no media",
+					item.Id,
+				)
+				// The middle item has both neighbours, which the move test needs.
+				if item.Id != nil && item.NextId != nil &&
+					item.PreviousId != nil {
+					middleFound = true
+					testCurrentId = *item.Id
+					testNextId = *item.NextId
+					testPreviousId = *item.PreviousId
 				}
 			}
+			require.True(
+				t,
+				middleFound,
+				"no playlist item has both a next and a previous item",
+			)
 		})
 	}
-
 }
 
-func TestPlaylistService_MoveVideoInPlaylist(t *testing.T) {
+// requirePlaylistItems skips the item tests when the playlist items they act
+// on were never recorded (AddMedia skipped or failed).
+func requirePlaylistItems(t *testing.T) {
+	t.Helper()
+	if testCurrentId == "" || testNextId == "" || testPreviousId == "" {
+		t.Skip(
+			"playlist items not available: AddMedia/Get did not record them",
+		)
+	}
+}
+
+func TestPlaylistService_MoveItem(t *testing.T) {
+	requireSetupID(t, "testPlaylistID", testPlaylistID)
+	requirePlaylistItems(t)
 	anonymousTest := []struct {
 		name    string
 		id      string
-		payload MoveVideoInPlaylistRequest
+		payload MoveItemRequest
 		wantErr bool
 	}{
 		{
 			name: "Move other",
 			id:   testPlaylistID,
-			payload: MoveVideoInPlaylistRequest{
+			payload: MoveItemRequest{
 				CurrentId:  stringPtr(testNextId),
 				NextId:     stringPtr(testCurrentId),
 				PreviousId: stringPtr(testPreviousId),
@@ -486,7 +683,10 @@ func TestPlaylistService_MoveVideoInPlaylist(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Playlist.MoveVideoInPlaylist(tt.id, tt.payload)
+			resp, err := testAnonymousClient.Playlist.MoveItem(
+				tt.id,
+				tt.payload,
+			)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -500,13 +700,13 @@ func TestPlaylistService_MoveVideoInPlaylist(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		payload MoveVideoInPlaylistRequest
+		payload MoveItemRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Move Video Request",
 			id:   testPlaylistID,
-			payload: MoveVideoInPlaylistRequest{
+			payload: MoveItemRequest{
 				CurrentId:  stringPtr(testNextId),
 				NextId:     stringPtr(testCurrentId),
 				PreviousId: stringPtr(testPreviousId),
@@ -526,7 +726,7 @@ func TestPlaylistService_MoveVideoInPlaylist(t *testing.T) {
 		{
 			name: "Missing Next ID",
 			id:   testPlaylistID,
-			payload: MoveVideoInPlaylistRequest{
+			payload: MoveItemRequest{
 				CurrentId: stringPtr(testCurrentId),
 			},
 			wantErr: true,
@@ -535,7 +735,10 @@ func TestPlaylistService_MoveVideoInPlaylist(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Playlist.MoveVideoInPlaylist(tt.id, tt.payload)
+			resp, err := testClient.Playlist.MoveItem(
+				tt.id,
+				tt.payload,
+			)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -545,10 +748,11 @@ func TestPlaylistService_MoveVideoInPlaylist(t *testing.T) {
 			}
 		})
 	}
-
 }
 
-func TestPlaylistService_RemoveVideoFromPlaylist(t *testing.T) {
+func TestPlaylistService_RemoveMedia(t *testing.T) {
+	requireSetupID(t, "testPlaylistID", testPlaylistID)
+	requirePlaylistItems(t)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
@@ -566,7 +770,11 @@ func TestPlaylistService_RemoveVideoFromPlaylist(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Playlist.RemoveMediaFromPlaylist(tt.id, tt.itemId, RemoveMediasFromPlaylistRequest{})
+			resp, err := testAnonymousClient.Playlist.RemoveMedia(
+				tt.id,
+				tt.itemId,
+				RemoveMediaRequest{},
+			)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -620,7 +828,11 @@ func TestPlaylistService_RemoveVideoFromPlaylist(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Playlist.RemoveMediaFromPlaylist(tt.id, tt.itemId, RemoveMediasFromPlaylistRequest{})
+			resp, err := testClient.Playlist.RemoveMedia(
+				tt.id,
+				tt.itemId,
+				RemoveMediaRequest{},
+			)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -630,10 +842,12 @@ func TestPlaylistService_RemoveVideoFromPlaylist(t *testing.T) {
 			}
 		})
 	}
-
 }
 
-func TestPlaylistService_DeletePlaylistThumbnail(t *testing.T) {
+// TestPlaylistService_DeleteThumbnail deletes the thumbnail that the valid
+// thumbnail case in TestPlaylistService_Update uploaded.
+func TestPlaylistService_DeleteThumbnail(t *testing.T) {
+	requireSetupID(t, "testPlaylistID", testPlaylistID)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
@@ -649,7 +863,9 @@ func TestPlaylistService_DeletePlaylistThumbnail(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Playlist.DeletePlaylistThumbnail(tt.id)
+			resp, err := testAnonymousClient.Playlist.DeleteThumbnail(
+				tt.id,
+			)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -684,7 +900,7 @@ func TestPlaylistService_DeletePlaylistThumbnail(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Playlist.DeletePlaylistThumbnail(tt.id)
+			resp, err := testClient.Playlist.DeleteThumbnail(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -694,10 +910,10 @@ func TestPlaylistService_DeletePlaylistThumbnail(t *testing.T) {
 			}
 		})
 	}
-
 }
 
-func TestPlaylistService_DeletePlaylistById(t *testing.T) {
+func TestPlaylistService_Delete(t *testing.T) {
+	requireSetupID(t, "testPlaylistID", testPlaylistID)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
@@ -713,7 +929,7 @@ func TestPlaylistService_DeletePlaylistById(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Playlist.DeletePlaylistById(tt.id)
+			resp, err := testAnonymousClient.Playlist.Delete(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -748,7 +964,7 @@ func TestPlaylistService_DeletePlaylistById(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Playlist.DeletePlaylistById(tt.id)
+			resp, err := testClient.Playlist.Delete(tt.id)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -760,9 +976,8 @@ func TestPlaylistService_DeletePlaylistById(t *testing.T) {
 	}
 
 	for _, id := range deletePlaylistsLater {
-		testClient.Playlist.DeletePlaylistById(id)
+		testClient.Playlist.Delete(id)
 	}
-
 }
 
 func int32Ptr(i int32) *int32 {

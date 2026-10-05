@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -24,13 +24,26 @@ var (
 )
 
 type ApiKeyApiListRequest struct {
+	limit   *int32
+	offset  *int32
+	orderBy *string
 	search  *string
 	sortBy  *string
-	orderBy *string
-	offset  *int32
-	limit   *int32
+	type_   *string
 }
 
+func (r ApiKeyApiListRequest) Limit(limit int32) ApiKeyApiListRequest {
+	r.limit = &limit
+	return r
+}
+func (r ApiKeyApiListRequest) Offset(offset int32) ApiKeyApiListRequest {
+	r.offset = &offset
+	return r
+}
+func (r ApiKeyApiListRequest) OrderBy(orderBy string) ApiKeyApiListRequest {
+	r.orderBy = &orderBy
+	return r
+}
 func (r ApiKeyApiListRequest) Search(search string) ApiKeyApiListRequest {
 	r.search = &search
 	return r
@@ -39,16 +52,8 @@ func (r ApiKeyApiListRequest) SortBy(sortBy string) ApiKeyApiListRequest {
 	r.sortBy = &sortBy
 	return r
 }
-func (r ApiKeyApiListRequest) OrderBy(orderBy string) ApiKeyApiListRequest {
-	r.orderBy = &orderBy
-	return r
-}
-func (r ApiKeyApiListRequest) Offset(offset int32) ApiKeyApiListRequest {
-	r.offset = &offset
-	return r
-}
-func (r ApiKeyApiListRequest) Limit(limit int32) ApiKeyApiListRequest {
-	r.limit = &limit
+func (r ApiKeyApiListRequest) Type_(type_ string) ApiKeyApiListRequest {
+	r.type_ = &type_
 	return r
 }
 
@@ -58,7 +63,7 @@ type ApiKeyServiceI interface {
 	 * @return ApiKeyApiCreateRequest
 	 */
 
-	Create(request CreateApiKeyRequest) (*CreateApiKeyResponse, error)
+	Create(createApiKeyRequest CreateApiKeyRequest) (*CreateApiKeyResponse, error)
 
 	/*
 	 * Create Create API key
@@ -66,56 +71,56 @@ type ApiKeyServiceI interface {
 	 * @return ApiKeyApiCreateRequest
 	 */
 
-	CreateWithContext(ctx context.Context, request CreateApiKeyRequest) (*CreateApiKeyResponse, error)
+	CreateWithContext(ctx context.Context, createApiKeyRequest CreateApiKeyRequest) (*CreateApiKeyResponse, error)
 
 	/*
-	 * Update Rename api key
-	 * @param id api key id
+	 * Update Rename an API key
+	 * @param id API key ID
 	 * @return ApiKeyApiUpdateRequest
 	 */
 
-	Update(id string, request RenameAPIKeyRequest) (*ResponseSuccess, error)
+	Update(id string, renameApiKeyRequest RenameApiKeyRequest) (*ResponseSuccess, error)
 
 	/*
-	 * Update Rename api key
+	 * Update Rename an API key
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param id api key id
+	 * @param id API key ID
 	 * @return ApiKeyApiUpdateRequest
 	 */
 
-	UpdateWithContext(ctx context.Context, id string, request RenameAPIKeyRequest) (*ResponseSuccess, error)
+	UpdateWithContext(ctx context.Context, id string, renameApiKeyRequest RenameApiKeyRequest) (*ResponseSuccess, error)
 
 	/*
-	 * Delete Delete API key
-	 * @param id API key's ID
+	 * Delete Delete an API key
+	 * @param id API key ID
 	 * @return ApiKeyApiDeleteRequest
 	 */
 
 	Delete(id string) (*ResponseSuccess, error)
 
 	/*
-	 * Delete Delete API key
+	 * Delete Delete an API key
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param id API key's ID
+	 * @param id API key ID
 	 * @return ApiKeyApiDeleteRequest
 	 */
 
 	DeleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 	/*
-	 * List Get list API keys
+	 * List List API keys
 	 * @return ApiKeyApiListRequest
 	 */
 
-	List(r ApiKeyApiListRequest) (*GetApiKeysResponse, error)
+	List(r ApiKeyApiListRequest) (*ListApiKeysResponse, error)
 
 	/*
-	 * List Get list API keys
+	 * List List API keys
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return ApiKeyApiListRequest
 	 */
 
-	ListWithContext(ctx context.Context, r ApiKeyApiListRequest) (*GetApiKeysResponse, error)
+	ListWithContext(ctx context.Context, r ApiKeyApiListRequest) (*ListApiKeysResponse, error)
 }
 
 // ApiKeyService communicating with the ApiKey
@@ -126,25 +131,25 @@ type ApiKeyService struct {
 
 /*
  * Create Create API key
- * This endpoint enables you to create a new API key for a specific project.
+ * Creates a new API key for the caller's workspace. The secret is returned once, here, and never again.
 
  * @return ApiKeyApiCreateRequest
  */
 
-func (s *ApiKeyService) Create(request CreateApiKeyRequest) (*CreateApiKeyResponse, error) {
+func (s *ApiKeyService) Create(createApiKeyRequest CreateApiKeyRequest) (*CreateApiKeyResponse, error) {
 
-	return s.CreateWithContext(context.Background(), request)
+	return s.CreateWithContext(context.Background(), createApiKeyRequest)
 
 }
 
 /*
  * Create Create API key
- * This endpoint enables you to create a new API key for a specific project.
+ * Creates a new API key for the caller's workspace. The secret is returned once, here, and never again.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiKeyApiCreateRequest
  */
 
-func (s *ApiKeyService) CreateWithContext(ctx context.Context, request CreateApiKeyRequest) (*CreateApiKeyResponse, error) {
+func (s *ApiKeyService) CreateWithContext(ctx context.Context, createApiKeyRequest CreateApiKeyRequest) (*CreateApiKeyResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/api_keys"
@@ -153,7 +158,7 @@ func (s *ApiKeyService) CreateWithContext(ctx context.Context, request CreateApi
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = request
+	localVarPostBody = createApiKeyRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
@@ -172,28 +177,28 @@ func (s *ApiKeyService) CreateWithContext(ctx context.Context, request CreateApi
 }
 
 /*
- * Update Rename api key
- * This endpoint enables you to rename an API key from a specific project.
+ * Update Rename an API key
+ * Changes an API key's display name. The key and its secret are unchanged.
 
- * @param id api key id
+ * @param id API key ID
  * @return ApiKeyApiUpdateRequest
  */
 
-func (s *ApiKeyService) Update(id string, request RenameAPIKeyRequest) (*ResponseSuccess, error) {
+func (s *ApiKeyService) Update(id string, renameApiKeyRequest RenameApiKeyRequest) (*ResponseSuccess, error) {
 
-	return s.UpdateWithContext(context.Background(), id, request)
+	return s.UpdateWithContext(context.Background(), id, renameApiKeyRequest)
 
 }
 
 /*
- * Update Rename api key
- * This endpoint enables you to rename an API key from a specific project.
+ * Update Rename an API key
+ * Changes an API key's display name. The key and its secret are unchanged.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id api key id
+ * @param id API key ID
  * @return ApiKeyApiUpdateRequest
  */
 
-func (s *ApiKeyService) UpdateWithContext(ctx context.Context, id string, request RenameAPIKeyRequest) (*ResponseSuccess, error) {
+func (s *ApiKeyService) UpdateWithContext(ctx context.Context, id string, renameApiKeyRequest RenameApiKeyRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/api_keys/{id}"
@@ -203,7 +208,7 @@ func (s *ApiKeyService) UpdateWithContext(ctx context.Context, id string, reques
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = request
+	localVarPostBody = renameApiKeyRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPatch, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
@@ -222,10 +227,10 @@ func (s *ApiKeyService) UpdateWithContext(ctx context.Context, id string, reques
 }
 
 /*
- * Delete Delete API key
- * This endpoint enables you to delete an API key from a specific project.
+ * Delete Delete an API key
+ * Revokes an API key. Requests presenting it stop working immediately.
 
- * @param id API key's ID
+ * @param id API key ID
  * @return ApiKeyApiDeleteRequest
  */
 
@@ -236,10 +241,10 @@ func (s *ApiKeyService) Delete(id string) (*ResponseSuccess, error) {
 }
 
 /*
- * Delete Delete API key
- * This endpoint enables you to delete an API key from a specific project.
+ * Delete Delete an API key
+ * Revokes an API key. Requests presenting it stop working immediately.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id API key's ID
+ * @param id API key ID
  * @return ApiKeyApiDeleteRequest
  */
 
@@ -269,26 +274,26 @@ func (s *ApiKeyService) DeleteWithContext(ctx context.Context, id string) (*Resp
 }
 
 /*
- * List Get list API keys
- * Retrieve a list of all API keys for the current workspace.
+ * List List API keys
+ * Returns a page of the API keys for the caller's workspace.
 
  * @return ApiKeyApiListRequest
  */
 
-func (s *ApiKeyService) List(r ApiKeyApiListRequest) (*GetApiKeysResponse, error) {
+func (s *ApiKeyService) List(r ApiKeyApiListRequest) (*ListApiKeysResponse, error) {
 
 	return s.ListWithContext(context.Background(), r)
 
 }
 
 /*
- * List Get list API keys
- * Retrieve a list of all API keys for the current workspace.
+ * List List API keys
+ * Returns a page of the API keys for the caller's workspace.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiKeyApiListRequest
  */
 
-func (s *ApiKeyService) ListWithContext(ctx context.Context, r ApiKeyApiListRequest) (*GetApiKeysResponse, error) {
+func (s *ApiKeyService) ListWithContext(ctx context.Context, r ApiKeyApiListRequest) (*ListApiKeysResponse, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/api_keys"
@@ -296,20 +301,23 @@ func (s *ApiKeyService) ListWithContext(ctx context.Context, r ApiKeyApiListRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.orderBy != nil {
+		localVarQueryParams.Add("order_by", parameterToString(*r.orderBy, ""))
+	}
 	if r.search != nil {
 		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
 	}
 	if r.sortBy != nil {
 		localVarQueryParams.Add("sort_by", parameterToString(*r.sortBy, ""))
 	}
-	if r.orderBy != nil {
-		localVarQueryParams.Add("order_by", parameterToString(*r.orderBy, ""))
-	}
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	if r.type_ != nil {
+		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
 	}
 
 	req, err := s.client.prepareRequest(ctx, http.MethodGet, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
@@ -317,7 +325,7 @@ func (s *ApiKeyService) ListWithContext(ctx context.Context, r ApiKeyApiListRequ
 		return nil, err
 	}
 
-	res := new(GetApiKeysResponse)
+	res := new(ListApiKeysResponse)
 	_, err = s.client.do(req, res)
 
 	if err != nil {

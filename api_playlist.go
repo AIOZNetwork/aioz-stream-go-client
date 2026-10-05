@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -25,190 +25,190 @@ var (
 	_ context.Context
 )
 
-type PlaylistApiGetPlaylistByIdRequest struct {
-	sortBy  *string
+type PlaylistApiGetRequest struct {
 	orderBy *string
 	search  *string
+	sortBy  *string
 }
 
-func (r PlaylistApiGetPlaylistByIdRequest) SortBy(sortBy string) PlaylistApiGetPlaylistByIdRequest {
-	r.sortBy = &sortBy
-	return r
-}
-func (r PlaylistApiGetPlaylistByIdRequest) OrderBy(orderBy string) PlaylistApiGetPlaylistByIdRequest {
+func (r PlaylistApiGetRequest) OrderBy(orderBy string) PlaylistApiGetRequest {
 	r.orderBy = &orderBy
 	return r
 }
-func (r PlaylistApiGetPlaylistByIdRequest) Search(search string) PlaylistApiGetPlaylistByIdRequest {
+func (r PlaylistApiGetRequest) Search(search string) PlaylistApiGetRequest {
 	r.search = &search
+	return r
+}
+func (r PlaylistApiGetRequest) SortBy(sortBy string) PlaylistApiGetRequest {
+	r.sortBy = &sortBy
 	return r
 }
 
 type PlaylistServiceI interface {
 	/*
-	 * AddVideoToPlaylist Add a video to a playlist
-	 * @param id Playlist ID
-	 * @return PlaylistApiAddVideoToPlaylistRequest
+	 * Create Create a playlist
+	 * @return PlaylistApiCreateRequest
 	 */
 
-	AddVideoToPlaylist(id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error)
+	Create(createPlaylistRequest CreatePlaylistRequest) (*PlaylistResponse, error)
 
 	/*
-	 * AddVideoToPlaylist Add a video to a playlist
+	 * Create Create a playlist
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return PlaylistApiCreateRequest
+	 */
+
+	CreateWithContext(ctx context.Context, createPlaylistRequest CreatePlaylistRequest) (*PlaylistResponse, error)
+
+	/*
+	 * Get Get a playlist
+	 * @param id Playlist ID
+	 * @return PlaylistApiGetRequest
+	 */
+
+	Get(id string, r PlaylistApiGetRequest) (*PlaylistResponse, error)
+
+	/*
+	 * Get Get a playlist
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Playlist ID
-	 * @return PlaylistApiAddVideoToPlaylistRequest
+	 * @return PlaylistApiGetRequest
 	 */
 
-	AddVideoToPlaylistWithContext(ctx context.Context, id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error)
+	GetWithContext(ctx context.Context, id string, r PlaylistApiGetRequest) (*PlaylistResponse, error)
 
 	/*
-	 * CreatePlaylist Create a playlist
-	 * @return PlaylistApiCreatePlaylistRequest
-	 */
-
-	CreatePlaylist(request CreatePlaylistRequest) (*CreatePlaylistResponse, error)
-
-	/*
-	 * CreatePlaylist Create a playlist
-	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @return PlaylistApiCreatePlaylistRequest
-	 */
-
-	CreatePlaylistWithContext(ctx context.Context, request CreatePlaylistRequest) (*CreatePlaylistResponse, error)
-
-	/*
-	 * DeletePlaylistById Delete a playlist by ID
+	 * Update Update a playlist
 	 * @param id Playlist ID
-	 * @return PlaylistApiDeletePlaylistByIdRequest
+	 * @return PlaylistApiUpdateRequest
 	 */
-
-	DeletePlaylistById(id string) (*ResponseSuccess, error)
-
+	Update(id string, name *string, tags *[]string, fileName string, fileReader io.Reader) (*ResponseSuccess, error)
 	/*
-	 * DeletePlaylistById Delete a playlist by ID
+	 * Update Update a playlist
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Playlist ID
-	 * @return PlaylistApiDeletePlaylistByIdRequest
+	 * @return PlaylistApiUpdateRequest
 	 */
-
-	DeletePlaylistByIdWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
+	UpdateWithContext(ctx context.Context, id string, name *string, tags *[]string, fileName string, fileReader io.Reader) (*ResponseSuccess, error)
 
 	/*
-	 * DeletePlaylistThumbnail Delete a playlist thumbnail
+	 * Delete Delete a playlist
 	 * @param id Playlist ID
-	 * @return PlaylistApiDeletePlaylistThumbnailRequest
+	 * @return PlaylistApiDeleteRequest
 	 */
 
-	DeletePlaylistThumbnail(id string) (*ResponseSuccess, error)
+	Delete(id string) (*ResponseSuccess, error)
 
 	/*
-	 * DeletePlaylistThumbnail Delete a playlist thumbnail
+	 * Delete Delete a playlist
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Playlist ID
-	 * @return PlaylistApiDeletePlaylistThumbnailRequest
+	 * @return PlaylistApiDeleteRequest
 	 */
 
-	DeletePlaylistThumbnailWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
+	DeleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 	/*
-	 * GetPlaylistById Get playlist by ID
+	 * List List playlists
+	 * @return PlaylistApiListRequest
+	 */
+
+	List(listPlaylistsRequest ListPlaylistsRequest) (*ListPlaylistsResponse, error)
+
+	/*
+	 * List List playlists
+	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return PlaylistApiListRequest
+	 */
+
+	ListWithContext(ctx context.Context, listPlaylistsRequest ListPlaylistsRequest) (*ListPlaylistsResponse, error)
+
+	/*
+	 * DeleteThumbnail Delete a playlist thumbnail
 	 * @param id Playlist ID
-	 * @return PlaylistApiGetPlaylistByIdRequest
+	 * @return PlaylistApiDeleteThumbnailRequest
 	 */
 
-	GetPlaylistById(id string, r PlaylistApiGetPlaylistByIdRequest) (*GetPlaylistByIdResponse, error)
+	DeleteThumbnail(id string) (*ResponseSuccess, error)
 
 	/*
-	 * GetPlaylistById Get playlist by ID
+	 * DeleteThumbnail Delete a playlist thumbnail
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Playlist ID
-	 * @return PlaylistApiGetPlaylistByIdRequest
+	 * @return PlaylistApiDeleteThumbnailRequest
 	 */
 
-	GetPlaylistByIdWithContext(ctx context.Context, id string, r PlaylistApiGetPlaylistByIdRequest) (*GetPlaylistByIdResponse, error)
+	DeleteThumbnailWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 	/*
-	 * GetPlaylistPublicInfo Get a playlist public
+	 * AddMedia Add media to playlists
 	 * @param id Playlist ID
-	 * @return PlaylistApiGetPlaylistPublicInfoRequest
+	 * @return PlaylistApiAddMediaRequest
 	 */
 
-	GetPlaylistPublicInfo(id string) (*PublicPlaylistObject, error)
+	AddMedia(id string, addMediaRequest AddMediaRequest) (*ResponseSuccess, error)
 
 	/*
-	 * GetPlaylistPublicInfo Get a playlist public
+	 * AddMedia Add media to playlists
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Playlist ID
-	 * @return PlaylistApiGetPlaylistPublicInfoRequest
+	 * @return PlaylistApiAddMediaRequest
 	 */
 
-	GetPlaylistPublicInfoWithContext(ctx context.Context, id string) (*PublicPlaylistObject, error)
+	AddMediaWithContext(ctx context.Context, id string, addMediaRequest AddMediaRequest) (*ResponseSuccess, error)
 
 	/*
-	 * GetPlaylists Get user's playlists
-	 * @return PlaylistApiGetPlaylistsRequest
-	 */
-
-	GetPlaylists(request GetPlaylistListRequest) (*GetPlaylistListResponse, error)
-
-	/*
-	 * GetPlaylists Get user's playlists
-	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @return PlaylistApiGetPlaylistsRequest
-	 */
-
-	GetPlaylistsWithContext(ctx context.Context, request GetPlaylistListRequest) (*GetPlaylistListResponse, error)
-
-	/*
-	 * MoveVideoInPlaylist Move a video in a playlist
+	 * GetPublic Get a playlist for the player
 	 * @param id Playlist ID
-	 * @return PlaylistApiMoveVideoInPlaylistRequest
+	 * @return PlaylistApiGetPublicRequest
 	 */
 
-	MoveVideoInPlaylist(id string, payload MoveVideoInPlaylistRequest) (*ResponseSuccess, error)
+	GetPublic(id string) (*ResponseSuccess, error)
 
 	/*
-	 * MoveVideoInPlaylist Move a video in a playlist
+	 * GetPublic Get a playlist for the player
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Playlist ID
-	 * @return PlaylistApiMoveVideoInPlaylistRequest
+	 * @return PlaylistApiGetPublicRequest
 	 */
 
-	MoveVideoInPlaylistWithContext(ctx context.Context, id string, payload MoveVideoInPlaylistRequest) (*ResponseSuccess, error)
+	GetPublicWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 	/*
-	 * RemoveMediaFromPlaylist Remove a media from a playlist
+	 * MoveItem Reorder a playlist
 	 * @param id Playlist ID
-	 * @param itemId Playlist Item ID
-	 * @return PlaylistApiRemoveMediaFromPlaylistRequest
+	 * @return PlaylistApiMoveItemRequest
 	 */
 
-	RemoveMediaFromPlaylist(id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error)
+	MoveItem(id string, moveItemRequest MoveItemRequest) (*ResponseSuccess, error)
 
 	/*
-	 * RemoveMediaFromPlaylist Remove a media from a playlist
+	 * MoveItem Reorder a playlist
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Playlist ID
-	 * @param itemId Playlist Item ID
-	 * @return PlaylistApiRemoveMediaFromPlaylistRequest
+	 * @return PlaylistApiMoveItemRequest
 	 */
 
-	RemoveMediaFromPlaylistWithContext(ctx context.Context, id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error)
+	MoveItemWithContext(ctx context.Context, id string, moveItemRequest MoveItemRequest) (*ResponseSuccess, error)
 
 	/*
-	 * UpdatePlaylist Update a playlist
+	 * RemoveMedia Remove an item from playlists
 	 * @param id Playlist ID
-	 * @return PlaylistApiUpdatePlaylistRequest
+	 * @param itemId Playlist item ID
+	 * @return PlaylistApiRemoveMediaRequest
 	 */
-	UpdatePlaylist(id string, metadata *[]Metadata, name *string, tags *[]string, fileName string, fileReader io.Reader) (*ResponseSuccess, error)
+
+	RemoveMedia(id string, itemId string, removeMediaRequest RemoveMediaRequest) (*ResponseSuccess, error)
+
 	/*
-	 * UpdatePlaylist Update a playlist
+	 * RemoveMedia Remove an item from playlists
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id Playlist ID
-	 * @return PlaylistApiUpdatePlaylistRequest
+	 * @param itemId Playlist item ID
+	 * @return PlaylistApiRemoveMediaRequest
 	 */
-	UpdatePlaylistWithContext(ctx context.Context, id string, metadata *[]Metadata, name *string, tags *[]string, fileName string, fileReader io.Reader) (*ResponseSuccess, error)
+
+	RemoveMediaWithContext(ctx context.Context, id string, itemId string, removeMediaRequest RemoveMediaRequest) (*ResponseSuccess, error)
 }
 
 // PlaylistService communicating with the Playlist
@@ -218,40 +218,174 @@ type PlaylistService struct {
 }
 
 /*
- * AddVideoToPlaylist Add a video to a playlist
- * Add a specific video to a playlist for the authenticated user
+ * Create Create a playlist
+ * Creates an empty playlist in your workspace.
 
- * @param id Playlist ID
- * @return PlaylistApiAddVideoToPlaylistRequest
+ * @return PlaylistApiCreateRequest
  */
 
-func (s *PlaylistService) AddVideoToPlaylist(id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error) {
+func (s *PlaylistService) Create(createPlaylistRequest CreatePlaylistRequest) (*PlaylistResponse, error) {
 
-	return s.AddVideoToPlaylistWithContext(context.Background(), id, payload)
+	return s.CreateWithContext(context.Background(), createPlaylistRequest)
 
 }
 
 /*
- * AddVideoToPlaylist Add a video to a playlist
- * Add a specific video to a playlist for the authenticated user
+ * Create Create a playlist
+ * Creates an empty playlist in your workspace.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id Playlist ID
- * @return PlaylistApiAddVideoToPlaylistRequest
+ * @return PlaylistApiCreateRequest
  */
 
-func (s *PlaylistService) AddVideoToPlaylistWithContext(ctx context.Context, id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error) {
+func (s *PlaylistService) CreateWithContext(ctx context.Context, createPlaylistRequest CreatePlaylistRequest) (*PlaylistResponse, error) {
 	var localVarPostBody interface{}
 
-	localVarPath := "/playlists/{id}/items"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
+	localVarPath := "/playlists/create"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = payload
+	localVarPostBody = createPlaylistRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
+	if err != nil {
+		return nil, err
+	}
+
+	res := new(PlaylistResponse)
+	_, err = s.client.do(req, res)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+/*
+ * Get Get a playlist
+ * Returns one playlist and its items, ordered as you ask.
+
+ * @param id Playlist ID
+ * @return PlaylistApiGetRequest
+ */
+
+func (s *PlaylistService) Get(id string, r PlaylistApiGetRequest) (*PlaylistResponse, error) {
+
+	return s.GetWithContext(context.Background(), id, r)
+
+}
+
+/*
+ * Get Get a playlist
+ * Returns one playlist and its items, ordered as you ask.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id Playlist ID
+ * @return PlaylistApiGetRequest
+ */
+
+func (s *PlaylistService) GetWithContext(ctx context.Context, id string, r PlaylistApiGetRequest) (*PlaylistResponse, error) {
+	var localVarPostBody interface{}
+
+	localVarPath := "/playlists/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+
+	if r.orderBy != nil {
+		localVarQueryParams.Add("order_by", parameterToString(*r.orderBy, ""))
+	}
+	if r.search != nil {
+		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
+	}
+	if r.sortBy != nil {
+		localVarQueryParams.Add("sort_by", parameterToString(*r.sortBy, ""))
+	}
+
+	req, err := s.client.prepareRequest(ctx, http.MethodGet, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
+	if err != nil {
+		return nil, err
+	}
+
+	res := new(PlaylistResponse)
+	_, err = s.client.do(req, res)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+/*
+ * Update Update a playlist
+ * Changes a playlist's name, tags or thumbnail, sent as multipart/form-data. The file field is the new thumbnail: a PNG or JPEG, judged by its content, whose name, if it has an extension, must agree with it. The handler also takes a JSON body (name, tags, metadata); metadata can only be changed that way, since a form cannot carry its key/value list.
+
+ * @param id Playlist ID
+ * @return PlaylistApiUpdateRequest
+ */
+
+func (s *PlaylistService) UpdateFile(id string, file *os.File, name *string, tags *[]string) (*ResponseSuccess, error) {
+	return s.UpdateFileWithContext(context.Background(), id, file, name, tags)
+}
+
+/*
+ * Update Update a playlist
+ * Changes a playlist's name, tags or thumbnail, sent as multipart/form-data. The file field is the new thumbnail: a PNG or JPEG, judged by its content, whose name, if it has an extension, must agree with it. The handler also takes a JSON body (name, tags, metadata); metadata can only be changed that way, since a form cannot carry its key/value list.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id Playlist ID
+ * @return PlaylistApiUpdateRequest
+ */
+
+func (s *PlaylistService) UpdateFileWithContext(ctx context.Context, id string, file *os.File, name *string, tags *[]string) (*ResponseSuccess, error) {
+	// A nil file sends no file part, for an endpoint whose file is optional.
+	var fileName string
+	var fileReader io.Reader
+	if file != nil {
+		fileName, fileReader = file.Name(), file
+	}
+
+	return s.UpdateWithContext(ctx, id, name, tags, fileName, fileReader)
+}
+
+/*
+* Update Update a playlist
+* Changes a playlist's name, tags or thumbnail, sent as multipart/form-data. The file field is the new thumbnail: a PNG or JPEG, judged by its content, whose name, if it has an extension, must agree with it. The handler also takes a JSON body (name, tags, metadata); metadata can only be changed that way, since a form cannot carry its key/value list.
+
+* @param id Playlist ID
+* @return PlaylistApiUpdateRequest
+ */
+func (s *PlaylistService) Update(id string, name *string, tags *[]string, fileName string, fileReader io.Reader) (*ResponseSuccess, error) {
+	return s.UpdateWithContext(context.Background(), id, name, tags, fileName, fileReader)
+}
+
+/*
+ * Update Update a playlist
+ * Changes a playlist's name, tags or thumbnail, sent as multipart/form-data. The file field is the new thumbnail: a PNG or JPEG, judged by its content, whose name, if it has an extension, must agree with it. The handler also takes a JSON body (name, tags, metadata); metadata can only be changed that way, since a form cannot carry its key/value list.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id Playlist ID
+ * @return PlaylistApiUpdateRequest
+ */
+func (s *PlaylistService) UpdateWithContext(ctx context.Context, id string, name *string, tags *[]string, fileName string, fileReader io.Reader) (*ResponseSuccess, error) {
+	localVarPath := "/playlists/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := make(map[string]string)
+
+	if name != nil {
+		localVarFormParams["name"] = parameterToString(*name, "")
+	}
+	if tags != nil {
+		localVarFormParams["tags"] = parameterToString(*tags, "csv")
+	}
+
+	req, err := s.client.prepareUploadRequest(ctx, http.MethodPatch, localVarPath, fileName, fileReader, localVarHeaderParams, localVarQueryParams, localVarFormParams)
 	if err != nil {
 		return nil, err
 	}
@@ -268,75 +402,28 @@ func (s *PlaylistService) AddVideoToPlaylistWithContext(ctx context.Context, id 
 }
 
 /*
- * CreatePlaylist Create a playlist
- * Create a playlist for the authenticated user
-
- * @return PlaylistApiCreatePlaylistRequest
- */
-
-func (s *PlaylistService) CreatePlaylist(request CreatePlaylistRequest) (*CreatePlaylistResponse, error) {
-
-	return s.CreatePlaylistWithContext(context.Background(), request)
-
-}
-
-/*
- * CreatePlaylist Create a playlist
- * Create a playlist for the authenticated user
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return PlaylistApiCreatePlaylistRequest
- */
-
-func (s *PlaylistService) CreatePlaylistWithContext(ctx context.Context, request CreatePlaylistRequest) (*CreatePlaylistResponse, error) {
-	var localVarPostBody interface{}
-
-	localVarPath := "/playlists/create"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-
-	// body params
-	localVarPostBody = request
-
-	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
-	if err != nil {
-		return nil, err
-	}
-
-	res := new(CreatePlaylistResponse)
-	_, err = s.client.do(req, res)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return res, nil
-
-}
-
-/*
- * DeletePlaylistById Delete a playlist by ID
- * Delete a specific playlist by its ID for the authenticated user
+ * Delete Delete a playlist
+ * Deletes a playlist. The media in it is not deleted.
 
  * @param id Playlist ID
- * @return PlaylistApiDeletePlaylistByIdRequest
+ * @return PlaylistApiDeleteRequest
  */
 
-func (s *PlaylistService) DeletePlaylistById(id string) (*ResponseSuccess, error) {
+func (s *PlaylistService) Delete(id string) (*ResponseSuccess, error) {
 
-	return s.DeletePlaylistByIdWithContext(context.Background(), id)
+	return s.DeleteWithContext(context.Background(), id)
 
 }
 
 /*
- * DeletePlaylistById Delete a playlist by ID
- * Delete a specific playlist by its ID for the authenticated user
+ * Delete Delete a playlist
+ * Deletes a playlist. The media in it is not deleted.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Playlist ID
- * @return PlaylistApiDeletePlaylistByIdRequest
+ * @return PlaylistApiDeleteRequest
  */
 
-func (s *PlaylistService) DeletePlaylistByIdWithContext(ctx context.Context, id string) (*ResponseSuccess, error) {
+func (s *PlaylistService) DeleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/playlists/{id}"
@@ -362,28 +449,75 @@ func (s *PlaylistService) DeletePlaylistByIdWithContext(ctx context.Context, id 
 }
 
 /*
- * DeletePlaylistThumbnail Delete a playlist thumbnail
- * Delete the thumbnail of a specific playlist for the authenticated user
+ * List List playlists
+ * Returns a page of the playlists in your workspace.
 
- * @param id Playlist ID
- * @return PlaylistApiDeletePlaylistThumbnailRequest
+ * @return PlaylistApiListRequest
  */
 
-func (s *PlaylistService) DeletePlaylistThumbnail(id string) (*ResponseSuccess, error) {
+func (s *PlaylistService) List(listPlaylistsRequest ListPlaylistsRequest) (*ListPlaylistsResponse, error) {
 
-	return s.DeletePlaylistThumbnailWithContext(context.Background(), id)
+	return s.ListWithContext(context.Background(), listPlaylistsRequest)
 
 }
 
 /*
- * DeletePlaylistThumbnail Delete a playlist thumbnail
- * Delete the thumbnail of a specific playlist for the authenticated user
+ * List List playlists
+ * Returns a page of the playlists in your workspace.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id Playlist ID
- * @return PlaylistApiDeletePlaylistThumbnailRequest
+ * @return PlaylistApiListRequest
  */
 
-func (s *PlaylistService) DeletePlaylistThumbnailWithContext(ctx context.Context, id string) (*ResponseSuccess, error) {
+func (s *PlaylistService) ListWithContext(ctx context.Context, listPlaylistsRequest ListPlaylistsRequest) (*ListPlaylistsResponse, error) {
+	var localVarPostBody interface{}
+
+	localVarPath := "/playlists"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+
+	// body params
+	localVarPostBody = listPlaylistsRequest
+
+	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
+	if err != nil {
+		return nil, err
+	}
+
+	res := new(ListPlaylistsResponse)
+	_, err = s.client.do(req, res)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+/*
+ * DeleteThumbnail Delete a playlist thumbnail
+ * Removes the thumbnail from a playlist.
+
+ * @param id Playlist ID
+ * @return PlaylistApiDeleteThumbnailRequest
+ */
+
+func (s *PlaylistService) DeleteThumbnail(id string) (*ResponseSuccess, error) {
+
+	return s.DeleteThumbnailWithContext(context.Background(), id)
+
+}
+
+/*
+ * DeleteThumbnail Delete a playlist thumbnail
+ * Removes the thumbnail from a playlist.
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id Playlist ID
+ * @return PlaylistApiDeleteThumbnailRequest
+ */
+
+func (s *PlaylistService) DeleteThumbnailWithContext(ctx context.Context, id string) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/playlists/{id}/thumbnail"
@@ -409,52 +543,45 @@ func (s *PlaylistService) DeletePlaylistThumbnailWithContext(ctx context.Context
 }
 
 /*
- * GetPlaylistById Get playlist by ID
- * Retrieve a specific playlist by its ID for the current user.
+ * AddMedia Add media to playlists
+ * Adds one or more media to one or more of your playlists.
 
  * @param id Playlist ID
- * @return PlaylistApiGetPlaylistByIdRequest
+ * @return PlaylistApiAddMediaRequest
  */
 
-func (s *PlaylistService) GetPlaylistById(id string, r PlaylistApiGetPlaylistByIdRequest) (*GetPlaylistByIdResponse, error) {
+func (s *PlaylistService) AddMedia(id string, addMediaRequest AddMediaRequest) (*ResponseSuccess, error) {
 
-	return s.GetPlaylistByIdWithContext(context.Background(), id, r)
+	return s.AddMediaWithContext(context.Background(), id, addMediaRequest)
 
 }
 
 /*
- * GetPlaylistById Get playlist by ID
- * Retrieve a specific playlist by its ID for the current user.
+ * AddMedia Add media to playlists
+ * Adds one or more media to one or more of your playlists.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Playlist ID
- * @return PlaylistApiGetPlaylistByIdRequest
+ * @return PlaylistApiAddMediaRequest
  */
 
-func (s *PlaylistService) GetPlaylistByIdWithContext(ctx context.Context, id string, r PlaylistApiGetPlaylistByIdRequest) (*GetPlaylistByIdResponse, error) {
+func (s *PlaylistService) AddMediaWithContext(ctx context.Context, id string, addMediaRequest AddMediaRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
-	localVarPath := "/playlists/{id}"
+	localVarPath := "/playlists/{id}/items"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 
-	if r.sortBy != nil {
-		localVarQueryParams.Add("sort_by", parameterToString(*r.sortBy, ""))
-	}
-	if r.orderBy != nil {
-		localVarQueryParams.Add("order_by", parameterToString(*r.orderBy, ""))
-	}
-	if r.search != nil {
-		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
-	}
+	// body params
+	localVarPostBody = addMediaRequest
 
-	req, err := s.client.prepareRequest(ctx, http.MethodGet, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
+	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
 		return nil, err
 	}
 
-	res := new(GetPlaylistByIdResponse)
+	res := new(ResponseSuccess)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -466,28 +593,28 @@ func (s *PlaylistService) GetPlaylistByIdWithContext(ctx context.Context, id str
 }
 
 /*
- * GetPlaylistPublicInfo Get a playlist public
- * Get a specific playlist public by its ID
+ * GetPublic Get a playlist for the player
+ * Returns the payload the player needs to play a playlist, including its theme. No account required.
 
  * @param id Playlist ID
- * @return PlaylistApiGetPlaylistPublicInfoRequest
+ * @return PlaylistApiGetPublicRequest
  */
 
-func (s *PlaylistService) GetPlaylistPublicInfo(id string) (*PublicPlaylistObject, error) {
+func (s *PlaylistService) GetPublic(id string) (*ResponseSuccess, error) {
 
-	return s.GetPlaylistPublicInfoWithContext(context.Background(), id)
+	return s.GetPublicWithContext(context.Background(), id)
 
 }
 
 /*
- * GetPlaylistPublicInfo Get a playlist public
- * Get a specific playlist public by its ID
+ * GetPublic Get a playlist for the player
+ * Returns the payload the player needs to play a playlist, including its theme. No account required.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Playlist ID
- * @return PlaylistApiGetPlaylistPublicInfoRequest
+ * @return PlaylistApiGetPublicRequest
  */
 
-func (s *PlaylistService) GetPlaylistPublicInfoWithContext(ctx context.Context, id string) (*PublicPlaylistObject, error) {
+func (s *PlaylistService) GetPublicWithContext(ctx context.Context, id string) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/playlists/{id}/player.json"
@@ -501,7 +628,7 @@ func (s *PlaylistService) GetPlaylistPublicInfoWithContext(ctx context.Context, 
 		return nil, err
 	}
 
-	res := new(PublicPlaylistObject)
+	res := new(ResponseSuccess)
 	_, err = s.client.do(req, res)
 
 	if err != nil {
@@ -513,75 +640,28 @@ func (s *PlaylistService) GetPlaylistPublicInfoWithContext(ctx context.Context, 
 }
 
 /*
- * GetPlaylists Get user's playlists
- * Retrieve a list of playlists for the authenticated user
-
- * @return PlaylistApiGetPlaylistsRequest
- */
-
-func (s *PlaylistService) GetPlaylists(request GetPlaylistListRequest) (*GetPlaylistListResponse, error) {
-
-	return s.GetPlaylistsWithContext(context.Background(), request)
-
-}
-
-/*
- * GetPlaylists Get user's playlists
- * Retrieve a list of playlists for the authenticated user
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return PlaylistApiGetPlaylistsRequest
- */
-
-func (s *PlaylistService) GetPlaylistsWithContext(ctx context.Context, request GetPlaylistListRequest) (*GetPlaylistListResponse, error) {
-	var localVarPostBody interface{}
-
-	localVarPath := "/playlists"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-
-	// body params
-	localVarPostBody = request
-
-	req, err := s.client.prepareRequest(ctx, http.MethodPost, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
-	if err != nil {
-		return nil, err
-	}
-
-	res := new(GetPlaylistListResponse)
-	_, err = s.client.do(req, res)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return res, nil
-
-}
-
-/*
- * MoveVideoInPlaylist Move a video in a playlist
- * Move a specific video in a playlist for the authenticated user
+ * MoveItem Reorder a playlist
+ * Moves one item within a playlist. Send next_id to move it to the start, previous_id to move it to the end, or both to move it between two items.
 
  * @param id Playlist ID
- * @return PlaylistApiMoveVideoInPlaylistRequest
+ * @return PlaylistApiMoveItemRequest
  */
 
-func (s *PlaylistService) MoveVideoInPlaylist(id string, payload MoveVideoInPlaylistRequest) (*ResponseSuccess, error) {
+func (s *PlaylistService) MoveItem(id string, moveItemRequest MoveItemRequest) (*ResponseSuccess, error) {
 
-	return s.MoveVideoInPlaylistWithContext(context.Background(), id, payload)
+	return s.MoveItemWithContext(context.Background(), id, moveItemRequest)
 
 }
 
 /*
- * MoveVideoInPlaylist Move a video in a playlist
- * Move a specific video in a playlist for the authenticated user
+ * MoveItem Reorder a playlist
+ * Moves one item within a playlist. Send next_id to move it to the start, previous_id to move it to the end, or both to move it between two items.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Playlist ID
- * @return PlaylistApiMoveVideoInPlaylistRequest
+ * @return PlaylistApiMoveItemRequest
  */
 
-func (s *PlaylistService) MoveVideoInPlaylistWithContext(ctx context.Context, id string, payload MoveVideoInPlaylistRequest) (*ResponseSuccess, error) {
+func (s *PlaylistService) MoveItemWithContext(ctx context.Context, id string, moveItemRequest MoveItemRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/playlists/{id}/items"
@@ -591,7 +671,7 @@ func (s *PlaylistService) MoveVideoInPlaylistWithContext(ctx context.Context, id
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = payload
+	localVarPostBody = moveItemRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodPut, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
 	if err != nil {
@@ -610,30 +690,30 @@ func (s *PlaylistService) MoveVideoInPlaylistWithContext(ctx context.Context, id
 }
 
 /*
- * RemoveMediaFromPlaylist Remove a media from a playlist
- * Remove a specific media from a playlist for the authenticated user
+ * RemoveMedia Remove an item from playlists
+ * Removes one item from one or more of your playlists.
 
  * @param id Playlist ID
- * @param itemId Playlist Item ID
- * @return PlaylistApiRemoveMediaFromPlaylistRequest
+ * @param itemId Playlist item ID
+ * @return PlaylistApiRemoveMediaRequest
  */
 
-func (s *PlaylistService) RemoveMediaFromPlaylist(id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error) {
+func (s *PlaylistService) RemoveMedia(id string, itemId string, removeMediaRequest RemoveMediaRequest) (*ResponseSuccess, error) {
 
-	return s.RemoveMediaFromPlaylistWithContext(context.Background(), id, itemId, payload)
+	return s.RemoveMediaWithContext(context.Background(), id, itemId, removeMediaRequest)
 
 }
 
 /*
- * RemoveMediaFromPlaylist Remove a media from a playlist
- * Remove a specific media from a playlist for the authenticated user
+ * RemoveMedia Remove an item from playlists
+ * Removes one item from one or more of your playlists.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Playlist ID
- * @param itemId Playlist Item ID
- * @return PlaylistApiRemoveMediaFromPlaylistRequest
+ * @param itemId Playlist item ID
+ * @return PlaylistApiRemoveMediaRequest
  */
 
-func (s *PlaylistService) RemoveMediaFromPlaylistWithContext(ctx context.Context, id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error) {
+func (s *PlaylistService) RemoveMediaWithContext(ctx context.Context, id string, itemId string, removeMediaRequest RemoveMediaRequest) (*ResponseSuccess, error) {
 	var localVarPostBody interface{}
 
 	localVarPath := "/playlists/{id}/items/{item_id}"
@@ -644,86 +724,9 @@ func (s *PlaylistService) RemoveMediaFromPlaylistWithContext(ctx context.Context
 	localVarQueryParams := url.Values{}
 
 	// body params
-	localVarPostBody = payload
+	localVarPostBody = removeMediaRequest
 
 	req, err := s.client.prepareRequest(ctx, http.MethodDelete, localVarPath, localVarPostBody, localVarHeaderParams, localVarQueryParams)
-	if err != nil {
-		return nil, err
-	}
-
-	res := new(ResponseSuccess)
-	_, err = s.client.do(req, res)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return res, nil
-
-}
-
-/*
- * UpdatePlaylist Update a playlist
- * Update a specific playlist for the authenticated user
-
- * @param id Playlist ID
- * @return PlaylistApiUpdatePlaylistRequest
- */
-
-func (s *PlaylistService) UpdatePlaylistFile(id string, file *os.File, metadata *[]Metadata, name *string, tags *[]string) (*ResponseSuccess, error) {
-	return s.UpdatePlaylistFileWithContext(context.Background(), id, file, metadata, name, tags)
-}
-
-/*
- * UpdatePlaylist Update a playlist
- * Update a specific playlist for the authenticated user
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id Playlist ID
- * @return PlaylistApiUpdatePlaylistRequest
- */
-
-func (s *PlaylistService) UpdatePlaylistFileWithContext(ctx context.Context, id string, file *os.File, metadata *[]Metadata, name *string, tags *[]string) (*ResponseSuccess, error) {
-	return s.UpdatePlaylistWithContext(ctx, id, metadata, name, tags, file.Name(), io.Reader(file))
-}
-
-/*
-* UpdatePlaylist Update a playlist
-* Update a specific playlist for the authenticated user
-
-* @param id Playlist ID
-* @return PlaylistApiUpdatePlaylistRequest
- */
-func (s *PlaylistService) UpdatePlaylist(id string, metadata *[]Metadata, name *string, tags *[]string, fileName string, fileReader io.Reader) (*ResponseSuccess, error) {
-	return s.UpdatePlaylistWithContext(context.Background(), id, metadata, name, tags, fileName, fileReader)
-}
-
-/*
- * UpdatePlaylist Update a playlist
- * Update a specific playlist for the authenticated user
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id Playlist ID
- * @return PlaylistApiUpdatePlaylistRequest
- */
-func (s *PlaylistService) UpdatePlaylistWithContext(ctx context.Context, id string, metadata *[]Metadata, name *string, tags *[]string, fileName string, fileReader io.Reader) (*ResponseSuccess, error) {
-	localVarPath := "/playlists/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := make(map[string]string)
-
-	if metadata != nil {
-		localVarFormParams["metadata"] = parameterToString(*metadata, "csv")
-	}
-	if name != nil {
-		localVarFormParams["name"] = parameterToString(*name, "")
-	}
-	if tags != nil {
-		localVarFormParams["tags"] = parameterToString(*tags, "csv")
-	}
-
-	req, err := s.client.prepareUploadRequest(ctx, http.MethodPatch, localVarPath, fileName, fileReader, localVarHeaderParams, localVarQueryParams, localVarFormParams)
-
 	if err != nil {
 		return nil, err
 	}

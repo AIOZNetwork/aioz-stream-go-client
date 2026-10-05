@@ -34,14 +34,11 @@ type Client struct {
 	sdkVersion         string
 	BearerToken        string
 
-	Analytics    AnalyticsServiceI
 	ApiKey       ApiKeyServiceI
-	LiveStream   LiveStreamServiceI
 	Media        MediaServiceI
 	MediaChapter MediaChapterServiceI
 	Players      PlayersServiceI
 	Playlist     PlaylistServiceI
-	User         UserServiceI
 	Webhook      WebhookServiceI
 }
 
@@ -202,14 +199,11 @@ func (cb *Builder) Build() *Client {
 		BearerToken:        cb.bearerToken,
 	}
 
-	c.Analytics = &AnalyticsService{client: c}
 	c.ApiKey = &ApiKeyService{client: c}
-	c.LiveStream = &LiveStreamService{client: c}
 	c.Media = &MediaService{client: c}
 	c.MediaChapter = &MediaChapterService{client: c}
 	c.Players = &PlayersService{client: c}
 	c.Playlist = &PlaylistService{client: c}
-	c.User = &UserService{client: c}
 	c.Webhook = &WebhookService{client: c}
 
 	return c
@@ -535,16 +529,19 @@ func (c *Client) prepareUploadRequest(
 	body := new(bytes.Buffer)
 	writer := multipart.NewWriter(body)
 
-	partWriter, err := writer.CreateFormFile("file", fileName)
-	if err != nil {
-		return nil, err
+	// A nil reader sends no file part, for an endpoint whose file is optional.
+	if fileReader != nil {
+		partWriter, err := writer.CreateFormFile("file", fileName)
+		if err != nil {
+			return nil, err
+		}
+
+		if _, err := io.Copy(partWriter, fileReader); err != nil {
+			return nil, err
+		}
 	}
 
-	_, err = io.Copy(partWriter, fileReader)
-	if err != nil {
-		return nil, err
-	}
-
+	var err error
 	for key, val := range formParams {
 		err = writer.WriteField(key, val)
 		if err != nil {

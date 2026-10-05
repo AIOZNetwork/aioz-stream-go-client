@@ -14,9 +14,9 @@ Method | HTTP request | Description
 [**GetCaptions**](Media.md#GetCaptions) | **Get** /media/{id}/captions | Get media captions
 [**GetCost**](Media.md#GetCost) | **Get** /media/cost | get media transcoding cost
 [**GetDetail**](Media.md#GetDetail) | **Get** /media/{id} | get media detail
-[**GetMediaList**](Media.md#GetMediaList) | **Post** /media | Get user videos list
-[**GetMediaPlayerInfo**](Media.md#GetMediaPlayerInfo) | **Get** /media/{id}/player.json | Get media object
-[**SetDefaultCaption**](Media.md#SetDefaultCaption) | **Patch** /media/{id}/captions/{lan} | Set default caption
+[**GetMediaList**](Media.md#GetMediaList) | **Post** /media | Get user media list
+[**GetMediaPlayerInfo**](Media.md#GetMediaPlayerInfo) | **Get** /media/{id}/player.json | Get media player info
+[**SetDefaultCaption**](Media.md#SetDefaultCaption) | **Patch** /media/{id}/captions/{lan} | Set the default caption
 [**UploadMediaComplete**](Media.md#UploadMediaComplete) | **Get** /media/{id}/complete | Get upload media when complete
 [**UploadPart**](Media.md#UploadPart) | **Post** /media/{id}/part | Upload part of media
 
@@ -24,9 +24,9 @@ Method | HTTP request | Description
 
 ## Create
 
-> Create(request CreateMediaRequest) (*CreateMediaResponse, error)
+> Create(createMediaRequest CreateMediaRequest) (*CreateMediaResponse, error)
 
-> CreateWithContext(ctx context.Context, request CreateMediaRequest) (*CreateMediaResponse, error)
+> CreateWithContext(ctx context.Context, createMediaRequest CreateMediaRequest) (*CreateMediaResponse, error)
 
 
 Create media object
@@ -43,7 +43,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -54,10 +54,10 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewCreateMediaRequest() // CreateMediaRequest | media's info
+    createMediaRequest := *aiozstreamsdk.NewCreateMediaRequest() // CreateMediaRequest | media's info
 
     
-    res, err := client.Media.Create(request)
+    res, err := client.Media.Create(createMediaRequest)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Media.Create``: %v\n", err)
@@ -81,7 +81,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**CreateMediaRequest**](CreateMediaRequest.md) | media&#39;s info | 
+**createMediaRequest** | [**CreateMediaRequest**](CreateMediaRequest.md) | media&#39;s info | 
 
 ### Return type
 
@@ -94,9 +94,9 @@ Name | Type | Description  | Notes
 
 ## Update
 
-> Update(id string, input UpdateMediaInfoRequest) (*ResponseSuccess, error)
+> Update(id string, updateMediaInfoRequest UpdateMediaInfoRequest) (*ResponseSuccess, error)
 
-> UpdateWithContext(ctx context.Context, id string, input UpdateMediaInfoRequest) (*ResponseSuccess, error)
+> UpdateWithContext(ctx context.Context, id string, updateMediaInfoRequest UpdateMediaInfoRequest) (*ResponseSuccess, error)
 
 
 update media info
@@ -111,7 +111,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -123,10 +123,10 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | media's id
-    input := *aiozstreamsdk.NewUpdateMediaInfoRequest() // UpdateMediaInfoRequest | input
+    updateMediaInfoRequest := *aiozstreamsdk.NewUpdateMediaInfoRequest() // UpdateMediaInfoRequest | input
 
     
-    res, err := client.Media.Update(id, input)
+    res, err := client.Media.Update(id, updateMediaInfoRequest)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Media.Update``: %v\n", err)
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**input** | [**UpdateMediaInfoRequest**](UpdateMediaInfoRequest.md) | input | 
+**updateMediaInfoRequest** | [**UpdateMediaInfoRequest**](UpdateMediaInfoRequest.md) | input | 
 
 ### Return type
 
@@ -185,7 +185,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -255,7 +255,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -331,7 +331,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -403,7 +403,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -417,6 +417,7 @@ func main() {
     id := "id_example" // string | Media ID
     lan := "lan_example" // string | Language
     file := os.NewFile(1234, "some_file") // *os.File | VTT File
+    description := "description_example" // string | 
 
     
     res, err := client.Media.CreateCaptionFile(id, lan, file)
@@ -452,6 +453,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **file** | ***os.File** | VTT File | 
+**description** | **string** |  | 
 
 ### Return type
 
@@ -483,7 +485,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -559,7 +561,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -636,7 +638,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -710,7 +712,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -721,7 +723,7 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "id_example" // string | mediav's id
+    id := "id_example" // string | media's id
 
     
     res, err := client.Media.GetDetail(id)
@@ -743,7 +745,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**id** | **string** | mediav&#39;s id | 
+**id** | **string** | media&#39;s id | 
 
 ### Other Parameters
 
@@ -763,12 +765,12 @@ Name | Type | Description  | Notes
 
 ## GetMediaList
 
-> GetMediaList(request GetMediaListRequest) (*GetMediaListResponse, error)
+> GetMediaList(getMediaListRequest GetMediaListRequest) (*GetMediaListResponse, error)
 
-> GetMediaListWithContext(ctx context.Context, request GetMediaListRequest) (*GetMediaListResponse, error)
+> GetMediaListWithContext(ctx context.Context, getMediaListRequest GetMediaListRequest) (*GetMediaListResponse, error)
 
 
-Get user videos list
+Get user media list
 
 
 
@@ -782,7 +784,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -793,10 +795,10 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewGetMediaListRequest() // GetMediaListRequest | video's info
+    getMediaListRequest := *aiozstreamsdk.NewGetMediaListRequest() // GetMediaListRequest | media's info
 
     
-    res, err := client.Media.GetMediaList(request)
+    res, err := client.Media.GetMediaList(getMediaListRequest)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Media.GetMediaList``: %v\n", err)
@@ -820,7 +822,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**GetMediaListRequest**](GetMediaListRequest.md) | video&#39;s info | 
+**getMediaListRequest** | [**GetMediaListRequest**](GetMediaListRequest.md) | media&#39;s info | 
 
 ### Return type
 
@@ -840,7 +842,7 @@ Name | Type | Description  | Notes
 
 
 
-Get media object
+Get media player info
 
 
 
@@ -854,7 +856,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -866,7 +868,7 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
     req := aiozstreamsdk.MediaApiGetMediaPlayerInfoRequest{}
     
-    req.Id("id_example") // string | media ID
+    req.Id("id_example") // string | Media ID
     req.Token("token_example") // string | Token
 
     res, err := client.Media.GetMediaPlayerInfo(id string, req)
@@ -889,7 +891,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**id** | **string** | media ID | 
+**id** | **string** | Media ID | 
 
 ### Other Parameters
 
@@ -910,12 +912,12 @@ Name | Type | Description  | Notes
 
 ## SetDefaultCaption
 
-> SetDefaultCaption(id string, lan string) (*ResponseSuccess, error)
+> SetDefaultCaption(id string, lan string, setDefaultCaptionRequest SetDefaultCaptionRequest) (*ResponseSuccess, error)
 
-> SetDefaultCaptionWithContext(ctx context.Context, id string, lan string) (*ResponseSuccess, error)
+> SetDefaultCaptionWithContext(ctx context.Context, id string, lan string, setDefaultCaptionRequest SetDefaultCaptionRequest) (*ResponseSuccess, error)
 
 
-Set default caption
+Set the default caption
 
 
 
@@ -929,7 +931,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -942,9 +944,10 @@ func main() {
         
     id := "id_example" // string | Media ID
     lan := "lan_example" // string | Language
+    setDefaultCaptionRequest := *aiozstreamsdk.NewSetDefaultCaptionRequest() // SetDefaultCaptionRequest | Whether this caption is the default
 
     
-    res, err := client.Media.SetDefaultCaption(id, lan)
+    res, err := client.Media.SetDefaultCaption(id, lan, setDefaultCaptionRequest)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Media.SetDefaultCaption``: %v\n", err)
@@ -972,6 +975,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+**setDefaultCaptionRequest** | [**SetDefaultCaptionRequest**](SetDefaultCaptionRequest.md) | Whether this caption is the default | 
 
 ### Return type
 
@@ -1003,7 +1007,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -1075,7 +1079,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -1086,7 +1090,7 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "id_example" // string | video's id
+    id := "id_example" // string | media's id
     file := os.NewFile(1234, "some_file") // *os.File | File media to be uploaded
     hash := "hash_example" // string | Md5 hash of part
     index := "index_example" // string | Index of the part
@@ -1117,7 +1121,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**id** | **string** | video&#39;s id | 
+**id** | **string** | media&#39;s id | 
 
 ### Other Parameters
 

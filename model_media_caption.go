@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -11,14 +11,11 @@
 
 package aiozstreamsdk
 
-import (
-//"encoding/json"
-)
-
 // MediaCaption struct for MediaCaption
 type MediaCaption struct {
 	Description *string `json:"description,omitempty"`
 	IsDefault   *bool   `json:"is_default,omitempty"`
+	IsGenerated *bool   `json:"is_generated,omitempty"`
 	Language    *string `json:"language,omitempty"`
 	Status      *string `json:"status,omitempty"`
 	Url         *string `json:"url,omitempty"`
@@ -103,6 +100,38 @@ func (o *MediaCaption) HasIsDefault() bool {
 // SetIsDefault gets a reference to the given bool and assigns it to the IsDefault field.
 func (o *MediaCaption) SetIsDefault(v bool) {
 	o.IsDefault = &v
+}
+
+// GetIsGenerated returns the IsGenerated field value if set, zero value otherwise.
+func (o *MediaCaption) GetIsGenerated() bool {
+	if o == nil || o.IsGenerated == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsGenerated
+}
+
+// GetIsGeneratedOk returns a tuple with the IsGenerated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MediaCaption) GetIsGeneratedOk() (*bool, bool) {
+	if o == nil || o.IsGenerated == nil {
+		return nil, false
+	}
+	return o.IsGenerated, true
+}
+
+// HasIsGenerated returns a boolean if a field has been set.
+func (o *MediaCaption) HasIsGenerated() bool {
+	if o != nil && o.IsGenerated != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsGenerated gets a reference to the given bool and assigns it to the IsGenerated field.
+func (o *MediaCaption) SetIsGenerated(v bool) {
+	o.IsGenerated = &v
 }
 
 // GetLanguage returns the Language field value if set, zero value otherwise.

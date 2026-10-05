@@ -18,6 +18,10 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
 
+      # Optional env for the tests (add to .env the same way if needed):
+      #   TEST_BASE_URL  - API base URL to test against instead of the production default, e.g. http://localhost:3017/api/
+      #   TEST_MEDIA_IDS - comma-separated IDs of fully processed video media; otherwise the tests list the account's ready media
+      #   TEST_WEBHOOK_URL - public endpoint answering 2xx that the webhook tests register; Webhook.Check's valid case is skipped without it
       - name: Create env file
         run: |
           touch .env

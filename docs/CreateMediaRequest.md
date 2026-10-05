@@ -4,15 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CropInfo** | Pointer to [**VideoCropInfo**](VideoCropInfo.md) |  | [optional] 
 **Description** | Pointer to **string** | Description of the media | [optional] 
 **IsPublic** | Pointer to **bool** | // Is panoramic media IsPanoramic *bool &#x60;json:\&quot;is_panoramic\&quot; form:\&quot;is_panoramic\&quot;&#x60; Is public media | [optional] 
 **Metadata** | Pointer to [**[]Metadata**](Metadata.md) | Metadata of the media (key-value pair, max: 50 items, key max length: 255, value max length: 255) | [optional] 
 **Qualities** | Pointer to [**[]QualityConfig**](QualityConfig.md) | Qualities of the media (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p) | [optional] 
 **SegmentDuration** | Pointer to **int32** | SegmentConfig | [optional] 
+**SourceUrl** | Pointer to **string** | Import an existing HLS manifest instead of uploading a file. When set, the renditions are mirrored from that manifest and the part-upload flow is skipped, so &#x60;qualities&#x60; and &#x60;watermark&#x60; must be omitted. | [optional] 
 **Tags** | Pointer to **[]string** | Tags of the media (max: 50 items, max length: 255) | [optional] 
 **Title** | Pointer to **string** | Title of the media | [optional] 
 **Type** | Pointer to **string** | Type of the media (default: video, allowed: video, audio) | [optional] 
-**Watermark** | Pointer to [**VideoWatermark**](VideoWatermark.md) | Media thumbnailConfig | [optional] 
+**Watermark** | Pointer to [**MediaWatermark**](MediaWatermark.md) |  | [optional] 
 
 ## Methods
 
@@ -32,6 +34,31 @@ will change when the set of required properties is changed
 NewCreateMediaRequestWithDefaults instantiates a new CreateMediaRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCropInfo
+
+`func (o *CreateMediaRequest) GetCropInfo() VideoCropInfo`
+
+GetCropInfo returns the CropInfo field if non-nil, zero value otherwise.
+
+### GetCropInfoOk
+
+`func (o *CreateMediaRequest) GetCropInfoOk() (*VideoCropInfo, bool)`
+
+GetCropInfoOk returns a tuple with the CropInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCropInfo
+
+`func (o *CreateMediaRequest) SetCropInfo(v VideoCropInfo)`
+
+SetCropInfo sets CropInfo field to given value.
+
+### HasCropInfo
+
+`func (o *CreateMediaRequest) HasCropInfo() bool`
+
+HasCropInfo returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -158,6 +185,31 @@ SetSegmentDuration sets SegmentDuration field to given value.
 
 HasSegmentDuration returns a boolean if a field has been set.
 
+### GetSourceUrl
+
+`func (o *CreateMediaRequest) GetSourceUrl() string`
+
+GetSourceUrl returns the SourceUrl field if non-nil, zero value otherwise.
+
+### GetSourceUrlOk
+
+`func (o *CreateMediaRequest) GetSourceUrlOk() (*string, bool)`
+
+GetSourceUrlOk returns a tuple with the SourceUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSourceUrl
+
+`func (o *CreateMediaRequest) SetSourceUrl(v string)`
+
+SetSourceUrl sets SourceUrl field to given value.
+
+### HasSourceUrl
+
+`func (o *CreateMediaRequest) HasSourceUrl() bool`
+
+HasSourceUrl returns a boolean if a field has been set.
+
 ### GetTags
 
 `func (o *CreateMediaRequest) GetTags() []string`
@@ -235,20 +287,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetWatermark
 
-`func (o *CreateMediaRequest) GetWatermark() VideoWatermark`
+`func (o *CreateMediaRequest) GetWatermark() MediaWatermark`
 
 GetWatermark returns the Watermark field if non-nil, zero value otherwise.
 
 ### GetWatermarkOk
 
-`func (o *CreateMediaRequest) GetWatermarkOk() (*VideoWatermark, bool)`
+`func (o *CreateMediaRequest) GetWatermarkOk() (*MediaWatermark, bool)`
 
 GetWatermarkOk returns a tuple with the Watermark field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWatermark
 
-`func (o *CreateMediaRequest) SetWatermark(v VideoWatermark)`
+`func (o *CreateMediaRequest) SetWatermark(v MediaWatermark)`
 
 SetWatermark sets Watermark field to given value.
 

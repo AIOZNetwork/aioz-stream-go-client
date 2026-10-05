@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -74,8 +74,8 @@ type MediaChapterServiceI interface {
 	GetWithContext(ctx context.Context, id string, r MediaChapterApiGetRequest) (*GetMediaChaptersResponse, error)
 
 	/*
-	 * Delete Delete a video chapter
-	 * @param id Video ID
+	 * Delete Delete a media chapter
+	 * @param id Media ID
 	 * @param lan Language
 	 * @return MediaChapterApiDeleteRequest
 	 */
@@ -83,9 +83,9 @@ type MediaChapterServiceI interface {
 	Delete(id string, lan string) (*ResponseSuccess, error)
 
 	/*
-	 * Delete Delete a video chapter
+	 * Delete Delete a media chapter
 	 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param id Video ID
+	 * @param id Media ID
 	 * @param lan Language
 	 * @return MediaChapterApiDeleteRequest
 	 */
@@ -122,7 +122,14 @@ func (s *MediaChapterService) CreateFile(id string, lan string, file *os.File) (
  */
 
 func (s *MediaChapterService) CreateFileWithContext(ctx context.Context, id string, lan string, file *os.File) (*CreateMediaChapterResponse, error) {
-	return s.CreateWithContext(ctx, id, lan, file.Name(), io.Reader(file))
+	// A nil file sends no file part, for an endpoint whose file is optional.
+	var fileName string
+	var fileReader io.Reader
+	if file != nil {
+		fileName, fileReader = file.Name(), file
+	}
+
+	return s.CreateWithContext(ctx, id, lan, fileName, fileReader)
 }
 
 /*
@@ -155,7 +162,6 @@ func (s *MediaChapterService) CreateWithContext(ctx context.Context, id string, 
 	localVarFormParams := make(map[string]string)
 
 	req, err := s.client.prepareUploadRequest(ctx, http.MethodPost, localVarPath, fileName, fileReader, localVarHeaderParams, localVarQueryParams, localVarFormParams)
-
 	if err != nil {
 		return nil, err
 	}
@@ -226,10 +232,10 @@ func (s *MediaChapterService) GetWithContext(ctx context.Context, id string, r M
 }
 
 /*
- * Delete Delete a video chapter
- * Delete a chapter in a specific language by providing the video ID for the video you want to delete the chapter from and the language the chapter is in.
+ * Delete Delete a media chapter
+ * Delete a chapter in a specific language by providing the media ID for the media you want to delete the chapter from and the language the chapter is in.
 
- * @param id Video ID
+ * @param id Media ID
  * @param lan Language
  * @return MediaChapterApiDeleteRequest
  */
@@ -241,10 +247,10 @@ func (s *MediaChapterService) Delete(id string, lan string) (*ResponseSuccess, e
 }
 
 /*
- * Delete Delete a video chapter
- * Delete a chapter in a specific language by providing the video ID for the video you want to delete the chapter from and the language the chapter is in.
+ * Delete Delete a media chapter
+ * Delete a chapter in a specific language by providing the media ID for the media you want to delete the chapter from and the language the chapter is in.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id Video ID
+ * @param id Media ID
  * @param lan Language
  * @return MediaChapterApiDeleteRequest
  */

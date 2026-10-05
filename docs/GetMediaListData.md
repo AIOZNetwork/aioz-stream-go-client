@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Media** | Pointer to [**[]Media**](Media.md) |  | [optional] 
+**Media** | Pointer to [**[]MediaObject**](MediaObject.md) |  | [optional] 
 **Total** | Pointer to **int32** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMedia
 
-`func (o *GetMediaListData) GetMedia() []Media`
+`func (o *GetMediaListData) GetMedia() []MediaObject`
 
 GetMedia returns the Media field if non-nil, zero value otherwise.
 
 ### GetMediaOk
 
-`func (o *GetMediaListData) GetMediaOk() (*[]Media, bool)`
+`func (o *GetMediaListData) GetMediaOk() (*[]MediaObject, bool)`
 
 GetMediaOk returns a tuple with the Media field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMedia
 
-`func (o *GetMediaListData) SetMedia(v []Media)`
+`func (o *GetMediaListData) SetMedia(v []MediaObject)`
 
 SetMedia sets Media field to given value.
 

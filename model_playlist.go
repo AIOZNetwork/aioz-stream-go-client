@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -11,27 +11,23 @@
 
 package aiozstreamsdk
 
-import (
-//"encoding/json"
-)
-
 // Playlist struct for Playlist
 type Playlist struct {
-	CreatedAt    *string            `json:"created_at,omitempty"`
-	Duration     *float32           `json:"duration,omitempty"`
-	Id           *string            `json:"id,omitempty"`
-	Iframe       *string            `json:"iframe,omitempty"`
-	ItemCount    *int32             `json:"item_count,omitempty"`
-	Items        *[]PlaylistItem    `json:"items,omitempty"`
-	Metadata     *map[string]string `json:"metadata,omitempty"`
-	Name         *string            `json:"name,omitempty"`
-	PlaylistType *string            `json:"playlist_type,omitempty"`
-	PlaylistUrl  *string            `json:"playlist_url,omitempty"`
-	Size         *int32             `json:"size,omitempty"`
-	Tags         *string            `json:"tags,omitempty"`
-	ThumbnailUrl *string            `json:"thumbnail_url,omitempty"`
-	UpdatedAt    *string            `json:"updated_at,omitempty"`
-	UserId       *string            `json:"user_id,omitempty"`
+	CreatedAt    *string                 `json:"created_at,omitempty"`
+	Duration     *float32                `json:"duration,omitempty"`
+	Id           *string                 `json:"id,omitempty"`
+	Iframe       *string                 `json:"iframe,omitempty"`
+	ItemCount    *int32                  `json:"item_count,omitempty"`
+	Items        *[]PlaylistItem         `json:"items,omitempty"`
+	Metadata     *map[string]interface{} `json:"metadata,omitempty"`
+	Name         *string                 `json:"name,omitempty"`
+	PlaylistType *string                 `json:"playlist_type,omitempty"`
+	PlaylistUrl  *string                 `json:"playlist_url,omitempty"`
+	Size         *int32                  `json:"size,omitempty"`
+	Tags         *string                 `json:"tags,omitempty"`
+	ThumbnailUrl *string                 `json:"thumbnail_url,omitempty"`
+	UpdatedAt    *string                 `json:"updated_at,omitempty"`
+	UserId       *string                 `json:"user_id,omitempty"`
 }
 
 // NewPlaylist instantiates a new Playlist object
@@ -244,9 +240,9 @@ func (o *Playlist) SetItems(v []PlaylistItem) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *Playlist) GetMetadata() map[string]string {
+func (o *Playlist) GetMetadata() map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret map[string]string
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -254,7 +250,7 @@ func (o *Playlist) GetMetadata() map[string]string {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Playlist) GetMetadataOk() (*map[string]string, bool) {
+func (o *Playlist) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -270,8 +266,8 @@ func (o *Playlist) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
-func (o *Playlist) SetMetadata(v map[string]string) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *Playlist) SetMetadata(v map[string]interface{}) {
 	o.Metadata = &v
 }
 

@@ -8,13 +8,13 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 var (
 	testPlayerIDForUpdateAndDeleteAndGet string
 	playerName                           = "Test Player Theme"
 	logoURL                              = "https://example.com/logo.png"
-	testVideoForPlayer                   = "f45f9867-89c7-41fb-be3a-8079d32a607a"
 	deletePlayerThemesLater              []string
 )
 
@@ -37,12 +37,12 @@ func openInvalidFile(t *testing.T) *os.File {
 func TestPlayersService_Create(t *testing.T) {
 	tests := []struct {
 		name    string
-		request CreatePlayerThemeRequest
+		request PlayerThemeInput
 		wantErr bool
 	}{
 		{
 			name: "Valid Create with All Fields",
-			request: CreatePlayerThemeRequest{
+			request: PlayerThemeInput{
 				Name:      stringPtr(playerName),
 				IsDefault: boolPtr(true),
 				Controls: &Controls{
@@ -69,7 +69,7 @@ func TestPlayersService_Create(t *testing.T) {
 		},
 		{
 			name: "Valid Create with Some Required Fields Only",
-			request: CreatePlayerThemeRequest{
+			request: PlayerThemeInput{
 				Name:      stringPtr(playerName),
 				IsDefault: boolPtr(true),
 				Theme: &Theme{
@@ -81,7 +81,7 @@ func TestPlayersService_Create(t *testing.T) {
 		},
 		{
 			name: "Invalid Color Code",
-			request: CreatePlayerThemeRequest{
+			request: PlayerThemeInput{
 				Name: stringPtr(playerName),
 				Theme: &Theme{
 					TextColor: stringPtr("invalid-color"),
@@ -91,7 +91,7 @@ func TestPlayersService_Create(t *testing.T) {
 		},
 		{
 			name: "Empty Name",
-			request: CreatePlayerThemeRequest{
+			request: PlayerThemeInput{
 				Theme: &Theme{
 					TextColor: stringPtr("#ffffff"),
 				},
@@ -100,7 +100,7 @@ func TestPlayersService_Create(t *testing.T) {
 		},
 		{
 			name: "Invalid Size Format",
-			request: CreatePlayerThemeRequest{
+			request: PlayerThemeInput{
 				Name: stringPtr(playerName),
 				Theme: &Theme{
 					ControlBarHeight: stringPtr("invalid-size"),
@@ -117,17 +117,28 @@ func TestPlayersService_Create(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
 			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-				assert.NotEmpty(t, resp.Data.PlayerTheme.Id)
+				require.NoError(t, err)
+				require.NotNil(t, resp)
+				require.NotNil(t, resp.Data)
+				require.NotNil(t, resp.Data.PlayerTheme)
+				require.NotNil(t, resp.Data.PlayerTheme.Id)
+				assert.NotEmpty(t, *resp.Data.PlayerTheme.Id)
 				testPlayerIDForUpdateAndDeleteAndGet = *resp.Data.PlayerTheme.Id
-				deletePlayerThemesLater = append(deletePlayerThemesLater, *resp.Data.PlayerTheme.Id)
+				deletePlayerThemesLater = append(
+					deletePlayerThemesLater,
+					*resp.Data.PlayerTheme.Id,
+				)
 			}
 		})
 	}
 }
 
 func TestPlayersService_UploadLogo(t *testing.T) {
+	requireSetupID(
+		t,
+		"testPlayerIDForUpdateAndDeleteAndGet",
+		testPlayerIDForUpdateAndDeleteAndGet,
+	)
 	logoFile, err := openTestImageFile(t)
 	if err != nil {
 		t.Fatal(err)
@@ -179,7 +190,12 @@ func TestPlayersService_UploadLogo(t *testing.T) {
 			if tt.file != nil {
 				reader = tt.file
 			}
-			resp, err := testClient.Players.UploadLogo(tt.playerID, tt.link, "logo.png", reader)
+			resp, err := testClient.Players.UploadLogo(
+				tt.playerID,
+				stringPtr(tt.link),
+				"logo.png",
+				reader,
+			)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -191,16 +207,22 @@ func TestPlayersService_UploadLogo(t *testing.T) {
 	}
 }
 
-func TestPlayersService_AddPlayer(t *testing.T) {
+func TestPlayersService_Attach(t *testing.T) {
+	requireSetupID(
+		t,
+		"testPlayerIDForUpdateAndDeleteAndGet",
+		testPlayerIDForUpdateAndDeleteAndGet,
+	)
+	testVideoForPlayer := readyMediaIDs(t, 1)[0]
 	notExistId := uuid.New().String()
 	tests := []struct {
 		name    string
-		request AddPlayerThemesToVideoRequest
+		request AttachThemeRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Add",
-			request: AddPlayerThemesToVideoRequest{
+			request: AttachThemeRequest{
 				PlayerThemeId: stringPtr(testPlayerIDForUpdateAndDeleteAndGet),
 				MediaId:       stringPtr(testVideoForPlayer),
 			},
@@ -208,7 +230,7 @@ func TestPlayersService_AddPlayer(t *testing.T) {
 		},
 		{
 			name: "Invalid Player ID",
-			request: AddPlayerThemesToVideoRequest{
+			request: AttachThemeRequest{
 				PlayerThemeId: stringPtr("invalid-id"),
 				MediaId:       stringPtr(testVideoForPlayer),
 			},
@@ -216,14 +238,14 @@ func TestPlayersService_AddPlayer(t *testing.T) {
 		},
 		{
 			name: "Empty Video ID",
-			request: AddPlayerThemesToVideoRequest{
+			request: AttachThemeRequest{
 				PlayerThemeId: stringPtr(testPlayerIDForUpdateAndDeleteAndGet),
 			},
 			wantErr: true,
 		},
 		{
 			name: "Not Exist ID",
-			request: AddPlayerThemesToVideoRequest{
+			request: AttachThemeRequest{
 				PlayerThemeId: stringPtr(notExistId),
 				MediaId:       stringPtr(testVideoForPlayer),
 			},
@@ -231,10 +253,13 @@ func TestPlayersService_AddPlayer(t *testing.T) {
 		},
 	}
 
-	fmt.Println("testPlayerIDForUpdateAndDeleteAndGet:", testPlayerIDForUpdateAndDeleteAndGet)
+	fmt.Println(
+		"testPlayerIDForUpdateAndDeleteAndGet:",
+		testPlayerIDForUpdateAndDeleteAndGet,
+	)
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Players.AddPlayer(tt.request)
+			resp, err := testClient.Players.Attach(tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -247,6 +272,11 @@ func TestPlayersService_AddPlayer(t *testing.T) {
 }
 
 func TestPlayersService_Get(t *testing.T) {
+	requireSetupID(
+		t,
+		"testPlayerIDForUpdateAndDeleteAndGet",
+		testPlayerIDForUpdateAndDeleteAndGet,
+	)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
@@ -302,8 +332,10 @@ func TestPlayersService_Get(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
 			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
+				require.NoError(t, err)
+				require.NotNil(t, resp)
+				require.NotNil(t, resp.Data)
+				require.NotNil(t, resp.Data.PlayerTheme)
 				assert.NotEmpty(t, resp.Data.PlayerTheme.Id)
 			}
 		})
@@ -311,17 +343,22 @@ func TestPlayersService_Get(t *testing.T) {
 }
 
 func TestPlayersService_Update(t *testing.T) {
+	requireSetupID(
+		t,
+		"testPlayerIDForUpdateAndDeleteAndGet",
+		testPlayerIDForUpdateAndDeleteAndGet,
+	)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
 		id      string
-		request UpdatePlayerThemeRequest
+		request PlayerThemeInput
 		wantErr bool
 	}{
 		{
 			name: "Update other",
 			id:   testPlayerIDForUpdateAndDeleteAndGet,
-			request: UpdatePlayerThemeRequest{
+			request: PlayerThemeInput{
 				Name: stringPtr("Updated Player Theme"),
 			},
 			wantErr: true,
@@ -344,13 +381,13 @@ func TestPlayersService_Update(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		request UpdatePlayerThemeRequest
+		request PlayerThemeInput
 		wantErr bool
 	}{
 		{
 			name: "Valid Update",
 			id:   testPlayerIDForUpdateAndDeleteAndGet,
-			request: UpdatePlayerThemeRequest{
+			request: PlayerThemeInput{
 				Name: stringPtr("Updated Player Theme"),
 				Theme: &Theme{
 					TextColor: stringPtr("#000000"),
@@ -361,7 +398,7 @@ func TestPlayersService_Update(t *testing.T) {
 		{
 			name: "Invalid Color Code",
 			id:   testPlayerIDForUpdateAndDeleteAndGet,
-			request: UpdatePlayerThemeRequest{
+			request: PlayerThemeInput{
 				Theme: &Theme{
 					TextColor: stringPtr("invalid-color"),
 				},
@@ -371,7 +408,7 @@ func TestPlayersService_Update(t *testing.T) {
 		{
 			name: "Invalid ID",
 			id:   "invalid-id",
-			request: UpdatePlayerThemeRequest{
+			request: PlayerThemeInput{
 				Name: stringPtr("Updated Player Theme"),
 			},
 			wantErr: true,
@@ -379,7 +416,7 @@ func TestPlayersService_Update(t *testing.T) {
 		{
 			name: "Not Exist ID",
 			id:   notExistId,
-			request: UpdatePlayerThemeRequest{
+			request: PlayerThemeInput{
 				Name: stringPtr("Updated Player Theme"),
 			},
 			wantErr: true,
@@ -428,10 +465,10 @@ func TestPlayersService_List(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name: "Invalid Limit",
+			name: "Limit_Over_Max_Is_Clamped",
 			request: PlayersApiListRequest{}.
 				Limit(1001),
-			wantErr: true,
+			wantErr: false,
 		},
 	}
 
@@ -442,15 +479,23 @@ func TestPlayersService_List(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
 			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-				assert.NotNil(t, resp.Data)
+				require.NoError(t, err)
+				require.NotNil(t, resp)
+				require.NotNil(t, resp.Data)
+				if resp.Data.PlayerThemes != nil {
+					assert.LessOrEqual(t, len(*resp.Data.PlayerThemes), 100)
+				}
 			}
 		})
 	}
 }
 
 func TestPlayersService_DeleteLogo(t *testing.T) {
+	requireSetupID(
+		t,
+		"testPlayerIDForUpdateAndDeleteAndGet",
+		testPlayerIDForUpdateAndDeleteAndGet,
+	)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
@@ -518,16 +563,22 @@ func TestPlayersService_DeleteLogo(t *testing.T) {
 	}
 }
 
-func TestPlayersService_RemovePlayer(t *testing.T) {
+func TestPlayersService_Detach(t *testing.T) {
+	requireSetupID(
+		t,
+		"testPlayerIDForUpdateAndDeleteAndGet",
+		testPlayerIDForUpdateAndDeleteAndGet,
+	)
+	testVideoForPlayer := readyMediaIDs(t, 1)[0]
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
-		request RemovePlayerThemesFromMediaRequest
+		request AttachThemeRequest
 		wantErr bool
 	}{
 		{
 			name: "Remove other",
-			request: RemovePlayerThemesFromMediaRequest{
+			request: AttachThemeRequest{
 				PlayerThemeId: stringPtr(testPlayerIDForUpdateAndDeleteAndGet),
 				MediaId:       stringPtr(testVideoForPlayer),
 			},
@@ -537,7 +588,7 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 
 	for _, tt := range anonymousTest {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testAnonymousClient.Players.RemovePlayer(tt.request)
+			resp, err := testAnonymousClient.Players.Detach(tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -550,12 +601,12 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 
 	tests := []struct {
 		name    string
-		request RemovePlayerThemesFromMediaRequest
+		request AttachThemeRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Remove",
-			request: RemovePlayerThemesFromMediaRequest{
+			request: AttachThemeRequest{
 				PlayerThemeId: stringPtr(testPlayerIDForUpdateAndDeleteAndGet),
 				MediaId:       stringPtr(testVideoForPlayer),
 			},
@@ -563,7 +614,7 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 		},
 		{
 			name: "Invalid Player ID",
-			request: RemovePlayerThemesFromMediaRequest{
+			request: AttachThemeRequest{
 				PlayerThemeId: stringPtr("invalid-id"),
 				MediaId:       stringPtr(testVideoForPlayer),
 			},
@@ -571,14 +622,14 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 		},
 		{
 			name: "Empty Video ID",
-			request: RemovePlayerThemesFromMediaRequest{
+			request: AttachThemeRequest{
 				PlayerThemeId: stringPtr(testPlayerIDForUpdateAndDeleteAndGet),
 			},
 			wantErr: true,
 		},
 		{
 			name: "Not Exist ID",
-			request: RemovePlayerThemesFromMediaRequest{
+			request: AttachThemeRequest{
 				PlayerThemeId: stringPtr(notExistId),
 				MediaId:       stringPtr(testVideoForPlayer),
 			},
@@ -588,7 +639,7 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			resp, err := testClient.Players.RemovePlayer(tt.request)
+			resp, err := testClient.Players.Detach(tt.request)
 			if tt.wantErr {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
@@ -599,7 +650,13 @@ func TestPlayersService_RemovePlayer(t *testing.T) {
 		})
 	}
 }
+
 func TestPlayersService_Delete(t *testing.T) {
+	requireSetupID(
+		t,
+		"testPlayerIDForUpdateAndDeleteAndGet",
+		testPlayerIDForUpdateAndDeleteAndGet,
+	)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string

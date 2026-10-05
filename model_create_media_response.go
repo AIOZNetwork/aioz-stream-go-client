@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -11,14 +11,10 @@
 
 package aiozstreamsdk
 
-import (
-//"encoding/json"
-)
-
 // CreateMediaResponse struct for CreateMediaResponse
 type CreateMediaResponse struct {
-	Data   *Media  `json:"data,omitempty"`
-	Status *string `json:"status,omitempty"`
+	Data   *MediaObject `json:"data,omitempty"`
+	Status *string      `json:"status,omitempty"`
 }
 
 // NewCreateMediaResponse instantiates a new CreateMediaResponse object
@@ -39,9 +35,9 @@ func NewCreateMediaResponseWithDefaults() *CreateMediaResponse {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *CreateMediaResponse) GetData() Media {
+func (o *CreateMediaResponse) GetData() MediaObject {
 	if o == nil || o.Data == nil {
-		var ret Media
+		var ret MediaObject
 		return ret
 	}
 	return *o.Data
@@ -49,7 +45,7 @@ func (o *CreateMediaResponse) GetData() Media {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateMediaResponse) GetDataOk() (*Media, bool) {
+func (o *CreateMediaResponse) GetDataOk() (*MediaObject, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -65,8 +61,8 @@ func (o *CreateMediaResponse) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given Media and assigns it to the Data field.
-func (o *CreateMediaResponse) SetData(v Media) {
+// SetData gets a reference to the given MediaObject and assigns it to the Data field.
+func (o *CreateMediaResponse) SetData(v MediaObject) {
 	o.Data = &v
 }
 

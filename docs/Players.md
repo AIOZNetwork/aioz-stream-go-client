@@ -5,22 +5,22 @@ All URIs are relative to https://api.aiozstream.network/api
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Create**](Players.md#Create) | **Post** /players | Create a player theme
-[**Get**](Players.md#Get) | **Get** /players/{id} | Get a player theme by ID
-[**Update**](Players.md#Update) | **Patch** /players/{id} | Update a player theme by ID
-[**Delete**](Players.md#Delete) | **Delete** /players/{id} | Delete a player theme by ID
-[**List**](Players.md#List) | **Get** /players | List all player themes
-[**UploadLogo**](Players.md#UploadLogo) | **Post** /players/{id}/logo | Upload a logo for a player theme by ID
-[**DeleteLogo**](Players.md#DeleteLogo) | **Delete** /players/{id}/logo | Delete a logo for a player theme by ID
-[**AddPlayer**](Players.md#AddPlayer) | **Post** /players/add-player | Add a player theme to a video
-[**RemovePlayer**](Players.md#RemovePlayer) | **Post** /players/remove-player | Remove a player theme from a video
+[**Get**](Players.md#Get) | **Get** /players/{id} | Get a player theme
+[**Update**](Players.md#Update) | **Patch** /players/{id} | Update a player theme
+[**Delete**](Players.md#Delete) | **Delete** /players/{id} | Delete a player theme
+[**List**](Players.md#List) | **Get** /players | List player themes
+[**UploadLogo**](Players.md#UploadLogo) | **Post** /players/{id}/logo | Upload a player theme logo
+[**DeleteLogo**](Players.md#DeleteLogo) | **Delete** /players/{id}/logo | Delete a player theme logo
+[**Attach**](Players.md#Attach) | **Post** /players/add-player | Add a player theme to a media
+[**Detach**](Players.md#Detach) | **Post** /players/remove-player | Remove a player theme from a media
 
 
 
 ## Create
 
-> Create(request CreatePlayerThemeRequest) (*CreatePlayerThemesResponse, error)
+> Create(playerThemeInput PlayerThemeInput) (*ThemeResponse, error)
 
-> CreateWithContext(ctx context.Context, request CreatePlayerThemeRequest) (*CreatePlayerThemesResponse, error)
+> CreateWithContext(ctx context.Context, playerThemeInput PlayerThemeInput) (*ThemeResponse, error)
 
 
 Create a player theme
@@ -37,7 +37,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -48,15 +48,15 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewCreatePlayerThemeRequest() // CreatePlayerThemeRequest | Player theme input
+    playerThemeInput := *aiozstreamsdk.NewPlayerThemeInput() // PlayerThemeInput | Player theme
 
     
-    res, err := client.Players.Create(request)
+    res, err := client.Players.Create(playerThemeInput)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Players.Create``: %v\n", err)
     }
-    // response from `Create`: CreatePlayerThemesResponse
+    // response from `Create`: ThemeResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
@@ -75,11 +75,11 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**CreatePlayerThemeRequest**](CreatePlayerThemeRequest.md) | Player theme input | 
+**playerThemeInput** | [**PlayerThemeInput**](PlayerThemeInput.md) | Player theme | 
 
 ### Return type
 
-[**CreatePlayerThemesResponse**](CreatePlayerThemesResponse.md)
+[**ThemeResponse**](ThemeResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -88,12 +88,12 @@ Name | Type | Description  | Notes
 
 ## Get
 
-> Get(id string) (*GetPlayerThemeByIdResponse, error)
+> Get(id string) (*ThemeResponse, error)
 
-> GetWithContext(ctx context.Context, id string) (*GetPlayerThemeByIdResponse, error)
+> GetWithContext(ctx context.Context, id string) (*ThemeResponse, error)
 
 
-Get a player theme by ID
+Get a player theme
 
 
 
@@ -107,7 +107,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -126,7 +126,7 @@ func main() {
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Players.Get``: %v\n", err)
     }
-    // response from `Get`: GetPlayerThemeByIdResponse
+    // response from `Get`: ThemeResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetPlayerThemeByIdResponse**](GetPlayerThemeByIdResponse.md)
+[**ThemeResponse**](ThemeResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -160,12 +160,12 @@ Name | Type | Description  | Notes
 
 ## Update
 
-> Update(id string, input UpdatePlayerThemeRequest) (*UpdatePlayerThemeResponse, error)
+> Update(id string, playerThemeInput PlayerThemeInput) (*ThemeResponse, error)
 
-> UpdateWithContext(ctx context.Context, id string, input UpdatePlayerThemeRequest) (*UpdatePlayerThemeResponse, error)
+> UpdateWithContext(ctx context.Context, id string, playerThemeInput PlayerThemeInput) (*ThemeResponse, error)
 
 
-Update a player theme by ID
+Update a player theme
 
 
 
@@ -179,7 +179,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -191,15 +191,15 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Player theme ID
-    input := *aiozstreamsdk.NewUpdatePlayerThemeRequest() // UpdatePlayerThemeRequest | Player theme input
+    playerThemeInput := *aiozstreamsdk.NewPlayerThemeInput() // PlayerThemeInput | Fields to change
 
     
-    res, err := client.Players.Update(id, input)
+    res, err := client.Players.Update(id, playerThemeInput)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Players.Update``: %v\n", err)
     }
-    // response from `Update`: UpdatePlayerThemeResponse
+    // response from `Update`: ThemeResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
@@ -221,11 +221,11 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**input** | [**UpdatePlayerThemeRequest**](UpdatePlayerThemeRequest.md) | Player theme input | 
+**playerThemeInput** | [**PlayerThemeInput**](PlayerThemeInput.md) | Fields to change | 
 
 ### Return type
 
-[**UpdatePlayerThemeResponse**](UpdatePlayerThemeResponse.md)
+[**ThemeResponse**](ThemeResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 > DeleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 
-Delete a player theme by ID
+Delete a player theme
 
 
 
@@ -253,7 +253,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -306,14 +306,14 @@ Name | Type | Description  | Notes
 
 ## List
 
-> List(r PlayersApiListRequest) (*GetPlayerThemeResponse, error)
+> List(r PlayersApiListRequest) (*ListThemesResponse, error)
 
 
-> ListWithContext(ctx context.Context, r PlayersApiListRequest) (*GetPlayerThemeResponse, error)
+> ListWithContext(ctx context.Context, r PlayersApiListRequest) (*ListThemesResponse, error)
 
 
 
-List all player themes
+List player themes
 
 
 
@@ -327,7 +327,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -339,11 +339,11 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
     req := aiozstreamsdk.PlayersApiListRequest{}
     
-    req.Search("search_example") // string | only support search by name
-    req.SortBy("sortBy_example") // string | sort by (default to "created_at")
-    req.OrderBy("orderBy_example") // string | allowed: asc, desc. Default: asc (default to "asc")
-    req.Offset(int32(56)) // int32 | offset, allowed values greater than or equal to 0. Default(0) (default to 0)
-    req.Limit(int32(56)) // int32 | results per page. Allowed values 1-100, default is 25 (default to 25)
+    req.Limit(int32(56)) // int32 |  (default to 25)
+    req.Offset(int32(56)) // int32 | 
+    req.OrderBy("orderBy_example") // string | 
+    req.Search("search_example") // string | 
+    req.SortBy("sortBy_example") // string | 
 
     res, err := client.Players.List(req)
     
@@ -351,7 +351,7 @@ func main() {
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Players.List``: %v\n", err)
     }
-    // response from `List`: GetPlayerThemeResponse
+    // response from `List`: ListThemesResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
@@ -370,15 +370,15 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**search** | **string** | only support search by name | 
-**sortBy** | **string** | sort by | [default to &quot;created_at&quot;]
-**orderBy** | **string** | allowed: asc, desc. Default: asc | [default to &quot;asc&quot;]
-**offset** | **int32** | offset, allowed values greater than or equal to 0. Default(0) | [default to 0]
-**limit** | **int32** | results per page. Allowed values 1-100, default is 25 | [default to 25]
+**limit** | **int32** |  | [default to 25]
+**offset** | **int32** |  | 
+**orderBy** | **string** |  | 
+**search** | **string** |  | 
+**sortBy** | **string** |  | 
 
 ### Return type
 
-[**GetPlayerThemeResponse**](GetPlayerThemeResponse.md)
+[**ListThemesResponse**](ListThemesResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -387,12 +387,12 @@ Name | Type | Description  | Notes
 
 ## UploadLogo
 
-> UploadLogoFile(id string, file *os.File, link string) (*UploadLogoByIdResponse, error)
-> UploadLogo(id string, link string, fileName string, fileReader io.Reader)
-> UploadLogoFileWithContext(ctx context.Context, id string, file *os.File, link string) (*UploadLogoByIdResponse, error)
-> UploadLogoWithContext(ctx context.Context, id string, link string, fileName string, fileReader io.Reader)
+> UploadLogoFile(id string, file *os.File) (*ThemeResponse, error)
+> UploadLogo(id string, fileName string, fileReader io.Reader)
+> UploadLogoFileWithContext(ctx context.Context, id string, file *os.File) (*ThemeResponse, error)
+> UploadLogoWithContext(ctx context.Context, id string, fileName string, fileReader io.Reader)
 
-Upload a logo for a player theme by ID
+Upload a player theme logo
 
 
 
@@ -406,7 +406,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -418,20 +418,20 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
     id := "id_example" // string | Player theme ID
-    file := os.NewFile(1234, "some_file") // *os.File | The uploaded file (JPG or PNG)
-    link := "link_example" // string | The link to the logo (optional if a file is provided)
+    file := os.NewFile(1234, "some_file") // *os.File | Logo image
+    link := "link_example" // string | Where clicking the logo takes the viewer
 
     
-    res, err := client.Players.UploadLogoFile(id, file, link)
+    res, err := client.Players.UploadLogoFile(id, file)
 
     // you can also use a Reader instead of a File:
     // we recommend using Reader instead!
-    // client.Players.UploadLogo(id, link, fileName, fileReader)
+    // client.Players.UploadLogo(id, fileName, fileReader)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Players.UploadLogo``: %v\n", err)
     }
-    // response from `UploadLogo`: UploadLogoByIdResponse
+    // response from `UploadLogo`: ThemeResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
@@ -453,12 +453,12 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**file** | ***os.File** | The uploaded file (JPG or PNG) | 
-**link** | **string** | The link to the logo (optional if a file is provided) | 
+**file** | ***os.File** | Logo image | 
+**link** | **string** | Where clicking the logo takes the viewer | 
 
 ### Return type
 
-[**UploadLogoByIdResponse**](UploadLogoByIdResponse.md)
+[**ThemeResponse**](ThemeResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -472,7 +472,7 @@ Name | Type | Description  | Notes
 > DeleteLogoWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 
-Delete a logo for a player theme by ID
+Delete a player theme logo
 
 
 
@@ -486,7 +486,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -537,14 +537,14 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## AddPlayer
+## Attach
 
-> AddPlayer(request AddPlayerThemesToVideoRequest) (*ResponseSuccess, error)
+> Attach(attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error)
 
-> AddPlayerWithContext(ctx context.Context, request AddPlayerThemesToVideoRequest) (*ResponseSuccess, error)
+> AttachWithContext(ctx context.Context, attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error)
 
 
-Add a player theme to a video
+Add a player theme to a media
 
 
 
@@ -558,7 +558,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -569,20 +569,20 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewAddPlayerThemesToVideoRequest() // AddPlayerThemesToVideoRequest | Add player theme to video request
+    attachThemeRequest := *aiozstreamsdk.NewAttachThemeRequest() // AttachThemeRequest | Media and theme
 
     
-    res, err := client.Players.AddPlayer(request)
+    res, err := client.Players.Attach(attachThemeRequest)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Players.AddPlayer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `Players.Attach``: %v\n", err)
     }
-    // response from `AddPlayer`: ResponseSuccess
+    // response from `Attach`: ResponseSuccess
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `Players.AddPlayer`")
+    fmt.Println("Response from `Players.Attach`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -596,7 +596,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**AddPlayerThemesToVideoRequest**](AddPlayerThemesToVideoRequest.md) | Add player theme to video request | 
+**attachThemeRequest** | [**AttachThemeRequest**](AttachThemeRequest.md) | Media and theme | 
 
 ### Return type
 
@@ -607,14 +607,14 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RemovePlayer
+## Detach
 
-> RemovePlayer(request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error)
+> Detach(attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error)
 
-> RemovePlayerWithContext(ctx context.Context, request RemovePlayerThemesFromMediaRequest) (*ResponseSuccess, error)
+> DetachWithContext(ctx context.Context, attachThemeRequest AttachThemeRequest) (*ResponseSuccess, error)
 
 
-Remove a player theme from a video
+Remove a player theme from a media
 
 
 
@@ -628,7 +628,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -639,20 +639,20 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewRemovePlayerThemesFromMediaRequest() // RemovePlayerThemesFromMediaRequest | Remove player theme from video request
+    attachThemeRequest := *aiozstreamsdk.NewAttachThemeRequest() // AttachThemeRequest | Media and theme
 
     
-    res, err := client.Players.RemovePlayer(request)
+    res, err := client.Players.Detach(attachThemeRequest)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Players.RemovePlayer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `Players.Detach``: %v\n", err)
     }
-    // response from `RemovePlayer`: ResponseSuccess
+    // response from `Detach`: ResponseSuccess
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `Players.RemovePlayer`")
+    fmt.Println("Response from `Players.Detach`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -666,7 +666,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**RemovePlayerThemesFromMediaRequest**](RemovePlayerThemesFromMediaRequest.md) | Remove player theme from video request | 
+**attachThemeRequest** | [**AttachThemeRequest**](AttachThemeRequest.md) | Media and theme | 
 
 ### Return type
 

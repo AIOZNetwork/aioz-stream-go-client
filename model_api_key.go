@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -11,10 +11,6 @@
 
 package aiozstreamsdk
 
-import (
-//"encoding/json"
-)
-
 // ApiKey struct for ApiKey
 type ApiKey struct {
 	CreatedAt       *string `json:"created_at,omitempty"`
@@ -23,6 +19,7 @@ type ApiKey struct {
 	LastRequestedAt *string `json:"last_requested_at,omitempty"`
 	Name            *string `json:"name,omitempty"`
 	PublicKey       *string `json:"public_key,omitempty"`
+	// The API key's secret. It is returned once, in the response that creates the key, and never again: store it when you receive it.  (Not a database column: only the secret's hash is stored.)
 	Secret          *string `json:"secret,omitempty"`
 	Status          *string `json:"status,omitempty"`
 	TruncatedSecret *string `json:"truncated_secret,omitempty"`

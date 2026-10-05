@@ -5,17 +5,17 @@ All URIs are relative to https://api.aiozstream.network/api
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Create**](ApiKey.md#Create) | **Post** /api_keys | Create API key
-[**Update**](ApiKey.md#Update) | **Patch** /api_keys/{id} | Rename api key
-[**Delete**](ApiKey.md#Delete) | **Delete** /api_keys/{id} | Delete API key
-[**List**](ApiKey.md#List) | **Get** /api_keys | Get list API keys
+[**Update**](ApiKey.md#Update) | **Patch** /api_keys/{id} | Rename an API key
+[**Delete**](ApiKey.md#Delete) | **Delete** /api_keys/{id} | Delete an API key
+[**List**](ApiKey.md#List) | **Get** /api_keys | List API keys
 
 
 
 ## Create
 
-> Create(request CreateApiKeyRequest) (*CreateApiKeyResponse, error)
+> Create(createApiKeyRequest CreateApiKeyRequest) (*CreateApiKeyResponse, error)
 
-> CreateWithContext(ctx context.Context, request CreateApiKeyRequest) (*CreateApiKeyResponse, error)
+> CreateWithContext(ctx context.Context, createApiKeyRequest CreateApiKeyRequest) (*CreateApiKeyResponse, error)
 
 
 Create API key
@@ -32,7 +32,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -43,10 +43,10 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewCreateApiKeyRequest() // CreateApiKeyRequest | api key's data
+    createApiKeyRequest := *aiozstreamsdk.NewCreateApiKeyRequest() // CreateApiKeyRequest | api key's data
 
     
-    res, err := client.ApiKey.Create(request)
+    res, err := client.ApiKey.Create(createApiKeyRequest)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiKey.Create``: %v\n", err)
@@ -70,7 +70,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**CreateApiKeyRequest**](CreateApiKeyRequest.md) | api key&#39;s data | 
+**createApiKeyRequest** | [**CreateApiKeyRequest**](CreateApiKeyRequest.md) | api key&#39;s data | 
 
 ### Return type
 
@@ -83,12 +83,12 @@ Name | Type | Description  | Notes
 
 ## Update
 
-> Update(id string, request RenameAPIKeyRequest) (*ResponseSuccess, error)
+> Update(id string, renameApiKeyRequest RenameApiKeyRequest) (*ResponseSuccess, error)
 
-> UpdateWithContext(ctx context.Context, id string, request RenameAPIKeyRequest) (*ResponseSuccess, error)
+> UpdateWithContext(ctx context.Context, id string, renameApiKeyRequest RenameApiKeyRequest) (*ResponseSuccess, error)
 
 
-Rename api key
+Rename an API key
 
 
 
@@ -102,7 +102,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -113,11 +113,11 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "id_example" // string | api key id
-    request := *aiozstreamsdk.NewRenameAPIKeyRequest() // RenameAPIKeyRequest | new api key name
+    id := "id_example" // string | API key ID
+    renameApiKeyRequest := *aiozstreamsdk.NewRenameApiKeyRequest() // RenameApiKeyRequest | new name
 
     
-    res, err := client.ApiKey.Update(id, request)
+    res, err := client.ApiKey.Update(id, renameApiKeyRequest)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiKey.Update``: %v\n", err)
@@ -136,7 +136,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**id** | **string** | api key id | 
+**id** | **string** | API key ID | 
 
 ### Other Parameters
 
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**RenameAPIKeyRequest**](RenameAPIKeyRequest.md) | new api key name | 
+**renameApiKeyRequest** | [**RenameApiKeyRequest**](RenameApiKeyRequest.md) | new name | 
 
 ### Return type
 
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 > DeleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 
-Delete API key
+Delete an API key
 
 
 
@@ -176,7 +176,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -187,7 +187,7 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "id_example" // string | API key's ID
+    id := "id_example" // string | API key ID
 
     
     res, err := client.ApiKey.Delete(id)
@@ -209,7 +209,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**id** | **string** | API key&#39;s ID | 
+**id** | **string** | API key ID | 
 
 ### Other Parameters
 
@@ -229,14 +229,14 @@ Name | Type | Description  | Notes
 
 ## List
 
-> List(r ApiKeyApiListRequest) (*GetApiKeysResponse, error)
+> List(r ApiKeyApiListRequest) (*ListApiKeysResponse, error)
 
 
-> ListWithContext(ctx context.Context, r ApiKeyApiListRequest) (*GetApiKeysResponse, error)
+> ListWithContext(ctx context.Context, r ApiKeyApiListRequest) (*ListApiKeysResponse, error)
 
 
 
-Get list API keys
+List API keys
 
 
 
@@ -250,7 +250,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -262,11 +262,12 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
     req := aiozstreamsdk.ApiKeyApiListRequest{}
     
-    req.Search("search_example") // string | only support search by name
-    req.SortBy("sortBy_example") // string | sort by (default to "created_at")
-    req.OrderBy("orderBy_example") // string | allowed: asc, desc. Default: asc (default to "asc")
-    req.Offset(int32(56)) // int32 | offset, allowed values greater than or equal to 0. Default(0) (default to 0)
-    req.Limit(int32(56)) // int32 | results per page. Allowed values 1-100, default is 25 (default to 25)
+    req.Limit(int32(56)) // int32 |  (default to 25)
+    req.Offset(int32(56)) // int32 | 
+    req.OrderBy("orderBy_example") // string | 
+    req.Search("search_example") // string | 
+    req.SortBy("sortBy_example") // string | 
+    req.Type_("type__example") // string | 
 
     res, err := client.ApiKey.List(req)
     
@@ -274,7 +275,7 @@ func main() {
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ApiKey.List``: %v\n", err)
     }
-    // response from `List`: GetApiKeysResponse
+    // response from `List`: ListApiKeysResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
@@ -293,15 +294,16 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**search** | **string** | only support search by name | 
-**sortBy** | **string** | sort by | [default to &quot;created_at&quot;]
-**orderBy** | **string** | allowed: asc, desc. Default: asc | [default to &quot;asc&quot;]
-**offset** | **int32** | offset, allowed values greater than or equal to 0. Default(0) | [default to 0]
-**limit** | **int32** | results per page. Allowed values 1-100, default is 25 | [default to 25]
+**limit** | **int32** |  | [default to 25]
+**offset** | **int32** |  | 
+**orderBy** | **string** |  | 
+**search** | **string** |  | 
+**sortBy** | **string** |  | 
+**type_** | **string** |  | 
 
 ### Return type
 
-[**GetApiKeysResponse**](GetApiKeysResponse.md)
+[**ListApiKeysResponse**](ListApiKeysResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

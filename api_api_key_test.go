@@ -5,6 +5,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 var (
@@ -62,28 +63,38 @@ func TestApiKeyService_Create(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
 			} else {
+				require.NoError(t, err)
+				require.NotNil(t, resp)
+				require.NotNil(t, resp.Data)
+				require.NotNil(t, resp.Data.ApiKey)
+				require.NotNil(t, resp.Data.ApiKey.Id)
+				assert.NotEmpty(t, *resp.Data.ApiKey.Id)
 				testApiKeyForUpdateAndDelete = *resp.Data.ApiKey.Id
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-				assert.NotEmpty(t, resp.Data.ApiKey.Id)
-				assert.Equal(t, *tt.request.ApiKeyName, *resp.Data.ApiKey.Name)
+				if assert.NotNil(t, resp.Data.ApiKey.Name) {
+					assert.Equal(t, *tt.request.ApiKeyName, *resp.Data.ApiKey.Name)
+				}
 			}
 		})
 	}
 }
 
 func TestApiKeyService_Update(t *testing.T) {
+	requireSetupID(
+		t,
+		"testApiKeyForUpdateAndDelete",
+		testApiKeyForUpdateAndDelete,
+	)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
 		id      string
 		wantErr bool
-		request RenameAPIKeyRequest
+		request RenameApiKeyRequest
 	}{
 		{
 			name: "Update other",
 			id:   testApiKeyForUpdateAndDelete,
-			request: RenameAPIKeyRequest{
+			request: RenameApiKeyRequest{
 				ApiKeyName: stringPtr("Updated API Key"),
 			},
 			wantErr: true,
@@ -106,13 +117,13 @@ func TestApiKeyService_Update(t *testing.T) {
 	tests := []struct {
 		name    string
 		id      string
-		request RenameAPIKeyRequest
+		request RenameApiKeyRequest
 		wantErr bool
 	}{
 		{
 			name: "Valid Update",
 			id:   testApiKeyForUpdateAndDelete,
-			request: RenameAPIKeyRequest{
+			request: RenameApiKeyRequest{
 				ApiKeyName: stringPtr("Updated API Key"),
 			},
 			wantErr: false,
@@ -120,7 +131,7 @@ func TestApiKeyService_Update(t *testing.T) {
 		{
 			name: "Invalid ID",
 			id:   "invalid-id",
-			request: RenameAPIKeyRequest{
+			request: RenameApiKeyRequest{
 				ApiKeyName: stringPtr("Updated API Key"),
 			},
 			wantErr: true,
@@ -128,15 +139,23 @@ func TestApiKeyService_Update(t *testing.T) {
 		{
 			name: "Empty Name",
 			id:   testApiKeyForUpdateAndDelete,
-			request: RenameAPIKeyRequest{
+			request: RenameApiKeyRequest{
 				ApiKeyName: stringPtr(""),
+			},
+			wantErr: true,
+		},
+		{
+			name: "Whitespace Only Name",
+			id:   testApiKeyForUpdateAndDelete,
+			request: RenameApiKeyRequest{
+				ApiKeyName: stringPtr("   "),
 			},
 			wantErr: true,
 		},
 		{
 			name: "Not Exist ID",
 			id:   notExistId,
-			request: RenameAPIKeyRequest{
+			request: RenameApiKeyRequest{
 				ApiKeyName: stringPtr("Updated API Key"),
 			},
 			wantErr: true,
@@ -158,6 +177,11 @@ func TestApiKeyService_Update(t *testing.T) {
 }
 
 func TestApiKeyService_Delete(t *testing.T) {
+	requireSetupID(
+		t,
+		"testApiKeyForUpdateAndDelete",
+		testApiKeyForUpdateAndDelete,
+	)
 	notExistId := uuid.New().String()
 	anonymousTest := []struct {
 		name    string
@@ -253,10 +277,10 @@ func TestApiKeyService_List(t *testing.T) {
 			wantErr: true,
 		},
 		{
-			name: "Invalid Limit",
+			name: "Limit_Over_Max_Is_Clamped",
 			request: ApiKeyApiListRequest{}.
 				Limit(1001),
-			wantErr: true,
+			wantErr: false,
 		},
 	}
 
@@ -267,10 +291,11 @@ func TestApiKeyService_List(t *testing.T) {
 				assert.Error(t, err)
 				assert.Nil(t, resp)
 			} else {
-				assert.NoError(t, err)
-				assert.NotNil(t, resp)
-				assert.NotNil(t, resp.Data)
-				assert.NotNil(t, resp.Data.ApiKeys)
+				require.NoError(t, err)
+				require.NotNil(t, resp)
+				require.NotNil(t, resp.Data)
+				require.NotNil(t, resp.Data.ApiKeys)
+				assert.LessOrEqual(t, len(*resp.Data.ApiKeys), 100)
 			}
 		})
 	}

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**Media**](Media.md) |  | [optional] 
+**Data** | Pointer to [**MediaObject**](MediaObject.md) |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *CreateMediaResponse) GetData() Media`
+`func (o *CreateMediaResponse) GetData() MediaObject`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *CreateMediaResponse) GetDataOk() (*Media, bool)`
+`func (o *CreateMediaResponse) GetDataOk() (*MediaObject, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *CreateMediaResponse) SetData(v Media)`
+`func (o *CreateMediaResponse) SetData(v MediaObject)`
 
 SetData sets Data field to given value.
 

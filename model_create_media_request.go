@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -11,12 +11,9 @@
 
 package aiozstreamsdk
 
-import (
-//"encoding/json"
-)
-
 // CreateMediaRequest struct for CreateMediaRequest
 type CreateMediaRequest struct {
+	CropInfo *VideoCropInfo `json:"crop_info,omitempty"`
 	// Description of the media
 	Description *string `json:"description,omitempty"`
 	// // Is panoramic media IsPanoramic *bool `json:\"is_panoramic\" form:\"is_panoramic\"` Is public media
@@ -27,14 +24,15 @@ type CreateMediaRequest struct {
 	Qualities *[]QualityConfig `json:"qualities,omitempty"`
 	// SegmentConfig
 	SegmentDuration *int32 `json:"segment_duration,omitempty"`
+	// Import an existing HLS manifest instead of uploading a file. When set, the renditions are mirrored from that manifest and the part-upload flow is skipped, so `qualities` and `watermark` must be omitted.
+	SourceUrl *string `json:"source_url,omitempty"`
 	// Tags of the media (max: 50 items, max length: 255)
 	Tags *[]string `json:"tags,omitempty"`
 	// Title of the media
 	Title *string `json:"title,omitempty"`
 	// Type of the media (default: video, allowed: video, audio)
-	Type *string `json:"type,omitempty"`
-	// Media thumbnailConfig
-	Watermark *VideoWatermark `json:"watermark,omitempty"`
+	Type      *string         `json:"type,omitempty"`
+	Watermark *MediaWatermark `json:"watermark,omitempty"`
 }
 
 // NewCreateMediaRequest instantiates a new CreateMediaRequest object
@@ -52,6 +50,38 @@ func NewCreateMediaRequest() *CreateMediaRequest {
 func NewCreateMediaRequestWithDefaults() *CreateMediaRequest {
 	this := CreateMediaRequest{}
 	return &this
+}
+
+// GetCropInfo returns the CropInfo field value if set, zero value otherwise.
+func (o *CreateMediaRequest) GetCropInfo() VideoCropInfo {
+	if o == nil || o.CropInfo == nil {
+		var ret VideoCropInfo
+		return ret
+	}
+	return *o.CropInfo
+}
+
+// GetCropInfoOk returns a tuple with the CropInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateMediaRequest) GetCropInfoOk() (*VideoCropInfo, bool) {
+	if o == nil || o.CropInfo == nil {
+		return nil, false
+	}
+	return o.CropInfo, true
+}
+
+// HasCropInfo returns a boolean if a field has been set.
+func (o *CreateMediaRequest) HasCropInfo() bool {
+	if o != nil && o.CropInfo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCropInfo gets a reference to the given VideoCropInfo and assigns it to the CropInfo field.
+func (o *CreateMediaRequest) SetCropInfo(v VideoCropInfo) {
+	o.CropInfo = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -214,6 +244,38 @@ func (o *CreateMediaRequest) SetSegmentDuration(v int32) {
 	o.SegmentDuration = &v
 }
 
+// GetSourceUrl returns the SourceUrl field value if set, zero value otherwise.
+func (o *CreateMediaRequest) GetSourceUrl() string {
+	if o == nil || o.SourceUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.SourceUrl
+}
+
+// GetSourceUrlOk returns a tuple with the SourceUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateMediaRequest) GetSourceUrlOk() (*string, bool) {
+	if o == nil || o.SourceUrl == nil {
+		return nil, false
+	}
+	return o.SourceUrl, true
+}
+
+// HasSourceUrl returns a boolean if a field has been set.
+func (o *CreateMediaRequest) HasSourceUrl() bool {
+	if o != nil && o.SourceUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceUrl gets a reference to the given string and assigns it to the SourceUrl field.
+func (o *CreateMediaRequest) SetSourceUrl(v string) {
+	o.SourceUrl = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CreateMediaRequest) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -311,9 +373,9 @@ func (o *CreateMediaRequest) SetType(v string) {
 }
 
 // GetWatermark returns the Watermark field value if set, zero value otherwise.
-func (o *CreateMediaRequest) GetWatermark() VideoWatermark {
+func (o *CreateMediaRequest) GetWatermark() MediaWatermark {
 	if o == nil || o.Watermark == nil {
-		var ret VideoWatermark
+		var ret MediaWatermark
 		return ret
 	}
 	return *o.Watermark
@@ -321,7 +383,7 @@ func (o *CreateMediaRequest) GetWatermark() VideoWatermark {
 
 // GetWatermarkOk returns a tuple with the Watermark field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateMediaRequest) GetWatermarkOk() (*VideoWatermark, bool) {
+func (o *CreateMediaRequest) GetWatermarkOk() (*MediaWatermark, bool) {
 	if o == nil || o.Watermark == nil {
 		return nil, false
 	}
@@ -337,8 +399,8 @@ func (o *CreateMediaRequest) HasWatermark() bool {
 	return false
 }
 
-// SetWatermark gets a reference to the given VideoWatermark and assigns it to the Watermark field.
-func (o *CreateMediaRequest) SetWatermark(v VideoWatermark) {
+// SetWatermark gets a reference to the given MediaWatermark and assigns it to the Watermark field.
+func (o *CreateMediaRequest) SetWatermark(v MediaWatermark) {
 	o.Watermark = &v
 }
 

@@ -4,23 +4,23 @@ All URIs are relative to https://api.aiozstream.network/api
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Create**](Webhook.md#Create) | **Post** /webhooks | Create webhook
-[**Get**](Webhook.md#Get) | **Get** /webhooks/{id} | Get user&#39;s webhook by id
-[**Update**](Webhook.md#Update) | **Patch** /webhooks/{id} | Update event webhook
-[**Delete**](Webhook.md#Delete) | **Delete** /webhooks/{id} | Delete webhook
-[**List**](Webhook.md#List) | **Get** /webhooks | Get list webhooks
-[**Check**](Webhook.md#Check) | **Post** /webhooks/check/{id} | Check webhook by id
+[**Create**](Webhook.md#Create) | **Post** /webhooks | Create a webhook
+[**Get**](Webhook.md#Get) | **Get** /webhooks/{id} | Get a webhook
+[**Update**](Webhook.md#Update) | **Patch** /webhooks/{id} | Update a webhook
+[**Delete**](Webhook.md#Delete) | **Delete** /webhooks/{id} | Delete a webhook
+[**List**](Webhook.md#List) | **Get** /webhooks | List webhooks
+[**Check**](Webhook.md#Check) | **Post** /webhooks/check/{id} | Send a test event
 
 
 
 ## Create
 
-> Create(request CreateWebhookRequest) (*CreateWebhookResponse, error)
+> Create(writeWebhookRequest WriteWebhookRequest) (*WebhookResponse, error)
 
-> CreateWithContext(ctx context.Context, request CreateWebhookRequest) (*CreateWebhookResponse, error)
+> CreateWithContext(ctx context.Context, writeWebhookRequest WriteWebhookRequest) (*WebhookResponse, error)
 
 
-Create webhook
+Create a webhook
 
 
 
@@ -34,7 +34,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -45,15 +45,15 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewCreateWebhookRequest() // CreateWebhookRequest | Create Webhook input
+    writeWebhookRequest := *aiozstreamsdk.NewWriteWebhookRequest() // WriteWebhookRequest | Webhook
 
     
-    res, err := client.Webhook.Create(request)
+    res, err := client.Webhook.Create(writeWebhookRequest)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Webhook.Create``: %v\n", err)
     }
-    // response from `Create`: CreateWebhookResponse
+    // response from `Create`: WebhookResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
@@ -72,11 +72,11 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**CreateWebhookRequest**](CreateWebhookRequest.md) | Create Webhook input | 
+**writeWebhookRequest** | [**WriteWebhookRequest**](WriteWebhookRequest.md) | Webhook | 
 
 ### Return type
 
-[**CreateWebhookResponse**](CreateWebhookResponse.md)
+[**WebhookResponse**](WebhookResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -85,12 +85,12 @@ Name | Type | Description  | Notes
 
 ## Get
 
-> Get(id string) (*GetUserWebhookResponse, error)
+> Get(id string) (*WebhookResponse, error)
 
-> GetWithContext(ctx context.Context, id string) (*GetUserWebhookResponse, error)
+> GetWithContext(ctx context.Context, id string) (*WebhookResponse, error)
 
 
-Get user's webhook by id
+Get a webhook
 
 
 
@@ -104,7 +104,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -115,7 +115,7 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "id_example" // string | webhook's id
+    id := "id_example" // string | Webhook ID
 
     
     res, err := client.Webhook.Get(id)
@@ -123,7 +123,7 @@ func main() {
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Webhook.Get``: %v\n", err)
     }
-    // response from `Get`: GetUserWebhookResponse
+    // response from `Get`: WebhookResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
@@ -137,7 +137,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**id** | **string** | webhook&#39;s id | 
+**id** | **string** | Webhook ID | 
 
 ### Other Parameters
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetUserWebhookResponse**](GetUserWebhookResponse.md)
+[**WebhookResponse**](WebhookResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -157,12 +157,12 @@ Name | Type | Description  | Notes
 
 ## Update
 
-> Update(id string, request UpdateWebhookRequest) (*ResponseSuccess, error)
+> Update(id string, writeWebhookRequest WriteWebhookRequest) (*ResponseSuccess, error)
 
-> UpdateWithContext(ctx context.Context, id string, request UpdateWebhookRequest) (*ResponseSuccess, error)
+> UpdateWithContext(ctx context.Context, id string, writeWebhookRequest WriteWebhookRequest) (*ResponseSuccess, error)
 
 
-Update event webhook
+Update a webhook
 
 
 
@@ -176,7 +176,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -187,11 +187,11 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "id_example" // string | webhook's id
-    request := *aiozstreamsdk.NewUpdateWebhookRequest() // UpdateWebhookRequest | Update Webhook input, events example: media.encoding.quality.completed
+    id := "id_example" // string | Webhook ID
+    writeWebhookRequest := *aiozstreamsdk.NewWriteWebhookRequest() // WriteWebhookRequest | Fields to change
 
     
-    res, err := client.Webhook.Update(id, request)
+    res, err := client.Webhook.Update(id, writeWebhookRequest)
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Webhook.Update``: %v\n", err)
@@ -210,7 +210,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**id** | **string** | webhook&#39;s id | 
+**id** | **string** | Webhook ID | 
 
 ### Other Parameters
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**UpdateWebhookRequest**](UpdateWebhookRequest.md) | Update Webhook input, events example: media.encoding.quality.completed | 
+**writeWebhookRequest** | [**WriteWebhookRequest**](WriteWebhookRequest.md) | Fields to change | 
 
 ### Return type
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 > DeleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 
-Delete webhook
+Delete a webhook
 
 
 
@@ -250,7 +250,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -303,14 +303,14 @@ Name | Type | Description  | Notes
 
 ## List
 
-> List(r WebhookApiListRequest) (*GetWebhooksListResponse, error)
+> List(r WebhookApiListRequest) (*ListWebhooksResponse, error)
 
 
-> ListWithContext(ctx context.Context, r WebhookApiListRequest) (*GetWebhooksListResponse, error)
+> ListWithContext(ctx context.Context, r WebhookApiListRequest) (*ListWebhooksResponse, error)
 
 
 
-Get list webhooks
+List webhooks
 
 
 
@@ -324,7 +324,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -336,14 +336,16 @@ func main() {
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
     req := aiozstreamsdk.WebhookApiListRequest{}
     
-    req.Search("search_example") // string | only support search by name
-    req.SortBy("sortBy_example") // string | sort by (default to "created_at")
-    req.OrderBy("orderBy_example") // string | allowed: asc, desc. Default: asc (default to "asc")
-    req.Offset(int32(56)) // int32 | offset, allowed values greater than or equal to 0. Default(0) (default to 0)
-    req.Limit(int32(56)) // int32 | results per page. Allowed values 1-100, default is 25 (default to 25)
-    req.EncodingFinished(true) // bool | search by event encoding finished
-    req.EncodingStarted(true) // bool | search by event encoding started
-    req.FileReceived(true) // bool | search by event file received
+    req.EncodingFailed(true) // bool | 
+    req.EncodingFinished(true) // bool | 
+    req.EncodingStarted(true) // bool | 
+    req.FileReceived(true) // bool | 
+    req.Limit(int32(56)) // int32 |  (default to 25)
+    req.Offset(int32(56)) // int32 | 
+    req.OrderBy("orderBy_example") // string | 
+    req.PartialFinished(true) // bool | 
+    req.Search("search_example") // string | 
+    req.SortBy("sortBy_example") // string | 
 
     res, err := client.Webhook.List(req)
     
@@ -351,7 +353,7 @@ func main() {
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `Webhook.List``: %v\n", err)
     }
-    // response from `List`: GetWebhooksListResponse
+    // response from `List`: ListWebhooksResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
@@ -370,18 +372,20 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**search** | **string** | only support search by name | 
-**sortBy** | **string** | sort by | [default to &quot;created_at&quot;]
-**orderBy** | **string** | allowed: asc, desc. Default: asc | [default to &quot;asc&quot;]
-**offset** | **int32** | offset, allowed values greater than or equal to 0. Default(0) | [default to 0]
-**limit** | **int32** | results per page. Allowed values 1-100, default is 25 | [default to 25]
-**encodingFinished** | **bool** | search by event encoding finished | 
-**encodingStarted** | **bool** | search by event encoding started | 
-**fileReceived** | **bool** | search by event file received | 
+**encodingFailed** | **bool** |  | 
+**encodingFinished** | **bool** |  | 
+**encodingStarted** | **bool** |  | 
+**fileReceived** | **bool** |  | 
+**limit** | **int32** |  | [default to 25]
+**offset** | **int32** |  | 
+**orderBy** | **string** |  | 
+**partialFinished** | **bool** |  | 
+**search** | **string** |  | 
+**sortBy** | **string** |  | 
 
 ### Return type
 
-[**GetWebhooksListResponse**](GetWebhooksListResponse.md)
+[**ListWebhooksResponse**](ListWebhooksResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -395,7 +399,7 @@ Name | Type | Description  | Notes
 > CheckWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 
-Check webhook by id
+Send a test event
 
 
 
@@ -409,7 +413,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -420,7 +424,7 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "id_example" // string | webhook's id
+    id := "id_example" // string | Webhook ID
 
     
     res, err := client.Webhook.Check(id)
@@ -442,7 +446,7 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**id** | **string** | webhook&#39;s id | 
+**id** | **string** | Webhook ID | 
 
 ### Other Parameters
 

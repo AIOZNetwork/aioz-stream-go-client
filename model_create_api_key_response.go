@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -11,14 +11,11 @@
 
 package aiozstreamsdk
 
-import (
-//"encoding/json"
-)
-
 // CreateApiKeyResponse struct for CreateApiKeyResponse
 type CreateApiKeyResponse struct {
-	Data   *CreateApiKeyData `json:"data,omitempty"`
-	Status *string           `json:"status,omitempty"`
+	Data      *CreateApiKeyData `json:"data,omitempty"`
+	RequestId *string           `json:"request_id,omitempty"`
+	Status    *string           `json:"status,omitempty"`
 }
 
 // NewCreateApiKeyResponse instantiates a new CreateApiKeyResponse object
@@ -68,6 +65,38 @@ func (o *CreateApiKeyResponse) HasData() bool {
 // SetData gets a reference to the given CreateApiKeyData and assigns it to the Data field.
 func (o *CreateApiKeyResponse) SetData(v CreateApiKeyData) {
 	o.Data = &v
+}
+
+// GetRequestId returns the RequestId field value if set, zero value otherwise.
+func (o *CreateApiKeyResponse) GetRequestId() string {
+	if o == nil || o.RequestId == nil {
+		var ret string
+		return ret
+	}
+	return *o.RequestId
+}
+
+// GetRequestIdOk returns a tuple with the RequestId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateApiKeyResponse) GetRequestIdOk() (*string, bool) {
+	if o == nil || o.RequestId == nil {
+		return nil, false
+	}
+	return o.RequestId, true
+}
+
+// HasRequestId returns a boolean if a field has been set.
+func (o *CreateApiKeyResponse) HasRequestId() bool {
+	if o != nil && o.RequestId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRequestId gets a reference to the given string and assigns it to the RequestId field.
+func (o *CreateApiKeyResponse) SetRequestId(v string) {
+	o.RequestId = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
+**IsGenerated** | Pointer to **bool** |  | [optional] 
 **Language** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
@@ -78,6 +79,31 @@ SetIsDefault sets IsDefault field to given value.
 `func (o *MediaCaption) HasIsDefault() bool`
 
 HasIsDefault returns a boolean if a field has been set.
+
+### GetIsGenerated
+
+`func (o *MediaCaption) GetIsGenerated() bool`
+
+GetIsGenerated returns the IsGenerated field if non-nil, zero value otherwise.
+
+### GetIsGeneratedOk
+
+`func (o *MediaCaption) GetIsGeneratedOk() (*bool, bool)`
+
+GetIsGeneratedOk returns a tuple with the IsGenerated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsGenerated
+
+`func (o *MediaCaption) SetIsGenerated(v bool)`
+
+SetIsGenerated sets IsGenerated field to given value.
+
+### HasIsGenerated
+
+`func (o *MediaCaption) HasIsGenerated() bool`
+
+HasIsGenerated returns a boolean if a field has been set.
 
 ### GetLanguage
 

@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -11,34 +11,30 @@
 
 package aiozstreamsdk
 
-import (
-//"encoding/json"
-)
-
-// RenameAPIKeyRequest struct for RenameAPIKeyRequest
-type RenameAPIKeyRequest struct {
+// RenameApiKeyRequest struct for RenameApiKeyRequest
+type RenameApiKeyRequest struct {
 	ApiKeyName *string `json:"api_key_name,omitempty"`
 }
 
-// NewRenameAPIKeyRequest instantiates a new RenameAPIKeyRequest object
+// NewRenameApiKeyRequest instantiates a new RenameApiKeyRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRenameAPIKeyRequest() *RenameAPIKeyRequest {
-	this := RenameAPIKeyRequest{}
+func NewRenameApiKeyRequest() *RenameApiKeyRequest {
+	this := RenameApiKeyRequest{}
 	return &this
 }
 
-// NewRenameAPIKeyRequestWithDefaults instantiates a new RenameAPIKeyRequest object
+// NewRenameApiKeyRequestWithDefaults instantiates a new RenameApiKeyRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewRenameAPIKeyRequestWithDefaults() *RenameAPIKeyRequest {
-	this := RenameAPIKeyRequest{}
+func NewRenameApiKeyRequestWithDefaults() *RenameApiKeyRequest {
+	this := RenameApiKeyRequest{}
 	return &this
 }
 
 // GetApiKeyName returns the ApiKeyName field value if set, zero value otherwise.
-func (o *RenameAPIKeyRequest) GetApiKeyName() string {
+func (o *RenameApiKeyRequest) GetApiKeyName() string {
 	if o == nil || o.ApiKeyName == nil {
 		var ret string
 		return ret
@@ -48,7 +44,7 @@ func (o *RenameAPIKeyRequest) GetApiKeyName() string {
 
 // GetApiKeyNameOk returns a tuple with the ApiKeyName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RenameAPIKeyRequest) GetApiKeyNameOk() (*string, bool) {
+func (o *RenameApiKeyRequest) GetApiKeyNameOk() (*string, bool) {
 	if o == nil || o.ApiKeyName == nil {
 		return nil, false
 	}
@@ -56,7 +52,7 @@ func (o *RenameAPIKeyRequest) GetApiKeyNameOk() (*string, bool) {
 }
 
 // HasApiKeyName returns a boolean if a field has been set.
-func (o *RenameAPIKeyRequest) HasApiKeyName() bool {
+func (o *RenameApiKeyRequest) HasApiKeyName() bool {
 	if o != nil && o.ApiKeyName != nil {
 		return true
 	}
@@ -65,33 +61,33 @@ func (o *RenameAPIKeyRequest) HasApiKeyName() bool {
 }
 
 // SetApiKeyName gets a reference to the given string and assigns it to the ApiKeyName field.
-func (o *RenameAPIKeyRequest) SetApiKeyName(v string) {
+func (o *RenameApiKeyRequest) SetApiKeyName(v string) {
 	o.ApiKeyName = &v
 }
 
-type NullableRenameAPIKeyRequest struct {
-	value *RenameAPIKeyRequest
+type NullableRenameApiKeyRequest struct {
+	value *RenameApiKeyRequest
 	isSet bool
 }
 
-func (v NullableRenameAPIKeyRequest) Get() *RenameAPIKeyRequest {
+func (v NullableRenameApiKeyRequest) Get() *RenameApiKeyRequest {
 	return v.value
 }
 
-func (v *NullableRenameAPIKeyRequest) Set(val *RenameAPIKeyRequest) {
+func (v *NullableRenameApiKeyRequest) Set(val *RenameApiKeyRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableRenameAPIKeyRequest) IsSet() bool {
+func (v NullableRenameApiKeyRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableRenameAPIKeyRequest) Unset() {
+func (v *NullableRenameApiKeyRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableRenameAPIKeyRequest(val *RenameAPIKeyRequest) *NullableRenameAPIKeyRequest {
-	return &NullableRenameAPIKeyRequest{value: val, isSet: true}
+func NewNullableRenameApiKeyRequest(val *RenameApiKeyRequest) *NullableRenameApiKeyRequest {
+	return &NullableRenameApiKeyRequest{value: val, isSet: true}
 }

@@ -1,7 +1,7 @@
 /*
- * Aioz Stream API
+ * AIOZ Stream API
  *
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * API version: 1.0
  * Contact: support@swagger.io
@@ -11,26 +11,23 @@
 
 package aiozstreamsdk
 
-import (
-//"encoding/json"
-)
-
 // User struct for User
 type User struct {
-	Balance              *string `json:"balance,omitempty"`
-	CreatedAt            *string `json:"created_at,omitempty"`
-	Debt                 *string `json:"debt,omitempty"`
-	DeletedAt            *string `json:"deleted_at,omitempty"`
-	Email                *string `json:"email,omitempty"`
-	ExclusiveCode        *string `json:"exclusive_code,omitempty"`
-	FirstName            *string `json:"first_name,omitempty"`
-	Id                   *string `json:"id,omitempty"`
-	LastName             *string `json:"last_name,omitempty"`
-	LastRequestedAt      *string `json:"last_requested_at,omitempty"`
-	MediaQualitiesConfig *string `json:"media_qualities_config,omitempty"`
-	UpdatedAt            *string `json:"updated_at,omitempty"`
-	WalletAddress        *string `json:"wallet_address,omitempty"`
-	WalletConnection     *string `json:"wallet_connection,omitempty"`
+	Balance              *float32         `json:"balance,omitempty"`
+	CreatedAt            *string          `json:"created_at,omitempty"`
+	Debt                 *float32         `json:"debt,omitempty"`
+	DeletedAt            *string          `json:"deleted_at,omitempty"`
+	EditorProjects       *[]EditorProject `json:"editor_projects,omitempty"`
+	Email                *string          `json:"email,omitempty"`
+	ExclusiveCode        *string          `json:"exclusive_code,omitempty"`
+	FirstName            *string          `json:"first_name,omitempty"`
+	Id                   *string          `json:"id,omitempty"`
+	LastName             *string          `json:"last_name,omitempty"`
+	LastRequestedAt      *string          `json:"last_requested_at,omitempty"`
+	MediaQualitiesConfig *string          `json:"media_qualities_config,omitempty"`
+	UpdatedAt            *string          `json:"updated_at,omitempty"`
+	WalletAddress        *string          `json:"wallet_address,omitempty"`
+	WalletConnection     *string          `json:"wallet_connection,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -51,9 +48,9 @@ func NewUserWithDefaults() *User {
 }
 
 // GetBalance returns the Balance field value if set, zero value otherwise.
-func (o *User) GetBalance() string {
+func (o *User) GetBalance() float32 {
 	if o == nil || o.Balance == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.Balance
@@ -61,7 +58,7 @@ func (o *User) GetBalance() string {
 
 // GetBalanceOk returns a tuple with the Balance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetBalanceOk() (*string, bool) {
+func (o *User) GetBalanceOk() (*float32, bool) {
 	if o == nil || o.Balance == nil {
 		return nil, false
 	}
@@ -77,8 +74,8 @@ func (o *User) HasBalance() bool {
 	return false
 }
 
-// SetBalance gets a reference to the given string and assigns it to the Balance field.
-func (o *User) SetBalance(v string) {
+// SetBalance gets a reference to the given float32 and assigns it to the Balance field.
+func (o *User) SetBalance(v float32) {
 	o.Balance = &v
 }
 
@@ -115,9 +112,9 @@ func (o *User) SetCreatedAt(v string) {
 }
 
 // GetDebt returns the Debt field value if set, zero value otherwise.
-func (o *User) GetDebt() string {
+func (o *User) GetDebt() float32 {
 	if o == nil || o.Debt == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 	return *o.Debt
@@ -125,7 +122,7 @@ func (o *User) GetDebt() string {
 
 // GetDebtOk returns a tuple with the Debt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetDebtOk() (*string, bool) {
+func (o *User) GetDebtOk() (*float32, bool) {
 	if o == nil || o.Debt == nil {
 		return nil, false
 	}
@@ -141,8 +138,8 @@ func (o *User) HasDebt() bool {
 	return false
 }
 
-// SetDebt gets a reference to the given string and assigns it to the Debt field.
-func (o *User) SetDebt(v string) {
+// SetDebt gets a reference to the given float32 and assigns it to the Debt field.
+func (o *User) SetDebt(v float32) {
 	o.Debt = &v
 }
 
@@ -176,6 +173,38 @@ func (o *User) HasDeletedAt() bool {
 // SetDeletedAt gets a reference to the given string and assigns it to the DeletedAt field.
 func (o *User) SetDeletedAt(v string) {
 	o.DeletedAt = &v
+}
+
+// GetEditorProjects returns the EditorProjects field value if set, zero value otherwise.
+func (o *User) GetEditorProjects() []EditorProject {
+	if o == nil || o.EditorProjects == nil {
+		var ret []EditorProject
+		return ret
+	}
+	return *o.EditorProjects
+}
+
+// GetEditorProjectsOk returns a tuple with the EditorProjects field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetEditorProjectsOk() (*[]EditorProject, bool) {
+	if o == nil || o.EditorProjects == nil {
+		return nil, false
+	}
+	return o.EditorProjects, true
+}
+
+// HasEditorProjects returns a boolean if a field has been set.
+func (o *User) HasEditorProjects() bool {
+	if o != nil && o.EditorProjects != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEditorProjects gets a reference to the given []EditorProject and assigns it to the EditorProjects field.
+func (o *User) SetEditorProjects(v []EditorProject) {
+	o.EditorProjects = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.

@@ -4,98 +4,24 @@ All URIs are relative to https://api.aiozstream.network/api
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddVideoToPlaylist**](Playlist.md#AddVideoToPlaylist) | **Post** /playlists/{id}/items | Add a video to a playlist
-[**CreatePlaylist**](Playlist.md#CreatePlaylist) | **Post** /playlists/create | Create a playlist
-[**DeletePlaylistById**](Playlist.md#DeletePlaylistById) | **Delete** /playlists/{id} | Delete a playlist by ID
-[**DeletePlaylistThumbnail**](Playlist.md#DeletePlaylistThumbnail) | **Delete** /playlists/{id}/thumbnail | Delete a playlist thumbnail
-[**GetPlaylistById**](Playlist.md#GetPlaylistById) | **Get** /playlists/{id} | Get playlist by ID
-[**GetPlaylistPublicInfo**](Playlist.md#GetPlaylistPublicInfo) | **Get** /playlists/{id}/player.json | Get a playlist public
-[**GetPlaylists**](Playlist.md#GetPlaylists) | **Post** /playlists | Get user&#39;s playlists
-[**MoveVideoInPlaylist**](Playlist.md#MoveVideoInPlaylist) | **Put** /playlists/{id}/items | Move a video in a playlist
-[**RemoveMediaFromPlaylist**](Playlist.md#RemoveMediaFromPlaylist) | **Delete** /playlists/{id}/items/{item_id} | Remove a media from a playlist
-[**UpdatePlaylist**](Playlist.md#UpdatePlaylist) | **Patch** /playlists/{id} | Update a playlist
+[**Create**](Playlist.md#Create) | **Post** /playlists/create | Create a playlist
+[**Get**](Playlist.md#Get) | **Get** /playlists/{id} | Get a playlist
+[**Update**](Playlist.md#Update) | **Patch** /playlists/{id} | Update a playlist
+[**Delete**](Playlist.md#Delete) | **Delete** /playlists/{id} | Delete a playlist
+[**List**](Playlist.md#List) | **Post** /playlists | List playlists
+[**DeleteThumbnail**](Playlist.md#DeleteThumbnail) | **Delete** /playlists/{id}/thumbnail | Delete a playlist thumbnail
+[**AddMedia**](Playlist.md#AddMedia) | **Post** /playlists/{id}/items | Add media to playlists
+[**GetPublic**](Playlist.md#GetPublic) | **Get** /playlists/{id}/player.json | Get a playlist for the player
+[**MoveItem**](Playlist.md#MoveItem) | **Put** /playlists/{id}/items | Reorder a playlist
+[**RemoveMedia**](Playlist.md#RemoveMedia) | **Delete** /playlists/{id}/items/{item_id} | Remove an item from playlists
 
 
 
-## AddVideoToPlaylist
+## Create
 
-> AddVideoToPlaylist(id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error)
+> Create(createPlaylistRequest CreatePlaylistRequest) (*PlaylistResponse, error)
 
-> AddVideoToPlaylistWithContext(ctx context.Context, id string, payload AddMediaToPlaylistRequest) (*ResponseSuccess, error)
-
-
-Add a video to a playlist
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "encoding/json"
-    "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
-)
-
-func main() {
-    // create a new client
-    apiCreds := aiozstreamsdk.AuthCredentials{
-		SecretKey: "YOUR_SECRET_KEY",
-		PublicKey: "YOUR_PUBLIC_KEY",
-    }
-    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
-        
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
-    payload := *aiozstreamsdk.NewAddMediaToPlaylistRequest() // AddMediaToPlaylistRequest | Video details
-
-    
-    res, err := client.Playlist.AddVideoToPlaylist(id, payload)
-
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.AddVideoToPlaylist``: %v\n", err)
-    }
-    // response from `AddVideoToPlaylist`: ResponseSuccess
-    newJsonString, err := json.MarshalIndent(res, "", "  ")
-    if err != nil {
-    fmt.Println(err)
-    }
-    fmt.Println("Response from `Playlist.AddVideoToPlaylist`")
-    fmt.Println(string(newJsonString))
-}
-```
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**id** | **string** | Playlist ID | 
-
-### Other Parameters
-
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**payload** | [**AddMediaToPlaylistRequest**](AddMediaToPlaylistRequest.md) | Video details | 
-
-### Return type
-
-[**ResponseSuccess**](ResponseSuccess.md)
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreatePlaylist
-
-> CreatePlaylist(request CreatePlaylistRequest) (*CreatePlaylistResponse, error)
-
-> CreatePlaylistWithContext(ctx context.Context, request CreatePlaylistRequest) (*CreatePlaylistResponse, error)
+> CreateWithContext(ctx context.Context, createPlaylistRequest CreatePlaylistRequest) (*PlaylistResponse, error)
 
 
 Create a playlist
@@ -112,7 +38,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -123,20 +49,20 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    request := *aiozstreamsdk.NewCreatePlaylistRequest() // CreatePlaylistRequest | Playlist input
+    createPlaylistRequest := *aiozstreamsdk.NewCreatePlaylistRequest() // CreatePlaylistRequest | Playlist
 
     
-    res, err := client.Playlist.CreatePlaylist(request)
+    res, err := client.Playlist.Create(createPlaylistRequest)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.CreatePlaylist``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.Create``: %v\n", err)
     }
-    // response from `CreatePlaylist`: CreatePlaylistResponse
+    // response from `Create`: PlaylistResponse
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `Playlist.CreatePlaylist`")
+    fmt.Println("Response from `Playlist.Create`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -150,25 +76,27 @@ func main() {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**request** | [**CreatePlaylistRequest**](CreatePlaylistRequest.md) | Playlist input | 
+**createPlaylistRequest** | [**CreatePlaylistRequest**](CreatePlaylistRequest.md) | Playlist | 
 
 ### Return type
 
-[**CreatePlaylistResponse**](CreatePlaylistResponse.md)
+[**PlaylistResponse**](PlaylistResponse.md)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## DeletePlaylistById
+## Get
 
-> DeletePlaylistById(id string) (*ResponseSuccess, error)
-
-> DeletePlaylistByIdWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
+> Get(id string, r PlaylistApiGetRequest) (*PlaylistResponse, error)
 
 
-Delete a playlist by ID
+> GetWithContext(ctx context.Context, id string, r PlaylistApiGetRequest) (*PlaylistResponse, error)
+
+
+
+Get a playlist
 
 
 
@@ -182,7 +110,86 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+    req := aiozstreamsdk.PlaylistApiGetRequest{}
+    
+    req.Id("id_example") // string | Playlist ID
+    req.OrderBy("orderBy_example") // string | 
+    req.Search("search_example") // string | 
+    req.SortBy("sortBy_example") // string | 
+
+    res, err := client.Playlist.Get(id string, req)
+    
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.Get``: %v\n", err)
+    }
+    // response from `Get`: PlaylistResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Playlist.Get`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | Playlist ID | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**orderBy** | **string** |  | 
+**search** | **string** |  | 
+**sortBy** | **string** |  | 
+
+### Return type
+
+[**PlaylistResponse**](PlaylistResponse.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Update
+
+> UpdateFile(id string) (*ResponseSuccess, error)
+> Update(id string, fileName string, fileReader io.Reader)
+> UpdateFileWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
+> UpdateWithContext(ctx context.Context, id string, fileName string, fileReader io.Reader)
+
+Update a playlist
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -193,20 +200,102 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
+    id := "id_example" // string | Playlist ID
+    file := os.NewFile(1234, "some_file") // *os.File | New thumbnail
+    name := "name_example" // string | New name
+    tags := []string{"Inner_example"} // []string | New tags, one field per tag
 
     
-    res, err := client.Playlist.DeletePlaylistById(id)
+    res, err := client.Playlist.UpdateFile(id)
+
+    // you can also use a Reader instead of a File:
+    // we recommend using Reader instead!
+    // client.Playlist.Update(id, fileName, fileReader)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.DeletePlaylistById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.Update``: %v\n", err)
     }
-    // response from `DeletePlaylistById`: ResponseSuccess
+    // response from `Update`: ResponseSuccess
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `Playlist.DeletePlaylistById`")
+    fmt.Println("Response from `Playlist.Update`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | Playlist ID | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**file** | ***os.File** | New thumbnail | 
+**name** | **string** | New name | 
+**tags** | **[]string** | New tags, one field per tag | 
+
+### Return type
+
+[**ResponseSuccess**](ResponseSuccess.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Delete
+
+> Delete(id string) (*ResponseSuccess, error)
+
+> DeleteWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
+
+
+Delete a playlist
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | Playlist ID
+
+    
+    res, err := client.Playlist.Delete(id)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.Delete``: %v\n", err)
+    }
+    // response from `Delete`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Playlist.Delete`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -233,11 +322,81 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeletePlaylistThumbnail
+## List
 
-> DeletePlaylistThumbnail(id string) (*ResponseSuccess, error)
+> List(listPlaylistsRequest ListPlaylistsRequest) (*ListPlaylistsResponse, error)
 
-> DeletePlaylistThumbnailWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
+> ListWithContext(ctx context.Context, listPlaylistsRequest ListPlaylistsRequest) (*ListPlaylistsResponse, error)
+
+
+List playlists
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    listPlaylistsRequest := *aiozstreamsdk.NewListPlaylistsRequest() // ListPlaylistsRequest | Filter and paging
+
+    
+    res, err := client.Playlist.List(listPlaylistsRequest)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.List``: %v\n", err)
+    }
+    // response from `List`: ListPlaylistsResponse
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Playlist.List`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**listPlaylistsRequest** | [**ListPlaylistsRequest**](ListPlaylistsRequest.md) | Filter and paging | 
+
+### Return type
+
+[**ListPlaylistsResponse**](ListPlaylistsResponse.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteThumbnail
+
+> DeleteThumbnail(id string) (*ResponseSuccess, error)
+
+> DeleteThumbnailWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 
 Delete a playlist thumbnail
@@ -254,7 +413,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -265,20 +424,20 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
+    id := "id_example" // string | Playlist ID
 
     
-    res, err := client.Playlist.DeletePlaylistThumbnail(id)
+    res, err := client.Playlist.DeleteThumbnail(id)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.DeletePlaylistThumbnail``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.DeleteThumbnail``: %v\n", err)
     }
-    // response from `DeletePlaylistThumbnail`: ResponseSuccess
+    // response from `DeleteThumbnail`: ResponseSuccess
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `Playlist.DeletePlaylistThumbnail`")
+    fmt.Println("Response from `Playlist.DeleteThumbnail`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -305,16 +464,14 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetPlaylistById
+## AddMedia
 
-> GetPlaylistById(id string, r PlaylistApiGetPlaylistByIdRequest) (*GetPlaylistByIdResponse, error)
+> AddMedia(id string, addMediaRequest AddMediaRequest) (*ResponseSuccess, error)
 
-
-> GetPlaylistByIdWithContext(ctx context.Context, id string, r PlaylistApiGetPlaylistByIdRequest) (*GetPlaylistByIdResponse, error)
-
+> AddMediaWithContext(ctx context.Context, id string, addMediaRequest AddMediaRequest) (*ResponseSuccess, error)
 
 
-Get playlist by ID
+Add media to playlists
 
 
 
@@ -328,7 +485,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -338,25 +495,22 @@ func main() {
 		PublicKey: "YOUR_PUBLIC_KEY",
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
-    req := aiozstreamsdk.PlaylistApiGetPlaylistByIdRequest{}
-    
-    req.Id("id_example") // string | Playlist ID
-    req.SortBy("sortBy_example") // string | Sort by field (created_at, title, duration)
-    req.OrderBy("orderBy_example") // string | Order by (asc, desc)
-    req.Search("search_example") // string | Search term
+        
+    id := "id_example" // string | Playlist ID
+    addMediaRequest := *aiozstreamsdk.NewAddMediaRequest() // AddMediaRequest | Media and playlists
 
-    res, err := client.Playlist.GetPlaylistById(id string, req)
     
+    res, err := client.Playlist.AddMedia(id, addMediaRequest)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.GetPlaylistById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.AddMedia``: %v\n", err)
     }
-    // response from `GetPlaylistById`: GetPlaylistByIdResponse
+    // response from `AddMedia`: ResponseSuccess
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `Playlist.GetPlaylistById`")
+    fmt.Println("Response from `Playlist.AddMedia`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -373,225 +527,7 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**sortBy** | **string** | Sort by field (created_at, title, duration) | 
-**orderBy** | **string** | Order by (asc, desc) | 
-**search** | **string** | Search term | 
-
-### Return type
-
-[**GetPlaylistByIdResponse**](GetPlaylistByIdResponse.md)
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetPlaylistPublicInfo
-
-> GetPlaylistPublicInfo(id string) (*PublicPlaylistObject, error)
-
-> GetPlaylistPublicInfoWithContext(ctx context.Context, id string) (*PublicPlaylistObject, error)
-
-
-Get a playlist public
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "encoding/json"
-    "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
-)
-
-func main() {
-    // create a new client
-    apiCreds := aiozstreamsdk.AuthCredentials{
-		SecretKey: "YOUR_SECRET_KEY",
-		PublicKey: "YOUR_PUBLIC_KEY",
-    }
-    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
-        
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
-
-    
-    res, err := client.Playlist.GetPlaylistPublicInfo(id)
-
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.GetPlaylistPublicInfo``: %v\n", err)
-    }
-    // response from `GetPlaylistPublicInfo`: PublicPlaylistObject
-    newJsonString, err := json.MarshalIndent(res, "", "  ")
-    if err != nil {
-    fmt.Println(err)
-    }
-    fmt.Println("Response from `Playlist.GetPlaylistPublicInfo`")
-    fmt.Println(string(newJsonString))
-}
-```
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**id** | **string** | Playlist ID | 
-
-### Other Parameters
-
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-### Return type
-
-[**PublicPlaylistObject**](PublicPlaylistObject.md)
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetPlaylists
-
-> GetPlaylists(request GetPlaylistListRequest) (*GetPlaylistListResponse, error)
-
-> GetPlaylistsWithContext(ctx context.Context, request GetPlaylistListRequest) (*GetPlaylistListResponse, error)
-
-
-Get user's playlists
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "encoding/json"
-    "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
-)
-
-func main() {
-    // create a new client
-    apiCreds := aiozstreamsdk.AuthCredentials{
-		SecretKey: "YOUR_SECRET_KEY",
-		PublicKey: "YOUR_PUBLIC_KEY",
-    }
-    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
-        
-    request := *aiozstreamsdk.NewGetPlaylistListRequest() // GetPlaylistListRequest | Playlist filter
-
-    
-    res, err := client.Playlist.GetPlaylists(request)
-
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.GetPlaylists``: %v\n", err)
-    }
-    // response from `GetPlaylists`: GetPlaylistListResponse
-    newJsonString, err := json.MarshalIndent(res, "", "  ")
-    if err != nil {
-    fmt.Println(err)
-    }
-    fmt.Println("Response from `Playlist.GetPlaylists`")
-    fmt.Println(string(newJsonString))
-}
-```
-### Path Parameters
-
-
-
-### Other Parameters
-
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**request** | [**GetPlaylistListRequest**](GetPlaylistListRequest.md) | Playlist filter | 
-
-### Return type
-
-[**GetPlaylistListResponse**](GetPlaylistListResponse.md)
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## MoveVideoInPlaylist
-
-> MoveVideoInPlaylist(id string, payload MoveVideoInPlaylistRequest) (*ResponseSuccess, error)
-
-> MoveVideoInPlaylistWithContext(ctx context.Context, id string, payload MoveVideoInPlaylistRequest) (*ResponseSuccess, error)
-
-
-Move a video in a playlist
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "encoding/json"
-    "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
-)
-
-func main() {
-    // create a new client
-    apiCreds := aiozstreamsdk.AuthCredentials{
-		SecretKey: "YOUR_SECRET_KEY",
-		PublicKey: "YOUR_PUBLIC_KEY",
-    }
-    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
-        
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
-    payload := *aiozstreamsdk.NewMoveVideoInPlaylistRequest() // MoveVideoInPlaylistRequest | Video details
-
-    
-    res, err := client.Playlist.MoveVideoInPlaylist(id, payload)
-
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.MoveVideoInPlaylist``: %v\n", err)
-    }
-    // response from `MoveVideoInPlaylist`: ResponseSuccess
-    newJsonString, err := json.MarshalIndent(res, "", "  ")
-    if err != nil {
-    fmt.Println(err)
-    }
-    fmt.Println("Response from `Playlist.MoveVideoInPlaylist`")
-    fmt.Println(string(newJsonString))
-}
-```
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**id** | **string** | Playlist ID | 
-
-### Other Parameters
-
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**payload** | [**MoveVideoInPlaylistRequest**](MoveVideoInPlaylistRequest.md) | Video details | 
+**addMediaRequest** | [**AddMediaRequest**](AddMediaRequest.md) | Media and playlists | 
 
 ### Return type
 
@@ -602,14 +538,14 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RemoveMediaFromPlaylist
+## GetPublic
 
-> RemoveMediaFromPlaylist(id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error)
+> GetPublic(id string) (*ResponseSuccess, error)
 
-> RemoveMediaFromPlaylistWithContext(ctx context.Context, id string, itemId string, payload RemoveMediasFromPlaylistRequest) (*ResponseSuccess, error)
+> GetPublicWithContext(ctx context.Context, id string) (*ResponseSuccess, error)
 
 
-Remove a media from a playlist
+Get a playlist for the player
 
 
 
@@ -623,7 +559,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -634,22 +570,20 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
-    itemId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist Item ID
-    payload := *aiozstreamsdk.NewRemoveMediasFromPlaylistRequest() // RemoveMediasFromPlaylistRequest | Optional payload
+    id := "id_example" // string | Playlist ID
 
     
-    res, err := client.Playlist.RemoveMediaFromPlaylist(id, itemId, payload)
+    res, err := client.Playlist.GetPublic(id)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.RemoveMediaFromPlaylist``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.GetPublic``: %v\n", err)
     }
-    // response from `RemoveMediaFromPlaylist`: ResponseSuccess
+    // response from `GetPublic`: ResponseSuccess
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `Playlist.RemoveMediaFromPlaylist`")
+    fmt.Println("Response from `Playlist.GetPublic`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -659,7 +593,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **id** | **string** | Playlist ID | 
-**itemId** | **string** | Playlist Item ID | 
 
 ### Other Parameters
 
@@ -667,7 +600,6 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**payload** | [**RemoveMediasFromPlaylistRequest**](RemoveMediasFromPlaylistRequest.md) | Optional payload | 
 
 ### Return type
 
@@ -678,14 +610,14 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdatePlaylist
+## MoveItem
 
-> UpdatePlaylistFile(id string, file *os.File) (*ResponseSuccess, error)
-> UpdatePlaylist(id string, fileName string, fileReader io.Reader)
-> UpdatePlaylistFileWithContext(ctx context.Context, id string, file *os.File) (*ResponseSuccess, error)
-> UpdatePlaylistWithContext(ctx context.Context, id string, fileName string, fileReader io.Reader)
+> MoveItem(id string, moveItemRequest MoveItemRequest) (*ResponseSuccess, error)
 
-Update a playlist
+> MoveItemWithContext(ctx context.Context, id string, moveItemRequest MoveItemRequest) (*ResponseSuccess, error)
+
+
+Reorder a playlist
 
 
 
@@ -699,7 +631,7 @@ import (
     "fmt"
     "encoding/json"
     "os"
-    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
 )
 
 func main() {
@@ -710,28 +642,21 @@ func main() {
     }
     client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
         
-    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Playlist ID
-    file := os.NewFile(1234, "some_file") // *os.File | 
-    metadata := []aiozstreamsdk.Metadata{*aiozstreamsdk.NewMetadata()} // []Metadata | 
-    name := "name_example" // string | 
-    tags := []string{"Inner_example"} // []string | 
+    id := "id_example" // string | Playlist ID
+    moveItemRequest := *aiozstreamsdk.NewMoveItemRequest() // MoveItemRequest | Where to move it
 
     
-    res, err := client.Playlist.UpdatePlaylistFile(id, file)
-
-    // you can also use a Reader instead of a File:
-    // we recommend using Reader instead!
-    // client.Playlist.UpdatePlaylist(id, fileName, fileReader)
+    res, err := client.Playlist.MoveItem(id, moveItemRequest)
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.UpdatePlaylist``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.MoveItem``: %v\n", err)
     }
-    // response from `UpdatePlaylist`: ResponseSuccess
+    // response from `MoveItem`: ResponseSuccess
     newJsonString, err := json.MarshalIndent(res, "", "  ")
     if err != nil {
     fmt.Println(err)
     }
-    fmt.Println("Response from `Playlist.UpdatePlaylist`")
+    fmt.Println("Response from `Playlist.MoveItem`")
     fmt.Println(string(newJsonString))
 }
 ```
@@ -748,10 +673,83 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**file** | ***os.File** |  | 
-**metadata** | [**[]Metadata**](Metadata.md) |  | 
-**name** | **string** |  | 
-**tags** | **[]string** |  | 
+**moveItemRequest** | [**MoveItemRequest**](MoveItemRequest.md) | Where to move it | 
+
+### Return type
+
+[**ResponseSuccess**](ResponseSuccess.md)
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveMedia
+
+> RemoveMedia(id string, itemId string, removeMediaRequest RemoveMediaRequest) (*ResponseSuccess, error)
+
+> RemoveMediaWithContext(ctx context.Context, id string, itemId string, removeMediaRequest RemoveMediaRequest) (*ResponseSuccess, error)
+
+
+Remove an item from playlists
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "encoding/json"
+    "os"
+    aiozstreamsdk "github.com/AIOZNetwork/aioz-stream-go-client/v3"
+)
+
+func main() {
+    // create a new client
+    apiCreds := aiozstreamsdk.AuthCredentials{
+		SecretKey: "YOUR_SECRET_KEY",
+		PublicKey: "YOUR_PUBLIC_KEY",
+    }
+    client := aiozstreamsdk.ClientBuilder(apiCreds).Build()
+        
+    id := "id_example" // string | Playlist ID
+    itemId := "itemId_example" // string | Playlist item ID
+    removeMediaRequest := *aiozstreamsdk.NewRemoveMediaRequest() // RemoveMediaRequest | Other playlists
+
+    
+    res, err := client.Playlist.RemoveMedia(id, itemId, removeMediaRequest)
+
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `Playlist.RemoveMedia``: %v\n", err)
+    }
+    // response from `RemoveMedia`: ResponseSuccess
+    newJsonString, err := json.MarshalIndent(res, "", "  ")
+    if err != nil {
+    fmt.Println(err)
+    }
+    fmt.Println("Response from `Playlist.RemoveMedia`")
+    fmt.Println(string(newJsonString))
+}
+```
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**id** | **string** | Playlist ID | 
+**itemId** | **string** | Playlist item ID | 
+
+### Other Parameters
+
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**removeMediaRequest** | [**RemoveMediaRequest**](RemoveMediaRequest.md) | Other playlists | 
 
 ### Return type
 
